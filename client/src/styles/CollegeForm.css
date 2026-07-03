@@ -1,0 +1,264 @@
+/* ===========================
+   COLLEGE FORM CSS
+=========================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #eef3f8;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.college-container {
+  width: 100%;
+  padding: 25px;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+.college-header{
+    background: linear-gradient(135deg,#23407a,#2268b8);
+    color:white;
+    padding:18px 28px;   /* आधी 22px 30px होते */
+    border-radius:18px;
+    margin-bottom:22px;
+}
+
+.college-header h1{
+    font-size:28px;      /* आधी 30px */
+    font-weight:700;
+    margin:0;
+}
+
+.college-header p{
+    display:none;         /* Subtitle काढून टाक */
+}
+
+/* ===========================
+   CARD
+=========================== */
+.college-card{
+
+    background:#fff;
+    padding:30px;
+    border-radius:20px;
+    margin-bottom:28px;
+
+    box-shadow:
+    0 5px 18px rgba(0,0,0,.08);
+
+}
+/* ===========================
+   SECTION TITLE
+=========================== */
+
+.college-card h2{
+
+    background:#dfeaf4;
+
+    color:#183f7c;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    padding:16px 25px;
+
+    border-left:8px solid #24498d;
+
+    border-radius:12px;
+
+    margin-bottom:30px;
+
+}
+
+/* ===========================
+   GRID
+=========================== */
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+
+/* ===========================
+   LABEL
+=========================== */
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #1b1b1b;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* ===========================
+   INPUT
+=========================== */
+
+input,
+select{
+
+height:54px;
+
+padding:0 18px;
+
+font-size:18px;
+
+border-radius:12px;
+
+}
+
+textarea{
+  resize: vertical;
+}
+
+/* ===========================
+   INPUT HOVER
+=========================== */
+
+input:hover,
+select:hover,
+textarea:hover{
+
+border-color:#1565c0;
+
+}
+
+/* ===========================
+   INPUT FOCUS
+=========================== */
+
+input:focus,
+select:focus,
+textarea:focus{
+
+border-color:#1565c0;
+box-shadow:0 0 8px rgba(21,101,192,.25);
+
+}
+
+/* ===========================
+   PLACEHOLDER
+=========================== */
+
+::placeholder{
+
+color:#999;
+
+}
+
+/* ===========================
+   CRUD BUTTONS
+=========================== */
+
+.crud-buttons{
+    display:flex;
+    gap:18px;
+    justify-content:center;
+    align-items:center;
+    margin:35px 0;
+    flex-wrap:wrap;
+}
+
+.crud-buttons button{
+    border:none;
+    color:#fff;
+    padding:10px 30px;
+    font-size:20px;
+    font-weight:700;
+    border-radius:14px;
+    cursor:pointer;
+    min-width:150px;
+    transition:.3s ease;
+    box-shadow:0 6px 15px rgba(0,0,0,.20);
+}
+
+.crud-buttons button:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 22px rgba(0,0,0,.25);
+}
+
+/* SAVE */
+
+.save-btn{
+    background:linear-gradient(135deg,#18b58b,#3edc7a);
+}
+
+/* UPDATE */
+
+.update-btn{
+    background:linear-gradient(135deg,#4b6cff,#2345df);
+}
+
+/* DELETE */
+
+.delete-btn{
+    background:linear-gradient(135deg,#ff4d6d,#ff5a36);
+}
+
+/* CLEAR */
+
+.clear-btn{
+    background:linear-gradient(135deg,#ff9f00,#ffd400);
+    color:#fff;
+}
+
+/* PRINT */
+
+.print-btn{
+    background:linear-gradient(135deg,#8e44ad,#b64fc8);
+}
+
+/* PDF */
+
+.pdf-btn{
+    background:linear-gradient(135deg,#0ea5e9,#2563eb);
+}
+
+/* SEARCH */
+
+.search-btn{
+    background:linear-gradient(135deg,#00b894,#00cec9);
+}
+
+.error-input{
+
+border:2px solid #ff0000 !important;
+
+background:#fff5f5;
+
+}
+
+.error-text{
+
+display:block;
+
+margin-top:6px;
+
+font-size:13px;
+
+font-weight:600;
+
+color:#ff0000;
+
+}

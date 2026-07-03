@@ -1,0 +1,527 @@
+/* ==============================
+   GLOBAL
+============================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.faculty-container{
+    width:100%;
+    min-height:100vh;
+    padding:25px;
+    background:#eef2f7;
+    font-family:"Times New Roman", Times, serif;
+}
+
+/* ==============================
+   HEADER
+============================== */
+
+.form-header{
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    color:#fff;
+    padding:18px 22px;
+    border-radius:12px;
+    margin-bottom:20px;
+    box-shadow:0 6px 18px rgba(0,0,0,.15);
+}
+
+.form-header h2{
+    margin:0;
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:.5px;
+}
+
+/* ==============================
+   LAYOUT
+============================== */
+
+.form-layout{
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+
+.form-left{
+    width:100%;
+}
+
+/* ==============================
+   CARD
+============================== */
+
+.personal-info,
+.address-info,
+.other-info{
+
+    background:#fff;
+    border-radius:14px;
+    padding:22px;
+    margin-bottom:22px;
+
+    border:1px solid #e4e8ef;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.personal-info:hover,
+.address-info:hover,
+.other-info:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ==============================
+   SECTION TITLE
+============================== */
+
+.personal-info h1,
+.address-info h1,
+.other-info h1{
+
+    font-size:18px;
+
+    font-weight:900;
+
+    color:#1e3c72;
+
+    background:#edf5ff;
+
+    border-left:5px solid #2a5298;
+
+    padding:12px 15px;
+
+    margin-bottom:20px;
+
+    border-radius:8px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+/* ==============================
+   GRID
+============================== */
+
+.grid-4{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+/* ==============================
+   FORM GROUP
+============================== */
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:6px;
+}
+
+/* ==============================
+   LABEL
+============================== */
+
+.form-group label{
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#2d3748;
+
+    margin-bottom:7px;
+
+    font-family:"Times New Roman", Times, serif;
+
+    letter-spacing:.2px;
+
+}
+
+/* ==============================
+   REQUIRED STAR
+============================== */
+
+.required{
+
+    color:#e11d48;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    margin-left:2px;
+
+}
+/* ==============================
+   INPUTS
+============================== */
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    height:42px;
+
+    padding:10px 12px;
+
+    border:1px solid #d7dce5;
+
+    border-radius:8px;
+
+    outline:none;
+
+    background:#fafbff;
+
+    font-size:13px;
+
+    font-family:"Times New Roman", Times, serif;
+
+    transition:.3s;
+
+    color:#2d3748;
+
+}
+
+/* ==============================
+   TEXTAREA
+============================== */
+
+textarea{
+
+    min-height:90px;
+
+    resize:none;
+
+    padding-top:10px;
+
+}
+
+/* ==============================
+   PLACEHOLDER
+============================== */
+
+input::placeholder,
+textarea::placeholder{
+
+    color:#9ca3af;
+
+    font-size:13px;
+
+    font-family:"Times New Roman", Times, serif;
+
+}
+
+/* ==============================
+   DROPDOWN
+============================== */
+
+select{
+
+    cursor:pointer;
+
+}
+
+/* ==============================
+   FOCUS
+============================== */
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:#2563eb;
+
+    background:#fff;
+
+    box-shadow:0 0 6px rgba(37,99,235,.25);
+
+}
+
+/* ==============================
+   DISABLED
+============================== */
+
+input:disabled,
+select:disabled,
+textarea:disabled{
+
+    background:#f1f5f9;
+
+    cursor:not-allowed;
+
+}
+/* ==============================
+   BUTTON SECTION
+============================== */
+
+.buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:14px;
+
+    flex-wrap:wrap;
+
+    margin-top:30px;
+
+}
+
+/* ==============================
+   COMMON BUTTON
+============================== */
+
+.buttons button{
+
+    min-width:120px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:8px;
+
+    color:#fff;
+
+    font-size:14px;
+
+    font-family:"Times New Roman", Times, serif;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+
+}
+
+/* ==============================
+   SAVE
+============================== */
+
+.save{
+
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+
+}
+
+/* ==============================
+   UPDATE
+============================== */
+
+.update{
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+}
+
+/* ==============================
+   DELETE
+============================== */
+
+.delete{
+
+    background:linear-gradient(135deg,#dc2626,#ef4444);
+
+}
+
+/* ==============================
+   CLEAR
+============================== */
+
+.clear{
+
+    background:linear-gradient(135deg,#f59e0b,#facc15);
+
+    color:#000;
+
+}
+
+
+/* ==============================
+   BUTTON HOVER
+============================== */
+
+.buttons button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 6px 16px rgba(0,0,0,.20);
+
+}
+
+.buttons button:active{
+
+    transform:scale(.98);
+
+}
+/* ==============================
+   ERROR INPUT
+============================== */
+
+.error-input{
+
+    border:2px solid #dc2626 !important;
+
+    background:#fff5f5 !important;
+
+    transition:.3s;
+
+}
+
+.error-input:focus{
+
+    border:2px solid #dc2626 !important;
+
+    box-shadow:0 0 6px rgba(220,38,38,.25);
+
+}
+
+/* ==============================
+   ERROR MESSAGE
+============================== */
+
+.error-text{
+
+    color:#dc2626;
+
+    font-size:12px;
+
+    margin-top:4px;
+
+    font-weight:600;
+
+    font-family:"Times New Roman", Times, serif;
+
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width:1200px){
+
+    .grid-4{
+
+        grid-template-columns:repeat(3,1fr);
+
+    }
+
+}
+
+@media (max-width:992px){
+
+    .grid-4{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .grid-2{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .faculty-container{
+
+        padding:15px;
+
+    }
+
+    .grid-4{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .buttons{
+
+        justify-content:center;
+
+    }
+
+    .buttons button{
+
+        width:100%;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .form-header h2{
+
+        font-size:22px;
+
+    }
+
+    .personal-info h1,
+    .address-info h1,
+    .other-info h1{
+
+        font-size:16px;
+
+    }
+
+    input,
+    select,
+    textarea{
+
+        font-size:12px;
+
+    }
+
+}
+/* Back Button */
+
+.back-btn{
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    padding:12px 30px;
+    border-radius:8px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(37,99,235,.25);
+}
+
+.back-btn:active{
+    transform:scale(.98);
+}

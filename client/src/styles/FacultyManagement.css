@@ -1,0 +1,1006 @@
+/* ==========================================================
+                    FACULTY MANAGEMENT
+                  PROFESSIONAL ERP UI
+========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+html,
+body{
+    width:100%;
+    background:#f4f7fb;
+    overflow-x:hidden;
+}
+
+/* ===========================
+        PAGE LAYOUT
+=========================== */
+
+.faculty-page{
+    display:flex;
+    width:100%;
+    min-height:100vh;
+    background:#f4f7fb;
+}
+
+.faculty-main{
+    flex:1;
+    margin-left:260px;
+    width:calc(100% - 260px);
+    padding:30px;
+    transition:.3s;
+}
+
+.faculty-card{
+    width:100%;
+    background:#fff;
+    border-radius:22px;
+    padding:30px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+}
+
+/* ===========================
+            HEADER
+=========================== */
+
+.faculty-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.header-left h2{
+    font-size:34px;
+    color:#1e3a8a;
+    font-weight:700;
+}
+
+.faculty-subtitle{
+    margin-top:8px;
+    color:#64748b;
+    font-size:15px;
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+/* ===========================
+          BUTTONS
+=========================== */
+
+.export-btn{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:13px 22px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#fff;
+
+    color:#2563eb;
+
+    border:2px solid #2563eb;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.export-btn:hover{
+
+    background:#2563eb;
+
+    color:#fff;
+
+}
+
+.faculty-add-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    border:none;
+
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+
+    color:#fff;
+
+    padding:14px 24px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 10px 20px rgba(37,99,235,.25);
+
+}
+
+.faculty-add-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+/* ==========================================================
+                    STATISTICS CARDS
+========================================================== */
+
+.faculty-stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:22px;
+
+    margin-bottom:30px;
+
+}
+
+.stat-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:22px;
+
+    background:#fff;
+
+    border:1px solid #e8edf5;
+
+    border-radius:20px;
+
+    padding:22px 24px;
+
+    min-height:135px;
+
+    transition:.35s;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 22px rgba(15,23,42,.06);
+
+}
+.stat-box:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 16px 35px rgba(37,99,235,.12);
+
+}
+.stat-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    gap:4px;
+
+}
+.blue{
+    background:#fff;
+    border-top:4px solid #2563eb;
+}
+
+.green{
+    background:#fff;
+    border-top:4px solid #22c55e;
+}
+
+.orange{
+    background:#fff;
+    border-top:4px solid #f59e0b;
+}
+
+.red{
+    background:#fff;
+    border-top:4px solid #ef4444;
+}
+
+.blue .stat-icon{
+    background:#2563eb;
+}
+
+.green .stat-icon{
+    background:#22c55e;
+}
+
+.orange .stat-icon{
+    background:#f59e0b;
+}
+
+.red .stat-icon{
+    background:#ef4444;
+}
+
+.stat-icon{
+
+    width:72px;
+
+    height:72px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#fff;
+
+    font-size:28px;
+
+    flex-shrink:0;
+
+}
+.blue .stat-icon{
+    background:#2563eb;
+}
+
+.green .stat-icon{
+    background:#22c55e;
+}
+
+.orange .stat-icon{
+    background:#f59e0b;
+}
+
+.red .stat-icon{
+    background:#ef4444;
+}
+.stat-box h3{
+
+    font-size:40px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    margin:0;
+
+    line-height:1;
+
+}
+
+.stat-box span{
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#475569;
+
+}
+.card-desc{
+
+    font-size:14px;
+
+    color:#94a3b8;
+
+    margin-top:2px;
+
+}
+
+.faculty-toolbar{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr 1fr;
+
+    gap:24px;
+
+    align-items:center;
+
+    margin:30px 0;
+
+}
+.search-box{
+
+    width:100%;
+
+    min-width:0;
+
+}
+.search-box:hover{
+
+    box-shadow:0 10px 25px rgba(37,99,235,.10);
+
+}
+
+.search-box:focus-within{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+.search-icon{
+
+    font-size:18px;
+
+    color:#94a3b8;
+
+    margin-right:12px;
+
+}
+
+.search-box input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:15px;
+
+    color:#334155;
+
+}
+
+.search-box input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+.toolbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+.faculty-filter{
+
+    width:100%;
+
+    height:60px;
+
+}
+.faculty-filter:hover{
+
+    border-color:#2563eb;
+
+}
+
+.faculty-filter:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+/* ==========================================================
+                    FACULTY TABLE
+========================================================== */
+
+.faculty-table-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    border-radius:18px;
+
+    background:#fff;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+
+}
+
+.faculty-table{
+
+    width:100%;
+
+    min-width:1400px;
+
+    border-collapse:collapse;
+
+}
+
+.faculty-table thead{
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+}
+
+.faculty-table thead th{
+
+    padding:18px;
+
+    color:#fff;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    text-align:left;
+
+    white-space:nowrap;
+
+}
+
+.faculty-table tbody td{
+
+    padding:18px;
+
+    color:#334155;
+
+    font-size:14px;
+
+    border-bottom:1px solid #edf2f7;
+
+    white-space:nowrap;
+
+    transition:.3s;
+
+}
+
+.faculty-table tbody tr{
+
+    transition:.3s;
+
+}
+
+.faculty-table tbody tr:hover{
+
+    background:#eff6ff;
+
+    transform:scale(1.002);
+
+}
+
+/* ===========================
+        AVATAR
+=========================== */
+
+.faculty-name{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.faculty-avatar{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:700;
+
+    font-size:15px;
+
+}
+
+/* ===========================
+        STATUS
+=========================== */
+
+.status-active{
+
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+    font-weight:600;
+
+    font-size:13px;
+
+}
+
+.status-inactive{
+
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+    font-weight:600;
+
+    font-size:13px;
+
+}
+
+/* ===========================
+        ACTION BUTTONS
+=========================== */
+
+.faculty-action-buttons{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.view-btn,
+.edit-btn,
+.delete-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:15px;
+
+}
+
+.view-btn{
+
+    background:#0ea5e9;
+
+}
+
+.edit-btn{
+
+    background:#2563eb;
+
+}
+
+.delete-btn{
+
+    background:#ef4444;
+
+}
+
+.view-btn:hover,
+.edit-btn:hover,
+.delete-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 20px rgba(0,0,0,.18);
+
+}
+/* ==========================================================
+                    PAGINATION
+========================================================== */
+
+.pagination{
+
+    margin-top:28px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+}
+
+.page-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:12px 20px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.page-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+.page-btn:disabled{
+
+    background:#cbd5e1;
+
+    cursor:not-allowed;
+
+}
+
+.page-number{
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#334155;
+
+}
+
+.table-footer{
+
+    margin-top:15px;
+
+    color:#64748b;
+
+    font-size:14px;
+
+    font-weight:500;
+
+}
+
+/* ==========================================================
+                    MODAL
+========================================================== */
+
+.modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(15,23,42,.55);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+    backdrop-filter:blur(5px);
+
+}
+
+.faculty-modal{
+
+    width:1200px;
+
+    max-width:95%;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:#fff;
+
+    border-radius:22px;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+
+}
+
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:22px 28px;
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+    color:#fff;
+
+}
+
+.modal-header h2{
+
+    font-size:26px;
+
+}
+
+.modal-header p{
+
+    margin-top:5px;
+
+    font-size:14px;
+
+    opacity:.9;
+
+}
+
+.close-btn{
+
+    width:45px;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ef4444;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+}
+
+.modal-body{
+
+    padding:28px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+.detail-row{
+
+    background:#f8fafc;
+
+    border-left:5px solid #2563eb;
+
+    border-radius:14px;
+
+    padding:16px;
+
+}
+
+.detail-row b{
+
+    display:block;
+
+    color:#1e3a8a;
+
+    margin-bottom:6px;
+
+    font-size:14px;
+
+}
+
+.detail-row span{
+
+    color:#475569;
+
+    font-size:14px;
+
+}
+
+/* ==========================================================
+                    RESPONSIVE
+========================================================== */
+
+@media(max-width:1200px){
+
+.modal-body{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:992px){
+
+.faculty-main{
+
+margin-left:80px;
+
+width:calc(100% - 80px);
+
+padding:20px;
+
+}
+
+.faculty-stats{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.header-right{
+
+width:100%;
+
+}
+
+.search-box{
+
+min-width:100%;
+
+}
+
+.toolbar-right{
+
+width:100%;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.faculty-main{
+
+margin-left:0;
+
+width:100%;
+
+padding:15px;
+
+}
+
+.faculty-card{
+
+padding:20px;
+
+}
+
+.faculty-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.faculty-stats{
+
+grid-template-columns:1fr;
+
+}
+
+.modal-body{
+
+grid-template-columns:1fr;
+
+}
+
+.export-btn,
+
+.faculty-add-btn{
+
+width:100%;
+
+justify-content:center;
+
+}
+
+.toolbar-right{
+
+flex-direction:column;
+
+}
+
+.faculty-filter{
+
+width:100%;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.header-left h2{
+
+font-size:26px;
+
+}
+
+.search-box{
+
+height:50px;
+
+}
+
+.stat-box{
+
+padding:18px;
+
+}
+
+.stat-icon{
+
+width:52px;
+
+height:52px;
+
+font-size:20px;
+
+}
+
+}
+
+/* ==========================================================
+                    END
+========================================================== */

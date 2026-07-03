@@ -1,0 +1,742 @@
+/* ==================================================
+   GOOGLE FONT
+================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
+/* ==================================================
+   RESET
+================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+html,
+body,
+#root{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#eef4ff;
+}
+
+/* ==================================================
+   PAGE
+================================================== */
+
+.register-wrapper{
+    width:100%;
+    height:100vh;
+    display:flex;
+    background:#eef4ff;
+}
+
+/* ==================================================
+   LEFT PANEL
+================================================== */
+
+.register-left{
+
+    width:42%;
+
+    background:linear-gradient(135deg,#0b2f9f,#2563eb);
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:60px;
+
+}
+
+.register-left::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:520px;
+    height:520px;
+
+    background:rgba(255,255,255,.06);
+
+    border-radius:50%;
+
+    top:-220px;
+    right:-180px;
+
+}
+
+.register-left::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:360px;
+    height:360px;
+
+    background:rgba(255,255,255,.05);
+
+    border-radius:50%;
+
+    bottom:-150px;
+    left:-150px;
+
+}
+
+.register-logo{
+
+    position:absolute;
+
+    top:35px;
+    left:40px;
+
+    width:90px;
+
+}
+
+.register-content{
+
+    position:relative;
+
+    z-index:5;
+
+    color:#fff;
+
+}
+
+.register-content h1{
+
+    font-size:56px;
+
+    font-weight:800;
+
+    line-height:1.05;
+
+}
+
+.register-content span{
+
+    color:#dbeafe;
+
+}
+
+.register-line{
+
+    width:80px;
+
+    height:5px;
+
+    background:#fff;
+
+    border-radius:50px;
+
+    margin:25px 0;
+
+}
+
+.register-content p{
+
+    font-size:20px;
+
+    color:#dbeafe;
+
+}
+
+/* ==================================================
+   RIGHT PANEL
+================================================== */
+.register-right{
+
+    flex:1;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    padding:40px;
+
+    overflow-y:auto;
+
+    background:
+    radial-gradient(circle at top right,#e8f1ff 0%,transparent 30%),
+    radial-gradient(circle at bottom left,#eef5ff 0%,transparent 35%),
+    #f8fbff;
+
+}
+/* ==================================================
+   REGISTER CARD
+================================================== */
+
+.register-card{
+
+    width:100%;
+
+    max-width:500px;
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:24px 28px;
+
+    border:1px solid rgba(37,99,235,.08);
+
+    box-shadow:
+        0 20px 50px rgba(15,23,42,.10);
+
+    animation:fadeUp .45s ease;
+
+}
+
+/* ==================================================
+   USER ICON
+================================================== */
+
+.user-circle{
+
+    width:60px;
+
+    height:60px;
+
+    margin:0 auto 18px;
+
+    border-radius:50%;
+
+    background:#eef4ff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:24px;
+
+    color:#2563eb;
+
+}
+
+/* ==================================================
+   TITLE
+================================================== */
+
+.register-card h2{
+
+    text-align:center;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:#0b2f9f;
+
+    margin-bottom:6px;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    font-size:14px;
+
+    color:#64748b;
+
+    margin-bottom:20px;
+
+}
+
+/* ==================================================
+   FORM GROUP
+================================================== */
+
+.register-group{
+
+    margin-bottom:14px;
+
+}
+
+.register-group label{
+
+    display:block;
+
+    margin-bottom:6px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#1e293b;
+
+}
+
+/* ==================================================
+   INPUT
+================================================== */
+
+.register-input{
+
+    width:100%;
+
+    height:46px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:0 15px;
+
+    border:1px solid #dbe5f4;
+
+    border-radius:12px;
+
+    background:#fff;
+
+    transition:.30s;
+
+}
+
+.register-input:hover{
+
+    border-color:#2563eb;
+
+}
+
+.register-input:focus-within{
+
+    border-color:#2563eb;
+
+    box-shadow:
+    0 0 0 4px rgba(37,99,235,.10);
+
+}
+
+.input-icon{
+
+    color:#64748b;
+
+    font-size:16px;
+
+    width:18px;
+
+    min-width:18px;
+
+}
+
+.register-input input,
+.register-input select{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:14px;
+
+    color:#1e293b;
+
+}
+
+.register-input input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+.register-input select{
+
+    cursor:pointer;
+
+}
+/* ==================================================
+   EMAIL ROW
+================================================== */
+
+.register-email-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 135px;
+
+    gap:12px;
+
+    align-items:center;
+
+}
+
+.register-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:14px;
+
+}
+
+/* ==================================================
+   OTP BUTTON
+================================================== */
+
+.otp-btn{
+
+    height:46px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(135deg,#2563eb,#0b2f9f);
+
+    color:#fff;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.otp-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 12px 24px rgba(37,99,235,.25);
+
+}
+
+/* ==================================================
+   SUCCESS MESSAGE
+================================================== */
+
+.otp-success{
+
+    margin:12px 0;
+
+    padding:10px;
+
+    background:#ecfdf5;
+
+    border:1px solid #bbf7d0;
+
+    border-radius:10px;
+
+    color:#15803d;
+
+    font-size:13px;
+
+    text-align:center;
+
+    font-weight:600;
+
+}
+
+/* ==================================================
+   ERROR
+================================================== */
+
+.error-box{
+
+    margin-top:14px;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    background:#fef2f2;
+
+    border:1px solid #fecaca;
+
+    color:#dc2626;
+
+    font-size:13px;
+
+    text-align:center;
+
+}
+
+/* ==================================================
+   REGISTER BUTTON
+================================================== */
+
+.register-btn{
+
+    width:100%;
+
+    height:48px;
+
+    margin-top:18px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(135deg,#2563eb,#0b2f9f);
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.register-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 15px 30px rgba(37,99,235,.30);
+
+}
+
+/* ==================================================
+   LOGIN TEXT
+================================================== */
+
+.login-text{
+
+    text-align:center;
+
+    margin-top:18px;
+
+    font-size:14px;
+
+    color:#64748b;
+
+}
+
+.login-text a{
+
+    margin-left:6px;
+
+    color:#2563eb;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+.login-text a:hover{
+
+    text-decoration:underline;
+
+}
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width:1200px){
+
+    .register-left{
+
+        width:40%;
+
+        padding:45px;
+
+    }
+
+    .register-content h1{
+
+        font-size:48px;
+
+    }
+
+    .register-card{
+
+        max-width:470px;
+
+    }
+
+}
+
+@media (max-width:992px){
+
+    html,
+    body{
+
+        overflow:auto;
+
+    }
+
+    .register-wrapper{
+
+        flex-direction:column;
+
+        min-height:100vh;
+
+    }
+
+    .register-left{
+
+        width:100%;
+
+        height:280px;
+
+        padding:35px;
+
+    }
+
+    .register-left::before,
+    .register-left::after{
+
+        display:none;
+
+    }
+
+    .register-logo{
+
+        position:relative;
+
+        top:0;
+
+        left:0;
+
+        margin-bottom:20px;
+
+    }
+
+    .register-content h1{
+
+        font-size:34px;
+
+    }
+
+    .register-content p{
+
+        font-size:16px;
+
+    }
+
+    .register-right{
+
+        width:100%;
+
+        padding:25px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .register-email-row,
+    .register-row{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .otp-btn{
+
+        width:100%;
+
+    }
+
+    .register-card{
+
+        max-width:100%;
+
+        padding:20px;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .register-left{
+
+        height:220px;
+
+        padding:20px;
+
+    }
+
+    .register-logo{
+
+        width:70px;
+
+    }
+
+    .register-content h1{
+
+        font-size:28px;
+
+    }
+
+    .register-content p{
+
+        font-size:14px;
+
+    }
+
+}
+
+/* ==================================================
+   SCROLLBAR
+================================================== */
+
+::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#bcd0ff;
+
+    border-radius:20px;
+
+}
+
+/* ==================================================
+   ANIMATION
+================================================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
