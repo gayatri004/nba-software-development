@@ -55,8 +55,8 @@ function Course({ setIsLoggedIn }) {
       setLoading(true);
 
       const res = await axios.get(
-        "http://localhost:5000/course-master"
-      );
+  "https://nba-software-development-production.up.railway.app/course-master"
+);
 
       setCourses(res.data);
     } catch (err) {
@@ -90,8 +90,8 @@ function Course({ setIsLoggedIn }) {
 
     try {
       await axios.delete(
-        `http://localhost:5000/course-master/${id}`
-      );
+  `https://nba-software-development-production.up.railway.app/course-master/${id}`
+);
 
       fetchCourses();
     } catch (err) {
