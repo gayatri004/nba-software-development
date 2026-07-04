@@ -59,8 +59,8 @@ function Authority({ setIsLoggedIn }) {
       setLoading(true);
 
       const res = await axios.get(
-        "http://localhost:5000/authority"
-      );
+  "https://nba-software-development-production.up.railway.app/authority"
+);
 
       setAuthority(res.data);
 
@@ -109,10 +109,9 @@ function Authority({ setIsLoggedIn }) {
 
     try {
 
-      await axios.delete(
-        `http://localhost:5000/authority/${id}`
-      );
-
+     await axios.delete(
+  `https://nba-software-development-production.up.railway.app/authority/${id}`
+);
       fetchAuthority();
 
     } catch (err) {
