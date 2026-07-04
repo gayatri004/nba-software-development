@@ -69,8 +69,9 @@ function Department({ setIsLoggedIn }) {
       setLoading(true);
 
       const res = await axios.get(
-  "https://nba-software-development-production.up.railway.app/department"
-);
+        "http://localhost:5000/department"
+      );
+
       setDepartments(res.data);
 
     } catch (err) {
@@ -119,8 +120,8 @@ function Department({ setIsLoggedIn }) {
     try {
 
       await axios.delete(
-  `https://nba-software-development-production.up.railway.app/department/${id}`
-);
+        `http://localhost:5000/department/${id}`
+      );
 
       fetchDepartments();
 
