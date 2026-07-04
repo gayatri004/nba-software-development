@@ -8,14 +8,14 @@ const pool = new Pool({
   },
 });
 
+// Test database connection
 pool.connect()
-  .then(() => console.log("✅ PostgreSQL Connected Successfully"))
-  .catch((err) => console.error("❌ Database Error:", err));
-
-module.exports = pool;
-// Test connection
-pool.connect()
-  .then(() => console.log("✅ PostgreSQL Connected Successfully"))
-  .catch((err) => console.error("❌ Database Error:", err));
+  .then((client) => {
+    console.log("✅ PostgreSQL Connected Successfully");
+    client.release();
+  })
+  .catch((err) => {
+    console.error("❌ Database Error:", err);
+  });
 
 module.exports = pool;
