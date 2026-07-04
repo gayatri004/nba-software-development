@@ -241,13 +241,6 @@ function Department({ setIsLoggedIn }) {
           PAGINATION
   =============================== */
 
-  const totalPages = Math.ceil(
-
-    filteredDepartments.length /
-      recordsPerPage
-
-  );
-
   const indexOfLastRecord =
 
     currentPage * recordsPerPage;
