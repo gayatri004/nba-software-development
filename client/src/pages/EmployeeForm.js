@@ -36,7 +36,7 @@ function EmployeeForm() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/employees", {
+     const response = await fetch("https://nba-software-development-production.up.railway.app/employees", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
