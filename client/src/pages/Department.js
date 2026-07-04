@@ -19,8 +19,6 @@ import {
   FaEye,
   FaEdit,
   FaTrash,
-  FaChevronLeft,
-  FaChevronRight,
 } from "react-icons/fa";
 
 import Sidebar from "../components/Sidebar";
@@ -266,22 +264,6 @@ function Department({ setIsLoggedIn }) {
       indexOfLastRecord
 
     );
-
-  const changePage = (page) => {
-
-    if (
-
-      page >= 1 &&
-
-      page <= totalPages
-
-    ) {
-
-      setCurrentPage(page);
-
-    }
-
-  };
 
   /* ===============================
             EXPORT

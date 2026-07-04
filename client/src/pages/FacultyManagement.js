@@ -223,12 +223,6 @@ function FacultyManagement({ setIsLoggedIn }) {
           PAGINATION
   =============================== */
 
-  const totalPages = Math.ceil(
-
-    filteredFaculty.length / recordsPerPage
-
-  );
-
   const indexOfLastRecord =
 
     currentPage * recordsPerPage;
