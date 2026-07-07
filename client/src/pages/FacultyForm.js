@@ -241,7 +241,7 @@ function FacultyForm() {
 
     try {
             await axios.post(
-        "nba-software-development-production.up.railway.app/faculty",
+        "https://nba-software-development-production.up.railway.app/faculty",
         {
 
           faculty_id: formData.facultyId,
