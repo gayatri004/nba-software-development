@@ -362,7 +362,7 @@ function FacultyForm() {
 
           <div className="personal-info">
 
-            <h1>Personal Information *</h1>
+            <h1>Personal Information </h1>
 
             <div className="grid-4">
 
@@ -370,7 +370,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Faculty ID *</label>
+                <label>Faculty ID </label>
 
                 <input
                   ref={(el) => (inputRefs.current.facultyId = el)}
@@ -394,7 +394,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Faculty Name *</label>
+                <label>Faculty Name</label>
 
                 <input
                   ref={(el) => (inputRefs.current.facultyName = el)}
@@ -418,7 +418,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Father / Husband Name *</label>
+                <label>Father / Husband Name</label>
 
                 <input
                   ref={(el) => (inputRefs.current.fatherName = el)}
@@ -442,7 +442,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Date of Birth *</label>
+                <label>Date of Birth</label>
 
                 <input
                   ref={(el) => (inputRefs.current.dob = el)}
@@ -464,7 +464,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Gender *</label>
+                <label>Gender</label>
 
                 <select
                   ref={(el) => (inputRefs.current.gender = el)}
@@ -491,7 +491,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Marital Status *</label>
+                <label>Marital Status</label>
 
                 <select
                   ref={(el) => (inputRefs.current.maritalStatus = el)}
@@ -517,7 +517,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Blood Group *</label>
+                <label>Blood Group</label>
 
                 <select
                   ref={(el) => (inputRefs.current.bloodGroup = el)}
@@ -549,7 +549,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Nationality *</label>
+                <label>Nationality</label>
 
                 <select
                   ref={(el) => (inputRefs.current.nationality = el)}
@@ -574,7 +574,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Religion *</label>
+                <label>Religion</label>
 
                 <select
                   ref={(el) => (inputRefs.current.religion = el)}
@@ -604,7 +604,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Category *</label>
+                <label>Category</label>
 
                 <select
                   ref={(el) => (inputRefs.current.category = el)}
@@ -633,7 +633,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Faculty Status *</label>
+                <label>Faculty Status</label>
 
                 <select
                   ref={(el) => (inputRefs.current.facultyStatus = el)}
@@ -670,7 +670,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Current Address *</label>
+                <label>Current Address</label>
 
                 <textarea
                   ref={(el) => (inputRefs.current.currentAddress = el)}
@@ -693,7 +693,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Permanent Address *</label>
+                <label>Permanent Address</label>
 
                 <textarea
                   ref={(el) => (inputRefs.current.permanentAddress = el)}
@@ -720,7 +720,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>City *</label>
+                <label>City </label>
 
                 <select
                   ref={(el) => (inputRefs.current.city = el)}
@@ -751,7 +751,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>State *</label>
+                <label>State</label>
 
                 <select
                   ref={(el) => (inputRefs.current.state = el)}
@@ -779,7 +779,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>PIN Code *</label>
+                <label>PIN Code </label>
 
                 <input
                   ref={(el) => (inputRefs.current.pinCode = el)}
@@ -803,7 +803,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Country *</label>
+                <label>Country</label>
 
                 <select
                   ref={(el) => (inputRefs.current.country = el)}
@@ -843,7 +843,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>PAN Number *</label>
+                <label>PAN Number</label>
 
                 <input
                   ref={(el) => (inputRefs.current.panNumber = el)}
@@ -867,7 +867,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Aadhaar Number *</label>
+                <label>Aadhaar Number</label>
 
                 <input
                   ref={(el) => (inputRefs.current.aadhaarNumber = el)}
@@ -891,7 +891,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>APAR ID *</label>
+                <label>APAR ID </label>
 
                 <input
                   ref={(el) => (inputRefs.current.aparId = el)}
@@ -915,7 +915,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Department *</label>
+                <label>Department</label>
 
                 <input
                   ref={(el) => (inputRefs.current.department = el)}
@@ -938,7 +938,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Designation *</label>
+                <label>Designation</label>
 
                 <input
                   ref={(el) => (inputRefs.current.designation = el)}
@@ -962,7 +962,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Qualification *</label>
+                <label>Qualification</label>
 
                 <input
                   ref={(el) => (inputRefs.current.qualification = el)}
@@ -986,7 +986,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Specialization *</label>
+                <label>Specialization</label>
 
                 <input
                   ref={(el) => (inputRefs.current.specialization = el)}
@@ -1010,7 +1010,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Date of Joining *</label>
+                <label>Date of Joining</label>
 
                 <input
                   ref={(el) => (inputRefs.current.joiningDate = el)}
@@ -1032,7 +1032,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Employee Type *</label>
+                <label>Employee Type</label>
 
                 <select
                   ref={(el) => (inputRefs.current.employeeType = el)}
@@ -1059,7 +1059,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Experience *</label>
+                <label>Experience</label>
 
                 <input
                   ref={(el) => (inputRefs.current.experience = el)}
@@ -1083,7 +1083,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Previous Experience *</label>
+                <label>Previous Experience </label>
 
                 <input
                   ref={(el) => (inputRefs.current.previousExperience = el)}
@@ -1107,7 +1107,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Email ID *</label>
+                <label>Email ID </label>
 
                 <input
                   ref={(el) => (inputRefs.current.email = el)}
@@ -1130,7 +1130,7 @@ function FacultyForm() {
 
               <div className="form-group">
 
-                <label>Mobile Number *</label>
+                <label>Mobile Number </label>
 
                 <input
                   ref={(el) => (inputRefs.current.mobile = el)}

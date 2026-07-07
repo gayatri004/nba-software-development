@@ -261,7 +261,7 @@ function CourseMaster() {
         <div className="grid-4">
 
           <div>
-            <label>Course Code *</label>
+            <label>Course Code</label>
 
             <input
               type="text"
@@ -284,7 +284,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Course Name *</label>
+            <label>Course Name </label>
 
             <input
               type="text"
@@ -307,7 +307,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Course Type *</label>
+            <label>Course Type </label>
 
             <select
               className={errors.courseType ? "error-field" : ""}
@@ -334,7 +334,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Department *</label>
+            <label>Department</label>
 
             <select
               className={errors.department ? "error-field" : ""}
@@ -364,7 +364,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Course Level *</label>
+            <label>Course Level</label>
 
             <select
               className={errors.courseLevel ? "error-field" : ""}
@@ -390,7 +390,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Duration *</label>
+            <label>Duration</label>
 
             <select
               className={errors.duration ? "error-field" : ""}
@@ -417,7 +417,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Total Semesters *</label>
+            <label>Total Semesters</label>
 
             <select
               className={errors.totalSemesters ? "error-field" : ""}
@@ -444,7 +444,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Intake Capacity *</label>
+            <label>Intake Capacity</label>
 
             <input
               type="number"
@@ -466,7 +466,7 @@ function CourseMaster() {
             )}
           </div>
                     <div>
-            <label>Course Status *</label>
+            <label>Course Status</label>
 
             <select
               className={errors.courseStatus ? "error-field" : ""}
@@ -491,7 +491,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Approval Status *</label>
+            <label>Approval Status</label>
 
             <select
               className={errors.approvalStatus ? "error-field" : ""}
@@ -517,7 +517,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Start Date *</label>
+            <label>Start Date</label>
 
             <input
               type="date"
@@ -539,7 +539,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>End Date *</label>
+            <label>End Date</label>
 
             <input
               type="date"
@@ -561,7 +561,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Course Coordinator *</label>
+            <label>Course Coordinator</label>
 
             <input
               type="text"
@@ -584,7 +584,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Contact Number *</label>
+            <label>Contact Number</label>
 
             <input
               type="text"
@@ -620,7 +620,7 @@ function CourseMaster() {
 
         <div className="grid-2">
                       <div>
-            <label>Course Description *</label>
+            <label>Course Description</label>
 
             <textarea
               placeholder="Enter course description..."
@@ -642,7 +642,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Course Objective *</label>
+            <label>Course Objective</label>
 
             <textarea
               placeholder="Enter course objective..."
@@ -664,7 +664,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Eligibility Criteria *</label>
+            <label>Eligibility Criteria</label>
 
             <textarea
               placeholder="Enter eligibility criteria..."
@@ -686,7 +686,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Course Outcome *</label>
+            <label>Course Outcome</label>
 
             <textarea
               placeholder="Enter course outcome..."
@@ -722,7 +722,7 @@ function CourseMaster() {
 
         <div className="grid-4">
                       <div>
-            <label>Tuition Fees (₹) *</label>
+            <label>Tuition Fees (₹)</label>
 
             <input
               type="number"
@@ -745,7 +745,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Development Fees (₹) *</label>
+            <label>Development Fees (₹)</label>
 
             <input
               type="number"
@@ -768,7 +768,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Other Fees (₹) *</label>
+            <label>Other Fees (₹)</label>
 
             <input
               type="number"
@@ -791,7 +791,7 @@ function CourseMaster() {
           </div>
 
           <div>
-            <label>Total Fees (₹) *</label>
+            <label>Total Fees (₹)</label>
 
             <input
               type="number"

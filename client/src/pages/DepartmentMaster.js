@@ -180,7 +180,7 @@ const handleBack = () => {
 
         <div>
 
-          <label>Department Code *</label>
+          <label>Department Code </label>
 
           <input
             type="text"
@@ -205,7 +205,7 @@ const handleBack = () => {
 
         <div>
 
-          <label>Department Type *</label>
+          <label>Department Type </label>
 
           <select
             className={errors.departmentType ? "error-field" : ""}
@@ -244,7 +244,7 @@ const handleBack = () => {
 
         <div>
 
-          <label>HOD / Incharge Name *</label>
+          <label>HOD / Incharge Name </label>
 
           <input
             type="text"
@@ -284,7 +284,7 @@ const handleBack = () => {
 
     <div>
 
-      <label>Building / Block *</label>
+      <label>Building / Block</label>
 
       <input
         type="text"
@@ -309,7 +309,7 @@ const handleBack = () => {
 
     <div>
 
-      <label>Floor / Room No. *</label>
+      <label>Floor / Room No. </label>
 
       <input
         type="text"
@@ -334,7 +334,7 @@ const handleBack = () => {
 
     <div>
 
-      <label>Campus *</label>
+      <label>Campus</label>
 
       <select
         className={errors.campus ? "error-field" : ""}
