@@ -64,7 +64,7 @@ function DepartmentMaster() {
 
     try {
       const response = await fetch(
-  "nba-software-development-production.up.railway.app/department",
+  "https://nba-software-development-production.up.railway.app/department",
         {
           method: "POST",
           headers: {

@@ -148,7 +148,7 @@ function CollegeForm() {
 
       const response = await axios.post(
 
-        "nba-software-development-production.up.railway.app/college",
+        "https://nba-software-development-production.up.railway.app/college",
 
         formData
 

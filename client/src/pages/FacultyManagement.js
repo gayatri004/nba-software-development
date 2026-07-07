@@ -60,7 +60,7 @@ function FacultyManagement({ setIsLoggedIn }) {
       setLoading(true);
 
       const res = await axios.get(
-        "http://localhost:5000/faculty"
+        "https://nba-software-development-production.up.railway.app/faculty"
       );
 
       setFaculty(res.data);
@@ -111,7 +111,7 @@ function FacultyManagement({ setIsLoggedIn }) {
     try {
 
       await axios.delete(
-        `nba-software-development-production.up.railway.app/faculty/${id}`
+        `https://nba-software-development-production.up.railway.app/faculty/${id}`
       );
 
       fetchFaculty();

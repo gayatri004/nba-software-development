@@ -843,7 +843,7 @@ function AuthorityManagement() {
 
                 await axios.post(
 
-                  "nba-software-development-production.up.railway.app/authority",
+                  "https://nba-software-development-production.up.railway.app/authority",
 
                   formData
 
