@@ -16,7 +16,7 @@ function FacultyList() {
     try {
 
       const response = await axios.get(
-        "http://localhost:5000/faculty"
+        "nba-software-development-production.up.railway.app/faculty"
       );
 
       setFaculty(response.data);

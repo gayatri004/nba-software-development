@@ -843,7 +843,7 @@ function AuthorityManagement() {
 
                 await axios.post(
 
-                  "http://localhost:5000/authority",
+                  "nba-software-development-production.up.railway.app/authority",
 
                   formData
 

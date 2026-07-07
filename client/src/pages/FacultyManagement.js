@@ -111,7 +111,7 @@ function FacultyManagement({ setIsLoggedIn }) {
     try {
 
       await axios.delete(
-        `http://localhost:5000/faculty/${id}`
+        `nba-software-development-production.up.railway.app/faculty/${id}`
       );
 
       fetchFaculty();

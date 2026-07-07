@@ -137,7 +137,7 @@ function CourseMaster() {
 
   try {
     const response = await axios.post(
-      "http://localhost:5000/course-master",
+      "nba-software-development-production.up.railway.app/course-master",
       course
     );
 
