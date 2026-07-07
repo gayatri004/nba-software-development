@@ -1,419 +1,264 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  FaUser,
-  FaEnvelope,
-  FaPhoneAlt,
-  FaLock,
-  FaKey,
-  FaUserGraduate,
-} from "react-icons/fa";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // १. नेव्हिगेशनसाठी useNavigate इम्पोर्ट केले
+import "../styles/Register.css"; 
+import axios from "axios";
+// Register.css फाईल जोडली आहे
 
-import { api } from "../api";
-import "../styles/Register.css";
+import { 
+  FaUser, 
+  FaEnvelope, 
+  FaPhone, 
+  FaLock, 
+  FaPaperPlane, 
+  FaUserPlus 
+} from 'react-icons/fa';
 
 export default function Register() {
+  const navigate = useNavigate(); // २. नेव्हिगेट फंक्शन इनिशियलाइज केले
 
-  const navigate = useNavigate();
-
-  const [form, setForm] = useState({
-    full_name: "",
-    email: "",
-    otp: "",
-    mobile: "",
-    password: "",
-    confirm_password: "",
-    role: "",
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    otp: '',
+    mobileNumber: '',
+    password: '',
+    confirmPassword: '',
+    role: ''
   });
 
-  const [loading, setLoading] = useState(false);
-  const [otpSent, setOtpSent] = useState(false);
-  const [error, setError] = useState("");
-
   const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
+  const handleSendOTP = () => {
+    alert("OTP Sent Successfully!");
+  };
+
+  const handleRegister = async (e) => {
+  e.preventDefault();
+
+  if (formData.password !== formData.confirmPassword) {
+    alert("Password and Confirm Password do not match");
+    return;
+  }
+
+  try {
+    const res = await axios.post("http://localhost:5000/register", {
+      fullName: formData.fullName,
+      email: formData.email,
+      password: formData.password,
     });
 
-  };
+    if (res.data.success) {
+      alert("Registration Successful!");
 
-  const sendOtp = async () => {
-
-    setError("");
-
-    if (!form.email) {
-      setError("Please enter your email.");
-      return;
-    }
-
-    try {
-
-      await api("/auth/send-otp", {
-        email: form.email,
+      setFormData({
+        fullName: "",
+        email: "",
+        otp: "",
+        mobileNumber: "",
+        password: "",
+        confirmPassword: "",
+        role: "",
       });
 
-      setOtpSent(true);
-
-    } catch (err) {
-
-      setError(err.message);
-
+      navigate("/login");
+    } else {
+      alert(res.data.message);
     }
-
-  };
-
-  const handleSubmit = async (e) => {
-
-    e.preventDefault();
-
-    setLoading(true);
-
-    setError("");
-
-    try {
-
-      const data = await api("/auth/register", form);
-
-      localStorage.setItem("token", data.token);
-
-      localStorage.setItem(
-        "user",
-        JSON.stringify(data.user)
-      );
-
-      alert("Registration Successful");
-
-      navigate("/user");
-
-    } catch (err) {
-
-      setError(err.message);
-
-    } finally {
-
-      setLoading(false);
-
-    }
-
-  };
+  } catch (err) {
+    console.log(err);
+    alert("Registration Failed");
+  }
+};
 
   return (
+    <div className="register-cms-container">
+      
+      {/* ================= LEFT SIDE (BLUE CURVE DESIGN) ================= */}
+      <div className="register-left-hero">
+        
+        {/* NBA Custom CSS Logo */}
+        <div className="register-logo-wrapper">
+          <div className="register-logo-circle">
+            <div className="register-logo-inner">
+              <span className="register-logo-main">NBA</span>
+              <span className="register-logo-sub">NATIONAL BOARD</span>
+              <span className="register-logo-sub">OF ACCREDITATION</span>
+            </div>
+          </div>
+        </div>
 
-    <div className="register-wrapper">
-
-      {/* LEFT PANEL */}
-
-      <div className="register-left">
-
-        <img
-          src="/nba-logo.png"
-          alt="NBA"
-          className="register-logo"
-        />
-
-        <div className="register-content">
-
-          <h1>
-
-            COLLEGE
-            <br />
-
-            MANAGEMENT
-            <br />
-
-            SYSTEM
-            <br />
-
-            <span>FOR NBA</span>
-
+        {/* Hero Title Grid */}
+        <div className="register-hero-text">
+          <h1 className="register-main-title">
+            COLLEGE <br /> MANAGEMENT SYSTEM <br /> FOR NBA
           </h1>
-
-          <div className="register-line"></div>
-
-          <p>
-
+          <p className="register-subtitle">
             Digitizing Accreditation Excellence
+          </p>
+        </div>
 
+        <div className="register-left-footer-space"></div>
+      </div>
+
+      {/* ================= RIGHT SIDE (REGISTRATION FORM) ================= */}
+      <div className="register-right-side">
+        <div className="register-card-form">
+          
+          {/* Top Circular Blue Icon Box */}
+          <div className="register-avatar-icon">
+            <FaUserPlus />
+          </div>
+
+          <h2 className="register-form-title">Create Your Account</h2>
+          <p className="register-form-subtitle">Fill in the details below to register</p>
+
+          <form onSubmit={handleRegister} className="register-actual-form">
+            
+            {/* Full Name Input Box */}
+            <div className="register-input-group register-full-row">
+              <label>Full Name</label>
+              <div className="register-field-wrapper">
+                <FaUser className="register-field-icon" />
+                <input 
+                  type="text" 
+                  name="fullName"
+                  placeholder="Enter your full name" 
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Email Address Input Box */}
+            <div className="register-input-group register-full-row">
+              <label>Email Address</label>
+              <div className="register-email-row">
+                <div className="register-field-wrapper register-flex-input">
+                  <FaEnvelope className="register-field-icon" />
+                  <input 
+                    type="email" 
+                    name="email"
+                    placeholder="Enter your email" 
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <button type="button" className="register-btn-otp" onClick={handleSendOTP}>
+                  <FaPaperPlane className="register-otp-icon-small" /> Send OTP
+                </button>
+              </div>
+            </div>
+
+            {/* Enter OTP Input Box */}
+            <div className="register-input-group register-half-row">
+              <label>Enter OTP</label>
+              <div className="register-field-wrapper">
+                <input 
+                  type="text" 
+                  name="otp"
+                  maxLength="6"
+                  placeholder="Enter 6 digit OTP" 
+                  value={formData.otp}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Mobile Number Input Box */}
+            <div className="register-input-group register-full-row">
+              <label>Mobile Number</label>
+              <div className="register-field-wrapper">
+                <FaPhone className="register-field-icon register-phone-rotate" />
+                <input 
+                  type="tel" 
+                  name="mobileNumber"
+                  placeholder="Enter your mobile number" 
+                  value={formData.mobileNumber}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Password Input Box */}
+            <div className="register-input-group register-half-row">
+              <label>Password</label>
+              <div className="register-field-wrapper">
+                <FaLock className="register-field-icon" />
+                <input 
+                  type="password" 
+                  name="password"
+                  placeholder="Password" 
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Confirm Password Input Box */}
+            <div className="register-input-group register-half-row">
+              <label>Confirm Password</label>
+              <div className="register-field-wrapper">
+                <FaLock className="register-field-icon" />
+                <input 
+                  type="password" 
+                  name="confirmPassword"
+                  placeholder="Confirm Password" 
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Role Select Dropdown Option */}
+            <div className="register-input-group register-full-row">
+              <label>Role</label>
+              <div className="register-field-wrapper">
+                <FaUser className="register-field-icon" />
+                <select 
+                  name="role" 
+                  value={formData.role} 
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="" disabled>Select your role</option>
+                  <option value="Admin">Admin</option>
+                  <option value="HOD">HOD</option>
+                  <option value="Faculty">Faculty</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Main Submit Action Trigger */}
+            <button type="submit" className="register-btn-submit">
+              <FaUserPlus className="register-submit-icon-btn" /> Register Account
+            </button>
+
+          </form>
+
+          {/* Bottom Redirect Anchor */}
+          <p className="register-bottom-text">
+            Already have an account?{' '}
+            {/* ३. पारंपारिक <a> टॅग ऐवजी react-router-dom च्या नेव्हिगेशनचा वापर केला */}
+            <span 
+              onClick={() => navigate('/login')} 
+              className="register-login-link" 
+              style={{ cursor: 'pointer' }}
+            >
+              Login here
+            </span>
           </p>
 
         </div>
-
-      </div>
-
-      {/* RIGHT PANEL */}
-
-      <div className="register-right">
-
-        <form
-          className="register-card"
-          onSubmit={handleSubmit}
-        >
-
-          <div className="user-circle">
-
-            <FaUser />
-
-          </div>
-
-          <h2>
-
-            Create Your Account
-
-          </h2>
-
-          <p className="subtitle">
-
-            Fill in the details below to register
-
-          </p>
-                    {/* Full Name */}
-
-          <div className="register-group">
-
-            <label>Full Name</label>
-
-            <div className="register-input">
-
-              <FaUser className="input-icon" />
-
-              <input
-                type="text"
-                name="full_name"
-                placeholder="Enter your full name"
-                value={form.full_name}
-                onChange={handleChange}
-                required
-              />
-
-            </div>
-
-          </div>
-
-          {/* Email + OTP */}
-
-          <div className="register-group">
-
-            <label>Email Address</label>
-
-            <div className="register-email-row">
-
-              <div className="register-input">
-
-                <FaEnvelope className="input-icon" />
-
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email"
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                />
-
-              </div>
-
-              <button
-                type="button"
-                className="otp-btn"
-                onClick={sendOtp}
-              >
-                Send OTP
-              </button>
-
-            </div>
-
-          </div>
-
-          {/* OTP + Mobile */}
-
-          <div className="register-row">
-
-            <div className="register-group">
-
-              <label>OTP</label>
-
-              <div className="register-input">
-
-                <FaKey className="input-icon" />
-
-                <input
-                  type="text"
-                  name="otp"
-                  placeholder="Enter OTP"
-                  maxLength={6}
-                  value={form.otp}
-                  onChange={handleChange}
-                />
-
-              </div>
-
-            </div>
-
-            <div className="register-group">
-
-              <label>Mobile Number</label>
-
-              <div className="register-input">
-
-                <FaPhoneAlt className="input-icon" />
-
-                <input
-                  type="text"
-                  name="mobile"
-                  placeholder="Enter mobile number"
-                  value={form.mobile}
-                  onChange={handleChange}
-                />
-
-              </div>
-
-            </div>
-
-          </div>
-
-          {otpSent && (
-
-            <div className="otp-success">
-
-              OTP Sent Successfully
-
-            </div>
-
-          )}
-
-          {/* Password Row */}
-
-          <div className="register-row">
-
-            <div className="register-group">
-
-              <label>Password</label>
-
-              <div className="register-input">
-
-                <FaLock className="input-icon" />
-
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Enter password"
-                  value={form.password}
-                  onChange={handleChange}
-                  required
-                />
-
-              </div>
-
-            </div>
-
-            <div className="register-group">
-
-              <label>Confirm Password</label>
-
-              <div className="register-input">
-
-                <FaLock className="input-icon" />
-
-                <input
-                  type="password"
-                  name="confirm_password"
-                  placeholder="Confirm password"
-                  value={form.confirm_password}
-                  onChange={handleChange}
-                  required
-                />
-
-              </div>
-
-            </div>
-
-          </div>
-                    {/* Role */}
-
-          <div className="register-group">
-
-            <label>Role</label>
-
-            <div className="register-input">
-
-              <FaUserGraduate className="input-icon" />
-
-              <select
-                name="role"
-                value={form.role}
-                onChange={handleChange}
-                required
-              >
-                <option value="">
-                  Select your role
-                </option>
-
-                <option value="admin">
-                  Admin
-                </option>
-
-                <option value="faculty">
-                  Faculty
-                </option>
-
-                <option value="student">
-                  Student
-                </option>
-
-                <option value="coordinator">
-                  NBA Coordinator
-                </option>
-
-              </select>
-
-            </div>
-
-          </div>
-
-          {/* Error Message */}
-
-          {error && (
-
-            <div className="error-box">
-
-              {error}
-
-            </div>
-
-          )}
-
-          {/* Register Button */}
-
-          <button
-            type="submit"
-            className="register-btn"
-            disabled={loading}
-          >
-            {loading ? "Creating Account..." : "Register"}
-          </button>
-
-          {/* Login Link */}
-
-          <div className="login-text">
-
-            Already have an account?
-
-            <Link to="/user">
-
-              Login
-
-            </Link>
-
-          </div>
-
-        </form>
-
       </div>
 
     </div>
-
   );
-
 }

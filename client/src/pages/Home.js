@@ -15,14 +15,13 @@ function Home() {
         <div className="portal-grid">
 
           <div
-            className="portal-card"
-            onClick={() => navigate("/login")}
-          >
-            <div className="portal-icon">👨‍💼</div>
-            <h2>Admin Login</h2>
-            <p>Access dashboard and manage all modules.</p>
-          </div>
-
+  className="portal-card"
+  onClick={() => navigate("/dashboard")}
+>
+  <div className="portal-icon">👨‍💼</div>
+  <h2>Admin</h2>
+  <p>Access dashboard and manage all modules.</p>
+</div>
           <div
             className="portal-card"
             onClick={() => navigate("/department-master")}

@@ -1,63 +1,71 @@
-import { Link } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/Welcome.css";
 
 export default function Welcome() {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
+  const handleRegister = () => {
+    navigate("/register");
+  };
+
   return (
-    <div className="shell">
+    <div className="welcome-cms-container">
 
-      {/* Left Side */}
-      <div className="left">
+      <div className="welcome-left-hero">
 
-        <div className="logo-section">
-          <img
-            src="/nba-logo.png"
-            alt="NBA Logo"
-            className="logo"
-          />
+        <div className="welcome-logo-wrapper">
+          <div className="welcome-logo-circle">
+            <div className="welcome-logo-inner">
+              <span className="welcome-logo-main">NBA</span>
+              <span className="welcome-logo-sub">NATIONAL BOARD</span>
+              <span className="welcome-logo-sub">OF ACCREDITATION</span>
+            </div>
+          </div>
         </div>
 
-        <div className="welcome-content">
-          <h1>
+        <div className="welcome-hero-text">
+          <h1 className="welcome-main-title">
             COLLEGE <br />
             MANAGEMENT SYSTEM <br />
             FOR NBA
           </h1>
 
-          <p className="tag">
+          <p className="welcome-subtitle">
             Digitizing Accreditation Excellence
           </p>
+        </div>
 
-          <div className="welcome-btns">
-            <Link to="/login" className="btn-light">
-              Login
-            </Link>
+        <div className="welcome-btn-group">
+          <button
+            className="welcome-btn-login"
+            onClick={handleLogin}
+          >
+            Login
+          </button>
 
-            <Link to="/register" className="btn-primary">
-              Register
-            </Link>
-          </div>
+          <button
+            className="welcome-btn-register"
+            onClick={handleRegister}
+          >
+            Register
+          </button>
         </div>
 
       </div>
 
-      {/* Right Side */}
-      <div className="right">
+      <div className="welcome-right-side">
+        <h2 className="welcome-right-title">
+          Welcome to NBA CMS
+        </h2>
 
-        <div className="right-content">
-
-          <img
-            
-          />
-
-          <h2>Welcome to NBA CMS</h2>
-
-          <p className="sub">
-            Manage Accreditation, Reports, Criteria and Documentation
-            in one platform.
-          </p>
-
-        </div>
-
+        <p className="welcome-right-desc">
+          Manage Accreditation, Reports, Criteria and Documentation in one platform.
+        </p>
       </div>
 
     </div>

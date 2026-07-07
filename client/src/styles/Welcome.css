@@ -1,188 +1,176 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Segoe UI',sans-serif;
+/* Full Viewport Container */
+.welcome-cms-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-  background:#eef4ff;
-  overflow:hidden;
+/* ================= LEFT BLUE ASYMMETRIC CURVE ================= */
+.welcome-left-hero {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 54%;
+  background-color: #0b3c95; /* Exact Navy Blue from Screenshot */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 60px 0px 60px 65px;
+  box-sizing: border-box;
+  z-index: 2;
+  /* Image सारखा हुबेहूब डावा वक्राकार (Curve) shape */
+  clip-path: ellipse(84% 100% at 16% 50%);
 }
 
-.shell{
-  width:100%;
-  height:100vh;
-  display:flex;
+/* NBA Built-in CSS Logo Design */
+.welcome-logo-wrapper {
+  display: flex;
+  align-items: center;
 }
 
-/* LEFT SIDE */
-
-.left{
-  width:42%;
-  background:linear-gradient(135deg,#0a2472,#123ba7);
-  color:#fff;
-  position:relative;
-  padding:45px 55px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  overflow:hidden;
+.welcome-logo-circle {
+  height: 82px;
+  width: 82px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
 }
 
-.left::after{
-  content:"";
-  position:absolute;
-  right:-140px;
-  top:0;
-  width:300px;
-  height:100%;
-  background:#fff;
-  border-radius:50% 0 0 50%;
+.welcome-logo-inner {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  border: 3px solid #0b3c95;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.1;
 }
 
-.logo-section{
-  z-index:2;
+.welcome-logo-main {
+  font-size: 22px;
+  font-weight: 900;
+  color: #0b3c95;
+  letter-spacing: -0.5px;
 }
 
-.logo{
-  width:120px;
-  height:120px;
-  object-fit:contain;
-  background:#fff;
-  border-radius:50%;
-  padding:6px;
+.welcome-logo-sub {
+  font-size: 5px;
+  font-weight: 800;
+  color: #0b3c95;
+  text-transform: uppercase;
+  letter-spacing: -0.2px;
 }
 
-.welcome-content{
-  z-index:2;
-  margin-top:auto;
-  margin-bottom:60px;
+/* Hero Typography Styles */
+.welcome-hero-text {
+  margin-bottom: 70px;
+  max-width: 480px;
 }
 
-.welcome-content h1{
-  font-size:34px;
-  line-height:1.15;
-  font-weight:800;
-  margin-bottom:15px;
+.welcome-main-title {
+  font-size: 34px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  letter-spacing: 0.5px;
+  margin: 0 0 12px 0;
 }
 
-.tag{
-  color:#8bc2ff;
-  font-size:20px;
-  margin-bottom:40px;
+.welcome-subtitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #a3c2ff;
+  letter-spacing: 0.3px;
+  margin: 0;
 }
 
-.welcome-btns{
-  display:flex;
-  gap:18px;
+/* Operational Buttons Layout */
+.welcome-btn-group {
+  display: flex;
+  gap: 16px;
+  z-index: 10;
 }
 
-.welcome-btns a{
-  text-decoration:none;
-  padding:15px 42px;
-  border-radius:12px;
-  font-size:24px;
-  font-weight:700;
-  transition:.3s;
+.welcome-btn-login {
+  width: 135px;
+  padding: 12px 0;
+  border: none;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #0b3c95;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
 }
 
-.btn-light{
-  background:#fff;
-  color:#0a2472;
+.welcome-btn-login:hover {
+  background-color: #f8fafc;
+  transform: translateY(-1px);
 }
 
-.btn-primary{
-  background:#2d7cff;
-  color:#fff;
+.welcome-btn-register {
+  width: 135px;
+  padding: 12px 0;
+  border: none;
+  border-radius: 10px;
+  background-color: #2575fc; /* Exact Register Button Light Blue */
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(37, 117, 252, 0.25);
+  transition: all 0.2s ease;
 }
 
-.btn-light:hover,
-.btn-primary:hover{
-  transform:translateY(-3px);
+.welcome-btn-register:hover {
+  background-color: #1a66ec;
+  transform: translateY(-1px);
 }
 
-/* RIGHT SIDE */
-
-.right{
-  width:58%;
-  background:#fff;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:50px;
+/* ================= RIGHT WELCOME TEXT DETAILS ================= */
+.welcome-right-side {
+  margin-left: auto;
+  width: 46%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 65px 40px 40px;
+  box-sizing: border-box;
 }
 
-.right-content{
-  width:100%;
-  max-width:760px;
-  text-align:center;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
-
-  padding-top:320px;   /* Image साठी जागा */
+.welcome-right-title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #0b2553;
+  margin: 0 0 12px 0;
 }
 
-.right-content img{
-  width:100%;
-  border-radius:22px;
-  box-shadow:0 12px 35px rgba(0,0,0,.15);
-  margin-bottom:25px;
-}
-
-.right-content h2{
-  color:#0a2472;
-  font-size:26px;      /* आधी 50px होतं */
-  font-weight:700;
-  margin-top:0;
-  margin-bottom:12px;
-}
-
-.sub{
-  color:#666;
-  font-size:16px;
-  line-height:1.5;
-  max-width:550px;
-  margin:0 auto;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:900px){
-
-  .shell{
-    flex-direction:column;
-  }
-
-  .left,
-  .right{
-    width:100%;
-  }
-
-  .left::after{
-    display:none;
-  }
-
-  .welcome-content{
-    margin:40px 0;
-  }
-
-  .welcome-content h1{
-    font-size:28px;
-  }
-
-  .tag{
-    font-size:16px;
-  }
-
-  .right-content h2{
-    font-size:32px;
-  }
-
-  .sub{
-    font-size:18px;
-  }
+.welcome-right-desc {
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  max-width: 420px;
+  line-height: 1.5;
+  margin: 0;
 }

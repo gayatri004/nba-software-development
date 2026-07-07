@@ -1,64 +1,319 @@
-.login-page {
+/* Full Canvas Framework Viewport Container Setup */
+.login-cms-viewport-container {
+  position: relative;
   height: 100vh;
-  background: linear-gradient(135deg, #2563eb, #60a5fa);
+  width: 100%;
+  background-color: #f8fafc; /* Subtle grey canvas back drop matching screenshot */
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-family: Poppins, Arial, sans-serif;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.login-box {
-  width: 400px;
-  background: white;
-  padding: 25px 30px;
-  border-radius: 20px;
+/* ================= LEFT BLUE ASYMMETRIC DEEP PANEL BACKGROUND ================= */
+.login-left-brand-panel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 52%;
+  background-color: #0b3c95; /* Exact Image Dark Blue Variant */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 60px 0px 0px 65px;
+  box-sizing: border-box;
+  z-index: 2;
+  /* Perfect Asymmetric Smooth Curve Mask clip matching the screenshot */
+  clip-path: ellipse(84% 100% at 16% 50%);
+}
+
+/* NBA Modular CSS Emblem Construction Markup */
+.login-panel-logo-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.login-panel-logo-circle {
+  height: 82px;
+  width: 82px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.login-panel-logo-inner {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  border: 3px solid #0b3c95;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  line-height: 1.1;
 }
 
-.login-box h1 {
-  color: #1d4ed8;
-  font-size: 24px;
-  margin-bottom: 5px;
+.login-panel-logo-main {
+  font-size: 22px;
+  font-weight: 900;
+  color: #0b3c95;
+  letter-spacing: -0.5px;
 }
 
-.login-box p {
-  color: #64748b;
-  margin: 8px 0 18px;
+.login-panel-logo-sub {
+  font-size: 5px;
+  font-weight: 800;
+  color: #0b3c95;
+  text-transform: uppercase;
+  letter-spacing: -0.2px;
+}
+
+/* Typography Central Positioning Blueprint Rules */
+.login-panel-hero-content {
+  max-width: 480px;
+  margin-top: 30px;
+}
+
+.login-panel-main-title {
+  font-size: 34px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  letter-spacing: 0.5px;
+  margin: 0 0 12px 0;
+}
+
+.login-panel-subtitle {
   font-size: 14px;
+  font-weight: 500;
+  color: #a3c2ff;
+  letter-spacing: 0.3px;
+  margin: 0;
 }
 
-.login-box input,
-.employee-select {
+/* Mascot Student Figure Overlay Absolute Alignments */
+.login-panel-student-mascot {
+  width: 78%;
+  margin-top: auto;
+  align-self: flex-start;
+  display: flex;
+  align-items: flex-end;
+}
+
+.mascot-img-fluid {
   width: 100%;
-  padding: 11px;
-  margin-bottom: 10px;
-  border: 1px solid #cbd5e1;
-  border-radius: 12px;
-  outline: none;
-  font-size: 14px;
-}
-
-.login-box button {
-  width: 100%;
-  padding: 12px;
-  background: linear-gradient(135deg, #2563eb, #1e40af);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  margin-top: 5px;
-}
-
-.login-box button:hover {
-  background: linear-gradient(135deg, #1e40af, #1d4ed8);
-}
-
-.login-box small {
+  height: auto;
+  object-fit: cover;
   display: block;
-  margin-top: 12px;
-  color: #64748b;
+}
+
+/* ================= RIGHT CENTRAL LOGIN AUTHENTICATION CARD ================= */
+.login-right-form-panel {
+  margin-left: auto;
+  width: 48%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 60px 20px 0px;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+.login-authentication-card {
+  width: 100%;
+  max-width: 390px;
+  background-color: #ffffff; /* Explicit White form Container Box card */
+  border-radius: 24px;
+  padding: 26px 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); /* Soft sleek border drop shadow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  transform:scale(0.90);
+  transform-origin:center;
+}
+
+/* Top Central Form Profile Lock Icon Circle Components */
+.login-lock-avatar-icon {
+  height: 44px;
+  width: 44px;
+  border-radius: 50%;
+  background-color: #2575fc; /* Vibrant Blue Accent color */
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 12px rgba(37, 117, 252, 0.3);
+}
+
+.login-card-main-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0b2553; /* Deep Slate Midnight Blue text header */
+  margin: 0 0 6px 0;
+  text-align: center;
+}
+
+.login-card-subtitle-desc {
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  margin: 0 0 28px 0;
+  text-align: center;
+}
+
+/* Inside Layout Core Controls Blueprint Engine Mapping */
+.login-functional-form-tree {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-form-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.login-form-input-group label {
   font-size: 12px;
+  font-weight: 700;
+  color: #0b2553;
+}
+
+/* Custom Field Wrapper Nodes Input Configurations */
+.login-form-field-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.login-form-field-icon {
+  position: absolute;
+  left: 14px;
+  color: #64748b;
+  font-size: 13px;
+  pointer-events: none;
+}
+
+.login-form-field-wrapper input {
+  width: 100%;
+  padding: 11px 14px 11px 40px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #334155;
+  background-color: #eff6ff; /* Soft sky tinted blue filling match inputs */
+  border: 1px solid #e2e8f0;
+  border-radius: 10px; /* Precise box curves matching illustration */
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.login-form-field-wrapper input:focus {
+  border-color: #2575fc;
+  background-color: #ffffff;
+}
+
+/* Forgot Password Link Row Container Layout Alignments */
+.login-forgot-password-anchor-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -6px;
+}
+
+.login-forgot-link {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2575fc; /* Precise Blue active highlight link */
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.login-forgot-link:hover {
+  color: #1a66ec;
+}
+
+/* Checkbox Segment Element Layout Structural Alignments Mapping */
+.login-remember-me-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.login-remember-me-checkbox-row input[type="checkbox"] {
+  height: 15px;
+  width: 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-remember-me-checkbox-row label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* Grand Blue Submit Core Control System Processing Button */
+.login-btn-processing-trigger {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px 0;
+  background-color: #2575fc; /* Primary Vibrant Sky Blue core color block */
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(37, 117, 252, 0.25);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.login-btn-processing-trigger:hover {
+  background-color: #1a66ec;
+}
+
+.login-btn-processing-trigger:active {
+  transform: scale(0.99);
+}
+
+/* Redirect Footnote Elements Specifications */
+.login-bottom-form-redirect-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  margin: 22px 0 0 0;
+  text-align: center;
+}
+
+.login-register-here-link-span {
+  color: #0b3c95; /* Exact Dark Blue text link match from layout */
+  text-decoration: underline;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-register-here-link-span:hover {
+  color: #2575fc;
 }

@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
+import Welcome from "./pages/Welcome";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Login";
 import Employee from "./pages/Employee";
 import Department from "./pages/Department";
 import FacultyManagement from "./pages/FacultyManagement";
@@ -12,7 +14,6 @@ import Authority from "./pages/Authority";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
 import AuthorityManagement from "./pages/AuthorityManagement";
-import EmployeeForm from "./pages/EmployeeForm";
 import FacultyForm from "./pages/FacultyForm";
 import DepartmentMaster from "./pages/DepartmentMaster";
 import CollegeForm from "./pages/CollegeForm";
@@ -21,7 +22,9 @@ import Criteria from "./pages/Criteria";
 
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+  localStorage.getItem("isLoggedIn") === "true"
+);
 
   const ProtectedRoute = ({ children }) => {
     return isLoggedIn ? children : <Navigate to="/login" replace />;
@@ -30,18 +33,25 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+ {/* Default Page */}
+        
 
-        {/* Home */}
-        <Route path="/" element={<Home />} />
+        {/* Register */}
+        <Route path="/register" element={<Register />} />
 
-        {/* Login */}
         <Route
-          path="/login"
-          element={<Login setIsLoggedIn={setIsLoggedIn} />}
-        />
+  path="/login"
+  element={<Login setIsLoggedIn={setIsLoggedIn} />}
+/>
 
+        <Route path="/" element={<Welcome />} />
+<Route path="/home" element={
+  <ProtectedRoute>
+    <Home />
+  </ProtectedRoute>
+} />
         {/* Forms */}
-        <Route path="/employee-form" element={<EmployeeForm />} />
+        
         <Route path="/faculty-form" element={<FacultyForm />} />
         <Route path="/department-master" element={<DepartmentMaster />} />
         <Route path="/college-form" element={<CollegeForm />} />
