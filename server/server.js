@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const pool = require("./db");
+const bcrypt = require("bcrypt");
 
 const app = express();
 
@@ -1251,6 +1252,100 @@ res.status(500).send("PDF Error");
 
 }
 
+});
+/* ================= REGISTER ================= */
+
+app.post("/register", async (req, res) => {
+  try {
+    const { fullName, email, password } = req.body;
+
+    // Email already exists?
+    const checkUser = await pool.query(
+      "SELECT * FROM users WHERE email=$1",
+      [email]
+    );
+
+    if (checkUser.rows.length > 0) {
+      return res.json({
+        success: false,
+        message: "Email already registered"
+      });
+    }
+
+    // Encrypt password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const result = await pool.query(
+      `INSERT INTO users(full_name,email,password)
+       VALUES($1,$2,$3)
+       RETURNING *`,
+      [fullName, email, hashedPassword]
+    );
+
+    res.json({
+      success: true,
+      message: "Registration Successful",
+      user: result.rows[0]
+    });
+
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).json({
+      success: false,
+      error: err.message
+    });
+  }
+});
+/* ================= LOGIN ================= */
+
+app.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Email exists?
+    const result = await pool.query(
+      "SELECT * FROM users WHERE email=$1",
+      [email]
+    );
+
+    if (result.rows.length === 0) {
+      return res.json({
+        success: false,
+        message: "Invalid Email"
+      });
+    }
+
+    const user = result.rows[0];
+
+    // Compare password
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) {
+      return res.json({
+        success: false,
+        message: "Invalid Password"
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Login Successful",
+      user: {
+        id: user.id,
+        full_name: user.full_name,
+        email: user.email
+      }
+    });
+
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).json({
+      success: false,
+      error: err.message
+    });
+  }
 });
 
 /* ================= SERVER ================= */
