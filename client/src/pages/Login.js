@@ -30,7 +30,7 @@ export default function Login({ setIsLoggedIn }) {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/login", {
+      const res = await axios.post("https://nba-software-development-production.up.railway.app/login", {
         email: loginData.email,
         password: loginData.password,
       });

@@ -1303,7 +1303,6 @@ app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Email exists?
     const result = await pool.query(
       "SELECT * FROM users WHERE email=$1",
       [email]
@@ -1318,7 +1317,6 @@ app.post("/login", async (req, res) => {
 
     const user = result.rows[0];
 
-    // Compare password
     const match = await bcrypt.compare(password, user.password);
 
     if (!match) {
@@ -1347,7 +1345,6 @@ app.post("/login", async (req, res) => {
     });
   }
 });
-
 /* ================= SERVER ================= */
 
 const PORT = process.env.PORT || 5000;

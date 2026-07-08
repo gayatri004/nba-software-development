@@ -43,7 +43,7 @@ export default function Register() {
   }
 
   try {
-    const res = await axios.post("http://localhost:5000/register", {
+    const res = await axios.post("https://nba-software-development-production.up.railway.app/register", {
       fullName: formData.fullName,
       email: formData.email,
       password: formData.password,
