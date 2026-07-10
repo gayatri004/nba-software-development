@@ -647,9 +647,7 @@ res.status(500).send("PDF Error");
 // GET Department
 
 app.get("/department", async (req, res) => {
-
   try {
-
     const result = await pool.query(
       "SELECT * FROM department ORDER BY id DESC"
     );
@@ -657,86 +655,59 @@ app.get("/department", async (req, res) => {
     res.json(result.rows);
 
   } catch (err) {
-
     console.log(err);
 
     res.status(500).json({
+      success: false,
       error: err.message
     });
-
   }
-
 });
 
 
 // POST Department
 
 app.post("/department", async (req, res) => {
-
   try {
 
     const {
-
       departmentCode,
       departmentType,
       hodName,
-      reportingTo,
-      establishedDate,
-      status,
       building,
       floor,
       campus
-
     } = req.body;
 
     const result = await pool.query(
-
-      `INSERT INTO department(
-
-      department_code,
-      department_type,
-      hod_name,
-      reporting_to,
-      established_date,
-      status,
-      building,
-      floor,
-      campus
-
-      )
-
-      VALUES(
-
-      $1,$2,$3,$4,$5,$6,$7,$8,$9
-
-      )
-
-      RETURNING *`,
-
-      [
-
-        departmentCode,
-        departmentType,
-        hodName,
-        reportingTo,
-        establishedDate,
-        status,
+      `INSERT INTO department
+      (
+        department_code,
+        department_type,
+        hod_name,
         building,
         floor,
         campus
-
+      )
+      VALUES
+      (
+        $1,$2,$3,$4,$5,$6
+      )
+      RETURNING *`,
+      [
+        departmentCode,
+        departmentType,
+        hodName,
+        building,
+        floor,
+        campus
       ]
-
     );
 
     res.json({
-
       success: true,
-
       message: "Department Saved Successfully",
-
       data: result.rows[0]
-
     });
 
   } catch (err) {
@@ -744,15 +715,11 @@ app.post("/department", async (req, res) => {
     console.log(err);
 
     res.status(500).json({
-
       success: false,
-
       error: err.message
-
     });
 
   }
-
 });
 /* ================= AUTHORITY ================= */
 
