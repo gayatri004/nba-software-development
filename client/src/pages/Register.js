@@ -25,6 +25,7 @@ export default function Register() {
     confirmPassword: '',
     role: ''
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -43,6 +44,7 @@ export default function Register() {
   }
 
   try {
+    setLoading(true);
     const res = await axios.post("https://nba-software-development-production.up.railway.app/register", {
       fullName: formData.fullName,
       email: formData.email,
@@ -66,10 +68,12 @@ export default function Register() {
     } else {
       alert(res.data.message);
     }
-  } catch (err) {
-    console.log(err);
-    alert("Registration Failed");
-  }
+ } catch (err) {
+  console.log(err);
+  alert("Registration Failed");
+} finally {
+  setLoading(false);
+}
 };
 
   return (
@@ -237,11 +241,15 @@ export default function Register() {
             </div>
 
             {/* Main Submit Action Trigger */}
-            <button type="submit" className="register-btn-submit">
-              <FaUserPlus className="register-submit-icon-btn" /> Register Account
-            </button>
-
-          </form>
+            <button
+  type="submit"
+  className="register-btn-submit"
+  disabled={loading}
+>
+  <FaUserPlus className="register-submit-icon-btn" />
+  {loading ? "Registering..." : "Register Account"}
+</button>
+</form>
 
           {/* Bottom Redirect Anchor */}
           <p className="register-bottom-text">

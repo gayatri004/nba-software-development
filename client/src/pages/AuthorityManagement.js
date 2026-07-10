@@ -91,19 +91,8 @@ function AuthorityManagement() {
   =========================================== */
 
   const handleBack = () => {
-
-    navigate("/authority");
-
-    window.scrollTo({
-
-      top:0,
-
-      behavior:"smooth"
-
-    });
-
-  };
-
+  navigate("/dashboard");
+};
   return (
 
     <div className="authority-container">

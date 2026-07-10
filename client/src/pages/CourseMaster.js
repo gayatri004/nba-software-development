@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../styles/CourseMaster.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function CourseMaster() {
+  const navigate = useNavigate();
   const [course, setCourse] = useState(() => {
     const savedData = localStorage.getItem("courseData");
 
@@ -224,15 +226,8 @@ function CourseMaster() {
   };
 
   // Back Button
-  const handleBack = () => {
-  const formTop = document.querySelector(".course-container");
-
-  if (formTop) {
-    formTop.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
+ const handleBack = () => {
+  navigate("/dashboard");
 };
   return (
   <div className="course-container">

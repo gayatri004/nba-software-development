@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "../styles/FacultyForm.css";
 
 function FacultyForm() {
 
+  const navigate = useNavigate();
   const formRef = useRef(null);
   const inputRefs = useRef({});
 
@@ -102,17 +104,9 @@ function FacultyForm() {
 
   };
 
-  const handleBackToTop = () => {
-
-    formRef.current?.scrollIntoView({
-
-      behavior: "smooth",
-
-      block: "start"
-
-    });
-
-  };
+ const handleBackToTop = () => {
+  navigate("/dashboard");
+};
 
   const handleSubmit = async () => {
         const newErrors = {};
@@ -327,7 +321,7 @@ function FacultyForm() {
 
       alert("Faculty Saved Successfully");
 
-      handleBackToTop();
+     navigate("/dashboard");
 
     } catch (error) {
 

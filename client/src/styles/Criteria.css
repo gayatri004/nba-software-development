@@ -1,0 +1,47 @@
+.criteria-container {
+  padding: 30px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+.criteria-container h1 {
+  text-align: center;
+  color: #0b3c95;
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 35px;
+}
+
+.criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.criteria-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px 20px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-top: 5px solid #0b3c95;
+}
+
+.criteria-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(11, 60, 149, 0.2);
+}
+
+.criteria-card h2 {
+  color: #0b3c95;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.criteria-card p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+}

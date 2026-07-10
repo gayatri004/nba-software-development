@@ -49,15 +49,7 @@ function Home() {
             <p>Manage college details and information.</p>
           </div>
 
-          <div
-            className="portal-card"
-            onClick={() => navigate("/criteria")}
-          >
-            <div className="portal-icon">📋</div>
-            <h2>Criteria Management</h2>
-            <p>Manage NBA criteria details and documentation.</p>
-          </div>
-
+         
           <div
             className="portal-card"
             onClick={() => navigate("/course-master")}

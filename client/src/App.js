@@ -11,14 +11,11 @@ import FacultyManagement from "./pages/FacultyManagement";
 import Leave from "./pages/Leave";
 import Course from "./pages/Course";
 import Authority from "./pages/Authority";
-import Reports from "./pages/Reports";
-import Settings from "./pages/Settings";
 import AuthorityManagement from "./pages/AuthorityManagement";
 import FacultyForm from "./pages/FacultyForm";
 import DepartmentMaster from "./pages/DepartmentMaster";
 import CollegeForm from "./pages/CollegeForm";
 import CourseMaster from "./pages/CourseMaster";
-import Criteria from "./pages/Criteria";
 
 
 function App() {
@@ -55,7 +52,7 @@ function App() {
         <Route path="/faculty-form" element={<FacultyForm />} />
         <Route path="/department-master" element={<DepartmentMaster />} />
         <Route path="/college-form" element={<CollegeForm />} />
-        <Route path="/criteria" element={<Criteria />} />
+        
         <Route path="/course-master" element={<CourseMaster />} />
 
         {/* Authority Form */}
@@ -137,28 +134,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        {/* Reports */}
-        <Route
-          path="/reports"
-          element={
-            <ProtectedRoute>
-              <Reports setIsLoggedIn={setIsLoggedIn} />
-            </ProtectedRoute>
-          }
-        />
-
-        {/* Settings */}
-        <Route
-          path="/settings"
-          element={
-            <ProtectedRoute>
-              <Settings setIsLoggedIn={setIsLoggedIn} />
-            </ProtectedRoute>
-          }
-        />
-
-
         {/* Unknown Route */}
         <Route path="*" element={<Navigate to="/" replace />} />
 

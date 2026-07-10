@@ -12,10 +12,12 @@ export default function Login({ setIsLoggedIn }) {
   const navigate = useNavigate();
 
   const [loginData, setLoginData] = useState({
+  
     email: "",
     password: "",
     rememberMe: false,
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -30,6 +32,7 @@ export default function Login({ setIsLoggedIn }) {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const res = await axios.post("https://nba-software-development-production.up.railway.app/login", {
         email: loginData.email,
         password: loginData.password,
@@ -49,10 +52,12 @@ export default function Login({ setIsLoggedIn }) {
         alert(res.data.message);
       }
     } catch (err) {
-      console.log(err);
-      alert("Login Failed");
-    }
-  };
+  console.log(err);
+  alert("Login Failed");
+} finally {
+  setLoading(false);
+}
+};
 
   return (
     <div className="login-cms-viewport-container">
@@ -184,12 +189,12 @@ export default function Login({ setIsLoggedIn }) {
             </div>
 
             <button
-              type="submit"
-              className="login-btn-processing-trigger"
-            >
-              Login
-            </button>
-
+  type="submit"
+  className="login-btn-processing-trigger"
+  disabled={loading}
+>
+  {loading ? "Logging in..." : "Login"}
+</button>
           </form>
 
           <p className="login-bottom-form-redirect-text">

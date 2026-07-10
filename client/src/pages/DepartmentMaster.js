@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/DepartmentMaster.css";
 
 function DepartmentMaster() {
 
+  const navigate = useNavigate();
   const topRef = useRef(null);
 
   const [department, setDepartment] = useState(() => {
@@ -76,10 +78,10 @@ function DepartmentMaster() {
 
       const data = await response.json();
 
-      localStorage.removeItem("departmentDraft");
+console.log("Status:", response.status);
+console.log("Response:", data);
 
-      alert(data.message);
-
+alert(JSON.stringify(data));
       setDepartment({
         departmentCode: "",
         departmentType: "",
@@ -133,14 +135,7 @@ function DepartmentMaster() {
   };
 
 const handleBack = () => {
-
-  if (topRef.current) {
-    topRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  }
-
+  navigate("/dashboard");
 };
   const handleClear = () => {
 
