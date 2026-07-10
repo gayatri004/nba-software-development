@@ -668,6 +668,7 @@ app.get("/department", async (req, res) => {
 // POST Department
 
 app.post("/department", async (req, res) => {
+console.log("NEW DEPARTMENT ROUTE RUNNING");
   try {
 
     const {
