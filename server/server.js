@@ -2,7 +2,7 @@ const express = require("express");
 const PDFDocument = require("pdfkit");
 const cors = require("cors");
 require("dotenv").config();
-
+console.log("DATABASE_URL =", process.env.DATABASE_URL);
 const pool = require("./db");
 const bcrypt = require("bcrypt");
 
