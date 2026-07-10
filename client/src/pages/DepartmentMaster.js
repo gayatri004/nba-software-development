@@ -57,47 +57,26 @@ function DepartmentMaster() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSave = async () => {
-
-    if (!validateForm()) {
-      alert("Please fill all required fields");
-      return;
-    }
-
-    try {
-      const response = await fetch(
-  "https://nba-software-development-production.up.railway.app/department",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(department)
-        }
-      );
-
-      const data = await response.json();
+ const data = await response.json();
 
 console.log("Status:", response.status);
 console.log("Response:", data);
 
-alert(JSON.stringify(data));
-      setDepartment({
-        departmentCode: "",
-        departmentType: "",
-        hodName: "",
-        building: "",
-        floor: "",
-        campus: ""
-      });
+if (data.success) {
+  alert("Department Saved Successfully");
 
-    } catch (error) {
-      console.log(error);
-      alert("Save Failed");
-    }
+  setDepartment({
+    departmentCode: "",
+    departmentType: "",
+    hodName: "",
+    building: "",
+    floor: "",
+    campus: ""
+  });
 
-  };
-
+} else {
+  alert(data.error);
+}
   const handleUpdate = () => {
 
     if (!validateForm()) {
