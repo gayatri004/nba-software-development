@@ -722,6 +722,100 @@ console.log("NEW DEPARTMENT ROUTE RUNNING");
 
   }
 });
+/* ================= DEPARTMENT PDF ================= */
+
+app.get("/department/pdf", async (req, res) => {
+  try {
+
+    const result = await pool.query(
+      "SELECT * FROM department ORDER BY id"
+    );
+
+    const doc = new PDFDocument({
+      margin: 40,
+      size: "A4",
+    });
+
+    res.setHeader("Content-Type", "application/pdf");
+
+    res.setHeader(
+      "Content-Disposition",
+      "attachment; filename=Department_Report.pdf"
+    );
+
+    doc.pipe(res);
+
+    doc.fontSize(20).text("Department Management Report", {
+      align: "center",
+    });
+
+    doc.moveDown();
+
+    result.rows.forEach((department, index) => {
+
+      doc.fontSize(14).text(`Department ${index + 1}`, {
+        underline: true,
+      });
+
+      doc.moveDown();
+
+      const data = [
+        ["Department Code", department.department_code],
+        ["Department Name", department.department_type],
+        ["HOD Name", department.hod_name],
+        ["Building", department.building],
+        ["Floor", department.floor],
+        ["Campus", department.campus],
+        ["Status", department.status || "Active"],
+      ];
+
+      let y = doc.y;
+
+      data.forEach((row) => {
+
+        doc.rect(40, y, 180, 22).stroke();
+
+        doc.font("Helvetica-Bold")
+          .fontSize(10)
+          .text(row[0], 45, y + 6);
+
+        doc.rect(220, y, 330, 22).stroke();
+
+        doc.font("Helvetica")
+          .fontSize(10)
+          .text(String(row[1] ?? ""), 225, y + 6);
+
+        y += 22;
+
+        if (y > 760) {
+          doc.addPage();
+          y = 40;
+        }
+
+      });
+
+      doc.y = y + 10;
+
+      doc.moveDown();
+
+      doc.moveTo(40, doc.y)
+        .lineTo(550, doc.y)
+        .stroke();
+
+      doc.moveDown();
+
+    });
+
+    doc.end();
+
+  } catch (err) {
+
+    console.log(err);
+
+    res.status(500).send("PDF Error");
+
+  }
+});
 /* ================= AUTHORITY ================= */
 
 // GET Authority
