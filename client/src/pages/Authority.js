@@ -250,14 +250,11 @@ function Authority({ setIsLoggedIn }) {
   =================================== */
 
   const exportAuthority = () => {
-
-    alert(
-
-      "Export Feature Coming Soon..."
-
-    );
-
-  };
+  window.open(
+    "https://nba-software-development-production.up.railway.app/authority/pdf",
+    "_blank"
+  );
+};
 
   return (
 
