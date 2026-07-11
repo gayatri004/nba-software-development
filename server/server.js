@@ -1160,6 +1160,106 @@ totalFees
 
   }
 });
+/* ================= COURSE PDF ================= */
+
+app.get("/course/pdf", async (req, res) => {
+  try {
+
+    const result = await pool.query(
+      "SELECT * FROM course_master ORDER BY id"
+    );
+
+    const doc = new PDFDocument({
+      margin: 40,
+      size: "A4",
+    });
+
+    res.setHeader("Content-Type", "application/pdf");
+
+    res.setHeader(
+      "Content-Disposition",
+      "attachment; filename=Course_Report.pdf"
+    );
+
+    doc.pipe(res);
+
+    doc.fontSize(20).text("Course Management Report", {
+      align: "center",
+    });
+
+    doc.moveDown();
+
+    result.rows.forEach((course, index) => {
+
+      doc.fontSize(14).text(`Course ${index + 1}`, {
+        underline: true,
+      });
+
+      doc.moveDown();
+
+      const data = [
+        ["Course Code", course.course_code],
+        ["Course Name", course.course_name],
+        ["Course Type", course.course_type],
+        ["Department", course.department],
+        ["Course Level", course.course_level],
+        ["Duration", course.duration],
+        ["Total Semesters", course.total_semesters],
+        ["Intake Capacity", course.intake_capacity],
+        ["Course Status", course.course_status],
+        ["Approval Status", course.approval_status],
+        ["Coordinator", course.coordinator],
+        ["Contact Number", course.contact_number],
+        ["Total Fees", course.total_fees]
+      ];
+
+      let y = doc.y;
+
+      data.forEach((row) => {
+
+        doc.rect(40, y, 180, 22).stroke();
+
+        doc.font("Helvetica-Bold")
+          .fontSize(10)
+          .text(row[0], 45, y + 6);
+
+        doc.rect(220, y, 330, 22).stroke();
+
+        doc.font("Helvetica")
+          .fontSize(10)
+          .text(String(row[1] ?? ""), 225, y + 6);
+
+        y += 22;
+
+        if (y > 760) {
+          doc.addPage();
+          y = 40;
+        }
+
+      });
+
+      doc.y = y + 10;
+
+      doc.moveDown();
+
+      doc.moveTo(40, doc.y)
+        .lineTo(550, doc.y)
+        .stroke();
+
+      doc.moveDown();
+
+    });
+
+    doc.end();
+
+  } catch (err) {
+
+    console.log(err);
+
+    res.status(500).send("PDF Error");
+
+  }
+});
 /* ================= COLLEGE PDF ================= */
 
 app.get("/college/pdf", async (req, res) => {
