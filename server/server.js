@@ -963,6 +963,109 @@ remarks
   }
 
 });
+/* ================= AUTHORITY PDF ================= */
+
+app.get("/authority/pdf", async (req, res) => {
+  try {
+
+    const result = await pool.query(
+      "SELECT * FROM authority ORDER BY id"
+    );
+
+    const doc = new PDFDocument({
+      margin: 40,
+      size: "A4",
+    });
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader(
+      "Content-Disposition",
+      "attachment; filename=Authority_Report.pdf"
+    );
+
+    doc.pipe(res);
+
+    doc.fontSize(20).text("Authority Management Report", {
+      align: "center",
+    });
+
+    doc.moveDown();
+
+    result.rows.forEach((authority, index) => {
+
+      doc.fontSize(14).text(`Authority ${index + 1}`, {
+        underline: true,
+      });
+
+      doc.moveDown();
+
+      const data = [
+        ["Authority ID", authority.authority_id],
+        ["Authority Name", authority.authority_name],
+        ["Employee ID", authority.employee_id],
+        ["Department", authority.department],
+        ["Designation", authority.designation],
+        ["Authority Level", authority.authority_level],
+        ["Authority Type", authority.auth_type],
+        ["Joining Date", authority.joining_date],
+        ["Status", authority.status],
+        ["Username", authority.username],
+        ["Email", authority.email],
+        ["Mobile", authority.mobile],
+        ["Office Extension", authority.office_extension],
+        ["Office Location", authority.office_location],
+        ["APAR ID", authority.apar_id],
+        ["Office Address", authority.office_address],
+        ["Remarks", authority.remarks]
+      ];
+
+      let y = doc.y;
+
+      data.forEach((row) => {
+
+        doc.rect(40, y, 180, 22).stroke();
+
+        doc.font("Helvetica-Bold")
+          .fontSize(10)
+          .text(row[0], 45, y + 6);
+
+        doc.rect(220, y, 330, 22).stroke();
+
+        doc.font("Helvetica")
+          .fontSize(10)
+          .text(String(row[1] ?? ""), 225, y + 6);
+
+        y += 22;
+
+        if (y > 760) {
+          doc.addPage();
+          y = 40;
+        }
+
+      });
+
+      doc.y = y + 10;
+
+      doc.moveDown();
+
+      doc.moveTo(40, doc.y)
+        .lineTo(550, doc.y)
+        .stroke();
+
+      doc.moveDown();
+
+    });
+
+    doc.end();
+
+  } catch (err) {
+
+    console.log(err);
+
+    res.status(500).send("PDF Error");
+
+  }
+});
 
 // DELETE Authority
 
