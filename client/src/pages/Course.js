@@ -168,9 +168,12 @@ function Course({ setIsLoggedIn }) {
       indexOfLastRecord
     );
 
-  const exportCourses = () => {
-    alert("Export Feature Coming Soon...");
-  };
+  const exportCourse = () => {
+  window.open(
+    "https://nba-software-development-production.up.railway.app/course/pdf",
+    "_blank"
+  );
+};
   return (
 
   <div className="faculty-page">
@@ -202,7 +205,7 @@ function Course({ setIsLoggedIn }) {
 
             <button
               className="export-btn"
-              onClick={exportCourses}
+              onClick={exportCourse}
             >
               <FaDownload />
               <span>Export</span>
