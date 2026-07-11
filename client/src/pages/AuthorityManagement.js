@@ -25,6 +25,8 @@ function AuthorityManagement() {
 
     authority_level: "",
 
+    auth_type: "",
+
     joining_date: "",
 
     status: "Active",
@@ -142,16 +144,16 @@ function AuthorityManagement() {
 
               <label>
                 Authority ID
-                <span className="required">*</span>
+                <span className="required"></span>
               </label>
 
               <input
-                type="text"
-                name="authority_id"
-                value={formData.authority_id}
-                placeholder="Auto Generate"
-                readOnly
-              />
+  type="text"
+  name="authority_id"
+  value={formData.authority_id}
+  onChange={handleChange}
+  placeholder="Enter Authority ID"
+/>
 
             </div>
 
@@ -161,7 +163,7 @@ function AuthorityManagement() {
 
               <label>
                 Authority Name
-                <span className="required">*</span>
+                <span className="required"></span>
               </label>
 
               <input
@@ -187,7 +189,7 @@ function AuthorityManagement() {
 
               <label>
                 Employee ID
-                <span className="required">*</span>
+                <span className="required"></span>
               </label>
 
               <input
@@ -213,7 +215,7 @@ function AuthorityManagement() {
 
               <label>
                 Department
-                <span className="required">*</span>
+                <span className="required"></span>
               </label>
 
               <select
@@ -253,7 +255,7 @@ function AuthorityManagement() {
 
               <label>
                 Designation
-                <span className="required">*</span>
+                <span className="required"></span>
               </label>
 
               <select
@@ -292,7 +294,7 @@ function AuthorityManagement() {
 
               <label>
                 Authority Level
-                <span className="required">*</span>
+                <span className="required"></span>
               </label>
 
               <select
@@ -320,14 +322,39 @@ function AuthorityManagement() {
               )}
 
             </div>
+<div className="form-group">
 
+  <label>
+    Auth Type
+    <span className="required"></span>
+  </label>
+
+  <select
+    name="auth_type"
+    value={formData.auth_type}
+    onChange={handleChange}
+    className={errors.auth_type ? "error-input" : ""}
+  >
+    <option value="">Select Auth Type</option>
+    <option>Read Only</option>
+    <option>Read & Write</option>
+    <option>Full Access</option>
+  </select>
+
+  {errors.auth_type && (
+    <span className="error-text">
+      {errors.auth_type}
+    </span>
+  )}
+
+</div>
             {/* Joining Date */}
 
             <div className="form-group">
 
               <label>
                 Joining Date
-                <span className="required">*</span>
+                <span className="required"></span>
               </label>
 
               <input
@@ -352,7 +379,7 @@ function AuthorityManagement() {
 
               <label>
                 Status
-                <span className="required">*</span>
+                <span className="required"></span>
               </label>
 
               <select
@@ -394,7 +421,7 @@ function AuthorityManagement() {
 
               <label>
                 Username
-                <span className="required">*</span>
+                <span className="required"></span>
               </label>
 
               <input
@@ -422,7 +449,7 @@ function AuthorityManagement() {
 
               <label>
                 Password
-                <span className="required">*</span>
+                <span className="required"></span>
               </label>
 
               <input
@@ -450,7 +477,7 @@ function AuthorityManagement() {
 
               <label>
                 Confirm Password
-                <span className="required">*</span>
+                <span className="required"></span>
               </label>
 
               <input
@@ -478,7 +505,7 @@ function AuthorityManagement() {
 
               <label>
                 Email ID
-                <span className="required">*</span>
+                <span className="required"></span>
               </label>
 
               <input
@@ -506,7 +533,7 @@ function AuthorityManagement() {
 
               <label>
                 Mobile Number
-                <span className="required">*</span>
+                <span className="required"></span>
               </label>
 
               <input

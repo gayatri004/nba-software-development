@@ -171,7 +171,7 @@ function CollegeForm() {
   const handlePDF = () => {
 
   window.open(
-    "http://localhost:5000/college/pdf",
+    "https://nba-software-development-production.up.railway.app/college/pdf",
     "_blank"
   );
 
