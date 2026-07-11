@@ -244,14 +244,11 @@ function FacultyManagement({ setIsLoggedIn }) {
   =============================== */
 
   const exportFaculty = () => {
-
-    alert(
-
-      "Export Feature Coming Soon..."
-
-    );
-
-  };
+  window.open(
+    "https://nba-software-development-production.up.railway.app/faculty/pdf",
+    "_blank"
+  );
+};
     return (
 
     <div className="faculty-page">
