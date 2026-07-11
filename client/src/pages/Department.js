@@ -262,13 +262,12 @@ function Department({ setIsLoggedIn }) {
             EXPORT
   =============================== */
 
-  const exportDepartments = () => {
-
-    alert(
-      "Export Feature Coming Soon..."
-    );
-
-  };
+  const exportDepartment = () => {
+  window.open(
+    "https://nba-software-development-production.up.railway.app/department/pdf",
+    "_blank"
+  );
+};
 
   return (
 
@@ -302,7 +301,7 @@ function Department({ setIsLoggedIn }) {
 
               <button
                 className="export-btn"
-                onClick={exportDepartments}
+                onClick={exportDepartment}
               >
 
                 <FaDownload />
