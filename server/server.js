@@ -722,100 +722,6 @@ console.log("NEW DEPARTMENT ROUTE RUNNING");
 
   }
 });
-/* ================= DEPARTMENT PDF ================= */
-
-app.get("/department/pdf", async (req, res) => {
-  try {
-
-    const result = await pool.query(
-      "SELECT * FROM department ORDER BY id"
-    );
-
-    const doc = new PDFDocument({
-      margin: 40,
-      size: "A4",
-    });
-
-    res.setHeader("Content-Type", "application/pdf");
-
-    res.setHeader(
-      "Content-Disposition",
-      "attachment; filename=Department_Report.pdf"
-    );
-
-    doc.pipe(res);
-
-    doc.fontSize(20).text("Department Management Report", {
-      align: "center",
-    });
-
-    doc.moveDown();
-
-    result.rows.forEach((department, index) => {
-
-      doc.fontSize(14).text(`Department ${index + 1}`, {
-        underline: true,
-      });
-
-      doc.moveDown();
-
-      const data = [
-        ["Department Code", department.department_code],
-        ["Department Name", department.department_type],
-        ["HOD Name", department.hod_name],
-        ["Building", department.building],
-        ["Floor", department.floor],
-        ["Campus", department.campus],
-        ["Status", department.status || "Active"],
-      ];
-
-      let y = doc.y;
-
-      data.forEach((row) => {
-
-        doc.rect(40, y, 180, 22).stroke();
-
-        doc.font("Helvetica-Bold")
-          .fontSize(10)
-          .text(row[0], 45, y + 6);
-
-        doc.rect(220, y, 330, 22).stroke();
-
-        doc.font("Helvetica")
-          .fontSize(10)
-          .text(String(row[1] ?? ""), 225, y + 6);
-
-        y += 22;
-
-        if (y > 760) {
-          doc.addPage();
-          y = 40;
-        }
-
-      });
-
-      doc.y = y + 10;
-
-      doc.moveDown();
-
-      doc.moveTo(40, doc.y)
-        .lineTo(550, doc.y)
-        .stroke();
-
-      doc.moveDown();
-
-    });
-
-    doc.end();
-
-  } catch (err) {
-
-    console.log(err);
-
-    res.status(500).send("PDF Error");
-
-  }
-});
 /* ================= AUTHORITY ================= */
 
 // GET Authority
@@ -848,6 +754,8 @@ app.post("/authority", async (req, res) => {
 
   try {
 
+    console.log(req.body.permissions);
+
     const {
 
       authority_id,
@@ -870,7 +778,8 @@ app.post("/authority", async (req, res) => {
       apar_id,
       office_address,
 
-      remarks
+      remarks,
+      permissions
 
     } = req.body;
 
@@ -898,7 +807,8 @@ office_location,
 apar_id,
 office_address,
 
-remarks
+remarks,
+permissions
 
 )
 
@@ -907,9 +817,10 @@ VALUES(
 $1,$2,$3,$4,$5,$6,$7,$8,$9,
 $10,$11,$12,
 $13,$14,$15,$16,$17,
-$18
+$18,$19
 
 )
+
 RETURNING *`,
 
 [
@@ -933,17 +844,17 @@ office_location,
 apar_id,
 office_address,
 
-remarks
+remarks,
+permissions
+
 ]
 
-);
+    );
 
     res.status(201).json({
 
       success: true,
-
       message: "Authority Saved Successfully",
-
       data: result.rows[0]
 
     });
@@ -955,7 +866,6 @@ remarks
     res.status(500).json({
 
       success: false,
-
       error: err.message
 
     });
@@ -963,110 +873,6 @@ remarks
   }
 
 });
-/* ================= AUTHORITY PDF ================= */
-
-app.get("/authority/pdf", async (req, res) => {
-  try {
-
-    const result = await pool.query(
-      "SELECT * FROM authority ORDER BY id"
-    );
-
-    const doc = new PDFDocument({
-      margin: 40,
-      size: "A4",
-    });
-
-    res.setHeader("Content-Type", "application/pdf");
-    res.setHeader(
-      "Content-Disposition",
-      "attachment; filename=Authority_Report.pdf"
-    );
-
-    doc.pipe(res);
-
-    doc.fontSize(20).text("Authority Management Report", {
-      align: "center",
-    });
-
-    doc.moveDown();
-
-    result.rows.forEach((authority, index) => {
-
-      doc.fontSize(14).text(`Authority ${index + 1}`, {
-        underline: true,
-      });
-
-      doc.moveDown();
-
-      const data = [
-        ["Authority ID", authority.authority_id],
-        ["Authority Name", authority.authority_name],
-        ["Employee ID", authority.employee_id],
-        ["Department", authority.department],
-        ["Designation", authority.designation],
-        ["Authority Level", authority.authority_level],
-        ["Authority Type", authority.auth_type],
-        ["Joining Date", authority.joining_date],
-        ["Status", authority.status],
-        ["Username", authority.username],
-        ["Email", authority.email],
-        ["Mobile", authority.mobile],
-        ["Office Extension", authority.office_extension],
-        ["Office Location", authority.office_location],
-        ["APAR ID", authority.apar_id],
-        ["Office Address", authority.office_address],
-        ["Remarks", authority.remarks]
-      ];
-
-      let y = doc.y;
-
-      data.forEach((row) => {
-
-        doc.rect(40, y, 180, 22).stroke();
-
-        doc.font("Helvetica-Bold")
-          .fontSize(10)
-          .text(row[0], 45, y + 6);
-
-        doc.rect(220, y, 330, 22).stroke();
-
-        doc.font("Helvetica")
-          .fontSize(10)
-          .text(String(row[1] ?? ""), 225, y + 6);
-
-        y += 22;
-
-        if (y > 760) {
-          doc.addPage();
-          y = 40;
-        }
-
-      });
-
-      doc.y = y + 10;
-
-      doc.moveDown();
-
-      doc.moveTo(40, doc.y)
-        .lineTo(550, doc.y)
-        .stroke();
-
-      doc.moveDown();
-
-    });
-
-    doc.end();
-
-  } catch (err) {
-
-    console.log(err);
-
-    res.status(500).send("PDF Error");
-
-  }
-});
-
 // DELETE Authority
 
 app.delete("/authority/:id", async (req, res) => {
@@ -1260,106 +1066,6 @@ totalFees
       success: false,
       error: err.message
     });
-
-  }
-});
-/* ================= COURSE PDF ================= */
-
-app.get("/course/pdf", async (req, res) => {
-  try {
-
-    const result = await pool.query(
-      "SELECT * FROM course_master ORDER BY id"
-    );
-
-    const doc = new PDFDocument({
-      margin: 40,
-      size: "A4",
-    });
-
-    res.setHeader("Content-Type", "application/pdf");
-
-    res.setHeader(
-      "Content-Disposition",
-      "attachment; filename=Course_Report.pdf"
-    );
-
-    doc.pipe(res);
-
-    doc.fontSize(20).text("Course Management Report", {
-      align: "center",
-    });
-
-    doc.moveDown();
-
-    result.rows.forEach((course, index) => {
-
-      doc.fontSize(14).text(`Course ${index + 1}`, {
-        underline: true,
-      });
-
-      doc.moveDown();
-
-      const data = [
-        ["Course Code", course.course_code],
-        ["Course Name", course.course_name],
-        ["Course Type", course.course_type],
-        ["Department", course.department],
-        ["Course Level", course.course_level],
-        ["Duration", course.duration],
-        ["Total Semesters", course.total_semesters],
-        ["Intake Capacity", course.intake_capacity],
-        ["Course Status", course.course_status],
-        ["Approval Status", course.approval_status],
-        ["Coordinator", course.coordinator],
-        ["Contact Number", course.contact_number],
-        ["Total Fees", course.total_fees]
-      ];
-
-      let y = doc.y;
-
-      data.forEach((row) => {
-
-        doc.rect(40, y, 180, 22).stroke();
-
-        doc.font("Helvetica-Bold")
-          .fontSize(10)
-          .text(row[0], 45, y + 6);
-
-        doc.rect(220, y, 330, 22).stroke();
-
-        doc.font("Helvetica")
-          .fontSize(10)
-          .text(String(row[1] ?? ""), 225, y + 6);
-
-        y += 22;
-
-        if (y > 760) {
-          doc.addPage();
-          y = 40;
-        }
-
-      });
-
-      doc.y = y + 10;
-
-      doc.moveDown();
-
-      doc.moveTo(40, doc.y)
-        .lineTo(550, doc.y)
-        .stroke();
-
-      doc.moveDown();
-
-    });
-
-    doc.end();
-
-  } catch (err) {
-
-    console.log(err);
-
-    res.status(500).send("PDF Error");
 
   }
 });
@@ -1571,7 +1277,7 @@ app.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     const result = await pool.query(
-      "SELECT * FROM users WHERE email=$1",
+        "SELECT * FROM authority WHERE email=$1",
       [email]
     );
 
@@ -1584,24 +1290,24 @@ app.post("/login", async (req, res) => {
 
     const user = result.rows[0];
 
-    const match = await bcrypt.compare(password, user.password);
+    if (password !== user.password) {
+  return res.json({
+    success: false,
+    message: "Invalid Password"
+  });
+}
 
-    if (!match) {
-      return res.json({
-        success: false,
-        message: "Invalid Password"
-      });
-    }
-
-    res.json({
-      success: true,
-      message: "Login Successful",
-      user: {
-        id: user.id,
-        full_name: user.full_name,
-        email: user.email
-      }
-    });
+  console.log("Login User:", JSON.stringify(user, null, 2));
+  res.json({
+  success: true,
+  message: "Login Successful",
+  user: {
+    id: user.id,
+    full_name: user.full_name,
+    email: user.email,
+    permissions: user.permissions
+  }
+});
 
   } catch (err) {
     console.log(err);
