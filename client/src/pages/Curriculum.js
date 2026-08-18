@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Curriculum.css";
 import {
   FaBell,
@@ -12,80 +12,212 @@ import {
   FaSyncAlt
 } from "react-icons/fa";
 import { FaDownload, FaPrint, FaEye } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import mammoth from "mammoth";
+import * as XLSX from "xlsx";
 
 function Curriculum({ onNext, onPrevious }) {
-
+const navigate = useNavigate();
+const [attachmentFile, setAttachmentFile] = useState(null);
 const [syllabusPdf, setSyllabusPdf] = useState(null);
 const [pdfName, setPdfName] = useState("");
 const [activityName, setActivityName] = useState("");
 const [facultyName, setFacultyName] = useState("");
-const [teachingLearningProcess, setTeachingLearningProcess] = useState("");
+const STORAGE_KEY = "curriculum_1_2_data";
 
+const [savedFileNames, setSavedFileNames] = useState({});
+const [loaded, setLoaded] = useState(false);
+const [teachingLearningProcess, setTeachingLearningProcess] = useState(
+  "The department follows outcome-based teaching-learning methods to achieve POs and PSOs."
+);
+const [curriculumDevelopmentProcess, setCurriculumDevelopmentProcess] = useState(
+  "The curriculum is developed and revised through BoS with stakeholder feedback and industry requirements."
+);
+const [gapDescription, setGapDescription] = useState(
+  "The department identifies curriculum gaps based on academic and industry requirements."
+);
 const [attachmentName, setAttachmentName] = useState(null);
 const [deptFile, setDeptFile] = useState(null);
 const [scienceFile, setScienceFile] = useState(null);
 const [mdmFile, setMdmFile] = useState(null);
 const [contentFile, setContentFile] = useState(null);
 const [proofFile, setProofFile] = useState(null);
+const [methodFile, setMethodFile] = useState(null);
+const [creditFile, setCreditFile] = useState(null);
+
+const [actionTaken, setActionTaken] = useState("");
+const [semester, setSemester] = useState("");
+const [academicYear, setAcademicYear] = useState("");
+
+useEffect(() => {
+
+  const saved = localStorage.getItem(STORAGE_KEY);
+
+  if (saved) {
+
+    try {
+
+      const data = JSON.parse(saved);
+
+      // ================= TEXT / USER DATA =================
+
+      setTeachingLearningProcess(
+        data.teachingLearningProcess ?? ""
+      );
+
+      setCurriculumDevelopmentProcess(
+        data.curriculumDevelopmentProcess ?? ""
+      );
+
+      setGapDescription(
+        data.gapDescription ?? ""
+      );
+
+      setActionTaken(
+        data.actionTaken ?? ""
+      );
+
+      setAcademicYear(
+        data.academicYear ?? ""
+      );
+
+      setSemester(
+        data.semester ?? ""
+      );
+
+      setActivityName(
+        data.activityName ?? ""
+      );
+
+      setFacultyName(
+        data.facultyName ?? ""
+      );
+
+
+      // ================= FILE NAMES =================
+
+      if (data.files) {
+        setSavedFileNames(data.files);
+      }
+
+    } catch (error) {
+
+      console.log(
+        "Curriculum Restore Error:",
+        error
+      );
+
+    }
+
+  }
+
+  setLoaded(true);
+
+}, []);
+useEffect(() => {
+  if (!loaded) return;
+
+  const data = {
+    teachingLearningProcess,
+    curriculumDevelopmentProcess,
+
+    gapDescription,
+    actionTaken,
+
+    academicYear,
+    semester,
+    activityName,
+    facultyName,
+
+    files: savedFileNames
+  };
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(data)
+  );
+}, [
+  loaded,
+
+  teachingLearningProcess,
+  curriculumDevelopmentProcess,
+
+  gapDescription,
+  actionTaken,
+
+  academicYear,
+  semester,
+  activityName,
+  facultyName,
+
+  savedFileNames
+]);
 const handleSave = async () => {
-console.log(document.getElementById("tlpAttachment"));
-console.log(document.getElementById("tlpAttachment")?.files);
 
-console.log(document.getElementById("syllabusFile"));
-console.log(document.getElementById("syllabusFile")?.files);
   try {
+if (
 
+  !teachingLearningProcess.trim() ||
+  !curriculumDevelopmentProcess.trim() ||
+
+  !gapDescription.trim() ||
+  !actionTaken.trim() ||
+
+  !academicYear.trim() ||
+  !semester.trim() ||
+  !activityName.trim() ||
+  !facultyName.trim() ||
+(!attachmentFile && !savedFileNames.attachmentFile) ||
+
+(!syllabusPdf && !savedFileNames.syllabusPdf) ||
+
+(!deptFile && !savedFileNames.deptFile) ||
+
+(!scienceFile && !savedFileNames.scienceFile) ||
+
+(!mdmFile && !savedFileNames.mdmFile) ||
+
+(!methodFile && !savedFileNames.methodFile) ||
+
+(!creditFile && !savedFileNames.creditFile) ||
+
+(!proofFile && !savedFileNames.proofFile) ||
+
+(!contentFile && !savedFileNames.contentFile)
+
+) {
+
+  alert("Please fill all required fields.");
+  return;
+
+}
     const formData = new FormData();
+if (attachmentFile)
+  formData.append("tlpAttachment", attachmentFile);
 
-    formData.append(
-      "teachingLearningProcess",
-      teachingLearningProcess
-    );
+if (syllabusPdf)
+  formData.append("syllabusFile", syllabusPdf);
 
-    formData.append(
-      "activityName",
-      activityName
-    );
+if (deptFile)
+  formData.append("departmentSubjectsFile", deptFile);
 
-    formData.append(
-      "facultyName",
-      facultyName
-    );
+if (scienceFile)
+  formData.append("generalScienceFile", scienceFile);
 
-    formData.append(
-      "tlpAttachment",
-      document.getElementById("tlpAttachment").files[0]
-    );
+if (mdmFile)
+  formData.append("mdmElectiveFile", mdmFile);
 
-    formData.append(
-      "syllabusFile",
-      document.getElementById("syllabusFile").files[0]
-    );
+if (methodFile)
+  formData.append("methodFile", methodFile);
 
-    formData.append(
-      "departmentSubjectsFile",
-      document.getElementById("departmentSubjectsFile").files[0]
-    );
+if (creditFile)
+  formData.append("creditFile", creditFile);
 
-    formData.append(
-      "generalScienceFile",
-      document.getElementById("generalScienceFile").files[0]
-    );
+if (proofFile)
+  formData.append("curriculumGapFile", proofFile);
 
-    formData.append(
-      "mdmElectiveFile",
-      document.getElementById("mdmElectiveFile").files[0]
-    );
-
-    formData.append(
-      "curriculumGapFile",
-      document.getElementById("curriculumGapFile").files[0]
-    );
-
-    formData.append(
-      "activityFile",
-      document.getElementById("activityFile").files[0]
-    );
+if (contentFile)
+  formData.append("activityFile", contentFile);
 for (const pair of formData.entries()) {
   console.log(pair[0], pair[1]);
 }
@@ -148,88 +280,360 @@ const handleFileDownload = (file) => {
   );
 
 };
-const handleFilePrint = (file) => {
+const readFileContentHTML = async (fileName) => {
 
-  if (!file) {
-    alert("Please upload file first.");
-    return;
+  const ext = fileName.split(".").pop().toLowerCase();
+
+  // PDF
+  if (ext === "pdf") {
+
+    return `
+      <embed
+        src="http://localhost:5000/uploads/${fileName}"
+        type="application/pdf"
+        style="width:100%;height:900px;"
+      />
+    `;
+
   }
 
-  const extension = file.name.split(".").pop().toLowerCase();
+  // Image
+  if (["jpg","jpeg","png","gif","webp"].includes(ext)) {
 
-  if (extension === "pdf") {
+    return `
+      <img
+        src="http://localhost:5000/uploads/${fileName}"
+        style="width:100%;"
+      />
+    `;
 
-    const win = window.open(
-      `http://localhost:5000/uploads/${file.name}`,
-      "_blank"
+  }
+
+  // DOCX
+  if (ext === "docx") {
+
+    const response = await fetch(
+      `http://localhost:5000/uploads/${fileName}`
     );
 
-    if (win) {
-      win.onload = () => {
-        win.focus();
-        win.print();
-      };
+    const blob = await response.blob();
+
+    const buffer = await blob.arrayBuffer();
+
+    const result = await mammoth.convertToHtml({
+      arrayBuffer: buffer
+    });
+
+    return result.value;
+
+  }
+
+  // Excel
+
+  if (["xlsx","xls"].includes(ext)) {
+
+    const response = await fetch(
+      `http://localhost:5000/uploads/${fileName}`
+    );
+
+    const blob = await response.blob();
+
+    const buffer = await blob.arrayBuffer();
+
+    const workbook = XLSX.read(buffer,{
+      type:"array"
+    });
+
+    const sheet =
+      workbook.Sheets[
+        workbook.SheetNames[0]
+      ];
+
+    return XLSX.utils.sheet_to_html(sheet);
+
+  }
+
+  return "";
+};
+const handlePrint = async () => {
+
+  try {
+
+    const res = await fetch(
+      "http://localhost:5000/print-curriculum-files"
+    );
+
+    const data = await res.json();
+
+    const documents = [
+
+      {
+        title: "Teaching Learning Process",
+        file: data.tlp_attachment
+      },
+
+      {
+        title: "Curriculum Development Process",
+        file: data.syllabus_file
+      },
+
+      {
+        title: "Department Subjects",
+        file: data.department_subjects_file
+      },
+
+      {
+        title: "General Science",
+        file: data.general_science_file
+      },
+
+      {
+        title: "MDM Elective",
+        file: data.mdm_elective_file
+      },
+
+      {
+        title: "Teaching Learning Methods",
+        file: data.teaching_learning_methods_file
+      },
+
+      {
+        title: "Credit Structure",
+        file: data.credit_structure_file
+      },
+
+      {
+        title: "Curriculum Gap Analysis",
+        file: data.curriculum_gap_file
+      },
+
+      {
+        title: "Content Beyond Syllabus",
+        file: data.activity_file
+      }
+
+    ].filter(item => item.file);
+
+    let html = "";
+
+    for (const doc of documents) {
+
+      const preview =
+        await readFileContentHTML(doc.file);
+
+      html += `
+
+      <div class="doc-section">
+
+        <h2>${doc.title}</h2>
+
+        ${preview}
+
+        <hr/>
+
+      </div>
+
+      `;
+
     }
 
-  } else {
+    const printWindow = window.open("", "_blank");
 
-    window.open(
-      `http://localhost:5000/download/${file.name}`,
-      "_blank"
-    );
+    printWindow.document.write(`
 
-    alert(
-      "Open the downloaded file and print it."
-    );
+    <html>
+
+    <head>
+
+    <title>Curriculum Documents</title>
+
+    <style>
+
+    body{
+
+      font-family:Arial;
+
+      margin:20px;
+
+    }
+
+    h1{
+
+      text-align:center;
+
+      color:#0b4ea2;
+
+    }
+
+    h2{
+
+      margin-top:35px;
+
+      color:#0b4ea2;
+
+      border-bottom:1px solid #ddd;
+
+      padding-bottom:8px;
+
+    }
+
+    embed{
+
+      width:100%;
+
+      height:900px;
+
+    }
+
+    img{
+
+      width:100%;
+
+    }
+
+    table{
+
+      width:100%;
+
+      border-collapse:collapse;
+
+    }
+
+    td,th{
+
+      border:1px solid #ddd;
+
+      padding:8px;
+
+    }
+
+    </style>
+
+    </head>
+
+    <body>
+
+    <h1>1.2 Curriculum Documents</h1>
+
+    ${html}
+
+    </body>
+
+    </html>
+
+    `);
+
+    printWindow.document.close();
+
+    setTimeout(() => {
+
+      printWindow.focus();
+
+      printWindow.print();
+
+    },1000);
+
+  }
+
+  catch(err){
+
+    console.log(err);
+
+    alert("Print Error");
 
   }
 
 };
+
+const saveFileName = (key, file) => {
+
+  if (!file) return;
+
+  setSavedFileNames((prev) => ({
+    ...prev,
+    [key]: file.name
+  }));
+
+};
+
+
+// ================= FILE UPLOAD FUNCTIONS =================
+
 const handlePdfUpload = (e) => {
 
   const file = e.target.files[0];
 
-  if(file){
+  if (file) {
+
     setSyllabusPdf(file);
     setPdfName(file.name);
+
+    saveFileName("syllabusPdf", file);
   }
 };
+
 
 const handleAttachmentUpload = (e) => {
+
   const file = e.target.files[0];
 
-  if(file){
+  if (file) {
+
+    setAttachmentFile(file);
     setAttachmentName(file.name);
+
+    saveFileName("attachmentFile", file);
   }
 };
+
 
 const handleDeptUpload = (e) => {
-  if (e.target.files[0]) {
-    setDeptFile(e.target.files[0].name);
+
+  const file = e.target.files[0];
+
+  if (file) {
+
+    setDeptFile(file);
+
+    saveFileName("deptFile", file);
   }
 };
-
 const handleScienceUpload = (e) => {
-  if (e.target.files[0]) {
-    setScienceFile(e.target.files[0].name);
+  const file = e.target.files[0];
+
+  if (file) {
+    setScienceFile(file);
+    saveFileName("scienceFile", file);
   }
 };
 
 const handleMdmUpload = (e) => {
-  if (e.target.files[0]) {
-    setMdmFile(e.target.files[0].name);
+  const file = e.target.files[0];
+
+  if (file) {
+    setMdmFile(file);
+    saveFileName("mdmFile", file);
   }
 };
+
 const handleProofUpload = (e) => {
-  if (e.target.files[0]) {
-    setProofFile(e.target.files[0].name);
+  const file = e.target.files[0];
+
+  if (file) {
+    setProofFile(file);
+    saveFileName("proofFile", file);
   }
 };
+
 const handleContentUpload = (e) => {
-  if (e.target.files[0]) {
-    setContentFile(e.target.files[0].name);
+  const file = e.target.files[0];
+
+  if (file) {
+    setContentFile(file);
+    saveFileName("contentFile", file);
   }
 };
+
 const handleViewPdf = () => {
   if (syllabusPdf) {
     window.open(URL.createObjectURL(syllabusPdf));
@@ -253,8 +657,108 @@ const handleEdit = () => {
 const handleDeleteRow = () => {
   alert("Delete Clicked");
 };
+useEffect(() => {
+  fetch("http://localhost:5000/get-curriculum")
+    .then((res) => res.json())
+    .then((data) => {
+
+      
+      setAttachmentName(data.tlp_attachment || "");
+      setPdfName(data.syllabus_file || "");
+    })
+    .catch((err) => console.log(err));
+}, []);
 const handlePrevious = () => {
   onPrevious();
+};
+
+const handleMethodUpload = (e) => {
+  const file = e.target.files[0];
+
+  if (file) {
+    setMethodFile(file);
+    saveFileName("methodFile", file);
+  }
+};
+
+const handleCreditUpload = (e) => {
+  const file = e.target.files[0];
+
+  if (file) {
+    setCreditFile(file);
+    saveFileName("creditFile", file);
+  }
+};
+const handleClear = () => {
+
+  const confirmClear = window.confirm(
+    "Are you sure you want to clear uploaded files?"
+  );
+
+  if (!confirmClear) return;
+
+
+  // =================================================
+  // ❌ DO NOT CLEAR USER DATA
+  // =================================================
+
+  // teachingLearningProcess
+  // curriculumDevelopmentProcess
+  // gapDescription
+  // actionTaken
+  // academicYear
+  // semester
+  // activityName
+  // facultyName
+
+
+  // =================================================
+  // ✅ CLEAR FRONTEND FILE OBJECTS
+  // =================================================
+
+  setAttachmentFile(null);
+  setSyllabusPdf(null);
+
+  setDeptFile(null);
+  setScienceFile(null);
+  setMdmFile(null);
+
+  setMethodFile(null);
+  setCreditFile(null);
+
+  setProofFile(null);
+  setAcademicYear("");
+setSemester("");
+setActivityName("");
+setFacultyName("");
+  setContentFile(null);
+
+
+  // =================================================
+  // ✅ CLEAR FILE NAMES FROM CURRENT SCREEN
+  // =================================================
+
+  setSavedFileNames({});
+
+
+  // =================================================
+  // ✅ CLEAR HTML FILE INPUTS
+  // =================================================
+
+  document
+    .querySelectorAll('input[type="file"]')
+    .forEach((input) => {
+      input.value = "";
+    });
+
+
+  // =================================================
+  // ❌ DO NOT DELETE LOCAL STORAGE
+  // ❌ DO NOT DELETE DATABASE
+  // ❌ DO NOT DELETE BACKEND FILES
+  // =================================================
+
+  alert("Uploaded files cleared successfully.");
 };
   return (
     <div className="curriculum-page">
@@ -262,8 +766,7 @@ const handlePrevious = () => {
    
       {/* 1.2.1 */}
       <div className="section purple-section">
-        <h2>1.2.1 Curriculum Program Structure</h2>
-
+        <h2>1.2.1 State the Process for Developing / Revising the Program Curriculum</h2>
         <div className="grid-2">
 
           <div className="card">
@@ -272,117 +775,113 @@ const handlePrevious = () => {
             </h3>
 
             <textarea
-  placeholder="Enter teaching learning process..."
+  placeholder="Enter Teaching Learning Process..."
   value={teachingLearningProcess}
   onChange={(e) =>
     setTeachingLearningProcess(e.target.value)
   }
 />
 
-            <label>Attachment</label>
-<div className="upload-box">
+           
+<label>Supporting Documents</label>
 
-  <FaCloudUploadAlt />
+<div className="file-upload-row">
 
-  <p>
-    {attachmentName || "Upload Attachment"}
-  </p>
+  <label
+    htmlFor="tlpAttachment"
+    className="choose-file-btn"
+  >
+    Choose File
+  </label>
 
   <input
     id="tlpAttachment"
     type="file"
-    accept=".pdf"
+    className="custom-file-input"
+    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
     onChange={handleAttachmentUpload}
   />
+{(attachmentFile || savedFileNames.attachmentFile) && (
+  <div className="pdf-name">
+    {attachmentFile?.name || savedFileNames.attachmentFile}
+  </div>
+)}
 
-</div>
-<div className="document-actions">
+  <div className="document-actions">
 
-  <button
-    className="view-btn"
-    onClick={() => handleView(deptFile)}
-  >
-    <FaEye />
-    View
-  </button>
+    <button
+      className="view-btn"
+      onClick={() => handleView(attachmentFile)}
+    >
+      <FaEye />
+    </button>
 
-  <button
-    className="download-btn-upload"
-    onClick={() => handleFileDownload(deptFile)}
-  >
-    <FaDownload />
-    Download
-  </button>
+    <button
+      className="download-btn"
+      onClick={() => handleFileDownload(attachmentFile)}
+    >
+      <FaDownload />
+    </button>
 
-  <button
-    className="print-btn-upload"
-    onClick={() => handleFilePrint(deptFile)}
-  >
-    <FaPrint />
-    Print
-  </button>
+  </div>
 
 </div></div>
 
           <div className="card">
             <h3>
-              <FaBook /> Course Syllabus
+              <FaBook /> Curriculum Development Process
             </h3>
+<textarea
+  placeholder="Enter Curriculum Development Process..."
+  value={curriculumDevelopmentProcess}
+  onChange={(e) =>
+    setCurriculumDevelopmentProcess(e.target.value)
+  }
+/>
+            
 
-            <div className="file-view">
-              <span>
-  {pdfName || "No PDF Uploaded"}
-</span>
-              <button onClick={handleViewPdf}>
-  View
-</button>
-            </div>
+           <label>Supporting Documents</label>
 
-            <label>Upload New Syllabus</label>
-<div className="upload-box">
+<div className="file-upload-row">
 
-  <FaCloudUploadAlt />
+  <label
+htmlFor="syllabusFile"
+className="choose-file-btn"
+>
+Choose File
+</label>
 
-  <p>
-    {pdfName || "Upload PDF"}
-  </p>
+<input
+id="syllabusFile"
+type="file"
+className="custom-file-input"
+accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
+onChange={handlePdfUpload}
+/>
+{(syllabusPdf || savedFileNames.syllabusPdf) && (
+  <div className="pdf-name">
+    {syllabusPdf?.name || savedFileNames.syllabusPdf}
+  </div>
+)}
+  <div className="document-actions">
 
-  <input
-    id="syllabusFile"
-    type="file"
-    accept=".pdf"
-    onChange={handlePdfUpload}
-  />
+    <button
+      className="view-btn"
+      onClick={() => handleView(syllabusPdf)}
+    >
+      <FaEye />
+    </button>
 
-</div>
-<div className="document-actions">
+    <button
+      className="download-btn"
+      onClick={() => handleFileDownload(syllabusPdf)}
+    >
+      <FaDownload />
+    </button>
 
-  <button
-    className="view-btn"
-    onClick={() => handleView(deptFile)}
-  >
-    <FaEye />
-    View
-  </button>
+  </div>
 
-  <button
-    className="download-btn-upload"
-    onClick={() => handleFileDownload(deptFile)}
-  >
-    <FaDownload />
-    Download
-  </button>
-
-  <button
-    className="print-btn-upload"
-    onClick={() => handleFilePrint(deptFile)}
-  >
-    <FaPrint />
-    Print
-  </button>
-
-</div>
-          </div>
+</div> </div>
 
         </div>
       </div>
@@ -392,23 +891,33 @@ const handlePrevious = () => {
 
         <h2>1.2.2 Components of Program Curriculum</h2>
 
-        <div className="grid-3">
+        <div className="grid-5">
 
           <div className="mini-card">
             <FaBook />
             <h4>Department Subjects</h4>
+<label>Supporting Documents</label>
 
-           <div className="upload-box">
+<div className="file-upload-row">
+<label
+  htmlFor="departmentSubjectsFile"
+  className="choose-file-btn"
+>
+  Choose File
+</label>
 
-  <p>{deptFile || "Upload Attachment"}</p>
-
-  <input
-    id="departmentSubjectsFile"
-    type="file"
-    onChange={handleDeptUpload}
-  />
-
-</div>
+<input
+  id="departmentSubjectsFile"
+  type="file"
+  className="custom-file-input"
+  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
+  onChange={handleDeptUpload}
+/>
+{(deptFile || savedFileNames.deptFile) && (
+  <div className="pdf-name">
+    {deptFile?.name || savedFileNames.deptFile}
+  </div>
+)}
 <div className="document-actions">
 
   <button
@@ -416,66 +925,62 @@ const handlePrevious = () => {
     onClick={() => handleView(deptFile)}
   >
     <FaEye />
-    View
   </button>
 
   <button
-    className="download-btn-upload"
+    className="download-btn"
     onClick={() => handleFileDownload(deptFile)}
   >
     <FaDownload />
-    Download
   </button>
 
-  <button
-    className="print-btn-upload"
-    onClick={() => handleFilePrint(deptFile)}
-  >
-    <FaPrint />
-    Print
-  </button>
-
+</div>
 </div>
           </div>
 
           <div className="mini-card">
             <FaFlask />
-<div className="upload-box">
+            <h4>General Science</h4>
+<label>Supporting Documents</label>
 
-  <p>{scienceFile || "Upload Attachment"}</p>
+<div className="file-upload-row">
+
+  <label
+    htmlFor="generalScienceFile"
+    className="choose-file-btn"
+  >
+    Choose File
+  </label>
 
   <input
     id="generalScienceFile"
     type="file"
+    className="custom-file-input"
+    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
     onChange={handleScienceUpload}
   />
+{(scienceFile || savedFileNames.scienceFile) && (
+  <div className="pdf-name">
+    {scienceFile?.name || savedFileNames.scienceFile}
+  </div>
+)}
+  <div className="document-actions">
 
-</div>
-<div className="document-actions">
+    <button
+      className="view-btn"
+      onClick={() => handleView(scienceFile)}
+    >
+      <FaEye />
+    </button>
 
-  <button
-    className="view-btn"
-    onClick={() => handleView(deptFile)}
-  >
-    <FaEye />
-    View
-  </button>
+    <button
+      className="download-btn"
+      onClick={() => handleFileDownload(scienceFile)}
+    >
+      <FaDownload />
+    </button>
 
-  <button
-    className="download-btn-upload"
-    onClick={() => handleFileDownload(deptFile)}
-  >
-    <FaDownload />
-    Download
-  </button>
-
-  <button
-    className="print-btn-upload"
-    onClick={() => handleFilePrint(deptFile)}
-  >
-    <FaPrint />
-    Print
-  </button>
+  </div>
 
 </div>
           </div>
@@ -483,97 +988,211 @@ const handlePrevious = () => {
           <div className="mini-card">
             <FaGraduationCap />
             <h4>MDM Elective Subject</h4>
-<div className="upload-box">
+<label>Supporting Documents</label>
 
-  <p>{mdmFile || "Upload Attachment"}</p>
+<div className="file-upload-row">
+
+  <label
+    htmlFor="mdmElectiveFile"
+    className="choose-file-btn"
+  >
+    Choose File
+  </label>
 
   <input
     id="mdmElectiveFile"
     type="file"
+    className="custom-file-input"
+    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
     onChange={handleMdmUpload}
   />
+{(mdmFile || savedFileNames.mdmFile) && (
+  <div className="pdf-name">
+    {mdmFile?.name || savedFileNames.mdmFile}
+  </div>
+)}
+  <div className="document-actions">
 
-</div>
-<div className="document-actions">
+    <button
+      className="view-btn"
+      onClick={() => handleView(mdmFile)}
+    >
+      <FaEye />
+    </button>
 
-  <button
-    className="view-btn"
-    onClick={() => handleView(deptFile)}
-  >
-    <FaEye />
-    View
-  </button>
+    <button
+      className="download-btn"
+      onClick={() => handleFileDownload(mdmFile)}
+    >
+      <FaDownload />
+    </button>
 
-  <button
-    className="download-btn-upload"
-    onClick={() => handleFileDownload(deptFile)}
-  >
-    <FaDownload />
-    Download
-  </button>
-
-  <button
-    className="print-btn-upload"
-    onClick={() => handleFilePrint(deptFile)}
-  >
-    <FaPrint />
-    Print
-  </button>
+  </div>
 
 </div> </div>
+<div className="mini-card">
+  <FaBook />
+  <h4>Teaching Learning Methods</h4>
+<label>Supporting Documents</label>
 
+<div className="file-upload-row">
+
+  <label
+    htmlFor="methodFile"
+    className="choose-file-btn"
+  >
+    Choose File
+  </label>
+
+  <input
+    id="methodFile"
+    type="file"
+    className="custom-file-input"
+    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
+    onChange={handleMethodUpload}
+  />
+{(methodFile || savedFileNames.methodFile) && (
+  <div className="pdf-name">
+    {methodFile?.name || savedFileNames.methodFile}
+  </div>
+)}
+  <div className="document-actions">
+
+    <button
+      className="view-btn"
+      onClick={() => handleView(methodFile)}
+    >
+      <FaEye />
+    </button>
+
+    <button
+      className="download-btn"
+      onClick={() => handleFileDownload(methodFile)}
+    >
+      <FaDownload />
+    </button>
+
+  </div>
+
+</div>
+</div>
+<div className="mini-card">
+  <FaGraduationCap />
+  <h4>Credit Structure</h4>
+<label>Supporting Documents</label>
+
+<div className="file-upload-row">
+
+  <label
+    htmlFor="creditFile"
+    className="choose-file-btn"
+  >
+    Choose File
+  </label>
+
+  <input
+    id="creditFile"
+    type="file"
+    className="custom-file-input"
+    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
+    onChange={handleCreditUpload}
+  />
+{(creditFile || savedFileNames.creditFile) && (
+  <div className="pdf-name">
+    {creditFile?.name || savedFileNames.creditFile}
+  </div>
+)}
+  <div className="document-actions">
+
+    <button
+      className="view-btn"
+      onClick={() => handleView(creditFile)}
+    >
+      <FaEye />
+    </button>
+
+    <button
+      className="download-btn"
+      onClick={() => handleFileDownload(creditFile)}
+    >
+      <FaDownload />
+    </button>
+
+  </div>
+
+</div>
+</div>
         </div>
       </div>
+
 
       {/* Bottom Section */}
 
       <div className="bottom-grid">
 
         {/* Gap Analysis */}
-        <div className="section green-section">
+       <div className="section green-section">
+  <h2>1.2.3 Curriculum Gap Analysis</h2>
 
-          <h2>1.2.3 Curriculum Gap Analysis</h2>
+  <label>Gap Description</label>
+  <textarea
+    placeholder="Enter Curriculum Gap Description..."
+    value={gapDescription}
+    onChange={(e) => setGapDescription(e.target.value)}
+  />
 
-  <div className="upload-box">
+  <label>Action Taken</label>
+  <textarea
+    placeholder="Enter Action Taken..."
+    value={actionTaken}
+    onChange={(e) => setActionTaken(e.target.value)}
+  />
 
-  <p>{proofFile || "Upload Proof"}</p>
+ 
+<label>Supporting Documents</label>
+
+<div className="file-upload-row">
+
+  <label
+    htmlFor="curriculumGapFile"
+    className="choose-file-btn"
+  >
+    Choose File
+  </label>
 
   <input
     id="curriculumGapFile"
     type="file"
+    className="custom-file-input"
+    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
     onChange={handleProofUpload}
   />
+{(proofFile || savedFileNames.proofFile) && (
+  <div className="pdf-name">
+    {proofFile?.name || savedFileNames.proofFile}
+  </div>
+)}
+
+  <div className="document-actions">
+
+    <button
+      className="view-btn"
+      onClick={() => handleView(proofFile)}
+    >
+      <FaEye />
+    </button>
+
+    <button
+      className="download-btn"
+      onClick={() => handleFileDownload(proofFile)}
+    >
+      <FaDownload />
+    </button>
+
+  </div>
 
 </div>
-<div className="document-actions">
-
-  <button
-    className="view-btn"
-    onClick={() => handleView(deptFile)}
-  >
-    <FaEye />
-    View
-  </button>
-
-  <button
-    className="download-btn-upload"
-    onClick={() => handleFileDownload(deptFile)}
-  >
-    <FaDownload />
-    Download
-  </button>
-
-  <button
-    className="print-btn-upload"
-    onClick={() => handleFilePrint(deptFile)}
-  >
-    <FaPrint />
-    Print
-  </button>
-
 </div>
-
-        </div>
 
         {/* Content Beyond Syllabus */}
 
@@ -581,7 +1200,21 @@ const handlePrevious = () => {
 
           <h2>1.2.4 Content Beyond Syllabus</h2>
           <div className="input-row">
+<div className="input-row">
+  <input
+    type="text"
+    placeholder="Academic Year"
+    value={academicYear}
+    onChange={(e) => setAcademicYear(e.target.value)}
+  />
 
+  <input
+    type="text"
+    placeholder="Semester"
+    value={semester}
+    onChange={(e) => setSemester(e.target.value)}
+  />
+</div>
   <input
     type="text"
     placeholder="Activity Name"
@@ -627,101 +1260,116 @@ const handlePrevious = () => {
     <FaTrash />
   </button>
 
-</div>
-        <div className="upload-box">
+</div><label>Supporting Documents</label>
 
-  <p>{contentFile || "Upload File"}</p>
+<div className="file-upload-row">
+
+  <label
+    htmlFor="activityFile"
+    className="choose-file-btn"
+  >
+    Choose File
+  </label>
 
   <input
     id="activityFile"
     type="file"
+    className="custom-file-input"
+    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
     onChange={handleContentUpload}
   />
+{(contentFile || savedFileNames.contentFile) && (
+  <div className="pdf-name">
+    {contentFile?.name || savedFileNames.contentFile}
+  </div>
+)}
+  <div className="document-actions">
 
-</div>
-<div className="document-actions">
+    <button
+      className="view-btn"
+      onClick={() => handleView(contentFile)}
+    >
+      <FaEye />
+    </button>
 
-  <button
-    className="view-btn"
-    onClick={() => handleView(deptFile)}
-  >
-    <FaEye />
-    View
-  </button>
+    <button
+      className="download-btn"
+      onClick={() => handleFileDownload(contentFile)}
+    >
+      <FaDownload />
+    </button>
 
-  <button
-    className="download-btn-upload"
-    onClick={() => handleFileDownload(deptFile)}
-  >
-    <FaDownload />
-    Download
-  </button>
-
-  <button
-    className="print-btn-upload"
-    onClick={() => handleFilePrint(deptFile)}
-  >
-    <FaPrint />
-    Print
-  </button>
+  </div>
 
 </div>
 
-          <table>
-            <thead>
-              
-            </thead>
+        <table className="content-table">
+  <thead>
+    <tr>
+      <th>Academic Year</th>
+      <th>Semester</th>
+      <th>Activity Name</th>
+      <th>Faculty</th>
+      <th>Document</th>
+    </tr>
+  </thead>
 
-            <tbody>
+  <tbody>
+    <tr>
+      <td>{academicYear}</td>
+      <td>{semester}</td>
+      <td>{activityName}</td>
+      <td>{facultyName}</td>
+      <td>{contentFile?.name || "-"}</td>
+    </tr>
+  </tbody>
+</table>
 
-              <tr>
-               
-
-                <td>
-                 
-                </td>
-              </tr>
-
-            </tbody>
-          </table>
-
-        <div className="btn-group">
- <button
-  className="previous-page-btn"
-  onClick={handlePrevious}
->
-  ← Previous
-</button>
+       <div className="btn-group">
   <button
-  className="save-btn"
-  onClick={handleSave}
->
-  Save
-</button>
-
-  <button
-    className="update-btn"
-    onClick={handleUpdate}
+    type="button"
+    className="previous-btn"
+    onClick={() => navigate("/vision")}
   >
-    Update
+      ← Previous
   </button>
 
+<button
+  type="button"
+  className="back-btn"
+  onClick={() => navigate("/vision")}
+>
+  ← Back
+</button>
   <button
-    className="delete-main-btn"
-    onClick={handleDelete}
-  >
-    Delete
+    type="button"
+    className="save-btn"
+    onClick={handleSave}
+    >
+    Save
   </button>
-
+<button
+className="print-btn"
+onClick={handlePrint}
+>
+<FaPrint />
+Print
+</button>
+<button
+  type="button"
+  className="clear-btn"
+  onClick={handleClear}
+>
+  Clear
+</button>
   <button
+    type="button"
     className="next-page-btn"
-    onClick={onNext}
+    onClick={() => navigate("/po-pso")}
   >
     Next →
   </button>
-
 </div>
-
         </div>
 
       </div>

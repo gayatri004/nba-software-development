@@ -1,0 +1,1560 @@
+/* =========================================================
+   CRITERIA 5.4 - VISITING FACULTY
+   SCOPED CSS
+   ONLY APPLIES INSIDE .criteria54-page
+========================================================= */
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.criteria54-page {
+    width: 100%;
+    min-height: 100vh;
+
+    background: #eef3f9;
+
+    padding: 25px;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    color: #222;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.criteria54-page .main-card {
+    width: 100%;
+    max-width: 1500px;
+
+    margin: 0 auto;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.criteria54-page .criteria54-header {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1565c0,
+            #1e88e5
+        );
+
+    color: #ffffff;
+
+    padding: 22px 30px;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.18);
+
+    margin-bottom: 25px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TITLE CIRCLE
+========================================================= */
+
+.criteria54-page .title-circle {
+
+    width: 70px;
+
+    height: 70px;
+
+    min-width: 70px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #1565c0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.25);
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   HEADER CONTENT
+========================================================= */
+
+.criteria54-page .header-content {
+
+    flex: 1;
+
+    margin-left: 25px;
+
+    min-width: 0;
+}
+
+
+.criteria54-page .header-content h2 {
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    margin: 0 0 8px;
+
+    color: #ffffff;
+
+    line-height: 1.2;
+}
+
+
+.criteria54-page .header-content p {
+
+    font-size: 16px;
+
+    opacity: 0.95;
+
+    margin: 0;
+
+    color: #ffffff;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   MARKS BOX
+========================================================= */
+
+.criteria54-page .marks-box {
+
+    background: #ffffff;
+
+    color: #1565c0;
+
+    min-width: 180px;
+
+    text-align: center;
+
+    padding: 18px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.15);
+
+    box-sizing: border-box;
+}
+
+
+.criteria54-page .marks-box span {
+
+    display: block;
+
+    font-size: 15px;
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+
+    color: #1565c0;
+}
+
+
+.criteria54-page .marks-box h3 {
+
+    font-size: 38px;
+
+    font-weight: 700;
+
+    margin: 0;
+
+    color: #1565c0;
+}
+
+
+/* =========================================================
+   GUIDELINE CARD
+========================================================= */
+
+.criteria54-page .guideline-card {
+
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #d8dfe8;
+
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    margin: 18px 0;
+
+    box-shadow: none;
+
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+
+.criteria54-page .guide-top {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 42% 58%;
+}
+
+
+.criteria54-page .guide-left,
+.criteria54-page .guide-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 18px;
+
+    min-height: 85px;
+
+    box-sizing: border-box;
+}
+
+
+.criteria54-page .guide-left {
+
+    border-right: 1px solid #d8dfe8;
+}
+
+
+.criteria54-page .guide-icon {
+
+    font-size: 34px;
+
+    color: #1f5fbf;
+
+    flex-shrink: 0;
+}
+
+
+.criteria54-page .guide-left p,
+.criteria54-page .guide-right p {
+
+    margin: 0;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    color: #222;
+}
+
+
+.criteria54-page .guide-right small {
+
+    display: none;
+}
+
+
+.criteria54-page .red {
+
+    color: #e53935;
+
+    font-weight: 700;
+}
+
+
+.criteria54-page .guide-note {
+
+    border-top: 1px solid #d8dfe8;
+
+    background: #f7fbff;
+
+    padding: 15px 20px;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    color: #222;
+
+    border-left: none;
+
+    border-radius: 0;
+
+    margin: 0;
+
+    box-sizing: border-box;
+}
+
+
+.criteria54-page .guide-note b {
+
+    color: #1f4e9f;
+}
+
+
+/* =========================================================
+   FACULTY CARD
+========================================================= */
+
+.criteria54-page .faculty-card {
+
+    width: 100%;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.08);
+
+    overflow: hidden;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   FACULTY TITLE
+========================================================= */
+
+.criteria54-page .faculty-title {
+
+    background: #1976d2;
+
+    color: #ffffff;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 16px 22px;
+
+    box-sizing: border-box;
+}
+
+
+.criteria54-page .title-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   ADD FACULTY BUTTON
+========================================================= */
+
+.criteria54-page .addFacultyBtn {
+
+    background: #00b894;
+
+    color: #ffffff;
+
+    border: none;
+
+    padding: 11px 20px;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.criteria54-page .addFacultyBtn:hover {
+
+    background: #009874;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   TABLE RESPONSIVE
+========================================================= */
+
+.criteria54-page .table-responsive {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.criteria54-page table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    border-spacing: 0;
+
+    background: #ffffff;
+
+    min-width: 900px;
+}
+
+
+/* =========================================================
+   TABLE HEAD
+========================================================= */
+
+.criteria54-page table thead {
+
+    background: #e3f2fd;
+}
+
+
+.criteria54-page table thead th {
+
+    padding: 15px;
+
+    border: 1px solid #d6e4f5;
+
+    text-align: center;
+
+    color: #0d47a1;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    background: #e3f2fd;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLE BODY
+========================================================= */
+
+.criteria54-page table tbody td {
+
+    border: 1px solid #e3eaf3;
+
+    padding: 10px;
+
+    text-align: center;
+
+    color: #222;
+
+    background: #ffffff;
+
+    font-size: 14px;
+
+    vertical-align: middle;
+}
+
+
+.criteria54-page table tbody tr:nth-child(even) td {
+
+    background: #fafcff;
+}
+
+
+.criteria54-page table tbody tr:hover td {
+
+    background: #f2f8ff;
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.criteria54-page input,
+.criteria54-page select {
+
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: 1px solid #cfd8dc;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+
+    background: #ffffff;
+
+    color: #222222;
+
+    font-family: inherit;
+
+    outline: none;
+
+    box-sizing: border-box;
+}
+
+
+.criteria54-page input:focus,
+.criteria54-page select:focus {
+
+    outline: none;
+
+    border-color: #1976d2;
+
+    box-shadow:
+        0 0 6px rgba(25, 118, 210, 0.3);
+}
+
+
+/* =========================================================
+   ACTION CELL
+========================================================= */
+
+.criteria54-page .action-cell {
+
+    white-space: nowrap;
+
+    min-width: 130px;
+}
+
+
+/* =========================================================
+   VIEW / EDIT / DELETE BUTTONS
+========================================================= */
+
+.criteria54-page .viewBtn,
+.criteria54-page .editBtn,
+.criteria54-page .deleteBtn {
+
+    width: 36px;
+
+    height: 36px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    margin: 2px;
+
+    transition: 0.3s;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* View */
+
+.criteria54-page .viewBtn {
+
+    background: #1976d2;
+}
+
+
+.criteria54-page .viewBtn:hover {
+
+    background: #125ea8;
+
+    transform: translateY(-1px);
+}
+
+
+/* Edit */
+
+.criteria54-page .editBtn {
+
+    background: #ff9800;
+}
+
+
+.criteria54-page .editBtn:hover {
+
+    background: #ef6c00;
+
+    transform: translateY(-1px);
+}
+
+
+/* Delete */
+
+.criteria54-page .deleteBtn {
+
+    background: #e53935;
+}
+
+
+.criteria54-page .deleteBtn:hover {
+
+    background: #c62828;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   TOTAL ROW
+========================================================= */
+
+.criteria54-page .totalRow {
+
+    background: #e8f5e9;
+}
+
+
+.criteria54-page .totalRow td {
+
+    color: #2e7d32;
+
+    background: #e8f5e9;
+
+    padding: 14px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+}
+
+
+.criteria54-page .totalRow b {
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   NBA CARDS
+========================================================= */
+
+.criteria54-page .cards-row {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin: 25px 0;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CALCULATION / EVALUATION / DOCUMENT
+========================================================= */
+
+.criteria54-page .calc-card,
+.criteria54-page .evaluation-card,
+.criteria54-page .document-card {
+
+    background: #ffffff;
+
+    border-radius: 15px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.08);
+
+    border-top: 5px solid #1976d2;
+
+    box-sizing: border-box;
+}
+
+
+.criteria54-page .calc-card h3,
+.criteria54-page .evaluation-card h3,
+.criteria54-page .document-card h3 {
+
+    color: #1565c0;
+
+    margin: 0 0 18px;
+
+    font-size: 22px;
+
+    text-align: center;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   CALCULATION ROW
+========================================================= */
+
+.criteria54-page .calc-row,
+.criteria54-page .eval-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #ececec;
+
+    font-size: 15px;
+}
+
+
+.criteria54-page .calc-row:last-child,
+.criteria54-page .eval-row:last-child {
+
+    border-bottom: none;
+}
+
+
+.criteria54-page .calc-row span,
+.criteria54-page .eval-row span {
+
+    color: #555555;
+
+    font-weight: 600;
+}
+
+
+.criteria54-page .calc-row b,
+.criteria54-page .eval-row b {
+
+    color: #222222;
+
+    font-weight: 700;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   TOTAL MARKS BOX
+========================================================= */
+
+.criteria54-page .totalMarksBox {
+
+    margin-top: 18px;
+
+    background: #e8f5e9;
+
+    border-radius: 10px;
+
+    padding: 16px;
+
+    text-align: center;
+}
+
+
+.criteria54-page .totalMarksBox span {
+
+    display: block;
+
+    color: #2e7d32;
+
+    font-weight: 600;
+}
+
+
+.criteria54-page .totalMarksBox h2 {
+
+    margin: 8px 0 0;
+
+    color: #2e7d32;
+
+    font-size: 28px;
+}
+
+
+/* =========================================================
+   STATUS BOX
+========================================================= */
+
+.criteria54-page .status-box {
+
+    color: #ffffff;
+
+    padding: 6px 14px;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   DOCUMENT
+========================================================= */
+
+.criteria54-page .file-box {
+
+    width: 100%;
+
+    border: 2px dashed #90caf9;
+
+    background: #f8fbff;
+
+    padding: 18px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    color: #555555;
+
+    min-height: 65px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   UPLOAD BUTTON
+========================================================= */
+
+.criteria54-page .upload-btn {
+
+    width: 100%;
+
+    background: #1976d2;
+
+    color: #ffffff;
+
+    border: none;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    font-weight: 600;
+}
+
+
+.criteria54-page .upload-btn:hover {
+
+    background: #125ea8;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   NOTE
+========================================================= */
+
+.criteria54-page .note-card {
+
+    width: 100%;
+
+    background: #fff8e1;
+
+    border-left: 6px solid #ff9800;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    color: #555555;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.05);
+
+    box-sizing: border-box;
+}
+
+
+.criteria54-page .note-card b {
+
+    color: #8d5b00;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.criteria54-page .action-buttons {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin: 30px 0;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   COMMON BUTTON
+========================================================= */
+
+.criteria54-page .btn {
+
+    border: none;
+
+    color: #ffffff;
+
+    padding: 12px 26px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+
+    min-width: 120px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    font-family: inherit;
+}
+
+
+.criteria54-page .btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+.criteria54-page .btn:active {
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   BUTTON COLORS
+========================================================= */
+
+.criteria54-page .previous {
+
+    background: #607d8b;
+}
+
+
+.criteria54-page .save {
+
+    background: #16a34a;
+}
+
+
+.criteria54-page .update {
+
+    background: #2563eb;
+}
+
+
+.criteria54-page .delete {
+
+    background: #dc2626;
+}
+
+
+.criteria54-page .clear {
+
+    background: #fb8c00;
+}
+
+
+.criteria54-page .print {
+
+    background: #7b1fa2;
+}
+
+
+.criteria54-page .next {
+
+    background: #0288d1;
+}
+
+
+/* =========================================================
+   EXTRA BACK BUTTON
+========================================================= */
+
+.criteria54-page .back {
+
+    background: #64748b;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.criteria54-page .submit {
+
+    background: #0d6efd;
+}
+
+
+/* =========================================================
+   FILE INPUT
+========================================================= */
+
+.criteria54-page input[type="file"] {
+
+    width: 100%;
+
+    border: none;
+
+    padding: 5px;
+
+    background: transparent;
+
+    color: #555555;
+
+    font-size: 13px;
+}
+
+
+.criteria54-page input[type="file"]:focus {
+
+    box-shadow: none;
+
+    border: none;
+}
+
+
+/* =========================================================
+   NUMBER INPUT
+========================================================= */
+
+.criteria54-page input[type="number"] {
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.criteria54-page textarea {
+
+    width: 100%;
+
+    min-height: 80px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #cfd8dc;
+
+    border-radius: 7px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    color: #222222;
+
+    resize: vertical;
+
+    outline: none;
+
+    box-sizing: border-box;
+}
+
+
+.criteria54-page textarea:focus {
+
+    border-color: #1976d2;
+
+    box-shadow:
+        0 0 6px rgba(25, 118, 210, 0.3);
+}
+
+
+/* =========================================================
+   EMPTY TABLE MESSAGE
+========================================================= */
+
+.criteria54-page .empty-row td {
+
+    padding: 25px;
+
+    color: #777777;
+
+    font-size: 14px;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   RESPONSIVE - 1100px
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .criteria54-page .cards-row {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .criteria54-page .criteria54-header {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 20px;
+
+    }
+
+
+    .criteria54-page .header-content {
+
+        margin-left: 0;
+
+    }
+
+
+    .criteria54-page .marks-box {
+
+        width: 100%;
+
+        max-width: 300px;
+
+    }
+
+
+    .criteria54-page .faculty-title {
+
+        flex-direction: column;
+
+        gap: 15px;
+
+    }
+
+
+    .criteria54-page .addFacultyBtn {
+
+        width: 100%;
+
+        justify-content: center;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 768px
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .criteria54-page {
+
+        padding: 12px;
+
+    }
+
+
+    .criteria54-page .criteria54-header {
+
+        padding: 18px;
+
+        border-radius: 12px;
+
+    }
+
+
+    .criteria54-page .title-circle {
+
+        width: 60px;
+
+        height: 60px;
+
+        min-width: 60px;
+
+        font-size: 23px;
+
+    }
+
+
+    .criteria54-page .header-content h2 {
+
+        font-size: 22px;
+
+    }
+
+
+    .criteria54-page .header-content p {
+
+        font-size: 14px;
+
+    }
+
+
+    .criteria54-page .marks-box {
+
+        width: 100%;
+
+        max-width: none;
+
+    }
+
+
+    .criteria54-page .guide-top {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .criteria54-page .guide-left {
+
+        border-right: none;
+
+        border-bottom: 1px solid #d8dfe8;
+
+    }
+
+
+    .criteria54-page .faculty-title {
+
+        padding: 15px;
+
+    }
+
+
+    .criteria54-page .title-left {
+
+        font-size: 19px;
+
+    }
+
+
+    .criteria54-page table {
+
+        min-width: 900px;
+
+    }
+
+
+    .criteria54-page .calc-row,
+    .criteria54-page .eval-row {
+
+        gap: 10px;
+
+    }
+
+
+    .criteria54-page .btn {
+
+        min-width: 110px;
+
+        padding: 11px 18px;
+
+    }
+
+
+    .criteria54-page .action-buttons {
+
+        gap: 10px;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 500px
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .criteria54-page {
+
+        padding: 8px;
+
+    }
+
+
+    .criteria54-page .criteria54-header {
+
+        padding: 15px;
+
+    }
+
+
+    .criteria54-page .header-content h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .criteria54-page .header-content p {
+
+        font-size: 12px;
+
+    }
+
+
+    .criteria54-page .title-circle {
+
+        width: 55px;
+
+        height: 55px;
+
+        min-width: 55px;
+
+        font-size: 21px;
+
+    }
+
+
+    .criteria54-page .marks-box h3 {
+
+        font-size: 32px;
+
+    }
+
+
+    .criteria54-page .guide-left,
+    .criteria54-page .guide-right {
+
+        padding: 14px;
+
+    }
+
+
+    .criteria54-page .guide-icon {
+
+        font-size: 27px;
+
+    }
+
+
+    .criteria54-page .guide-left p,
+    .criteria54-page .guide-right p {
+
+        font-size: 13px;
+
+    }
+
+
+    .criteria54-page .calc-card,
+    .criteria54-page .evaluation-card,
+    .criteria54-page .document-card {
+
+        padding: 16px;
+
+    }
+
+
+    .criteria54-page .calc-card h3,
+    .criteria54-page .evaluation-card h3,
+    .criteria54-page .document-card h3 {
+
+        font-size: 19px;
+
+    }
+
+
+    .criteria54-page .calc-row,
+    .criteria54-page .eval-row {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .criteria54-page .calc-row b,
+    .criteria54-page .eval-row b {
+
+        text-align: left;
+
+    }
+
+
+    .criteria54-page .action-buttons {
+
+        flex-direction: column;
+
+        width: 100%;
+
+    }
+
+
+    .criteria54-page .btn {
+
+        width: 100%;
+
+        min-width: 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+    .criteria54-page {
+
+        background: #ffffff;
+
+        padding: 0;
+
+    }
+
+
+    .criteria54-page .criteria54-header {
+
+        box-shadow: none;
+
+    }
+
+
+    .criteria54-page .action-buttons {
+
+        display: none;
+
+    }
+
+
+    .criteria54-page .faculty-card,
+    .criteria54-page .calc-card,
+    .criteria54-page .evaluation-card,
+    .criteria54-page .document-card,
+    .criteria54-page .note-card {
+
+        box-shadow: none;
+
+    }
+
+}

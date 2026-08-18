@@ -394,3 +394,264 @@ width:280px;
   background:#fd7e14;
   color:white;
 }
+.criteria-description{
+    background:#fff;
+    padding:15px 20px;
+    border-radius:10px;
+    margin:20px 0 10px;
+}
+
+.criteria-description p{
+    font-size:17px;
+    line-height:1.8;
+    color:#444;
+}
+
+.context-box{
+    background:#eef5ff;
+    border:1px solid #bcd3ff;
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:25px;
+}
+
+.context-box h3{
+    color:#0d47c7;
+    margin-bottom:12px;
+    font-size:20px;
+}
+
+.context-box ul{
+    margin-left:20px;
+}
+
+.context-box li{
+    margin-bottom:10px;
+    line-height:1.7;
+    color:#333;
+}
+/* ================= FOOTER BUTTONS ================= */
+
+.footer-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-top: 30px;
+  flex-wrap: nowrap;
+}
+
+
+/* ================= COMMON BUTTON SIZE ================= */
+
+.footer-buttons button {
+  width: 140px;
+  height: 35px;
+
+  border: none;
+  border-radius: 12px;
+
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  box-sizing: border-box;
+}
+
+
+/* ================= PREVIOUS ================= */
+
+.footer-buttons .previous-btn {
+  background: #ff7414;
+}
+
+
+/* ================= SAVE ================= */
+
+.footer-buttons .submit-btn {
+  background: #198b43;
+}
+
+
+/* ================= PRINT ================= */
+
+.footer-buttons .print-btn {
+  background: #f23d43;
+}
+
+
+/* ================= CLEAR / DRAFT ================= */
+
+.footer-buttons .draft-btn {
+  background: #6738a0;
+}
+
+
+/* ================= NEXT ================= */
+
+.footer-buttons .next-page-btn {
+  background: #2865e8;
+}
+
+
+/* ================= HOVER ================= */
+
+.footer-buttons button:hover {
+  opacity: 0.9;
+}
+/* =========================================
+   NBA FOOTER BUTTONS - FINAL STYLE
+========================================= */
+
+.footer-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 30px;
+    flex-wrap: nowrap;
+}
+
+
+/* Common Button */
+
+.footer-buttons button {
+    width: 90px;
+    height: 34px;
+
+    border: none;
+    border-radius: 6px;
+
+    color: #fff;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    padding: 0;
+
+    box-sizing: border-box;
+
+    transition: all 0.2s ease;
+}
+
+
+/* =========================================
+   PREVIOUS - ORANGE
+========================================= */
+
+.footer-buttons .previous-btn {
+    background: #ff7209 !important;
+}
+
+
+/* =========================================
+   BACK - SLATE BLUE
+========================================= */
+
+.footer-buttons .back-btn {
+    background: #61748b !important;
+}
+
+
+/* =========================================
+   SAVE / SUBMIT - GREEN
+========================================= */
+
+.footer-buttons .submit-btn,
+.footer-buttons .save-btn {
+    background: #218c4b !important;
+}
+
+
+/* =========================================
+   DELETE - RED
+========================================= */
+
+.footer-buttons .delete-btn,
+.footer-buttons .delete-main-btn {
+    background: #ef4444 !important;
+}
+
+
+/* =========================================
+   CLEAR / DRAFT - ORANGE
+========================================= */
+
+.footer-buttons .draft-btn,
+.footer-buttons .clear-btn {
+    background: #f5a208 !important;
+}
+
+
+/* =========================================
+   PRINT - PURPLE
+========================================= */
+
+.footer-buttons .print-btn {
+    background: #7059ad !important;
+}
+
+
+/* =========================================
+   NEXT - TEAL
+========================================= */
+
+.footer-buttons .next-page-btn {
+    background: #078b83 !important;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.footer-buttons .previous-btn:hover {
+    background: #e86605 !important;
+}
+
+.footer-buttons .back-btn:hover {
+    background: #52657a !important;
+}
+
+.footer-buttons .submit-btn:hover,
+.footer-buttons .save-btn:hover {
+    background: #19783f !important;
+}
+
+.footer-buttons .delete-btn:hover,
+.footer-buttons .delete-main-btn:hover {
+    background: #dc2626 !important;
+}
+
+.footer-buttons .draft-btn:hover,
+.footer-buttons .clear-btn:hover {
+    background: #df9105 !important;
+}
+
+.footer-buttons .print-btn:hover {
+    background: #5f489b !important;
+}
+
+.footer-buttons .next-page-btn:hover {
+    background: #06766f !important;
+}
+
+
+/* Click Effect */
+
+.footer-buttons button:active {
+    transform: scale(0.97);
+}

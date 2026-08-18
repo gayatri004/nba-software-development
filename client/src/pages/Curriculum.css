@@ -102,13 +102,16 @@
   grid-template-columns:1fr 1fr;
   gap:20px;
 }
-
-.grid-3{
+.grid-3,
+.grid-5{
+    grid-template-columns:1fr;
+}
+.grid-5{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:20px;
+  margin-top:20px;
 }
-
 .bottom-grid{
   display:grid;
   grid-template-columns:1fr 2fr;
@@ -173,7 +176,7 @@
 .upload-box{
     position:relative;
     width:100%;
-    min-height:140px;
+    height:150px;
 
     border:2px dashed #d8deea;
     border-radius:12px;
@@ -198,18 +201,23 @@
 }
 
 /* MINI CARD */
-
 .mini-card{
   background:#fff;
   border:1px solid #e5e7eb;
   border-radius:14px;
   padding:20px;
   text-align:center;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+
+  min-height:420px;
 }
 
 .mini-card svg{
   font-size:30px;
-  color:#3b82f6;
+  color:#e1e1e1;
   margin-bottom:10px;
 }
 
@@ -462,6 +470,14 @@ table td{
 .preview-btn:hover{
   background:#1d4ed8;
 }
+.document-actions{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:auto;
+    flex-wrap:wrap;
+}
+
 .document-actions button{
 
     width:88px;
@@ -484,4 +500,321 @@ table td{
 }
 .document-actions button svg{
     font-size:14px;
+}
+/* Teaching Learning Methods Card */
+
+.teaching-card{
+    background:#ffffff;
+    border:1px solid #dbeafe;
+    border-radius:14px;
+    padding:20px;
+    min-height:360px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.teaching-card h4{
+    color:#2563eb;
+    font-size:20px;
+    margin:10px 0 15px;
+    text-align:center;
+}
+
+/* Credit Structure Card */
+
+.credit-card{
+    background:#ffffff;
+    border:1px solid #dbeafe;
+    border-radius:14px;
+    padding:20px;
+    min-height:360px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.credit-card h4{
+    color:#2563eb;
+    font-size:20px;
+    margin:10px 0 15px;
+    text-align:center;
+}
+.teaching-card .upload-box,
+.credit-card .upload-box{
+    width:100%;
+    height:150px;
+    margin:15px 0;
+}
+.teaching-card .document-actions,
+.credit-card .document-actions{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:auto;
+    flex-wrap:wrap;
+}
+.teaching-card svg,
+.credit-card svg{
+    font-size:32px;
+    color:#2563eb;
+}
+.green-section textarea{
+    width:100%;
+    min-height:110px;
+    border:1px solid #dbe1ea;
+    border-radius:10px;
+    padding:12px;
+    resize:none;
+    margin-bottom:15px;
+}
+
+.green-section label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+    color:#166534;
+}
+.content-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+.content-table th,
+.content-table td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+}
+
+.content-table th{
+    background:#0f766e;
+    color:white;
+}
+.green-section .choose-file-btn{
+    color:#fff !important;
+    background:#184da8 !important;
+}
+
+.green-section .choose-file-btn *{
+    color:#fff !important;
+}
+.btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.btn-group button {
+  width: 140px;
+  height: 35px;
+  border: none;
+  border-radius: 12px;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+
+/* Save */
+.save-btn {
+  background: #198b43;
+  color: white;
+}
+
+
+/* Clear */
+.clear-btn {
+  background: #6738a0;
+  color: white;
+}
+
+
+/* Print */
+.print-btn {
+  background: #f23d43;
+  color: white;
+}
+
+
+/* Next */
+.next-page-btn {
+  background: #2865e8;
+  color: white;
+}
+.back-btn {
+  width: 160px;
+  height: 50px;
+  border: none;
+  border-radius: 8px;
+  background: #64748b;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  opacity: 0.9;
+}
+/* =====================================
+   NBA ACTION BUTTONS - FINAL DESIGN
+   ===================================== */
+
+.btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+    margin-top: 25px;
+    flex-wrap: nowrap;
+}
+
+/* Common Button Style */
+.btn-group button,
+.btn-group a {
+    width: 90px;
+    height: 34px;
+
+    border: none;
+    border-radius: 6px;
+
+    color: #ffffff;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    padding: 0;
+    box-sizing: border-box;
+
+    transition: all 0.2s ease;
+}
+
+
+/* =========================
+   PREVIOUS - ORANGE
+========================= */
+
+.previous-btn {
+    background: #ff7209 !important;
+}
+
+
+/* =========================
+   BACK - SLATE BLUE
+========================= */
+
+.back-btn {
+    background: #61748b !important;
+}
+
+
+/* =========================
+   SAVE - GREEN
+========================= */
+
+.save-btn {
+    background: #218c4b !important;
+}
+
+
+/* =========================
+   DELETE - RED
+========================= */
+
+.delete-main-btn,
+.delete-btn {
+    background: #ef4444 !important;
+}
+
+
+/* =========================
+   CLEAR - ORANGE
+========================= */
+
+.clear-btn {
+    background: #f5a208 !important;
+}
+
+
+/* =========================
+   PRINT - PURPLE
+========================= */
+
+.print-btn {
+    background: #7059ad !important;
+}
+
+
+/* =========================
+   NEXT - TEAL
+========================= */
+
+.next-page-btn {
+    background: #078b83 !important;
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.previous-btn:hover {
+    background: #e86605 !important;
+}
+
+.back-btn:hover {
+    background: #52657a !important;
+}
+
+.save-btn:hover {
+    background: #19783f !important;
+}
+
+.delete-main-btn:hover,
+.delete-btn:hover {
+    background: #dc2626 !important;
+}
+
+.clear-btn:hover {
+    background: #df9105 !important;
+}
+
+.print-btn:hover {
+    background: #5f489b !important;
+}
+
+.next-page-btn:hover {
+    background: #06766f !important;
+}
+
+
+/* =========================
+   CLICK EFFECT
+========================= */
+
+.btn-group button:active,
+.btn-group a:active {
+    transform: scale(0.97);
 }

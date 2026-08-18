@@ -49,7 +49,9 @@ function AuthorityManagement() {
 
     office_address: "",
 
-    remarks: ""
+    remarks: "",
+
+    permissions: [],
 
   };
 
@@ -87,8 +89,27 @@ function AuthorityManagement() {
     }));
 
   };
+const handlePermission = (e) => {
 
-  /* ===========================================
+  const { value, checked } = e.target;
+
+  setFormData((prev) => {
+
+    const updatedPermissions = checked
+      ? [...prev.permissions, value]
+      : prev.permissions.filter((item) => item !== value);
+
+    console.log("Updated Permissions:", updatedPermissions);
+
+    return {
+      ...prev,
+      permissions: updatedPermissions,
+    };
+
+  });
+
+};
+    /* ===========================================
              HANDLE BACK
   =========================================== */
 
@@ -666,83 +687,139 @@ function AuthorityManagement() {
 
         </div>
 
-        {/* ======================================
-            PERMISSION INFORMATION
-        ======================================= */}
+       {/* ======================================
+      PERMISSION INFORMATION
+====================================== */}
 
-        <div className="authority-section">
+<div className="authority-section">
 
-          <h2>
+  <h2>Permission Information</h2>
 
-            Permission Information
+  <div className="permission-grid">
 
-          </h2>
+    <label className="permission-item">
+      <input
+        type="checkbox"
+        value="Dashboard"
+        checked={formData.permissions.includes("Dashboard")}
+        onChange={handlePermission}
+      />
+      Dashboard
+    </label>
 
-          <div className="permission-grid">
+    <label className="permission-item">
+      <input
+        type="checkbox"
+        value="Employee"
+        checked={formData.permissions.includes("Employee")}
+        onChange={handlePermission}
+      />
+      Employee
+    </label>
 
-            <label className="permission-item">
-              <input type="checkbox" />
-              Dashboard
-            </label>
+    <label className="permission-item">
+      <input
+        type="checkbox"
+        value="Faculty"
+        checked={formData.permissions.includes("Faculty")}
+        onChange={handlePermission}
+      />
+      Faculty
+    </label>
 
-            <label className="permission-item">
-              <input type="checkbox" />
-              Employee
-            </label>
+    <label className="permission-item">
+      <input
+        type="checkbox"
+        value="Department"
+        checked={formData.permissions.includes("Department")}
+        onChange={handlePermission}
+      />
+      Department
+    </label>
 
-            <label className="permission-item">
-              <input type="checkbox" />
-              Faculty
-            </label>
+    <label className="permission-item">
+      <input
+        type="checkbox"
+        value="Course"
+        checked={formData.permissions.includes("Course")}
+        onChange={handlePermission}
+      />
+      Course
+    </label>
 
-            <label className="permission-item">
-              <input type="checkbox" />
-              Department
-            </label>
+    <label className="permission-item">
+      <input
+        type="checkbox"
+        value="Attendance"
+        checked={formData.permissions.includes("Attendance")}
+        onChange={handlePermission}
+      />
+      Attendance
+    </label>
 
-            <label className="permission-item">
-              <input type="checkbox" />
-              Course
-            </label>
+    <label className="permission-item">
+      <input
+        type="checkbox"
+        value="Salary"
+        checked={formData.permissions.includes("Salary")}
+        onChange={handlePermission}
+      />
+      Salary
+    </label>
 
-            <label className="permission-item">
-              <input type="checkbox" />
-              Attendance
-            </label>
+    <label className="permission-item">
+      <input
+        type="checkbox"
+        value="Reports"
+        checked={formData.permissions.includes("Reports")}
+        onChange={handlePermission}
+      />
+      Reports
+    </label>
 
-            <label className="permission-item">
-              <input type="checkbox" />
-              Salary
-            </label>
+    <label className="permission-item">
+      <input
+        type="checkbox"
+        value="Authority"
+        checked={formData.permissions.includes("Authority")}
+        onChange={handlePermission}
+      />
+      Authority
+    </label>
 
-            <label className="permission-item">
-              <input type="checkbox" />
-              Reports
-            </label>
+    <label className="permission-item">
+      <input
+        type="checkbox"
+        value="User Management"
+        checked={formData.permissions.includes("User Management")}
+        onChange={handlePermission}
+      />
+      User Management
+    </label>
 
-            <label className="permission-item">
-              <input type="checkbox" />
-              Authority
-            </label>
+    <label className="permission-item">
+      <input
+        type="checkbox"
+        value="Settings"
+        checked={formData.permissions.includes("Settings")}
+        onChange={handlePermission}
+      />
+      Settings
+    </label>
 
-            <label className="permission-item">
-              <input type="checkbox" />
-              User Management
-            </label>
+    <label className="permission-item">
+      <input
+        type="checkbox"
+        value="Notifications"
+        checked={formData.permissions.includes("Notifications")}
+        onChange={handlePermission}
+      />
+      Notifications
+    </label>
 
-            <label className="permission-item">
-              <input type="checkbox" />
-              Settings
-            </label>
+  </div>
 
-            <label className="permission-item">
-              <input type="checkbox" />
-              Notifications
-            </label>
-
-          </div>
-
-        </div>
+</div>
 
         {/* ======================================
                 REMARKS
@@ -855,41 +932,37 @@ function AuthorityManagement() {
 
               try {
 
-                setLoading(true);
+  setLoading(true);
 
-                await axios.post(
+  console.log(formData.permissions);
 
-                  "https://nba-software-development-production.up.railway.app/authority",
+  await axios.post(
+    "http://localhost:5000/authority",
+    formData
+  );
 
-                  formData
+  alert("Authority Saved Successfully.");
 
-                );
+  setFormData(initialFormData);
 
-                alert("Authority Saved Successfully.");
+  setErrors({});
 
-                setFormData(initialFormData);
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 
-                setErrors({});
+} catch (err) {
 
-                window.scrollTo({
+  console.log(err);
 
-                  top:0,
+  alert("Unable to Save Record.");
 
-                  behavior:"smooth"
+} finally {
 
-                });
+  setLoading(false);
 
-              } catch (err) {
-
-                console.log(err);
-
-                alert("Unable to Save Record.");
-
-              } finally {
-
-                setLoading(false);
-
-              }
+}
 
             }}
           >

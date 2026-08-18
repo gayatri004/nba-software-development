@@ -6,22 +6,34 @@ import React,
 from "react";
 import "./CourseMatrix.css";
 import {
+  FaSave,
+  FaEye,
+  FaDownload,
+  FaPrint,
   FaPlus,
   FaEdit,
-  FaTrash,
-  FaUpload,
-  FaDownload
+  FaTrash
 } from "react-icons/fa";
-import { FaPrint } from "react-icons/fa";
 
+import { useNavigate } from "react-router-dom";
+import mammoth from "mammoth";
+import * as XLSX from "xlsx";
 function CourseMatrix({ onNext, onPrevious }) {
+  const navigate = useNavigate();
   const [coFile, setCoFile] = useState(null);
 const [matrixFile, setMatrixFile] = useState(null);
 const [summaryFile, setSummaryFile] = useState("");
+// ================= AUTO SAVE =================
 
+const STORAGE_KEY = "course_matrix_1_4_data";
+
+const [savedFileNames, setSavedFileNames] = useState({});
+const [displayFileNames, setDisplayFileNames] = useState({});
+const [loaded, setLoaded] = useState(false);
 const [academicYear, setAcademicYear] = useState("");
 const [department, setDepartment] = useState("");
 const [program, setProgram] = useState("");
+
 const [uploadedOutcomeFile, setUploadedOutcomeFile] = useState("");
 const [uploadedMatrixFile, setUploadedMatrixFile] = useState("");
 const [mappedPO, setMappedPO] = useState("");
@@ -44,91 +56,179 @@ const [matrixRows, setMatrixRows] = useState([]);
 const [courseMatrix,setCourseMatrix]=useState([]);
 const [coSubject, setCoSubject] = useState("");
 const [matrixSubject, setMatrixSubject] = useState("");
-const loadCourseMatrix = async () => {
+const [courseOutcome, setCourseOutcome] = useState("");
+const [courseSummary, setCourseSummary] = useState([]);
+const [courseOutcomes, setCourseOutcomes] = useState([]);
+const saveFileName = (key, file) => {
 
-  try {
+  if (!file) return;
 
-    const res = await fetch(
-      "http://localhost:5000/get-course-matrix"
-    );
+  setSavedFileNames((prev) => ({
+    ...prev,
+    [key]: file.name
+  }));
 
-    const data = await res.json();
+};
+// ================= RESTORE 1.4 DATA =================
 
-    if (Array.isArray(data)) {
+useEffect(() => {
 
-      setCourseMatrix(data);
+  const saved = localStorage.getItem(STORAGE_KEY);
 
-      // Latest Matrix File
-      if (data.length > 0) {
-        setUploadedMatrixFile(data[0].matrix_file || "");
+  if (saved) {
+
+    try {
+
+      const data = JSON.parse(saved);
+
+      // ================= USER DATA =================
+
+      setAcademicYear(data.academicYear ?? "");
+      setDepartment(data.department ?? "");
+      setProgram(data.program ?? "");
+
+      setMappedPO(data.mappedPO ?? "");
+      setCourseOutcome(data.courseOutcome ?? "");
+
+      setSelectedSubject(data.selectedSubject ?? "");
+
+      // ================= MATRIX DATA =================
+
+      if (data.matrixData) {
+        setMatrixData(data.matrixData);
       }
 
-    } else {
+      // ================= FILE NAMES =================
 
-      setCourseMatrix([]);
+      if (data.files) {
+        setSavedFileNames(data.files);
+        setDisplayFileNames(data.files);
+      }
+
+    } catch (error) {
+
+      console.log(
+        "Course Matrix Restore Error:",
+        error
+      );
 
     }
+  }
 
-  } catch (error) {
+  setLoaded(true);
 
-    console.log(error);
+}, []);
+// ================= AUTO SAVE 1.4 =================
 
+useEffect(() => {
+
+  if (!loaded) return;
+
+  const data = {
+
+    academicYear,
+    department,
+    program,
+
+    mappedPO,
+    courseOutcome,
+
+    selectedSubject,
+
+    matrixData,
+
+    files: savedFileNames
+
+  };
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(data)
+  );
+
+}, [
+  loaded,
+
+  academicYear,
+  department,
+  program,
+
+  mappedPO,
+  courseOutcome,
+
+  selectedSubject,
+
+  matrixData,
+
+  savedFileNames
+]);
+const loadCourseMatrix = async () => {
+
+  if (!selectedSubject) {
     setCourseMatrix([]);
+    return;
+  }
+const res = await fetch(
+  `http://localhost:5000/get-subject-matrix/${selectedSubject}`
+);
+  const data = await res.json();
 
+  setCourseMatrix(data);
+
+  if (data.length > 0) {
+    setUploadedMatrixFile(
+      data[data.length - 1].matrix_file || ""
+    );
   }
 
 };
 
-const [courseOutcome, setCourseOutcome] = useState("");
 const loadCourseOutcomes = async () => {
 
+  if (!selectedSubject) {
+    setCourseOutcomes([]);
+    return;
+  }
+
   const res = await fetch(
-    "http://localhost:5000/get-course-outcomes"
+    `http://localhost:5000/get-subject-co/${selectedSubject}`
   );
 
   const data = await res.json();
 
-  console.log("Course Outcomes =", data);
+  setCourseOutcomes(data);
 
-  if (Array.isArray(data)) {
-
-    setCourseOutcomes(data);
-
-    // Latest Outcome file load
-    if (data.length > 0) {
-      setUploadedOutcomeFile(data[0].outcome_file || "");
-    }
-
-  } else {
-
-    setCourseOutcomes([]);
-
+  if (data.length > 0) {
+    setUploadedOutcomeFile(data[data.length - 1].outcome_file || "");
   }
 
 };
-const [courseSummary,setCourseSummary]=useState([]);
 
 
-const [courseOutcomes, setCourseOutcomes] = useState([]);
+// Page Load
+// Page Load
 useEffect(() => {
 
-  loadCourseOutcomes();
-
-  loadCourseMatrix();
-
-  //loadCourseSummary();
   loadPOs();
 
 }, []);
 
+// Department Change
 useEffect(() => {
 
   loadSubjects();
 
 }, [department]);
+
 useEffect(() => {
 
-  loadMatrixRows();
+  if (selectedSubject) {
+
+    loadCourseOutcomes();
+    loadCourseMatrix();
+    loadMatrixRows();
+
+  }
 
 }, [selectedSubject]);
 
@@ -252,7 +352,8 @@ document.getElementById("outcomeFile").value = "";
 };
 const handleSave = async () => {
 
-  try {const formData = new FormData();
+  try {
+    const formData = new FormData();
 
 formData.append("academicYear", academicYear);
 formData.append("department", department);
@@ -315,9 +416,20 @@ const courses = {
 
 };
   
-
 const handleSubmit = () => {
+
+  if (
+    !academicYear ||
+    !department
+  ) {
+
+    alert("Please fill all required fields.");
+    return;
+
+  }
+
   alert("Submitted Successfully");
+
 };
 
 const handleEdit = (row) => {
@@ -356,6 +468,15 @@ const handleDelete = async (id) => {
 
   }
 
+};
+const handleMatrixChange = (co, po, value) => {
+  setMatrixData((prev) => ({
+    ...prev,
+    [co]: {
+      ...prev[co],
+      [po]: value
+    }
+  }));
 };
 const handleMatrixSave = async (coId) => {
 
@@ -414,75 +535,263 @@ const handleDownload = () => {
 
 };
 
+const readFileContentHTML = async (fileName) => {
+
+  const ext = fileName.split(".").pop().toLowerCase();
+
+  // PDF
+  if (ext === "pdf") {
+
+    return `
+      <embed
+        src="http://localhost:5000/uploads/${fileName}"
+        type="application/pdf"
+        style="width:100%;height:900px;"
+      />
+    `;
+
+  }
+
+  // Image
+  if (["jpg","jpeg","png","gif","webp"].includes(ext)) {
+
+    return `
+      <img
+        src="http://localhost:5000/uploads/${fileName}"
+        style="width:100%;"
+      />
+    `;
+
+  }
+
+  // DOCX
+  if (ext === "docx") {
+
+    const response = await fetch(
+      `http://localhost:5000/uploads/${fileName}`
+    );
+
+    const blob = await response.blob();
+
+    const arrayBuffer = await blob.arrayBuffer();
+
+    const result = await mammoth.convertToHtml({
+      arrayBuffer
+    });
+
+    return `
+      <div class="word-parsed-content">
+        ${result.value}
+      </div>
+    `;
+
+  }
+
+  // Excel
+  if (["xlsx","xls","csv"].includes(ext)) {
+
+    const response = await fetch(
+      `http://localhost:5000/uploads/${fileName}`
+    );
+
+    const blob = await response.blob();
+
+    const arrayBuffer = await blob.arrayBuffer();
+
+    const workbook = XLSX.read(arrayBuffer, {
+      type: "array"
+    });
+
+    const sheet =
+      workbook.Sheets[
+        workbook.SheetNames[0]
+      ];
+
+    return `
+      <div class="excel-parsed-content">
+        ${XLSX.utils.sheet_to_html(sheet)}
+      </div>
+    `;
+
+  }
+
+  return `
+    <p>Preview not available.</p>
+  `;
+
+};
+const handlePrint = async () => {
+
+  try {
+
+    const res = await fetch(
+  `http://localhost:5000/print-course-files/${selectedSubject}`
+);
+
+    const data = await res.json();
+
+    const documents = [
+
+      {
+        title: "1.4.1 Course Outcomes",
+        file: data.outcome_file
+      },
+
+      {
+        title: "1.4.2 Course Articulation Matrix",
+        file: data.matrix_file
+      }
+
+    ].filter(item => item.file);
+
+    let html = "";
+
+    for (const doc of documents) {
+
+      const preview =
+        await readFileContentHTML(doc.file);
+
+      html += `
+
+      <div class="doc-section">
+
+        <h2>${doc.title}</h2>
+
+        ${preview}
+
+        <hr/>
+
+      </div>
+
+      `;
+
+    }
+
+    const printWindow = window.open("", "_blank");
+
+    printWindow.document.write(`
+
+    <html>
+
+    <head>
+
+    <title>Course Outcomes & Matrix</title>
+
+    <style>
+
+    body{
+      font-family:Arial;
+      margin:20px;
+    }
+
+    h1{
+      text-align:center;
+      color:#0b4ea2;
+    }
+
+    h2{
+      margin-top:35px;
+      color:#0b4ea2;
+      border-bottom:1px solid #ddd;
+      padding-bottom:8px;
+    }
+
+    embed{
+      width:100%;
+      height:900px;
+    }
+
+    img{
+      width:100%;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
+
+    td,th{
+      border:1px solid #ddd;
+      padding:8px;
+    }
+
+    </style>
+
+    </head>
+
+    <body>
+
+    <h1>1.4 Course Outcomes & Matrix</h1>
+
+    ${html}
+
+    </body>
+
+    </html>
+
+    `);
+
+    printWindow.document.close();
+
+    setTimeout(() => {
+
+      printWindow.focus();
+
+      printWindow.print();
+
+    },1000);
+
+  }
+
+  catch(err){
+
+    console.log(err);
+
+    alert("Print Error");
+
+  }
+
+};
 const handleMatrixView = () => {
 
-  if (!uploadedMatrixFile) {
+  const fileName =
+    matrixFile?.name ||
+    displayFileNames.matrixFile ||
+    uploadedMatrixFile;
+
+  if (!fileName) {
     alert("Please upload Matrix file first.");
     return;
   }
 
   window.open(
-    `http://localhost:5000/uploads/${uploadedMatrixFile}`,
+    `http://localhost:5000/uploads/${fileName}`,
     "_blank"
   );
-
-};
-const handleMatrixPrint = () => {
-
-  if (!uploadedMatrixFile) {
-    alert("Please upload Matrix file first.");
-    return;
-  }
-
-  const extension = uploadedMatrixFile
-    .split(".")
-    .pop()
-    .toLowerCase();
-
-  if (extension === "pdf") {
-
-    const win = window.open(
-      `http://localhost:5000/uploads/${uploadedMatrixFile}`,
-      "_blank"
-    );
-
-    if (win) {
-      win.onload = () => {
-        win.print();
-      };
-    }
-
-  } else {
-
-    window.open(
-      `http://localhost:5000/download/${uploadedMatrixFile}`,
-      "_blank"
-    );
-
-    alert("Open the downloaded file in Word/Excel and press Ctrl + P.");
-
-  }
-
 };
 const handleMatrixDownload = () => {
 
-  if (!uploadedMatrixFile) {
+  const fileName =
+    matrixFile?.name ||
+    displayFileNames.matrixFile ||
+    uploadedMatrixFile;
+
+  if (!fileName) {
     alert("Please upload Matrix file first.");
     return;
   }
 
   window.open(
-    `http://localhost:5000/download/${uploadedMatrixFile}`,
+    `http://localhost:5000/download/${fileName}`,
     "_blank"
   );
-
 };
 const handleOutcomeView = () => {
 
-  console.log("uploadedOutcomeFile =", uploadedOutcomeFile);
-  console.log("coFile =", coFile);
-
-  const fileName = uploadedOutcomeFile;
+  const fileName =
+    coFile?.name ||
+    displayFileNames.coFile ||
+    uploadedOutcomeFile;
 
   if (!fileName) {
     alert("No Outcome file found.");
@@ -493,65 +802,78 @@ const handleOutcomeView = () => {
     `http://localhost:5000/uploads/${fileName}`,
     "_blank"
   );
-
 };
 const handleOutcomeDownload = () => {
 
-  if (!uploadedOutcomeFile) {
+  const fileName =
+    coFile?.name ||
+    displayFileNames.coFile ||
+    uploadedOutcomeFile;
+
+  if (!fileName) {
     alert("Please upload file first.");
     return;
   }
 
   window.open(
-    `http://localhost:5000/download/${uploadedOutcomeFile}`,
+    `http://localhost:5000/download/${fileName}`,
     "_blank"
   );
-
 };
-const handleOutcomePrint = () => {
-
-  if (!uploadedOutcomeFile) {
-    alert("Please upload Outcome file first.");
-    return;
-  }
-
-  const extension = uploadedOutcomeFile
-    .split(".")
-    .pop()
-    .toLowerCase();
-
-  if (extension === "pdf") {
-
-    const win = window.open(
-      `http://localhost:5000/uploads/${uploadedOutcomeFile}`,
-      "_blank"
-    );
-
-    if (win) {
-      win.onload = () => {
-        win.print();
-      };
-    }
-
-  } else {
-
-    window.open(
-      `http://localhost:5000/download/${uploadedOutcomeFile}`,
-      "_blank"
-    );
-
-    alert("Open the downloaded file in Word/Excel and press Ctrl + P.");
-
-  }
-
-};
-
-
 const handlePrevious = () => {
-  onPrevious();
+  navigate("/po-pso");
+};
+// ================= HANDLE CLEAR =================
+const handleClear = () => {
+
+  const confirmClear = window.confirm(
+    "Are you sure you want to clear the form?"
+  );
+
+  if (!confirmClear) return;
+
+  // Clear selected/user-entered data
+  setAcademicYear("");
+  setDepartment("");
+  setProgram("");
+
+  setMappedPO("");
+  setSelectedSubject("");
+  setCourseOutcome("");
+
+  // Clear uploaded files from frontend
+  setCoFile(null);
+  setMatrixFile(null);
+
+  // Clear displayed file names
+  setDisplayFileNames({});
+
+  // Clear matrix
+  setMatrixData({
+    CO1: { po1: "", po2: "", po3: "", po4: "", po5: "" },
+    CO2: { po1: "", po2: "", po3: "", po4: "", po5: "" },
+    CO3: { po1: "", po2: "", po3: "", po4: "", po5: "" }
+  });
+
+  // Clear file inputs
+  document
+    .querySelectorAll('input[type="file"]')
+    .forEach((input) => {
+      input.value = "";
+    });
+
+  // ❌ DO NOT delete localStorage
+  // ❌ DO NOT delete database
+  // ❌ DO NOT call DELETE API
+
+  alert("Form cleared successfully.");
 };
   return (
+    
     <div className="course-matrix-page">
+{/* Criteria 1.4 Description */}
+
+
 
       {/* Header */}
 
@@ -573,15 +895,6 @@ const handlePrevious = () => {
 >
   <option value="">Select Academic Year</option>
 
-  <option value="2011-12">2011-12</option>
-  <option value="2012-13">2012-13</option>
-  <option value="2013-14">2013-14</option>
-  <option value="2014-15">2014-15</option>
-  <option value="2015-16">2015-16</option>
-  <option value="2016-17">2016-17</option>
-  <option value="2017-18">2017-18</option>
-  <option value="2018-19">2018-19</option>
-  <option value="2019-20">2019-20</option>
   <option value="2020-21">2020-21</option>
   <option value="2021-22">2021-22</option>
   <option value="2022-23">2022-23</option>
@@ -657,15 +970,6 @@ Arts
 
 </select>
         </div>
-
-   <button
-  className="download-btn"
-  onClick={handleDownload}
->
-  <FaDownload />
-  Download Report
-</button>     
-
 
       </div>
 
@@ -750,7 +1054,7 @@ Arts
               </thead>
                <tbody>
 
-{courseOutcomes.map((row, index) => (
+{courseOutcomes.slice(0, 5).map((row, index) => (
 
 <tr key={row.id}>
 
@@ -779,58 +1083,65 @@ Arts
 
           </div>
 
-          <label htmlFor="outcomeFile" className="upload-panel">
+         <div className="file-upload-row">
 
-  <FaUpload className="upload-icon" />
-
-  <h4>Upload Supporting Document</h4>
-
-  <p>(Max. size 10MB)</p>
-<div
-  className="pdf-name"
-  title={uploadedOutcomeFile || (coFile && coFile.name)}
->
-  {uploadedOutcomeFile || (coFile && coFile.name)}
-</div>
-<div className="document-actions">
-
-  <button
-    type="button"
-    className="view-btn"
-    onClick={handleOutcomeView}
+  <label
+    htmlFor="outcomeFile"
+    className="choose-file-btn"
   >
-    👁 View
-  </button>
+    Choose File
+  </label>
 
-  <button
-    type="button"
-    className="download-btn-upload"
-    onClick={handleOutcomeDownload}
-  >
-    <FaDownload />
-    Download
-  </button>
-
-  <button
-    type="button"
-    className="print-btn-upload"
-    onClick={handleOutcomePrint}
-  >
-    <FaPrint />
-    Print
-  </button>
-
-</div>
   <input
-  id="outcomeFile"
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.xls,.xlsx"
-  onChange={(e) => setCoFile(e.target.files[0])}
-/>
-</label>
+    id="outcomeFile"
+    type="file"
+    className="custom-file-input"
+    accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"
+   onChange={(e) => {
 
+  if (e.target.files.length > 0) {
 
+    const file = e.target.files[0];
+
+    setCoFile(file);
+
+    saveFileName("coFile", file);
+
+    setDisplayFileNames((prev) => ({
+      ...prev,
+      coFile: file.name
+    }));
+
+  }
+
+}}
+  />
+{(coFile || displayFileNames.coFile) && (
+  <div className="pdf-name">
+    {coFile?.name || displayFileNames.coFile}
+  </div>
+)}
+  <div className="document-actions">
+
+    <button
+      type="button"
+      className="view-btn"
+      onClick={handleOutcomeView}
+    >
+      👁
+    </button>
+
+    <button
+      type="button"
+      className="download-btn"
+      onClick={handleOutcomeDownload}
+    >
+      <FaDownload />
+    </button>
+
+  </div>
+
+</div>
         </div>
         
 
@@ -885,128 +1196,292 @@ Arts
   <th>Action</th>
 </tr>
 </thead>
+<tbody>
 
-           <tbody>
-<tr id="CO1">
-<td>CO1</td>
+  <tr id="CO1">
+    <td>CO1</td>
 
-<td><input type="number" min="0" max="100" /></td>
-<td><input type="number" min="0" max="100" /></td>
-<td><input type="number" min="0" max="100" /></td>
-<td><input type="number" min="0" max="100" /></td>
-<td><input type="number" min="0" max="100" /></td>
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO1.po1}
+        onChange={(e) =>
+          handleMatrixChange("CO1", "po1", e.target.value)
+        }
+      />
+    </td>
 
-<td>
-<button
-  className="matrix-save-btn"
-  onClick={() => handleMatrixSave("CO1")}
->
-  Save
-</button>
-</td>
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO1.po2}
+        onChange={(e) =>
+          handleMatrixChange("CO1", "po2", e.target.value)
+        }
+      />
+    </td>
 
-</tr>
-<tr id="CO2">
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO1.po3}
+        onChange={(e) =>
+          handleMatrixChange("CO1", "po3", e.target.value)
+        }
+      />
+    </td>
 
-<td>CO2</td>
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO1.po4}
+        onChange={(e) =>
+          handleMatrixChange("CO1", "po4", e.target.value)
+        }
+      />
+    </td>
 
-<td><input type="number" min="0" max="100" /></td>
-<td><input type="number" min="0" max="100" /></td>
-<td><input type="number" min="0" max="100" /></td>
-<td><input type="number" min="0" max="100" /></td>
-<td><input type="number" min="0" max="100" /></td>
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO1.po5}
+        onChange={(e) =>
+          handleMatrixChange("CO1", "po5", e.target.value)
+        }
+      />
+    </td>
 
-<td>
-<button
-  className="matrix-save-btn"
-  onClick={() => handleMatrixSave("CO2")}
->
-  Save
-</button>
-</td>
+    <td>
+      <button
+        className="matrix-save-btn"
+        onClick={() => handleMatrixSave("CO1")}
+      >
+        Save
+      </button>
+    </td>
+  </tr>
 
-</tr>
 
-<tr id="CO3">
+  <tr id="CO2">
+    <td>CO2</td>
 
-<td>CO3</td>
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO2.po1}
+        onChange={(e) =>
+          handleMatrixChange("CO2", "po1", e.target.value)
+        }
+      />
+    </td>
 
-<td><input type="number" min="0" max="100" /></td>
-<td><input type="number" min="0" max="100" /></td>
-<td><input type="number" min="0" max="100" /></td>
-<td><input type="number" min="0" max="100" /></td>
-<td><input type="number" min="0" max="100" /></td>
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO2.po2}
+        onChange={(e) =>
+          handleMatrixChange("CO2", "po2", e.target.value)
+        }
+      />
+    </td>
 
-<td>
-<button
-  className="matrix-save-btn"
-  onClick={() => handleMatrixSave("CO3")}
->
-  Save
-</button>
-</td>
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO2.po3}
+        onChange={(e) =>
+          handleMatrixChange("CO2", "po3", e.target.value)
+        }
+      />
+    </td>
 
-</tr>
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO2.po4}
+        onChange={(e) =>
+          handleMatrixChange("CO2", "po4", e.target.value)
+        }
+      />
+    </td>
+
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO2.po5}
+        onChange={(e) =>
+          handleMatrixChange("CO2", "po5", e.target.value)
+        }
+      />
+    </td>
+
+    <td>
+      <button
+        className="matrix-save-btn"
+        onClick={() => handleMatrixSave("CO2")}
+      >
+        Save
+      </button>
+    </td>
+  </tr>
+
+
+  <tr id="CO3">
+    <td>CO3</td>
+
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO3.po1}
+        onChange={(e) =>
+          handleMatrixChange("CO3", "po1", e.target.value)
+        }
+      />
+    </td>
+
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO3.po2}
+        onChange={(e) =>
+          handleMatrixChange("CO3", "po2", e.target.value)
+        }
+      />
+    </td>
+
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO3.po3}
+        onChange={(e) =>
+          handleMatrixChange("CO3", "po3", e.target.value)
+        }
+      />
+    </td>
+
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO3.po4}
+        onChange={(e) =>
+          handleMatrixChange("CO3", "po4", e.target.value)
+        }
+      />
+    </td>
+
+    <td>
+      <input
+        type="number"
+        min="0"
+        max="100"
+        value={matrixData.CO3.po5}
+        onChange={(e) =>
+          handleMatrixChange("CO3", "po5", e.target.value)
+        }
+      />
+    </td>
+
+    <td>
+      <button
+        className="matrix-save-btn"
+        onClick={() => handleMatrixSave("CO3")}
+      >
+        Save
+      </button>
+    </td>
+  </tr>
 
 </tbody>
             </table>
 
           </div>
-<label htmlFor="matrixFile" className="upload-panel">
+<div className="file-upload-row">
 
-  <FaUpload className="upload-icon" />
-
-  <h4>Upload Supporting Document</h4>
-
-  <p>(Max. size 10MB)</p>
-
-  <div
-  className="pdf-name"
-  title={uploadedMatrixFile || (matrixFile && matrixFile.name)}
->
-  {uploadedMatrixFile || (matrixFile && matrixFile.name)}
-</div>
- <div className="document-actions">
-
-  <button
-    type="button"
-    className="view-btn"
-    onClick={handleMatrixView}
+  <label
+    htmlFor="matrixFile"
+    className="choose-file-btn"
   >
-    👁 View
-  </button>
+    Choose File
+  </label>
 
-  <button
-    type="button"
-    className="download-btn-upload"
-    onClick={handleMatrixDownload}
-  >
-    <FaDownload />
-    Download
-  </button>
-
-  <button
-    type="button"
-    className="print-btn-upload"
-    onClick={handleMatrixPrint}
-  >
-    <FaPrint />
-    Print
-  </button>
-
-</div>
   <input
     id="matrixFile"
     type="file"
-    hidden
-    accept=".pdf,.doc,.docx,.xls,.xlsx"
-    onChange={(e) => {
-      console.log("Selected Matrix File =", e.target.files[0]);
-      setMatrixFile(e.target.files[0]);
-    }}
-  />
+    className="custom-file-input"
+    accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"
+   onChange={(e) => {
 
-</label>
+  if (e.target.files.length > 0) {
+
+    const file = e.target.files[0];
+
+    setMatrixFile(file);
+
+    saveFileName("matrixFile", file);
+
+    setDisplayFileNames((prev) => ({
+      ...prev,
+      matrixFile: file.name
+    }));
+
+  }
+
+}}
+  />
+{(matrixFile || displayFileNames.matrixFile) && (
+  <div className="pdf-name">
+    {matrixFile?.name || displayFileNames.matrixFile}
+  </div>
+)}
+  <div className="document-actions">
+
+    <button
+      type="button"
+      className="view-btn"
+      onClick={handleMatrixView}
+    >
+      👁
+    </button>
+
+    <button
+      type="button"
+      className="download-btn"
+      onClick={handleMatrixDownload}
+    >
+      <FaDownload />
+    </button>
+
+  </div>
+
+</div>
         </div>
 
       </div>
@@ -1018,26 +1493,43 @@ Arts
     <div className="footer-buttons">
 
 <button
-className="previous-btn"
-onClick={handlePrevious}
+  className="previous-btn"
+  onClick={handlePrevious}
 >
-Previous
+    ← Previous
 </button>
-
+<button
+  type="button"
+  className="back-btn"
+  onClick={() => navigate("/vision")}
+>
+  ← Back
+</button>
 <button
 className="submit-btn"
 onClick={handleSubmit}
 >
-Submit
+Save
 </button>
-
 <button
-className="next-page-btn"
-onClick={onNext}
+  type="button"
+  className="clear-btn"
+  onClick={handleClear}
 >
-Next →
+  Clear
 </button>
-
+<button
+  className="print-btn"
+  onClick={handlePrint}
+>
+  <FaPrint /> Print
+</button>
+<button
+  className="next-page-btn"
+  onClick={() => navigate("/articulation-matrix")}
+>
+  Next →
+</button>
 </div>
       </div>
   );

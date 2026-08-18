@@ -2,15 +2,16 @@ const { Pool } = require("pg");
 require("dotenv").config();
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  user: "postgres",
+  host: "localhost",
+  database: "faculty_db",
+  password: "12345",
+  port: 5432,
 });
 
 pool.connect()
   .then((client) => {
-    console.log("✅ PostgreSQL Connected Successfully");
+    console.log("✅ Local PostgreSQL Connected Successfully");
     client.release();
   })
   .catch((err) => {

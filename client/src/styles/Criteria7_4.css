@@ -1,0 +1,426 @@
+/* criteria7_4.css */
+
+.criteria-main-layout{
+    flex: 1;
+    margin-left: 270px;     /* Sidebar width */
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: auto;
+    background: #f4f7fb;
+    min-height: 100vh;
+}
+
+.container{
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+/* Header Component */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+}
+
+.brand-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nba-logo {
+    width: 46px;
+    height: 46px;
+    background-color: #f1f5f9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #1e3a8a;
+    border: 2px solid #3b82f6;
+}
+
+.brand-text h1 {
+    font-size: 16px;
+    color: #1e3a8a;
+    font-weight: 700;
+}
+
+.brand-text p {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.title-section h2 {
+    font-size: 18px;
+    color: #1e3a8a;
+    font-weight: 700;
+    text-align: center;
+}
+
+.title-section p {
+    font-size: 13px;
+    color: #2563eb;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 2px;
+}
+
+.user-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.academic-year-select {
+    padding: 6px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ef4444;
+    color: white;
+    font-size: 9px;
+    padding: 2px 5px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-avatar {
+    width: 32px;
+    height: 32px;
+    background-color: #1e3a8a;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.profile-info {
+    font-size: 12px;
+}
+
+.profile-info .role { font-weight: 700; color: #1e3a8a; }
+.profile-info .username { color: #64748b; font-size: 10px; }
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+.breadcrumb a { color: #64748b; text-decoration: none; }
+.breadcrumb a.active { color: #2563eb; font-weight: 600; }
+
+/* Top Section Dropdowns Grid Layout */
+.filters-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.filter-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.filter-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.filter-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #334155;
+    background-color: #fff;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-download-report {
+    border: 1px solid #2563eb;
+    color: #2563eb;
+    background: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn-save-draft {
+    background-color: #0b45bc;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* Card configuration 7.4 */
+.content-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+    background-color: #fff;
+}
+
+.criterion-title-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.badge-id {
+    background-color: #0b45bc;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.criterion-heading-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.criterion-heading {
+    font-size: 16px;
+    color: #0b45bc;
+    font-weight: 700;
+}
+
+/* 7.4 Top Right Buttons Row styling */
+.top-action-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.btn-upload-supporting {
+    background-color: #fff;
+    color: #2563eb;
+    border: 1px solid #2563eb;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-top-view {
+    background-color: #fff;
+    color: #2563eb;
+    border: 1px solid #2563eb;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-top-download {
+    background-color: #fff;
+    color: #16a34a;
+    border: 1px solid #16a34a;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.criterion-instruction {
+    font-size: 13px;
+    color: #2563eb;
+    margin-left: 55px;
+    margin-bottom: 24px;
+}
+
+.table-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    text-align: center;
+    margin-bottom: 14px;
+}
+
+/* Grid Structure Data Table */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #cbd5e1;
+    padding: 12px;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.data-table th {
+    background-color: #fef3c7; /* लाइट पिवळा रंग इमेज प्रमाणे */
+    color: #000;
+    font-weight: 700;
+    text-align: center;
+}
+
+.td-center-bold {
+    text-align: center;
+    font-weight: bold;
+}
+
+.table-input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 13px;
+    outline: none;
+}
+
+/* Safety Measures चा मोठा Textarea टेबलच्या आत बसवण्यासाठी */
+.table-textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 13px;
+    outline: none;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.table-input:focus, .table-textarea:focus {
+    border-color: #3b82f6;
+}
+
+/* Actions Cell buttons column layout */
+.action-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+}
+
+.btn-table-view {
+    width: 100px;
+    background-color: #fff;
+    border: 1px solid #2563eb;
+    color: #2563eb;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.btn-table-download {
+    width: 100px;
+    background-color: #fff;
+    border: 1px solid #16a34a;
+    color: #16a34a;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+/* Bottom Controls */
+.bottom-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.btn-action {
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    color: white;
+}
+
+.btn-previous { background-color: #64748b; }
+.btn-back { background-color: #475569; }
+.btn-save { background-color: #16a34a; }
+.btn-submit { background-color: #2563eb; }
+.btn-delete { background-color: #dc2626; }
+.btn-print { background-color: #6366f1; }
+.btn-next { background-color: #008080; }
+
+/* Footer Indicators alignment */
+.footer-indicators {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.indicator-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.square-green { width: 12px; height: 12px; background-color: #16a34a; border-radius: 2px; }
+.square-red { width: 12px; height: 12px; background-color: #dc2626; border-radius: 2px; }

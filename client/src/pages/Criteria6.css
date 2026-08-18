@@ -1,0 +1,386 @@
+
+/* =========================================================
+   CRITERIA 6 PAGE
+========================================================= */
+
+.criteria6-page {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+
+  background: #f4f7fb;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   SIDEBAR WIDTH = 360px
+========================================================= */
+
+.criteria6-container {
+  flex: 1;
+
+  min-width: 0;
+  min-height: 100vh;
+
+  margin-left: 360px;
+
+  width: calc(100% - 360px);
+
+  padding: 28px 32px;
+
+  box-sizing: border-box;
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.criteria6-header {
+  width: 100%;
+
+  background: #1554a6;
+
+  color: #ffffff;
+
+  padding: 32px 28px;
+
+  border-radius: 20px;
+
+  box-sizing: border-box;
+
+  margin-bottom: 28px;
+}
+
+
+.criteria6-header h2 {
+  margin: 0 0 14px 0;
+
+  font-size: 36px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+
+.criteria6-header p {
+  margin: 0;
+
+  font-size: 22px;
+
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   FILTER SECTION
+========================================================= */
+
+.criteria6-filter {
+  width: 100%;
+
+  display: flex;
+
+  gap: 28px;
+
+  margin-bottom: 40px;
+}
+
+
+.criteria6-filter select {
+  width: 310px;
+
+  height: 76px;
+
+  padding: 0 22px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: #172033;
+
+  font-size: 16px;
+
+  outline: none;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+}
+
+
+.criteria6-filter select:focus {
+  border-color: #1554a6;
+
+  box-shadow: 0 0 0 3px rgba(21, 84, 166, 0.10);
+}
+
+
+/* =========================================================
+   CRITERIA CARD
+========================================================= */
+
+.criteria-card {
+  width: 100%;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  border-left: 6px solid #1671d9;
+
+  box-shadow: 0 5px 18px rgba(31, 41, 55, 0.08);
+
+  box-sizing: border-box;
+
+  margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.criteria-card-header {
+  width: 100%;
+
+  min-height: 175px;
+
+  padding: 32px 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CARD INFORMATION
+========================================================= */
+
+.criteria-card-info {
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+.criteria-card-info h3 {
+  margin: 0 0 12px 0;
+
+  color: #1554a6;
+
+  font-size: 27px;
+
+  font-weight: 600;
+
+  line-height: 1.35;
+}
+
+
+.criteria-card-info p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 18px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.action-buttons {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  flex-shrink: 0;
+}
+
+
+.view-btn,
+.add-btn {
+  height: 66px;
+
+  padding: 0 25px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  font-size: 17px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+
+/* =========================================================
+   VIEW BUTTON
+========================================================= */
+
+.view-btn {
+  background: #1769d1;
+
+  color: #ffffff;
+}
+
+
+.view-btn:hover {
+  background: #1255ae;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   ADD BUTTON
+========================================================= */
+
+.add-btn {
+  min-width: 120px;
+
+  background: #16a34a;
+
+  color: #ffffff;
+}
+
+
+.add-btn:hover {
+  background: #12823b;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .criteria6-container {
+    margin-left: 360px;
+
+    width: calc(100% - 360px);
+
+    padding: 22px;
+  }
+
+
+  .criteria6-filter {
+    flex-wrap: wrap;
+  }
+
+
+  .criteria6-filter select {
+    width: calc(50% - 14px);
+  }
+
+
+  .criteria-card-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .action-buttons {
+    width: 100%;
+
+    justify-content: flex-end;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .criteria6-container {
+    margin-left: 0;
+
+    width: 100%;
+
+    padding: 16px;
+  }
+
+
+  .criteria6-header {
+    padding: 25px 20px;
+  }
+
+
+  .criteria6-header h2 {
+    font-size: 28px;
+  }
+
+
+  .criteria6-header p {
+    font-size: 18px;
+  }
+
+
+  .criteria6-filter {
+    flex-direction: column;
+
+    gap: 14px;
+  }
+
+
+  .criteria6-filter select {
+    width: 100%;
+  }
+
+
+  .criteria-card-header {
+    padding: 24px 20px;
+  }
+
+
+  .criteria-card-info h3 {
+    font-size: 21px;
+  }
+
+
+  .criteria-card-info p {
+    font-size: 16px;
+  }
+
+
+  .action-buttons {
+    justify-content: flex-start;
+
+    flex-wrap: wrap;
+  }
+
+}
+

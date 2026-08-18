@@ -1,0 +1,309 @@
+/* =========================================================
+   Main Layout Structure
+========================================================= */
+.main-container-71 {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background: #f4f7fc;
+}
+
+.criteria-main-layout-71 {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    margin-left: 280px; /* Sidebar width */
+    width: calc(100% - 280px);
+    box-sizing: border-box;
+}
+
+.container-71 {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 24px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================================
+   Header & Typography
+========================================================= */
+.criterion-title-row-71 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.badge-id-71 {
+    background-color: #0056b3;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.criterion-heading-71 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #002b9a; /* इमेज प्रमाणे गडद निळा रंग */
+}
+
+.criterion-subtext-71 {
+    font-size: 13px;
+    color: #2563eb;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.table-title-71 {
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #1e293b;
+}
+
+/* ==========================================================================
+   तक्ता आणि मऊ कोपरे (Border Radius 8px) असलेली इनपुट्स रचना
+   ========================================================================== */
+.table-responsive-container-71 {
+    width: 100%;
+    margin-bottom: 25px;
+    overflow-x: auto;
+}
+
+.data-table-71 {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.data-table-71 th, .data-table-71 td {
+    border: 1px solid #cbd5e1;
+    padding: 8px 6px;
+    vertical-align: middle;
+}
+
+.data-table-71 th {
+    background-color: #fffbeb; /* हेडरसाठी फिकट पिवळा रंगाचा टच */
+    color: #334155;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* कॉलम रुंदीचे अचूक विभाजन */
+.th-sn-71 { width: 3%; }
+.th-lab-71 { width: 15%; }
+.th-students-71 { width: 10%; }
+.th-equip-71 { width: 15%; }
+.th-util-71 { width: 15%; }
+.th-group-staff-71 { background-color: #fef3c7; }
+.th-staff-sub-71 { width: 10%; }
+.th-action-71 { width: 12%; }
+
+/* इनपुट्स आणि टेक्स्टएरिया स्टाईल्स (Corners Rounded to 8px) */
+.table-input-71 {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 12px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.table-textarea-71 {
+    width: 100%;
+    height: 55px;
+    padding: 6px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 12px;
+    box-sizing: border-box;
+    resize: none;
+    font-family: inherit;
+    transition: all 0.2s ease-in-out;
+}
+
+.table-input-71:focus, .table-textarea-71:focus {
+    border-color: #2563eb;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ==========================================================================
+   ॲक्शन कॉलममधील स्वतंत्र रो अपलोड बटन डिझाइन
+   ========================================================================== */
+.action-cell-71 {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    width: 100%;
+}
+
+.c71-row-upload-btn {
+    background: #f0f4ff;
+    color: #2563eb;
+    border: 1px dashed #3b82f6;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.c71-row-upload-btn:hover {
+    background: #dbeafe;
+    border-style: solid;
+}
+
+.c71-row-file-status {
+    font-size: 10px;
+    color: #16a34a;
+    font-weight: 600;
+    text-align: center;
+    max-width: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-table-view-71, .btn-table-download-71 {
+    width: 100%;
+    padding: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #ffffff;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-table-view-71 {
+    color: #2563eb;
+    border: 1px solid #cbd5e1;
+}
+
+.btn-table-view-71:hover {
+    background: #f8fafc;
+    border-color: #2563eb;
+}
+
+.btn-table-download-71 {
+    color: #16a34a;
+    border: 1px solid #bbf7d0;
+}
+
+.btn-table-download-71:hover {
+    background: #f0fdf4;
+    border-color: #16a34a;
+}
+
+/* ==========================================================================
+   बॉटम मधील ॲक्शन कंट्रोल्स आणि इंडिकेटर्स
+   ========================================================================== */
+.bottom-actions-71 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 25px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 20px;
+}
+
+.btn-act-71 {
+    padding: 8px 22px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    color: #ffffff;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-bk-71 { background-color: #475569; }     
+.btn-sv-71 { background-color: #22c55e; }     
+.btn-sub-71 { background-color: #2563eb; }   
+.btn-del-71 { background-color: #ef4444; }   
+.btn-prt-71 { background-color: #a855f7; }    
+.btn-nxt-71 { background-color: #008080; }    
+
+.btn-act-71:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-act-71:active {
+    transform: translateY(0);
+}
+
+.footer-indicators-71 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 12px;
+    margin-top: 20px;
+    color: #64748b;
+}
+
+.indicator-item-71 {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.square-green-71 { 
+    display: inline-block; 
+    width: 12px; 
+    height: 12px; 
+    background: #22c55e; 
+    border-radius: 2px; 
+}
+
+.square-red-71 { 
+    display: inline-block; 
+    width: 12px; 
+    height: 12px; 
+    background: #ef4444; 
+    border-radius: 2px; 
+}
+
+.c71-hidden-file { 
+    display: none; 
+}
+
+/* =========================================================
+   Responsive Design (Media Queries)
+========================================================= */
+@media (max-width: 768px) {
+    .criteria-main-layout-71 {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .container-71 {
+        padding: 16px;
+    }
+
+    .bottom-actions-71 {
+        justify-content: center;
+    }
+    
+    .btn-act-71 {
+        flex: 1 1 calc(50% - 12px); /* मोबाईलवर बटन्स व्यवस्थित बसण्यासाठी */
+        text-align: center;
+    }
+}

@@ -1,14 +1,46 @@
 import React, { useState, useEffect } from "react";
 import "./ArticulationMatrix.css";
 import { FaTable, FaEdit, FaTrash, FaSave } from "react-icons/fa";
-
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { FaPrint } from "react-icons/fa";
 function ArticulationMatrix({
   onNext,
   onPrevious
 })  {
+  const navigate = useNavigate();
 const [department, setDepartment] = useState("");
+const STORAGE_KEY = "articulation_matrix_1_5_data";
+const [loaded, setLoaded] = useState(false);
 const [courses, setCourses] = useState([]);
+const [dataLoaded, setDataLoaded] = useState(false);
+const [clearMode, setClearMode] = useState(false);
 const [editId, setEditId] = useState(null);
+useEffect(() => {
+
+  const saved = localStorage.getItem(STORAGE_KEY);
+
+  if (saved) {
+    try {
+      const data = JSON.parse(saved);
+
+      if (data.department) {
+        setDepartment(data.department);
+      }
+
+      if (data.courses) {
+        setCourses(data.courses);
+      }
+
+    } catch (error) {
+      console.log("Restore Error:", error);
+    }
+  }
+
+  setLoaded(true);
+
+}, []);
+
  const loadCourses = async () => {
 console.log(courses);
   if (!department) return;
@@ -41,16 +73,75 @@ console.log(courses);
   );
 
 };
+
 useEffect(() => {
 
-  if (department) {
-    loadCourses();
+  if (!loaded || !department) return;
+
+  const saved = localStorage.getItem(STORAGE_KEY);
+
+  if (saved) {
+    const data = JSON.parse(saved);
+
+    if (
+      data.department === department &&
+      data.courses &&
+      data.courses.length > 0
+    ) {
+      setCourses(data.courses);
+      return;
+    }
   }
 
-}, [department]);
+  loadCourses();
+
+}, [department, loaded]);
+
+useEffect(() => {
+
+  if (!loaded || clearMode || !department) return;
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify({
+      department,
+      courses
+    })
+  );
+
+}, [loaded, clearMode, department, courses]);
 
 const handleSave = async () => {
+ 
+  if (
 
+    !department ||
+
+    courses.length === 0 ||
+
+    !courses.some(row =>
+      row.po1 || row.po2 || row.po3 || row.po4 || row.po5 ||
+      row.po6 || row.po7 || row.po8 || row.po9 || row.po10 ||
+      row.pso1 || row.pso2 || row.pso3
+    )
+
+  ) {
+
+    alert("Please fill all required fields.");
+    return;
+
+  }
+
+  const hasData = courses.some(row =>
+    row.po1 || row.po2 || row.po3 || row.po4 || row.po5 ||
+    row.po6 || row.po7 || row.po8 || row.po9 || row.po10 ||
+    row.pso1 || row.pso2 || row.pso3
+  );
+
+  if (!hasData) {
+    alert("Please enter at least one PO/PSO value.");
+    return;
+  }
   try {
 
     for (const row of courses) {
@@ -105,7 +196,7 @@ const handleSave = async () => {
 
 };
 const handlePrevious = () => {
-  onPrevious();
+  navigate("/course-matrix");
 };
 const handleUpdate=async()=>{
 
@@ -190,6 +281,52 @@ setEditId(row.id);
 }
 ;
 
+const [loading, setLoading] = useState(false);
+
+const handleGenerateReport = () => {
+
+  window.open(
+
+    "http://localhost:5000/criteria/generate-report/1",
+
+    "_blank"
+
+  );
+
+};
+const handleClear = () => {
+
+  if (!window.confirm("Are you sure you want to clear?")) {
+    return;
+  }
+
+  setClearMode(true);
+
+  setDepartment("");
+
+  setCourses((prev) =>
+    prev.map((row) => ({
+      ...row,
+      po1: "",
+      po2: "",
+      po3: "",
+      po4: "",
+      po5: "",
+      po6: "",
+      po7: "",
+      po8: "",
+      po9: "",
+      po10: "",
+      pso1: "",
+      pso2: "",
+      pso3: ""
+    }))
+  );
+
+  localStorage.removeItem(STORAGE_KEY);
+
+  alert("Cleared successfully.");
+};
   return (
     <div className="matrix-page">
 
@@ -205,7 +342,10 @@ setEditId(row.id);
 
           <select
     value={department}
-    onChange={(e) => setDepartment(e.target.value)}
+    onChange={(e) => {
+  setClearMode(false);
+  setDepartment(e.target.value);
+}}
 >
 
 <option value="">Select Department</option>
@@ -224,6 +364,15 @@ MCA
 
 </select>
         </div>
+
+{/* Description */}
+
+
+
+
+{/* Context Box */}
+
+
 <div className="table-wrapper"></div>
      <table className="all-course-table">
 
@@ -476,42 +625,50 @@ onClick={()=>handleRowDelete(row.id)}
         </table>
 
        <div className="matrix-buttons">
-        <button
+       <button
   className="previous-page-btn"
   onClick={handlePrevious}
 >
   ← Previous
 </button>
-
+<button
+  type="button"
+  className="back-btn"
+  onClick={() => navigate("/vision")}
+>
+  ← Back
+</button>
   <button
     className="save-btn"
     onClick={handleSave}
   >
     <FaSave /> Save
   </button>
-
   <button
-    className="update-btn"
-    onClick={handleUpdate}
-  >
-    <FaEdit /> Update
-  </button>
-
-  <button
-    className="delete-main-btn"
-    onClick={handleDelete}
-  >
-    <FaTrash /> Delete
-  </button>
+  className="clear-btn"
+  onClick={handleClear}
+>
+  Clear
+</button>
 <button
   className="next-page-btn"
-  onClick={onNext}
+  onClick={() => navigate("/criteria2")}
 >
   Next →
 </button>
+<button
+className="print-btn"
+onClick={handleGenerateReport}
+>
+
+<FaPrint/>
+
+Generate Report (1.1 - 1.5)
+
+</button>
 </div>
 
-      </div>
+      </div> 
 
     </div>
   );

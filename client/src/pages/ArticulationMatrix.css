@@ -160,9 +160,7 @@ td{
 
 /* HOVER */
 
-.save-btn:hover,
-.update-btn:hover,
-.delete-main-btn:hover,
+
 .edit-btn:hover,
 .delete-btn:hover{
   opacity:.9;
@@ -319,4 +317,410 @@ td{
     font-size:18px;
     font-weight:600;
     cursor:pointer;
+}
+.print-btn{
+    width:220px;
+    height:48px;
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
+
+.print-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+/* ================= MATRIX FOOTER BUTTONS ================= */
+
+.matrix-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  padding: 25px 20px;
+  flex-wrap: nowrap;
+}
+
+
+/* COMMON BUTTON SIZE */
+
+.matrix-buttons button {
+  width: 140px;
+  height: 35px;
+
+  border: none;
+  border-radius: 12px;
+
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  box-sizing: border-box;
+}
+
+
+/* PREVIOUS */
+
+.matrix-buttons .previous-page-btn {
+  background: #d67a09;
+}
+
+
+/* SAVE */
+
+.matrix-buttons .save-btn {
+  background: #198b43;
+}
+
+
+/* NEXT */
+
+.matrix-buttons .next-page-btn {
+  background: #2865e8;
+}
+
+
+/* GENERATE REPORT / PRINT */
+
+.matrix-buttons .print-btn {
+  background: #f23d43;
+  width: 275px;
+}
+
+
+/* HOVER */
+
+.matrix-buttons button:hover {
+  opacity: 0.9;
+}
+
+
+/* DISABLED */
+
+.matrix-buttons button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+/* =========================================
+   MATRIX FOOTER BUTTONS - FINAL DESIGN
+========================================= */
+
+.matrix-buttons {
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 25px 20px;
+    flex-wrap: nowrap;
+}
+
+
+/* COMMON BUTTON */
+
+.matrix-buttons button {
+    width: 90px !important;
+    height: 34px !important;
+
+    border: none;
+    border-radius: 6px !important;
+
+    color: #ffffff;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px !important;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    padding: 0 !important;
+
+    box-sizing: border-box;
+
+    transition: all 0.2s ease;
+}
+
+
+/* =========================================
+   PREVIOUS - ORANGE
+========================================= */
+
+.matrix-buttons .previous-page-btn {
+    background: #ff7209 !important;
+}
+
+
+/* =========================================
+   BACK - SLATE BLUE
+========================================= */
+
+.matrix-buttons .back-btn {
+    background: #61748b !important;
+}
+
+
+/* =========================================
+   SAVE - GREEN
+========================================= */
+
+.matrix-buttons .save-btn {
+    background: #218c4b !important;
+}
+
+
+/* =========================================
+   DELETE - RED
+========================================= */
+
+.matrix-buttons .delete-main-btn,
+.matrix-buttons .delete-btn {
+    background: #ef4444 !important;
+}
+
+
+/* =========================================
+   CLEAR - ORANGE
+========================================= */
+
+.matrix-buttons .clear-btn {
+    background: #f5a208 !important;
+}
+
+
+/* =========================================
+   PRINT - PURPLE
+========================================= */
+
+.matrix-buttons .print-btn {
+    width: 90px !important;
+    background: #7059ad !important;
+}
+
+
+/* =========================================
+   NEXT - TEAL
+========================================= */
+
+.matrix-buttons .next-page-btn {
+    background: #078b83 !important;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.matrix-buttons .previous-page-btn:hover {
+    background: #e86605 !important;
+}
+
+.matrix-buttons .back-btn:hover {
+    background: #52657a !important;
+}
+
+.matrix-buttons .save-btn:hover {
+    background: #19783f !important;
+}
+
+.matrix-buttons .delete-main-btn:hover,
+.matrix-buttons .delete-btn:hover {
+    background: #dc2626 !important;
+}
+
+.matrix-buttons .clear-btn:hover {
+    background: #df9105 !important;
+}
+
+.matrix-buttons .print-btn:hover {
+    background: #5f489b !important;
+}
+
+.matrix-buttons .next-page-btn:hover {
+    background: #06766f !important;
+}
+
+
+/* CLICK */
+
+.matrix-buttons button:active {
+    transform: scale(0.97);
+}
+
+
+/* DISABLED */
+
+.matrix-buttons button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+/* =========================================
+   MATRIX FOOTER BUTTONS - FINAL DESIGN
+========================================= */
+
+.matrix-buttons {
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 25px 20px;
+    flex-wrap: nowrap;
+}
+
+
+/* COMMON BUTTON */
+
+.matrix-buttons button {
+    width: 90px !important;
+    height: 34px !important;
+
+    border: none;
+    border-radius: 6px !important;
+
+    color: #ffffff;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px !important;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    padding: 0 !important;
+
+    box-sizing: border-box;
+
+    transition: all 0.2s ease;
+}
+
+
+/* =========================================
+   PREVIOUS - ORANGE
+========================================= */
+
+.matrix-buttons .previous-page-btn {
+    background: #ff7209 !important;
+}
+
+
+/* =========================================
+   BACK - SLATE BLUE
+========================================= */
+
+.matrix-buttons .back-btn {
+    background: #61748b !important;
+}
+
+
+/* =========================================
+   SAVE - GREEN
+========================================= */
+
+.matrix-buttons .save-btn {
+    background: #218c4b !important;
+}
+
+
+/* =========================================
+   DELETE - RED
+========================================= */
+
+.matrix-buttons .delete-main-btn,
+.matrix-buttons .delete-btn {
+    background: #ef4444 !important;
+}
+
+
+/* =========================================
+   CLEAR - ORANGE
+========================================= */
+
+.matrix-buttons .clear-btn {
+    background: #f5a208 !important;
+}
+
+
+/* =========================================
+   PRINT - PURPLE
+========================================= */
+
+.matrix-buttons .print-btn {
+    width: 90px !important;
+    background: #7059ad !important;
+}
+
+
+/* =========================================
+   NEXT - TEAL
+========================================= */
+
+.matrix-buttons .next-page-btn {
+    background: #078b83 !important;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.matrix-buttons .previous-page-btn:hover {
+    background: #e86605 !important;
+}
+
+.matrix-buttons .back-btn:hover {
+    background: #52657a !important;
+}
+
+.matrix-buttons .save-btn:hover {
+    background: #19783f !important;
+}
+
+.matrix-buttons .delete-main-btn:hover,
+.matrix-buttons .delete-btn:hover {
+    background: #dc2626 !important;
+}
+
+.matrix-buttons .clear-btn:hover {
+    background: #df9105 !important;
+}
+
+.matrix-buttons .print-btn:hover {
+    background: #5f489b !important;
+}
+
+.matrix-buttons .next-page-btn:hover {
+    background: #06766f !important;
+}
+
+
+/* CLICK */
+
+.matrix-buttons button:active {
+    transform: scale(0.97);
+}
+
+
+/* DISABLED */
+
+.matrix-buttons button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }

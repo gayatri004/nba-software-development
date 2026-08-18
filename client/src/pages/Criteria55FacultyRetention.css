@@ -1,0 +1,1843 @@
+/* =========================================================
+   CRITERIA 5.5 - FACULTY RETENTION
+   FINAL CSS
+   SIDEBAR + FULL PAGE LAYOUT
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.criteria55-page {
+  width: 100%;
+  min-height: 100vh;
+
+  margin: 0;
+  padding: 14px 14px 20px 244px;
+
+  background: #f3f7fc;
+
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #1b2d4b;
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.criteria55-page > .sidebar {
+  width: 230px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.criteria55-header {
+  position: relative;
+
+  width: 100%;
+  min-height: 86px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 12px 18px;
+
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0648b8 0%,
+      #075acb 50%,
+      #0642a8 100%
+    );
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Decorative background */
+
+.criteria55-header::before {
+  content: "";
+
+  position: absolute;
+
+  width: 420px;
+  height: 200px;
+
+  right: 120px;
+  top: -100px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.07);
+
+  transform: rotate(-15deg);
+}
+
+.criteria55-header::after {
+  content: "";
+
+  position: absolute;
+
+  width: 260px;
+  height: 170px;
+
+  right: -70px;
+  bottom: -90px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* =========================================================
+   5.5 CIRCLE
+========================================================= */
+
+.criteria55-number {
+  position: relative;
+  z-index: 2;
+
+  flex-shrink: 0;
+
+  width: 72px;
+  height: 72px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+
+  border: 4px solid #c8ddff;
+
+  color: #0757c9;
+
+  font-size: 28px;
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   HEADER TITLE
+========================================================= */
+
+.criteria55-title {
+  position: relative;
+  z-index: 2;
+
+  margin-left: 20px;
+}
+
+.criteria55-title h1 {
+  margin: 0 0 4px;
+
+  font-size: 25px;
+  line-height: 1.15;
+
+  font-weight: 800;
+
+  color: #ffffff;
+}
+
+.criteria55-title p {
+  margin: 0;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   MAXIMUM MARKS
+========================================================= */
+
+.criteria55-max {
+  position: relative;
+  z-index: 2;
+
+  margin-left: auto;
+
+  width: 155px;
+
+  padding: 8px 12px;
+
+  text-align: center;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #0754c8;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.criteria55-max span {
+  display: block;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+.criteria55-max strong {
+  display: block;
+
+  margin-top: 2px;
+
+  font-size: 31px;
+
+  line-height: 1;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   FORMULA + GUIDELINES
+========================================================= */
+
+.criteria55-info {
+  width: 100%;
+
+  margin-top: 10px;
+
+  display: grid;
+
+  grid-template-columns: 38% 62%;
+
+  background: #ffffff;
+
+  border: 1px solid #d6e1ee;
+
+  border-radius: 7px;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   FORMULA LEFT
+========================================================= */
+
+.criteria55-formula {
+  min-height: 220px;
+
+  padding: 28px 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f5f9ff,
+      #edf5ff
+    );
+
+  border-right: 1px solid #d8e3ef;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.criteria55-section-title {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+
+  color: #0754c8;
+
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.criteria55-section-title svg {
+  width: 36px;
+  height: 36px;
+
+  padding: 9px;
+
+  border-radius: 50%;
+
+  background: #075acb;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   FORMULA TEXT
+========================================================= */
+
+.criteria55-formula-text {
+  font-size: 15px;
+
+  line-height: 1.7;
+
+  color: #182b46;
+
+  font-weight: 600;
+}
+
+.criteria55-red-text {
+  margin-top: 8px;
+
+  color: #d92828;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   GUIDELINES
+========================================================= */
+
+.criteria55-guidelines {
+  padding: 18px 24px;
+
+  background: #ffffff;
+}
+
+.criteria55-bullet {
+  margin-bottom: 8px;
+
+  color: #202b3a;
+
+  font-size: 13px;
+
+  line-height: 1.45;
+}
+
+.criteria55-bullet:last-child {
+  margin-bottom: 0;
+}
+
+.criteria55-bullet b {
+  color: #0754c8;
+}
+
+
+/* =========================================================
+   MAIN GRID
+========================================================= */
+
+.criteria55-main-grid {
+  width: 100%;
+
+  margin-top: 10px;
+
+  display: grid;
+
+  grid-template-columns: 51% 49%;
+
+  gap: 10px;
+
+  align-items: start;
+}
+
+
+/* =========================================================
+   COMMON CARD
+========================================================= */
+
+.criteria55-card {
+  background: #ffffff;
+
+  border: 1px solid #d9e3ef;
+
+  border-radius: 7px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 2px 7px rgba(0, 0, 0, 0.035);
+}
+
+
+/* =========================================================
+   CARD HEADING
+========================================================= */
+
+.criteria55-card-heading {
+  min-height: 42px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 8px 14px;
+
+  color: #0754c8;
+
+  font-size: 16px;
+
+  font-weight: 800;
+
+  background: #ffffff;
+}
+
+.criteria55-card-heading svg {
+  flex-shrink: 0;
+
+  font-size: 20px;
+
+  color: #075acb;
+}
+
+.criteria55-card-heading small {
+  font-size: 11px;
+
+  color: #174f96;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   FACULTY TABLE
+========================================================= */
+
+.criteria55-table {
+  width: 100%;
+
+  border: 1px solid #dce5ef;
+
+  border-radius: 5px;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.criteria55-table-head {
+  display: grid;
+
+  grid-template-columns: 36% 40% 24%;
+
+  min-height: 28px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #0754c8,
+      #0b63d5
+    );
+
+  color: #ffffff;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  text-align: center;
+}
+
+.criteria55-table-head > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 4px;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.criteria55-table-head > div:last-child {
+  border-right: none;
+}
+
+
+/* =========================================================
+   TABLE ROW
+========================================================= */
+
+.criteria55-table-row {
+  display: grid;
+
+  grid-template-columns: 36% 40% 24%;
+
+  min-height: 58px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.criteria55-table-row:nth-child(even) {
+  background: #fbfdff;
+}
+
+.criteria55-table-row:last-of-type {
+  border-bottom: none;
+}
+
+
+/* =========================================================
+   EXPERIENCE
+========================================================= */
+
+.criteria55-experience {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 7px 8px;
+
+  border-right: 1px solid #e0e7ef;
+
+  color: #1d2e45;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  line-height: 1.35;
+}
+
+
+/* =========================================================
+   LETTER CIRCLE
+========================================================= */
+
+.criteria55-letter {
+  flex-shrink: 0;
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+.criteria55-A {
+  background: #1678d3;
+}
+
+.criteria55-B {
+  background: #169c4a;
+}
+
+.criteria55-C {
+  background: #ef9900;
+}
+
+.criteria55-D {
+  background: #7445bd;
+}
+
+.criteria55-E {
+  background: #159999;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.criteria55-description {
+  display: flex;
+
+  align-items: center;
+
+  padding: 7px 8px;
+
+  border-right: 1px solid #e0e7ef;
+
+  color: #29384c;
+
+  font-size: 10.5px;
+
+  line-height: 1.35;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.criteria55-input-box {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 5px;
+}
+
+.criteria55-input-box input {
+  width: 72px;
+  height: 29px;
+
+  border: 1px solid #d2dce8;
+
+  border-radius: 5px;
+
+  background: #ffffff;
+
+  color: #172c48;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  outline: none;
+}
+
+.criteria55-input-box input:focus {
+  border-color: #075acb;
+
+  box-shadow:
+    0 0 0 2px rgba(7, 90, 203, 0.12);
+}
+
+
+/* Remove number arrows */
+
+.criteria55-input-box input::-webkit-outer-spin-button,
+.criteria55-input-box input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* =========================================================
+   TOTAL AVAILABLE FACULTY
+========================================================= */
+
+.criteria55-total-row {
+  min-height: 38px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 72px;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 6px 8px;
+
+  background: #edf5ff;
+
+  border-top: 1px solid #d5e3f2;
+
+  color: #20334d;
+
+  font-size: 10.5px;
+
+  font-weight: 800;
+}
+
+.criteria55-total-row input {
+  width: 72px;
+  height: 28px;
+
+  border: 1px solid #cbd9e8;
+
+  border-radius: 5px;
+
+  background: #ffffff;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  color: #163b6d;
+}
+
+
+/* =========================================================
+   REQUIRED FACULTY
+========================================================= */
+
+.criteria55-rf-row {
+  min-height: 36px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 72px;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 6px 8px;
+
+  background: #ffffff;
+
+  border-top: 1px solid #e4e9ef;
+
+  color: #27364a;
+
+  font-size: 10.5px;
+
+  font-weight: 700;
+}
+
+.criteria55-rf-row input {
+  width: 72px;
+  height: 28px;
+
+  border: 1px solid #d2dce8;
+
+  border-radius: 5px;
+
+  background: #ffffff;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  color: #163b6d;
+}
+
+
+/* =========================================================
+   RIGHT COLUMN
+========================================================= */
+
+.criteria55-right-column {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+
+/* =========================================================
+   CALCULATION
+========================================================= */
+
+.criteria55-calculation {
+  border: 1px solid #dce5ef;
+
+  border-radius: 5px;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   CALCULATION ROW
+========================================================= */
+
+.criteria55-calc-row {
+  min-height: 35px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 45px 25px 30px 25px 45px;
+
+  align-items: center;
+
+  padding: 0 10px;
+
+  border-bottom: 1px solid #e5eaf0;
+
+  background: #ffffff;
+
+  font-size: 10.5px;
+
+  color: #202c3d;
+}
+
+.criteria55-calc-row:nth-child(even) {
+  background: #fbfdff;
+}
+
+.criteria55-calc-row:last-child {
+  border-bottom: none;
+}
+
+.criteria55-calc-row strong {
+  text-align: center;
+
+  color: #1d2938;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   WEIGHTED TOTAL
+========================================================= */
+
+.criteria55-calc-total {
+  min-height: 38px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 60px;
+
+  align-items: center;
+
+  padding: 0 10px;
+
+  border-top: 1px solid #dce5ef;
+
+  background: #f8fbff;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+.criteria55-calc-total strong {
+  text-align: right;
+
+  color: #0754c8;
+
+  font-size: 16px;
+}
+
+
+/* =========================================================
+   FR SCORE
+========================================================= */
+
+.criteria55-fr-row {
+  min-height: 42px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 130px 55px;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0 10px;
+
+  border-top: 1px solid #dce5ef;
+
+  background: #ffffff;
+
+  font-size: 10.5px;
+
+  font-weight: 700;
+}
+
+.criteria55-fr-row span:nth-child(2) {
+  text-align: center;
+
+  color: #27384e;
+}
+
+.criteria55-fr-row strong {
+  text-align: right;
+
+  color: #15883e;
+
+  font-size: 16px;
+}
+
+
+/* =========================================================
+   FINAL SCORE
+========================================================= */
+
+.criteria55-final-score {
+  min-height: 48px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding: 8px 14px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #effaf2,
+      #f8fff9
+    );
+
+  border: 1px solid #d5ebdc;
+
+  border-radius: 6px;
+}
+
+.criteria55-final-score div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  color: #168542;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+.criteria55-final-score svg {
+  font-size: 20px;
+
+  color: #168542;
+}
+
+.criteria55-final-score strong {
+  color: #168542;
+
+  font-size: 22px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   EXHIBIT
+========================================================= */
+
+.criteria55-exhibit {
+  min-height: 78px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f7fbff,
+      #eef6ff
+    );
+
+  border-color: #cddff2;
+}
+
+.criteria55-exhibit .criteria55-card-heading {
+  background: transparent;
+
+  padding-bottom: 5px;
+}
+
+.criteria55-exhibit ul {
+  margin: 0 0 10px 42px;
+}
+
+.criteria55-exhibit li {
+  color: #26374e;
+
+  font-size: 10.5px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   IMPORTANT NOTES
+========================================================= */
+
+.criteria55-notes {
+  width: 100%;
+
+  margin-top: 10px;
+
+  padding: 10px 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fffaf0,
+      #fffdf8
+    );
+
+  border: 1px solid #ecdcb9;
+
+  border-radius: 7px;
+}
+
+
+/* =========================================================
+   NOTES TITLE
+========================================================= */
+
+.criteria55-notes-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 5px;
+
+  color: #925600;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+.criteria55-notes-title svg {
+  color: #f2aa00;
+
+  font-size: 19px;
+}
+
+
+/* =========================================================
+   NOTES GRID
+========================================================= */
+
+.criteria55-notes-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 25px;
+}
+
+.criteria55-notes-grid ul {
+  margin-left: 18px;
+}
+
+.criteria55-notes-grid li {
+  margin-bottom: 3px;
+
+  color: #303c4d;
+
+  font-size: 10px;
+
+  line-height: 1.35;
+}
+
+.criteria55-notes-grid li:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   BOTTOM THREE CARDS
+========================================================= */
+
+.criteria55-bottom-grid {
+  width: 100%;
+
+  margin-top: 10px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr;
+
+  gap: 10px;
+
+  align-items: stretch;
+}
+
+
+/* =========================================================
+   BOTTOM CARD
+========================================================= */
+
+.criteria55-bottom-card {
+  min-width: 0;
+
+  background: #ffffff;
+
+  border: 1px solid #dce5ef;
+
+  border-radius: 7px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 2px 7px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================================================
+   BOTTOM HEADERS
+========================================================= */
+
+.criteria55-bottom-header {
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0 12px;
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+.criteria55-bottom-header svg {
+  font-size: 16px;
+}
+
+
+/* BLUE */
+
+.criteria55-bottom-header.blue {
+  background:
+    linear-gradient(
+      90deg,
+      #0754c8,
+      #0b69df
+    );
+}
+
+
+/* GREEN */
+
+.criteria55-bottom-header.green {
+  background:
+    linear-gradient(
+      90deg,
+      #109148,
+      #18a85c
+    );
+}
+
+
+/* PURPLE */
+
+.criteria55-bottom-header.purple {
+  background:
+    linear-gradient(
+      90deg,
+      #7944c4,
+      #9052d3
+    );
+}
+
+
+/* =========================================================
+   NBA CALCULATION TABLE
+========================================================= */
+
+.criteria55-nba-table > div {
+  min-height: 27px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 12px;
+
+  border-bottom: 1px solid #e3e9ef;
+
+  font-size: 10.5px;
+}
+
+.criteria55-nba-table > div:last-child {
+  border-bottom: none;
+}
+
+.criteria55-nba-table strong {
+  color: #d52c2c;
+
+  font-size: 11px;
+}
+
+.criteria55-nba-table .blue-text {
+  color: #0754c8;
+}
+
+
+/* =========================================================
+   SMALL FORMULA
+========================================================= */
+
+.criteria55-small-formula {
+  padding: 8px 12px;
+
+  border-top: 1px solid #e4e9ef;
+
+  border-bottom: 1px solid #e4e9ef;
+
+  background: #ffffff;
+}
+
+.criteria55-small-formula strong {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #0754c8;
+
+  font-size: 11px;
+}
+
+.criteria55-small-formula p {
+  color: #28384e;
+
+  font-size: 9px;
+
+  line-height: 1.35;
+}
+
+
+/* =========================================================
+   TOTAL MARKS
+========================================================= */
+
+.criteria55-total-marks {
+  margin: 8px 10px;
+
+  min-height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 7px 10px;
+
+  border-radius: 5px;
+
+  background: #f1f6fd;
+
+  border: 1px solid #d8e4f1;
+}
+
+.criteria55-total-marks span {
+  color: #0754c8;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+.criteria55-total-marks strong {
+  color: #0754c8;
+
+  font-size: 18px;
+
+  font-weight: 800;
+}
+
+.criteria55-total-marks small {
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   EVALUATION
+========================================================= */
+
+.criteria55-evaluation {
+  padding: 4px 10px;
+}
+
+.criteria55-evaluation > div {
+  min-height: 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border-bottom: 1px solid #e4e9ef;
+
+  font-size: 10.5px;
+}
+
+.criteria55-evaluation > div:last-child {
+  border-bottom: none;
+}
+
+.criteria55-evaluation strong {
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   TEXT COLORS
+========================================================= */
+
+.blue-text {
+  color: #0754c8 !important;
+}
+
+.red-text {
+  color: #d62828 !important;
+}
+
+
+/* =========================================================
+   GRADE PILL
+========================================================= */
+
+.grade-pill {
+  min-width: 65px;
+
+  padding: 4px 12px;
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  background: #ed2d2d;
+
+  color: #ffffff !important;
+
+  font-size: 10px !important;
+}
+
+
+/* =========================================================
+   GRADE TABLE
+========================================================= */
+
+.criteria55-grade-table {
+  width: calc(100% - 20px);
+
+  margin: 4px 10px 10px;
+
+  border: 1px solid #dce5ef;
+
+  border-radius: 5px;
+
+  overflow: hidden;
+
+  text-align: center;
+
+  font-size: 9.5px;
+}
+
+.criteria55-grade-table > div {
+  min-height: 23px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  align-items: center;
+
+  border-bottom: 1px solid #dce5ef;
+}
+
+.criteria55-grade-table > div:last-child {
+  border-bottom: none;
+}
+
+.criteria55-grade-table .grade-head {
+  background: #e7f5eb;
+
+  color: #247b4c;
+
+  font-weight: 800;
+}
+
+.criteria55-grade-table strong {
+  color: #198548;
+}
+
+.criteria55-grade-table > div:nth-child(3) strong {
+  color: #0754c8;
+}
+
+.criteria55-grade-table > div:nth-child(4) strong {
+  color: #e59a00;
+}
+
+.criteria55-grade-table > div:nth-child(5) strong {
+  color: #ed7620;
+}
+
+.criteria55-grade-table > div:nth-child(6) strong {
+  color: #e02b2b;
+}
+
+
+/* =========================================================
+   SUPPORTING DOCUMENT
+========================================================= */
+
+.criteria55-upload {
+  padding: 10px;
+}
+
+
+/* =========================================================
+   UPLOAD BOX
+========================================================= */
+
+.criteria55-upload-box {
+  width: 100%;
+
+  min-height: 108px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  border: 1.5px dashed #ad8bd4;
+
+  border-radius: 6px;
+
+  background: #fdfaff;
+
+  cursor: pointer;
+}
+
+.criteria55-upload-box svg {
+  color: #8b54c6;
+
+  font-size: 34px;
+}
+
+.criteria55-upload-box span {
+  max-width: 90%;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  color: #333333;
+
+  font-size: 10.5px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   UPLOAD BUTTON
+========================================================= */
+
+.criteria55-upload-button {
+  width: 100%;
+
+  height: 35px;
+
+  margin-top: 8px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 5px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #7c43c5,
+      #9056d6
+    );
+
+  color: #ffffff;
+
+  font-size: 10.5px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.criteria55-upload-button:hover {
+  opacity: 0.92;
+}
+
+
+/* =========================================================
+   UPLOAD NOTE
+========================================================= */
+
+.criteria55-upload-note {
+  margin-top: 8px;
+
+  padding-top: 7px;
+
+  border-top: 1px solid #e7e7e7;
+}
+
+.criteria55-upload-note strong {
+  color: #d42c2c;
+
+  font-size: 10.5px;
+}
+
+.criteria55-upload-note p {
+  margin-top: 3px;
+
+  color: #555555;
+
+  font-size: 9.5px;
+
+  line-height: 1.35;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.criteria55-actions {
+  width: 100%;
+
+  margin-top: 12px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(7, minmax(0, 1fr));
+
+  gap: 10px;
+}
+
+.criteria55-actions button {
+  height: 38px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.criteria55-actions button svg {
+  font-size: 13px;
+}
+
+.criteria55-actions button:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.13);
+}
+
+
+/* =========================================================
+   BUTTON COLORS
+========================================================= */
+
+.criteria55-actions .previous {
+  background: #0865d8;
+}
+
+.criteria55-actions .save {
+  background: #14964b;
+}
+
+.criteria55-actions .update {
+  background: #0a73e0;
+}
+
+.criteria55-actions .delete {
+  background: #ed2b2b;
+}
+
+.criteria55-actions .clear {
+  background: #ef8a08;
+}
+
+.criteria55-actions .print {
+  background: #7d46c8;
+}
+
+.criteria55-actions .next {
+  background: #0b63d4;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1400px) {
+
+  .criteria55-page {
+    padding-left: 244px;
+    padding-right: 18px;
+  }
+
+}
+
+
+/* =========================================================
+   1200 - 1399
+========================================================= */
+
+@media (max-width: 1399px) {
+
+  .criteria55-page {
+    padding-left: 244px;
+    padding-right: 14px;
+  }
+
+  .criteria55-title h1 {
+    font-size: 23px;
+  }
+
+  .criteria55-number {
+    width: 66px;
+    height: 66px;
+
+    font-size: 26px;
+  }
+
+  .criteria55-max {
+    width: 145px;
+  }
+
+  .criteria55-main-grid {
+    grid-template-columns: 50% 50%;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+  .criteria55-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria55-bottom-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .criteria55-bottom-grid
+  .criteria55-bottom-card:last-child {
+    grid-column: 1 / -1;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+  .criteria55-info {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria55-formula {
+    border-right: none;
+
+    border-bottom: 1px solid #d8e3ef;
+  }
+
+  .criteria55-notes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria55-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria55-bottom-grid
+  .criteria55-bottom-card:last-child {
+    grid-column: auto;
+  }
+
+  .criteria55-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .criteria55-page {
+    padding: 12px;
+
+    overflow-x: hidden;
+  }
+
+  .criteria55-page > .sidebar {
+    display: none;
+  }
+
+  .criteria55-header {
+    min-height: auto;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    padding: 14px;
+  }
+
+  .criteria55-number {
+    width: 60px;
+    height: 60px;
+
+    font-size: 23px;
+  }
+
+  .criteria55-title {
+    margin-left: 0;
+  }
+
+  .criteria55-title h1 {
+    font-size: 21px;
+  }
+
+  .criteria55-title p {
+    font-size: 11px;
+  }
+
+  .criteria55-max {
+    width: 100%;
+
+    margin-left: 0;
+  }
+
+  .criteria55-table {
+    overflow-x: auto;
+  }
+
+  .criteria55-table-head,
+  .criteria55-table-row {
+    min-width: 600px;
+  }
+
+  .criteria55-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria55-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+  body {
+    background: #ffffff;
+  }
+
+  .criteria55-page {
+    padding: 0;
+
+    background: #ffffff;
+
+    min-height: auto;
+  }
+
+  .criteria55-page > .sidebar {
+    display: none !important;
+  }
+
+  .criteria55-actions {
+    display: none !important;
+  }
+
+  .criteria55-upload-button {
+    display: none !important;
+  }
+
+  .criteria55-header {
+    box-shadow: none;
+  }
+
+}

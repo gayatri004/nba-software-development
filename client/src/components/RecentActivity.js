@@ -2,8 +2,6 @@ import {
   FaUserGraduate,
   FaBook,
   FaBuilding,
-  FaMoneyBillWave,
-  FaClipboardCheck,
 } from "react-icons/fa";
 
 function RecentActivity() {
@@ -33,22 +31,7 @@ function RecentActivity() {
       time: "1 hour ago",
       color: "#7c3aed",
     },
-    {
-      id: 4,
-      icon: <FaMoneyBillWave />,
-      title: "Salary Generated",
-      description: "Monthly payroll generated successfully",
-      time: "3 hours ago",
-      color: "#f59e0b",
-    },
-    {
-      id: 5,
-      icon: <FaClipboardCheck />,
-      title: "Attendance Updated",
-      description: "Today's attendance submitted",
-      time: "Today",
-      color: "#ef4444",
-    },
+   
   ];
 
   return (

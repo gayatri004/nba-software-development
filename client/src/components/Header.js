@@ -75,31 +75,41 @@ function Header({
 
           <span className="badge">5</span>
 
-          {showNotification && (
+<span className="badge">5</span>
 
-            <div className="notification-dropdown">
+{showNotification && (
+  <div className="notification-dropdown">
 
-              <h4>Notifications</h4>
+    <h4>Notifications</h4>
 
-              <div className="notification-item">
-                👨‍🏫 New Faculty Added
-              </div>
+    <div className="notification-item">
+      <span>👨‍🏫</span>
+      <div>
+        <h5>New Faculty Added</h5>
+        <small>2 minutes ago</small>
+      </div>
+    </div>
 
-              <div className="notification-item">
-                📚 New Course Created
-              </div>
+    <div className="notification-item">
+      <span>📚</span>
+      <div>
+        <h5>New Course Created</h5>
+        <small>10 minutes ago</small>
+      </div>
+    </div>
 
-              <div className="notification-item">
-                📅 Attendance Updated
-              </div>
+    <div className="notification-item">
+      <span>📅</span>
+      <div>
+        <h5>Attendance Updated</h5>
+        <small>30 minutes ago</small>
+      </div>
+    </div>
 
-              
+  </div>
+)}
 
-            </div>
-
-          )}
-
-        </div>
+</div>
 
         {/* Profile */}
 

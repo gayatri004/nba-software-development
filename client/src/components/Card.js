@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import {
-  FaArrowUp,
-  FaArrowDown,
+  FaArrowRight,
 } from "react-icons/fa";
 
 function Card({
@@ -9,88 +8,48 @@ function Card({
   number,
   percent,
   icon,
-  color,
+  color = "#2563eb",
   path,
 }) {
-
   const navigate = useNavigate();
 
-  const positive = percent.startsWith("+");
-
   return (
-
     <div
       className="stat-card"
       onClick={() => navigate(path)}
     >
-
       <div className="card-top">
+        <div className="card-content">
+          <p className="card-title">{title}</p>
 
-        <div>
-
-          <p className="card-title">
-
-            {title}
-
-          </p>
-
-          <h2 className="card-number">
-
-            {number}
-
-          </h2>
-
+          <h2 className="card-number">{number}</h2>
         </div>
 
-        <div
-          className="card-icon"
-          style={{
-            background: color,
-          }}
-        >
-
-          {icon}
-
-        </div>
-
+        <div className="card-icon">
+  {icon}
+</div>
       </div>
 
       <div className="card-footer">
 
-        <div
-          className={
-            positive
-              ? "growth positive"
-              : "growth negative"
-          }
-        >
-
-          {positive ? (
-
-            <FaArrowUp />
-
-          ) : (
-
-            <FaArrowDown />
-
-          )}
-
-          <span>{percent}</span>
-
+        <div className="growth">
+          <span>{percent || ""}</span>
         </div>
 
-        <small>
-
-          This Month
-
-        </small>
+        <div
+          className="view-details"
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate(path);
+          }}
+        >
+          <span>View Details</span>
+          <FaArrowRight />
+        </div>
 
       </div>
-
     </div>
-
   );
-
 }
 
 export default Card;

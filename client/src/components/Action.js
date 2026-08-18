@@ -2,11 +2,9 @@ import { useNavigate } from "react-router-dom";
 import {
   FaBuilding,
   FaBook,
-  FaClipboardCheck,
-  FaMoneyBillWave,
   FaChartBar,
   FaPlusCircle,
-  FaUserShield,
+  
 } from "react-icons/fa";
 
 function Action() {
@@ -21,47 +19,26 @@ function Action() {
   path: "/faculty-form",
 },
     {
-      title: "Department",
+      title: " Add Department",
       icon: <FaBuilding />,
       color: "#7c3aed",
       path: "/department",
     },
     {
-      title: "Courses",
+      title: " Add Courses",
       icon: <FaBook />,
       color: "#16a34a",
       path: "/course",
     },
-    {
-      title: "Attendance",
-      icon: <FaClipboardCheck />,
-      color: "#ef4444",
-      path: "/attendance",
-    },
-    {
-      title: "Salary",
-      icon: <FaMoneyBillWave />,
-      color: "#f59e0b",
-      path: "/salary",
-    },
+   
     {
       title: "Reports",
       icon: <FaChartBar />,
       color: "#0ea5e9",
       path: "/reports",
     },
-    {
-      title: "Authority",
-      icon: <FaUserShield />,
-      color: "#9333ea",
-      path: "/authority",
-    },
-    {
-      title: "Add Faculty",
-      icon: <FaPlusCircle />,
-      color: "#14b8a6",
-      path: "/faculty",
-    },
+    
+  
   ];
 
   return (
