@@ -1,2590 +1,1163 @@
-import React, { useState, useEffect } from "react";
-import "./VisionMission.css";
-import { MdDelete } from "react-icons/md";
-import {
-  FaUpload,
-  FaEye
-} from "react-icons/fa";
-import { FaDownload, FaPrint } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import mammoth from "mammoth";
-import * as XLSX from "xlsx";
-function VisionMission({ onNext }) {
-  const navigate = useNavigate();
-  const STORAGE_KEY = "criteria1_vision_mission";
-const [loaded, setLoaded] = useState(false);
-const [savedFileNames, setSavedFileNames] = useState({});
+
+import NBASidebar from "./NBASidebar";
+
+import {
+  FaEye,
+  FaDownload,
+  FaSave,
+  FaPrint,
+  FaArrowLeft,
+  FaArrowRight,
+  FaTrash,
+  FaBroom,
+} from "react-icons/fa";
+
+import "./VisionMission.css";
+
+function VisionMission() {
+
+  // =========================================================
+  // STATE
+  // =========================================================
+
   const [visionFile, setVisionFile] = useState(null);
-const [missionFile, setMissionFile] = useState(null);
-const [peoFile1, setPeoFile1] = useState(null);
-const [peoFile2, setPeoFile2] = useState(null);
-const [peoFile3, setPeoFile3] = useState(null);
-// ===================== 1.1.3 =====================
+  const [missionFile, setMissionFile] = useState(null);
+  const [peoFile, setPeoFile] = useState(null);
 
-// ===================== Supporting Document Files =====================
+  const [visionDescription, setVisionDescription] = useState(
+    "To be a premier institute recognized for excellence in technical education, research and innovation for the betterment of society."
+  );
 
-// Left Side
-const [minutesFile, setMinutesFile] = useState(null);
-const [bosFile, setBosFile] = useState(null);
-const [iqacFile, setIqacFile] = useState(null);
-const [stakeholderFile, setStakeholderFile] = useState(null);
+  const [missionDescription, setMissionDescription] = useState(
+    "To provide quality technical education through innovative teaching-learning practices."
+  );
 
-// Right Side
-const [stakeholderFeedbackFile, setStakeholderFeedbackFile] = useState(null);
-const [industryFile, setIndustryFile] = useState(null);
-const [bosApprovalFile, setBosApprovalFile] = useState(null);
-const [industryConsultationFile, setIndustryConsultationFile] = useState(null)
-const [websiteFile,setWebsiteFile]=useState(null);
-const [noticeBoardFile, setNoticeBoardFile] = useState(null);
-const [studentHandbookFile, setStudentHandbookFile] = useState(null);
-const [prospectusFile, setProspectusFile] = useState(null);
-const [orientationFile, setOrientationFile] = useState(null);
-const [communicationPlanFile, setCommunicationPlanFile] = useState(null);
-const [meetingRecordFile, setMeetingRecordFile] = useState(null);
-const [justificationFile, setJustificationFile] = useState(null);
-const [fileName, setFileName] = useState("");
-// 1.1.5 Mapping
-const [peo1_m1, setPeo1_m1] = useState("");
-const [peo1_m2, setPeo1_m2] = useState("");
-const [peo1_m3, setPeo1_m3] = useState("");
-const [peo1_m4, setPeo1_m4] = useState("");
+  const [peoDescription, setPeoDescription] = useState(
+    "To prepare competent professionals with technical knowledge, ethical values and lifelong learning capabilities."
+  );
 
-const [peo2_m1, setPeo2_m1] = useState("");
-const [peo2_m2, setPeo2_m2] = useState("");
-const [peo2_m3, setPeo2_m3] = useState("");
-const [peo2_m4, setPeo2_m4] = useState("");
+  const [mappingNote, setMappingNote] = useState("");
 
-const [peo3_m1, setPeo3_m1] = useState("");
-const [peo3_m2, setPeo3_m2] = useState("");
-const [peo3_m3, setPeo3_m3] = useState("");
-const [peo3_m4, setPeo3_m4] = useState("");
+  const [mappingData, setMappingData] = useState({
+    PEO1: {
+      Mission1: "",
+      Mission2: "",
+      Mission3: "",
+    },
+    PEO2: {
+      Mission1: "",
+      Mission2: "",
+      Mission3: "",
+    },
+    PEO3: {
+      Mission1: "",
+      Mission2: "",
+      Mission3: "",
+    },
+  });
 
-const [justification, setJustification] = useState(
-  `The correlation between PEOs and Mission statements is established based on the level of contribution towards achieving the mission through PEOs. The scale used is 3 (Strong), 2 (Moderate), 1 (Weak), and 0 (No Correlation).`
-);
+  // =========================================================
+  // FILE HANDLERS
+  // =========================================================
 
-const [publicationProcess, setPublicationProcess] = useState(
-  `Vision, Mission and PEOs are displayed on the Institute website, department notice boards, HoD chamber, student handbook, prospectus and course curriculum documents.`
-);
+  const handleFileChange = (event, type) => {
+    const file = event.target.files[0];
 
-const [disseminationProcess, setDisseminationProcess] = useState(
-  `Vision, Mission and PEOs are disseminated through induction programs, stakeholder meetings, department website, alumni interactions and regular awareness activities.`
-);
-const [vision, setVision] = useState(
-"To be a premier institute recognized for excellence in technical education, research and innovation for the betterment of society."
-);
-const [mission, setMission] = useState(
-`• To provide quality education.
-• To encourage research and innovation.
-• To develop industry oriented skills.
-• To contribute to society.`
-);
-const [peo1, setPeo1] = useState(
-"Graduates will apply technical knowledge and skills in their profession."
-);
-const [peo2, setPeo2] = useState(
-"Graduates will pursue higher studies and lifelong learning."
-);
-const [peo3, setPeo3] = useState(
-"Graduates will demonstrate professional ethics, leadership and teamwork."
-);
-const [visionMissionProcess, setVisionMissionProcess] = useState(
-`The Vision and Mission of the department are defined through consultations with internal stakeholders (faculty, students) and external stakeholders (industry experts, alumni) in Department Advisory Board meetings. The process is approved by BoS and reflected in the IQAC records.`
-);
-const [peoProcess, setPeoProcess] = useState(
-`The PEOs are defined based on graduate attributes, feedback from stakeholders, industry requirements and benchmarking with leading institutions. The process is reviewed periodically and approved by BoS.`
-);
-// ================= RESTORE SAVED DATA =================
+    if (!file) return;
 
-useEffect(() => {
-
-  const saved = localStorage.getItem(STORAGE_KEY);
-
-  if (saved) {
-
-    try {
-
-      const data = JSON.parse(saved);
-// ================= RESTORE TEXT DATA =================
-
-if (data.vision && data.vision.trim() !== "") {
-  setVision(data.vision);
-}
-
-if (data.mission && data.mission.trim() !== "") {
-  setMission(data.mission);
-}
-
-if (data.peo1 && data.peo1.trim() !== "") {
-  setPeo1(data.peo1);
-}
-
-if (data.peo2 && data.peo2.trim() !== "") {
-  setPeo2(data.peo2);
-}
-
-if (data.peo3 && data.peo3.trim() !== "") {
-  setPeo3(data.peo3);
-}// ================= RESTORE DESCRIPTIONS =================
-
-if (
-  data.visionMissionProcess &&
-  data.visionMissionProcess.trim() !== ""
-) {
-  setVisionMissionProcess(data.visionMissionProcess);
-}
-
-if (
-  data.peoProcess &&
-  data.peoProcess.trim() !== ""
-) {
-  setPeoProcess(data.peoProcess);
-}
-
-if (
-  data.publicationProcess &&
-  data.publicationProcess.trim() !== ""
-) {
-  setPublicationProcess(data.publicationProcess);
-}
-
-if (
-  data.disseminationProcess &&
-  data.disseminationProcess.trim() !== ""
-) {
-  setDisseminationProcess(data.disseminationProcess);
-}
-
-if (
-  data.justification &&
-  data.justification.trim() !== ""
-) {
-  setJustification(data.justification);
-}
-      // PEO Mapping
-      setPeo1_m1(data.peo1_m1 ?? "");
-      setPeo1_m2(data.peo1_m2 ?? "");
-      setPeo1_m3(data.peo1_m3 ?? "");
-      setPeo1_m4(data.peo1_m4 ?? "");
-
-      setPeo2_m1(data.peo2_m1 ?? "");
-      setPeo2_m2(data.peo2_m2 ?? "");
-      setPeo2_m3(data.peo2_m3 ?? "");
-      setPeo2_m4(data.peo2_m4 ?? "");
-
-      setPeo3_m1(data.peo3_m1 ?? "");
-      setPeo3_m2(data.peo3_m2 ?? "");
-      setPeo3_m3(data.peo3_m3 ?? "");
-      setPeo3_m4(data.peo3_m4 ?? "");
-
-      // Uploaded file names
-      if (data.files) {
-        setSavedFileNames(data.files);
-      }
-
-    } catch (error) {
-
-      console.log("Restore Error:", error);
-
+    if (file.type !== "application/pdf") {
+      alert("Please upload PDF file only.");
+      event.target.value = "";
+      return;
     }
 
-  }
+    if (type === "vision") {
+      setVisionFile(file);
+    }
 
-  setLoaded(true);
+    if (type === "mission") {
+      setMissionFile(file);
+    }
 
-}, []);
-// ================= AUTO SAVE =================
-
-useEffect(() => {
-
-  if (!loaded) return;
-
-  const data = {
-
-    vision,
-    mission,
-
-    peo1,
-    peo2,
-    peo3,
-
-    visionMissionProcess,
-    peoProcess,
-
-    publicationProcess,
-    disseminationProcess,
-
-    justification,
-
-    // PEO Mapping
-    peo1_m1,
-    peo1_m2,
-    peo1_m3,
-    peo1_m4,
-
-    peo2_m1,
-    peo2_m2,
-    peo2_m3,
-    peo2_m4,
-
-    peo3_m1,
-    peo3_m2,
-    peo3_m3,
-    peo3_m4,
-
-    // File names
-    files: savedFileNames
-
+    if (type === "peo") {
+      setPeoFile(file);
+    }
   };
 
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(data)
-  );
-
-}, [
-
-  loaded,
-
-  vision,
-  mission,
-
-  peo1,
-  peo2,
-  peo3,
-
-  visionMissionProcess,
-  peoProcess,
-
-  publicationProcess,
-  disseminationProcess,
-
-  justification,
-
-  peo1_m1,
-  peo1_m2,
-  peo1_m3,
-  peo1_m4,
-
-  peo2_m1,
-  peo2_m2,
-  peo2_m3,
-  peo2_m4,
-
-  peo3_m1,
-  peo3_m2,
-  peo3_m3,
-  peo3_m4,
-
-  savedFileNames
-
-]);
-// ================= SAVE FILE NAME =================
-
-const saveFileName = (key, file) => {
-
-  if (!file) return;
-
-  setSavedFileNames((prev) => ({
-    ...prev,
-    [key]: file.name
-  }));
-
-};
-
-const handleSave = async () => {
-// ===================== Required Text Fields =====================
-if (
-
-  // ================= TEXT / PARENT DATA =================
-
-  !vision.trim() ||
-  !mission.trim() ||
-
-  !peo1.trim() ||
-  !peo2.trim() ||
-  !peo3.trim() ||
-
-  // ================= STATIC DESCRIPTIONS =================
-
-  !visionMissionProcess.trim() ||
-  !peoProcess.trim() ||
-
-  !publicationProcess.trim() ||
-  !disseminationProcess.trim() ||
-
-  !justification.trim() ||
-
-  // ================= PEO - MISSION MAPPING =================
-
-  peo1_m1 === "" ||
-  peo1_m2 === "" ||
-  peo1_m3 === "" ||
-  peo1_m4 === "" ||
-
-  peo2_m1 === "" ||
-  peo2_m2 === "" ||
-  peo2_m3 === "" ||
-  peo2_m4 === "" ||
-
-  peo3_m1 === "" ||
-  peo3_m2 === "" ||
-  peo3_m3 === "" ||
-  peo3_m4 === "" ||
-
-  // ================= REQUIRED FILES =================
-  // New File OR Previously Saved Filename
-
-  (!visionFile && !savedFileNames.visionFile) ||
-
-  (!missionFile && !savedFileNames.missionFile) ||
-
-  (!peoFile1 && !savedFileNames.peoFile1) ||
-
-  (!peoFile2 && !savedFileNames.peoFile2) ||
-
-  (!peoFile3 && !savedFileNames.peoFile3) ||
-
-  (!minutesFile && !savedFileNames.minutesFile) ||
-
-  (!bosFile && !savedFileNames.bosFile) ||
-
-  (!iqacFile && !savedFileNames.iqacFile) ||
-
-  (!stakeholderFile && !savedFileNames.stakeholderFile) ||
-
-  (!stakeholderFeedbackFile &&
-    !savedFileNames.stakeholderFeedbackFile) ||
-
-  (!industryConsultationFile &&
-    !savedFileNames.industryConsultationFile) ||
-
-  (!bosApprovalFile &&
-    !savedFileNames.bosApprovalFile) ||
-
-  (!websiteFile && !savedFileNames.websiteFile) ||
-
-  (!noticeBoardFile &&
-    !savedFileNames.noticeBoardFile) ||
-
-  (!studentHandbookFile &&
-    !savedFileNames.studentHandbookFile) ||
-
-  (!prospectusFile &&
-    !savedFileNames.prospectusFile) ||
-
-  (!orientationFile &&
-    !savedFileNames.orientationFile) ||
-
-  (!communicationPlanFile &&
-    !savedFileNames.communicationPlanFile) ||
-
-  (!meetingRecordFile &&
-    !savedFileNames.meetingRecordFile) ||
-
-  (!justificationFile &&
-    !savedFileNames.justificationFile)
-
-) {
-
-  alert("Please fill all required fields.");
-  return;
-}
-
-  try {
-    const formData = new FormData();
-
-    formData.append("vision", vision);
-    formData.append("mission", mission);
-    formData.append("peo1", peo1);
-    formData.append("peo2", peo2);
-    formData.append("peo3", peo3);
-
-    formData.append("visionFile", visionFile);
-    formData.append("missionFile", missionFile);
-    formData.append("peoFile1", peoFile1);
-    formData.append("peoFile2", peoFile2);
-    formData.append("peoFile3", peoFile3);
-    formData.append("visionMissionProcess", visionMissionProcess);
-formData.append("peoProcess", peoProcess);
-formData.append("publicationProcess", publicationProcess);
-formData.append("disseminationProcess", disseminationProcess);
-
-formData.append("minutesFile", minutesFile);
-formData.append("bosFile", bosFile);
-formData.append("iqacFile", iqacFile);
-formData.append("stakeholderFile", stakeholderFile);
-
-formData.append("stakeholderFeedbackFile", stakeholderFeedbackFile);
-formData.append("industryConsultationFile", industryConsultationFile);
-formData.append("bosApprovalFile", bosApprovalFile);
-
-formData.append("websiteFile", websiteFile);
-formData.append("noticeBoardFile", noticeBoardFile);
-formData.append("studentHandbookFile", studentHandbookFile);
-formData.append("prospectusFile", prospectusFile);
-
-formData.append("orientationFile", orientationFile);
-formData.append("communicationPlanFile", communicationPlanFile);
-formData.append("meetingRecordFile", meetingRecordFile);
-// 1.1.5 Mapping
-formData.append("peo1_m1", peo1_m1);
-formData.append("peo1_m2", peo1_m2);
-formData.append("peo1_m3", peo1_m3);
-formData.append("peo1_m4", peo1_m4);
-
-formData.append("peo2_m1", peo2_m1);
-formData.append("peo2_m2", peo2_m2);
-formData.append("peo2_m3", peo2_m3);
-formData.append("peo2_m4", peo2_m4);
-
-formData.append("peo3_m1", peo3_m1);
-formData.append("peo3_m2", peo3_m2);
-formData.append("peo3_m3", peo3_m3);
-formData.append("peo3_m4", peo3_m4);
-
-// Justification
-formData.append("justification", justification);
-formData.append("justificationFile", justificationFile);
-
-    const response = await fetch("http://localhost:5000/save-vision", {
-      method: "POST",
-      body: formData,
-    });
-
-    const data = await response.json();
-    alert(data.message);
-
-  } catch (error) {
-    console.log(error);
-    alert("Save Error");
-  }
-};
-const handleFileView = (fileName) => {
-
-  if (!fileName) {
-    alert("No file available");
-    return;
-  }
-
-  window.open(
-    `http://localhost:5000/view/${fileName}`,
-    "_blank"
-  );
-
-};
-
-const handleFileDownload = (fileName) => {
-
-  if (!fileName) {
-    alert("No file available");
-    return;
-  }
-
-  window.open(
-    `http://localhost:5000/download/${fileName}`,
-    "_blank"
-  );
-
-};
-
-const readFileContentHTML = async (row) => {
-
-    let fileBlob = row.fileObject;
-
-    if (!fileBlob && row.fileName) {
-
-        const response = await fetch(
-            `http://localhost:5000/uploads/${row.fileName}`
-        );
-
-        fileBlob = await response.blob();
+  // =========================================================
+  // VIEW FILE
+  // =========================================================
+
+  const handleViewFile = (file) => {
+    if (!file) {
+      alert("Please upload a PDF file first.");
+      return;
     }
 
-    if (!fileBlob) return "<p>No file found.</p>";
+    const fileURL = URL.createObjectURL(file);
+    window.open(fileURL, "_blank");
+  };
 
-    const ext =
-        row.fileName.split(".").pop().toLowerCase();
+  // =========================================================
+  // DOWNLOAD FILE
+  // =========================================================
 
-    if (ext === "docx") {
-
-        const arrayBuffer =
-            await fileBlob.arrayBuffer();
-
-        const result =
-            await mammoth.convertToHtml({
-                arrayBuffer
-            });
-
-        return `
-        <div class="word-parsed-content">
-        ${result.value}
-        </div>
-        `;
+  const handleDownloadFile = (file) => {
+    if (!file) {
+      alert("Please upload a PDF file first.");
+      return;
     }
 
-    if (["xlsx","xls","csv"].includes(ext)) {
+    const fileURL = URL.createObjectURL(file);
 
-        const arrayBuffer =
-            await fileBlob.arrayBuffer();
+    const link = document.createElement("a");
+    link.href = fileURL;
+    link.download = file.name;
 
-        const workbook =
-            XLSX.read(arrayBuffer,{
-                type:"array"
-            });
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 
-        const sheet =
-            workbook.Sheets[
-                workbook.SheetNames[0]
-            ];
+    URL.revokeObjectURL(fileURL);
+  };
 
-        return `
-        <div class="excel-parsed-content">
-        ${XLSX.utils.sheet_to_html(sheet)}
-        </div>
-        `;
-    }
+  // =========================================================
+  // MAPPING CHANGE
+  // =========================================================
 
-    return "";
-};
-const handlePrint = async () => {
+  const handleMappingChange = (peo, mission, value) => {
+    setMappingData((prev) => ({
+      ...prev,
+      [peo]: {
+        ...prev[peo],
+        [mission]: value,
+      },
+    }));
+  };
 
-  try {
+  // =========================================================
+  // SAVE
+  // =========================================================
 
-    const res = await fetch(
-      "http://localhost:5000/print-vision-files"
+  const handleSave = () => {
+    const data = {
+      visionDescription,
+      missionDescription,
+      peoDescription,
+      mappingData,
+      mappingNote,
+      visionFile,
+      missionFile,
+      peoFile,
+    };
+
+    console.log("Vision Mission Data:", data);
+
+    alert("Vision & Mission data saved successfully.");
+  };
+
+  // =========================================================
+  // DELETE
+  // =========================================================
+
+  const handleDelete = () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete the Vision & Mission data?"
     );
 
-    const data = await res.json();
-
-    const files = [
-      { title: "Vision", fileName: data.vision_file },
-      { title: "Mission", fileName: data.mission_file },
-      { title: "PEO 1", fileName: data.peo_file1 },
-      { title: "PEO 2", fileName: data.peo_file2 },
-      { title: "PEO 3", fileName: data.peo_file3 },
-      { title: "Minutes", fileName: data.minutes_file },
-      { title: "BoS", fileName: data.bos_file },
-      { title: "IQAC", fileName: data.iqac_file },
-      { title: "Stakeholder", fileName: data.stakeholder_file },
-      { title: "Stakeholder Feedback", fileName: data.stakeholder_feedback_file },
-      { title: "Industry Consultation", fileName: data.industry_consultation_file },
-      { title: "BoS Approval", fileName: data.bos_approval_file },
-      { title: "Website", fileName: data.website_file },
-      { title: "Notice Board", fileName: data.notice_board_file },
-      { title: "Student Handbook", fileName: data.student_handbook_file },
-      { title: "Prospectus", fileName: data.prospectus_file },
-      { title: "Orientation", fileName: data.orientation_file },
-      { title: "Communication Plan", fileName: data.communication_plan_file },
-      { title: "Meeting Record", fileName: data.meeting_record_file },
-      { title: "Justification", fileName: data.justification_file }
-    ].filter(f => f.fileName);
-
-    const printWindow = window.open("", "_blank");
-
-    let html = `
-      <html>
-      <head>
-      <title>Vision Mission Print</title>
-
-      <style>
-
-      body{
-        font-family:Arial;
-        padding:20px;
-      }
-
-      h2{
-        text-align:center;
-      }
-
-      .doc{
-        margin-bottom:40px;
-        page-break-after:always;
-      }
-
-      iframe{
-        width:100%;
-        height:900px;
-        border:none;
-      }
-
-      img{
-        width:100%;
-      }
-
-      </style>
-
-      </head>
-
-      <body>
-
-      <h2>Vision Mission Documents</h2>
-    `;
-
-    for (const file of files) {
-
-      const ext =
-        file.fileName.split(".").pop().toLowerCase();
-
-      html += `<div class="doc">`;
-      html += `<h3>${file.title}</h3>`;
-
-      if (ext === "pdf") {
-
-       html += `
-<embed
-src="http://localhost:5000/uploads/${file.fileName}"
-type="application/pdf"
-style="
-width:100%;
-height:1000px;
-border:none;
-display:block;
-"
-/>
-`;
-      }
-
-      else if (
-        ["jpg","jpeg","png","gif","webp"].includes(ext)
-      ) {
-
-        html += `
-        <img
-        src="http://localhost:5000/uploads/${file.fileName}">
-        `;
-
-      }
-
-      else if (
-        ["docx","xlsx","xls","csv"].includes(ext)
-      ) {
-
-        const preview =
-          await readFileContentHTML({
-            fileName:file.fileName
-          });
-
-        html += preview;
-
-      }
-
-      else {
-
-        html += `
-        <p>
-        ${file.fileName}
-        </p>
-        `;
-
-      }
-
-      html += `</div>`;
-
-    }
-
-    html += `
-      </body>
-      </html>
-    `;
-
-    printWindow.document.write(html);
-
-    printWindow.document.close();
-
-    setTimeout(() => {
-
-      printWindow.focus();
-
-      printWindow.print();
-
-    },1500);
-
-  }
-
-  catch(err){
-
-    console.log(err);
-
-    alert("Print Error");
-
-  }
-
-};
-
-// ================= HANDLE CLEAR =================
-// ================= HANDLE CLEAR =================
-
-const handleClear = () => {
-
-  const confirmClear = window.confirm(
-    "Are you sure you want to clear uploaded files and mapping?"
-  );
-
-  if (!confirmClear) return;
-
-
-  // =================================================
-  // ❌ DO NOT CLEAR USER DATA
-  // =================================================
-
-  // setVision("");
-  // setMission("");
-
-  // setPeo1("");
-  // setPeo2("");
-  // setPeo3("");
-
-
-  // =================================================
-  // ❌ DO NOT CLEAR STATIC DESCRIPTIONS
-  // =================================================
-
-  // setVisionMissionProcess("");
-  // setPeoProcess("");
-  // setPublicationProcess("");
-  // setDisseminationProcess("");
-  // setJustification("");
-
-
-  // =================================================
-  // ✅ CLEAR MAPPING TABLE
-  // =================================================
-
-  setPeo1_m1("");
-  setPeo1_m2("");
-  setPeo1_m3("");
-  setPeo1_m4("");
-
-  setPeo2_m1("");
-  setPeo2_m2("");
-  setPeo2_m3("");
-  setPeo2_m4("");
-
-  setPeo3_m1("");
-  setPeo3_m2("");
-  setPeo3_m3("");
-  setPeo3_m4("");
-
-
-  // =================================================
-  // ✅ CLEAR UPLOADED FILES FROM FRONTEND
-  // =================================================
-
-  setVisionFile(null);
-  setMissionFile(null);
-
-  setPeoFile1(null);
-  setPeoFile2(null);
-  setPeoFile3(null);
-
-  setMinutesFile(null);
-  setBosFile(null);
-  setIqacFile(null);
-
-  setStakeholderFile(null);
-  setStakeholderFeedbackFile(null);
-  setIndustryConsultationFile(null);
-  setBosApprovalFile(null);
-
-  setWebsiteFile(null);
-  setNoticeBoardFile(null);
-  setStudentHandbookFile(null);
-  setProspectusFile(null);
-
-  setOrientationFile(null);
-  setCommunicationPlanFile(null);
-  setMeetingRecordFile(null);
-
-  setJustificationFile(null);
-
-
-  // =================================================
-  // ✅ CLEAR FILE INPUT ELEMENTS
-  // =================================================
-
-  document
-    .querySelectorAll('input[type="file"]')
-    .forEach((input) => {
-      input.value = "";
+    if (!confirmDelete) return;
+
+    setVisionDescription("");
+    setMissionDescription("");
+    setPeoDescription("");
+
+    setVisionFile(null);
+    setMissionFile(null);
+    setPeoFile(null);
+
+    setMappingNote("");
+
+    setMappingData({
+      PEO1: {
+        Mission1: "",
+        Mission2: "",
+        Mission3: "",
+      },
+      PEO2: {
+        Mission1: "",
+        Mission2: "",
+        Mission3: "",
+      },
+      PEO3: {
+        Mission1: "",
+        Mission2: "",
+        Mission3: "",
+      },
     });
 
+    alert("Data deleted successfully.");
+  };
 
-  // =================================================
-  // ✅ CLEAR FILE NAMES FROM CURRENT FRONTEND
-  // =================================================
+  // =========================================================
+  // CLEAR
+  // =========================================================
 
-  setSavedFileNames({});
+  const handleClear = () => {
+    setVisionDescription("");
+    setMissionDescription("");
+    setPeoDescription("");
+    setMappingNote("");
 
+    setVisionFile(null);
+    setMissionFile(null);
+    setPeoFile(null);
 
-  // =================================================
-  // ❌ DO NOT DELETE LOCAL STORAGE
-  // =================================================
+    setMappingData({
+      PEO1: {
+        Mission1: "",
+        Mission2: "",
+        Mission3: "",
+      },
+      PEO2: {
+        Mission1: "",
+        Mission2: "",
+        Mission3: "",
+      },
+      PEO3: {
+        Mission1: "",
+        Mission2: "",
+        Mission3: "",
+      },
+    });
+  };
 
-  // localStorage.removeItem(STORAGE_KEY);
+  // =========================================================
+  // PRINT
+  // =========================================================
 
+  const handlePrint = () => {
+    window.print();
+  };
 
-  // =================================================
-  // ❌ DO NOT CALL BACKEND DELETE API
-  // =================================================
+  // =========================================================
+  // FILE UPLOAD COMPONENT
+  // =========================================================
 
+  const FileUpload = ({ file, type }) => {
+    return (
+      <div className="file-upload-row">
 
-  alert("Uploaded files and mapping cleared successfully.");
-};
+        <label className="choose-file-btn">
+          Choose File
+
+          <input
+            type="file"
+            accept="application/pdf"
+            className="custom-file-input"
+            onChange={(e) => handleFileChange(e, type)}
+          />
+        </label>
+
+        <div className="pdf-name">
+          {file ? file.name : "No file selected"}
+        </div>
+
+        <div className="document-actions">
+
+          <button
+            type="button"
+            className="view-btn"
+            onClick={() => handleViewFile(file)}
+            title="View PDF"
+          >
+            <FaEye />
+          </button>
+
+          <button
+            type="button"
+            className="download-btn"
+            onClick={() => handleDownloadFile(file)}
+            title="Download PDF"
+          >
+            <FaDownload />
+          </button>
+
+        </div>
+
+      </div>
+    );
+  };
+
+  // =========================================================
+  // PAGE
+  // =========================================================
+
   return (
-    <div className="vision-container">
+    <div className="vision-layout">
 
+      {/* =====================================================
+          SIDEBAR
+      ===================================================== */}
 
+      <NBASidebar />
 
-      <h3>1.1 Vision, Mission </h3>
-<div className="instruction-box">
+      {/* =====================================================
+          MAIN CONTENT
+      ===================================================== */}
 
-  <h4>Instructions:</h4>
+      <main className="vision-main">
 
-  <ul>
-    <li>Provide the Institute Vision and Mission statements.</li>
-    <li>Provide the Program Educational Objectives (PEOs).</li>
-    <li>Upload supporting documents in PDF format.</li>
-    <li>Provide documentary evidence for Vision, Mission and PEO mapping.</li>
-  </ul>
+        <div className="vision-container">
 
-</div>
-<h3 className="main-section">
-  1.1.1 State the Vision and Mission of the Institute and the Department
-</h3>
-      {/* Vision */}
-    <h4 className="sub-heading">
-A. Institute Vision
-</h4>
+          {/* =================================================
+              PAGE TITLE
+          ================================================= */}
 
-      <table className="nba-table">
-        <thead>
-          <tr>
-            <th>Sr. No.</th>
-            <th>Particulars</th>
-            <th>Description</th>
-            <th>Attachment (PDF only)</th>
-          </tr>
-        </thead>
+          <h1 className="section-heading">
+            Vision, Mission and Program Educational Objectives
+          </h1>
 
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Institute Vision</td>
-            <td>
+          {/* =================================================
+              INSTRUCTION
+          ================================================= */}
+
+          <div className="instruction-box">
+
+            <h4>
+              Instructions
+            </h4>
+
+            <ul>
+              <li>
+                Enter the approved Vision and Mission statements.
+              </li>
+
+              <li>
+                Enter the Program Educational Objectives (PEOs).
+              </li>
+
+              <li>
+                Upload supporting documents in PDF format.
+              </li>
+
+              <li>
+                Provide documentary evidence for Vision, Mission and PEO mapping.
+              </li>
+            </ul>
+
+          </div>
+
+          {/* =================================================
+              1.1.1
+          ================================================= */}
+
+          <div className="main-section">
+            1.1.1 Vision, Mission and Program Educational Objectives
+          </div>
+
+          <table className="nba-table">
+
+            <thead>
+
+              <tr>
+                <th>Sr. No.</th>
+                <th>Particulars</th>
+                <th>Description</th>
+                <th>Attachment (PDF only)</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              {/* VISION */}
+
+              <tr>
+
+                <td>1</td>
+
+                <td>
+                  Institute Vision
+                </td>
+
+                <td>
+
+                  <textarea
+                    value={visionDescription}
+                    onChange={(e) =>
+                      setVisionDescription(e.target.value)
+                    }
+                    placeholder="Enter Institute Vision"
+                  />
+
+                </td>
+
+                <td>
+
+                  <FileUpload
+                    file={visionFile}
+                    type="vision"
+                  />
+
+                </td>
+
+              </tr>
+
+              {/* MISSION */}
+
+              <tr>
+
+                <td>2</td>
+
+                <td>
+                  Institute Mission
+                </td>
+
+                <td>
+
+                  <textarea
+                    value={missionDescription}
+                    onChange={(e) =>
+                      setMissionDescription(e.target.value)
+                    }
+                    placeholder="Enter Institute Mission"
+                  />
+
+                </td>
+
+                <td>
+
+                  <FileUpload
+                    file={missionFile}
+                    type="mission"
+                  />
+
+                </td>
+
+              </tr>
+
+              {/* PEO */}
+
+              <tr>
+
+                <td>3</td>
+
+                <td>
+                  Program Educational Objectives (PEOs)
+                </td>
+
+                <td>
+
+                  <textarea
+                    value={peoDescription}
+                    onChange={(e) =>
+                      setPeoDescription(e.target.value)
+                    }
+                    placeholder="Enter PEO Description"
+                  />
+
+                </td>
+
+                <td>
+
+                  <FileUpload
+                    file={peoFile}
+                    type="peo"
+                  />
+
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+          {/* =================================================
+              1.1.2
+          ================================================= */}
+
+          <div className="main-section">
+            1.1.2 Vision of the Institute and the Department
+          </div>
+
+          <div className="mapping-wrapper">
+
+            <div className="mapping-card">
+
+              <h4>
+                Vision Statement
+              </h4>
+
               <textarea
-  value={vision}
-  onChange={(e) => setVision(e.target.value)}
-/>
-            </td>
-
-           <td>
-
-<div className="file-upload-row">
-<label className="choose-file-btn">
-
-  Choose File
-
-  <input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file state
-      setVisionFile(file);
-
-      // Filename localStorage साठी
-      saveFileName("visionFile", file);
-
-    }
-
-  }}
-/>
-
-</label>
-{(visionFile || savedFileNames.visionFile) && (
-  <div
-    className="pdf-name"
-    style={{
-      color: "#040404",
-      fontWeight: "600",
-      fontSize: "13px"
-    }}
-  >
-    {visionFile?.name || savedFileNames.visionFile}
-  </div>
-)}
-<div className="document-actions">
-
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      visionFile?.name || savedFileNames.visionFile
-    )
-  }
->
-  <FaEye />
-</button>
- <button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      visionFile?.name || savedFileNames.visionFile
-    )
-  }
->
-  <FaDownload />
-</button>
-
-
-</div>
-
-</div>
-
-</td>
-          </tr>
-        </tbody>
-      </table>
-
-      {/* Mission */}
-      <h4 className="sub-heading">
-B. Institute Mission
-</h4>
-      <table className="nba-table">
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Institute Mission</td>
-
-            <td>
-             <textarea
-  value={mission}
-  onChange={(e) => setMission(e.target.value)}
-/>
-            </td>
-
-            <td>
-
-<div className="file-upload-row">
-
-<label className="choose-file-btn">
-
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setMissionFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("missionFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(missionFile || savedFileNames.missionFile) && (
-  <div
-    className="pdf-name"
-    style={{
-      color: "#0e100e",
-      fontWeight: "600",
-      fontSize: "13px"
-    }}
-  >
-    {missionFile?.name || savedFileNames.missionFile}
-  </div>
-)}
-<div className="document-actions">
-
-  <button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      missionFile?.name || savedFileNames.missionFile
-    )
-  }
->
-  <FaEye />
-</button>
-
-  <button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      missionFile?.name || savedFileNames.missionFile
-    )
-  }
->
-  <FaDownload />
-</button>
-
-
-</div>
-
-</div>
-
-</td>
-          </tr>
-        </tbody>
-      </table>
-
-      {/* PEO */}
-      <h3 className="main-section">
-  1.1.2 State PEOs of the Program
-</h3>
-
-      <table className="nba-table">
-        <thead>
-          <tr>
-            <th>Sr. No.</th>
-            <th>PEO No.</th>
-            <th>Program Educational Objectives</th>
-            <th>Attachment</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>PEO 1</td>
-            <td>
-             <input
-  type="text"
-  value={peo1}
-onChange={(e) => setPeo1(e.target.value)}
-/>
-            </td>
-          <td>
-
-<div className="file-upload-row">
-
-<label className="choose-file-btn">
-
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setPeoFile1(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("peoFile1", file);
-
-    }
-
-  }}
-/>
-</label>
-{(peoFile1 || savedFileNames.peoFile1) && (
-  <div className="pdf-name">
-    {peoFile1?.name || savedFileNames.peoFile1}
-  </div>
-)}
-<div className="document-actions">
-
-  <button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      peoFile1?.name || savedFileNames.peoFile1
-    )
-  }
->
-  <FaEye />
-</button>
-
-  <button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      peoFile1?.name || savedFileNames.peoFile1
-    )
-  }
->
-  <FaDownload />
-</button>
-
-  
-
-</div>
-
-</div>
-
-</td>
-          </tr>
-
-          <tr>
-  <td>2</td>
-
-  <td>PEO 2</td>
-
-  <td>
-    <input
-      type="text"
-      value={peo2}
-onChange={(e) => setPeo2(e.target.value)}
-    />
-  </td>
-<td>
-
-<div className="file-upload-row">
-
-<label className="choose-file-btn">
-
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setPeoFile2(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("peoFile2", file);
-
-    }
-
-  }}
-/>
-</label>
-{(peoFile2 || savedFileNames.peoFile2) && (
-  <div className="pdf-name">
-    {peoFile2?.name || savedFileNames.peoFile2}
-  </div>
-)}
-<div className="document-actions">
-
-  <button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      peoFile2?.name || savedFileNames.peoFile2
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      peoFile2?.name || savedFileNames.peoFile2
-    )
-  }
->
-  <FaDownload />
-</button>
-
-</div>
-
-</div>
-
-</td>
-</tr>
-
-          <tr>
-            <td>3</td>
-            <td>PEO 3</td>
-           
-             <td>
-  <input
-    type="text"
-    value={peo3}
-onChange={(e) => setPeo3(e.target.value)}
-  />
-</td>
-<td>
-
-<div className="file-upload-row">
-
-<label className="choose-file-btn">
-
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setPeoFile3(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("peoFile3", file);
-
-    }
-
-  }}
-/>
-</label>
-{(peoFile3 || savedFileNames.peoFile3) && (
-  <div className="pdf-name">
-    {peoFile3?.name || savedFileNames.peoFile3}
-  </div>
-)}
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      peoFile3?.name || savedFileNames.peoFile3
-    )
-  }
->
-  <FaEye />
-</button>
-  <button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      peoFile3?.name || savedFileNames.peoFile3
-    )
-  }
->
-  <FaDownload />
-</button>
-
-</div>
-
-</div>
-
-</td>
-          </tr>
-        </tbody>
-      </table>
-{/* ===================== 1.1.3 ===================== */}
-
-<h3 className="main-section">
-  1.1.3 Process of Defining Vision, Mission and PEOs
-</h3>
-<div className="process-wrapper">
-
-  {/* LEFT CARD */}
-
-  <div className="process-card">
-
-    <h4>
-      A. Process of Defining Vision and Mission of the Department
-    </h4>
-
-    <label className="process-label">
-      Description 
-    </label>
-
-    <textarea
-      className="process-textarea"
-      rows="6"
-      value={visionMissionProcess}
-      onChange={(e) =>
-        setVisionMissionProcess(e.target.value)
-      }
-    />
-
-    <h5 className="support-heading">
-      Supporting Documents (PDF only)
-    </h5>
-
-    <table className="support-table">
-
-      <tbody>
-
-        <tr>
-          <td>1</td>
-          <td>Minutes of Meeting</td>
-          <td>
-           <label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setMinutesFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("minutesFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(minutesFile || savedFileNames.minutesFile) && (
-  <div className="pdf-name">
-    {minutesFile?.name || savedFileNames.minutesFile}
-  </div>
-)}
-
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      minutesFile?.name || savedFileNames.minutesFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      minutesFile?.name || savedFileNames.minutesFile
-    )
-  }
->
-  <FaDownload />
-</button>
-</div>
-
-          </td>
-        </tr>
-
-        <tr>
-          <td>2</td>
-          <td>BoS Approval</td>
-          <td>
-           <label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setBosFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("bosFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(bosFile || savedFileNames.bosFile) && (
-  <div className="pdf-name">
-    {bosFile?.name || savedFileNames.bosFile}
-  </div>
-)}
-
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      bosFile?.name || savedFileNames.bosFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      bosFile?.name || savedFileNames.bosFile
-    )
-  }
->
-  <FaDownload />
-</button>
-
-</div>
-
-          </td>
-        </tr>
-
-        <tr>
-          <td>3</td>
-          <td>IQAC Report</td>
-          <td>
-            <label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setIqacFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("iqacFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(iqacFile || savedFileNames.iqacFile) && (
-  <div className="pdf-name">
-    {iqacFile?.name || savedFileNames.iqacFile}
-  </div>
-)}
-
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      iqacFile?.name || savedFileNames.iqacFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      iqacFile?.name || savedFileNames.iqacFile
-    )
-  }
->
-  <FaDownload />
-</button>
-
-</div>
-
-          </td>
-        </tr>
-
-        <tr>
-          <td>4</td>
-          <td>Stakeholder Feedback</td>
-          <td>
-           <label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setStakeholderFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("stakeholderFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(stakeholderFile || savedFileNames.stakeholderFile) && (
-  <div className="pdf-name">
-    {stakeholderFile?.name || savedFileNames.stakeholderFile}
-  </div>
-)}
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      stakeholderFile?.name ||
-      savedFileNames.stakeholderFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      stakeholderFile?.name ||
-      savedFileNames.stakeholderFile
-    )
-  }
->
-  <FaDownload />
-</button>
-</div>
-
-          </td>
-        </tr>
-
-      </tbody>
-
-    </table>
-
-  </div>
-
-  {/* RIGHT CARD */}
-
-  <div className="process-card">
-
-    <h4>
-      B. Process of Defining PEOs of the Program
-    </h4>
-
-    <label className="process-label">
-      Description 
-    </label>
-
-    <textarea
-      className="process-textarea"
-      rows="6"
-      value={peoProcess}
-      onChange={(e) =>
-        setPeoProcess(e.target.value)
-      }
-    />
-
-    <h5 className="support-heading">
-      Supporting Documents (PDF only)
-    </h5>
-
-    <table className="support-table">
-
-      <tbody>
-
-        <tr>
-          <td>1</td>
-          <td>Stakeholder Feedback</td>
-          <td>
-          <label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setStakeholderFeedbackFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("stakeholderFeedbackFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(
-  stakeholderFeedbackFile ||
-  savedFileNames.stakeholderFeedbackFile
-) && (
-  <div className="pdf-name">
-    {stakeholderFeedbackFile?.name ||
-      savedFileNames.stakeholderFeedbackFile}
-  </div>
-)}
-
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      stakeholderFeedbackFile?.name ||
-      savedFileNames.stakeholderFeedbackFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      stakeholderFeedbackFile?.name ||
-      savedFileNames.stakeholderFeedbackFile
-    )
-  }
->
-  <FaDownload />
-</button>
-</div>
-      </td>
-        </tr>
-
-        <tr>
-          <td>2</td>
-          <td>Industry Consultation</td>
-          <td>
-           <label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setIndustryConsultationFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("industryConsultationFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(
-  industryConsultationFile ||
-  savedFileNames.industryConsultationFile
-) && (
-  <div className="pdf-name">
-    {industryConsultationFile?.name ||
-      savedFileNames.industryConsultationFile}
-  </div>
-)}
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      industryConsultationFile?.name ||
-      savedFileNames.industryConsultationFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      industryConsultationFile?.name ||
-      savedFileNames.industryConsultationFile
-    )
-  }
->
-  <FaDownload />
-</button>
-</div>
-
-          </td>
-        </tr>
-
-        <tr>
-          <td>3</td>
-          <td>BoS Approval</td>
-          <td>
-          <label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setBosApprovalFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("bosApprovalFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(
-  bosApprovalFile ||
-  savedFileNames.bosApprovalFile
-) && (
-  <div className="pdf-name">
-    {bosApprovalFile?.name ||
-      savedFileNames.bosApprovalFile}
-  </div>
-)}
-
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      bosApprovalFile?.name ||
-      savedFileNames.bosApprovalFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      bosApprovalFile?.name ||
-      savedFileNames.bosApprovalFile
-    )
-  }
->
-  <FaDownload />
-</button>
-</div>
-          </td>
-        </tr>
-
-      </tbody>
-
-    </table>
-
-  </div>
-
-</div>
-      {/* ===================== 1.1.4 ===================== */}
-<h3 className="main-section">
-  1.1.4 Dissemination of Vision, Mission and PEOs
-</h3>
-
-<div className="process-wrapper">
-
-  {/* LEFT CARD */}
-
-  <div className="process-card">
-
-    <h4>
-      A. Adequacy in respect of publication & dissemination
-    </h4>
-
-    <label className="process-label">
-      Description
-    </label>
-
-    <textarea
-      className="process-textarea"
-      rows="6"
-      value={publicationProcess}
-      onChange={(e)=>setPublicationProcess(e.target.value)}
-    />
-
-    <h5 className="support-heading">
-      Supporting Documents (PDF only)
-    </h5>
-
-    <table className="support-table">
-
-      <tbody>
-
-        <tr>
-          <td>1</td>
-          <td>Website Screenshot</td>
-         
-            <td>
-
-<div className="file-upload-row">
-<label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setWebsiteFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("websiteFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(websiteFile || savedFileNames.websiteFile) && (
-  <div className="pdf-name">
-    {websiteFile?.name || savedFileNames.websiteFile}
-  </div>
-)}
-
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      websiteFile?.name ||
-      savedFileNames.websiteFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      websiteFile?.name ||
-      savedFileNames.websiteFile
-    )
-  }
->
-  <FaDownload />
-</button>
-
-</div>
-
-
-
-
-
-</div>
-
-
-          </td>
-        </tr>
-
-        <tr>
-          <td>2</td>
-          <td>Notice Board</td>
-         
-           <td>
-
-<div className="file-upload-row">
-<label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setNoticeBoardFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("noticeBoardFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(noticeBoardFile || savedFileNames.noticeBoardFile) && (
-  <div className="pdf-name">
-    {noticeBoardFile?.name || savedFileNames.noticeBoardFile}
-  </div>
-)}
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      noticeBoardFile?.name ||
-      savedFileNames.noticeBoardFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      noticeBoardFile?.name ||
-      savedFileNames.noticeBoardFile
-    )
-  }
->
-  <FaDownload />
-</button>
-</div>
-
-</div>
-
-
-          </td>
-        </tr>
-
-        <tr>
-          <td>3</td>
-          <td>Student Handbook</td>
-          
-            <td>
-
-<div className="file-upload-row">
-<label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setStudentHandbookFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("studentHandbookFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(studentHandbookFile || savedFileNames.studentHandbookFile) && (
-  <div className="pdf-name">
-    {studentHandbookFile?.name || savedFileNames.studentHandbookFile}
-  </div>
-)}
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      studentHandbookFile?.name ||
-      savedFileNames.studentHandbookFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      studentHandbookFile?.name ||
-      savedFileNames.studentHandbookFile
-    )
-  }
->
-  <FaDownload />
-</button>
-
-</div>
-
-
-
-</div>
-
-
-          </td>
-        </tr>
-
-        <tr>
-          <td>4</td>
-          <td>Prospectus</td>
-          <td>
-
-<div className="file-upload-row">
-<label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setProspectusFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("prospectusFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(prospectusFile || savedFileNames.prospectusFile) && (
-  <div className="pdf-name">
-    {prospectusFile?.name || savedFileNames.prospectusFile}
-  </div>
-)}
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      prospectusFile?.name ||
-      savedFileNames.prospectusFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      prospectusFile?.name ||
-      savedFileNames.prospectusFile
-    )
-  }
->
-  <FaDownload />
-</button>
-</div>
-</div>
-</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  {/* RIGHT CARD */}
-
-  <div className="process-card">
-
-    <h4>
-      B. Process of dissemination among stakeholders
-    </h4>
-
-    <label className="process-label">
-      Description 
-    </label>
-
-    <textarea
-      className="process-textarea"
-      rows="6"
-      value={disseminationProcess}
-      onChange={(e)=>setDisseminationProcess(e.target.value)}
-    />
-
-    <h5 className="support-heading">
-      Supporting Documents (PDF only)
-    </h5>
-
-    <table className="support-table">
-
-      <tbody>
-
-        <tr>
-          <td>1</td>
-          <td>Orientation Program</td>
-          <td>
-
-<div className="file-upload-row">
-<label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setOrientationFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("orientationFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(orientationFile || savedFileNames.orientationFile) && (
-  <div className="pdf-name">
-    {orientationFile?.name || savedFileNames.orientationFile}
-  </div>
-)}
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      orientationFile?.name ||
-      savedFileNames.orientationFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      orientationFile?.name ||
-      savedFileNames.orientationFile
-    )
-  }
->
-  <FaDownload />
-</button>
-
-</div>
-
-
-
-</div>
-
-</td>
-        </tr>
-
-        <tr>
-          <td>2</td>
-          <td>Communication Plan</td>
-          <td>
-           
-
-<div className="file-upload-row">
-<label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setCommunicationPlanFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("communicationPlanFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(
-  communicationPlanFile ||
-  savedFileNames.communicationPlanFile
-) && (
-  <div className="pdf-name">
-    {communicationPlanFile?.name ||
-      savedFileNames.communicationPlanFile}
-  </div>
-)}
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      communicationPlanFile?.name ||
-      savedFileNames.communicationPlanFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      communicationPlanFile?.name ||
-      savedFileNames.communicationPlanFile
-    )
-  }
->
-  <FaDownload />
-</button>
-
-</div>
-
-
-</div>
-
-
-
-          </td>
-        </tr>
-
-        <tr>
-          <td>3</td>
-          <td>Meeting Records</td>
-          
-           <td>
-
-<div className="file-upload-row">
-<label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setMeetingRecordFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("meetingRecordFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(
-  meetingRecordFile ||
-  savedFileNames.meetingRecordFile
-) && (
-  <div className="pdf-name">
-    {meetingRecordFile?.name ||
-      savedFileNames.meetingRecordFile}
-  </div>
-)}
-
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      meetingRecordFile?.name ||
-      savedFileNames.meetingRecordFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      meetingRecordFile?.name ||
-      savedFileNames.meetingRecordFile
-    )
-  }
->
-  <FaDownload />
-</button>
-</div>
-
-</div>
-
-</td>
-          
-        </tr>
-
-      </tbody>
-
-    </table>
-
-  </div>
-
-</div>
-{/* ====================== 1.1.5 ====================== */}
-<h3 className="main-section">
-  1.1.5 Mapping of PEOs with Mission
-</h3>
-
-<div className="mapping-wrapper">
-
-  {/* Left Card */}
-
-  <div className="mapping-card">
-
-    <h4>A. PEO – Mission Mapping Matrix</h4>
-
-    <table className="mapping-table">
-
-      <thead>
-        <tr>
-          <th>PEO / Mission</th>
-          <th>M1</th>
-          <th>M2</th>
-          <th>M3</th>
-          <th>M4</th>
-        </tr>
-      </thead>
-
-      <tbody>
-
-        <tr>
-          <td>PEO 1</td>
-          <td><input type="number" min="0" max="3" value={peo1_m1} onChange={(e)=>setPeo1_m1(e.target.value)} /></td>
-<td><input type="number" min="0" max="3" value={peo1_m2} onChange={(e)=>setPeo1_m2(e.target.value)} /></td>
-<td><input type="number" min="0" max="3" value={peo1_m3} onChange={(e)=>setPeo1_m3(e.target.value)} /></td>
-<td><input type="number" min="0" max="3" value={peo1_m4} onChange={(e)=>setPeo1_m4(e.target.value)} /></td>
-        </tr>
-
-        <tr>
-          <td>PEO 2</td>
-          <td><input type="number" min="0" max="3" value={peo2_m1} onChange={(e)=>setPeo2_m1(e.target.value)} /></td>
-<td><input type="number" min="0" max="3" value={peo2_m2} onChange={(e)=>setPeo2_m2(e.target.value)} /></td>
-<td><input type="number" min="0" max="3" value={peo2_m3} onChange={(e)=>setPeo2_m3(e.target.value)} /></td>
-<td><input type="number" min="0" max="3" value={peo2_m4} onChange={(e)=>setPeo2_m4(e.target.value)} /></td>
-        </tr>
-
-        <tr>
-          <td>PEO 3</td>
-          <td><input type="number" min="0" max="3" value={peo3_m1} onChange={(e)=>setPeo3_m1(e.target.value)} /></td>
-<td><input type="number" min="0" max="3" value={peo3_m2} onChange={(e)=>setPeo3_m2(e.target.value)} /></td>
-<td><input type="number" min="0" max="3" value={peo3_m3} onChange={(e)=>setPeo3_m3(e.target.value)} /></td>
-<td><input type="number" min="0" max="3" value={peo3_m4} onChange={(e)=>setPeo3_m4(e.target.value)} /></td>
-        </tr>
-
-      </tbody>
-
-    </table>
-
-    <div className="mapping-note">
-      <b>Correlation:</b> 3 = Strong &nbsp; | &nbsp;
-      2 = Moderate &nbsp; | &nbsp;
-      1 = Weak &nbsp; | &nbsp;
-      0 = No Correlation
+                value={visionDescription}
+                onChange={(e) =>
+                  setVisionDescription(e.target.value)
+                }
+                placeholder="Enter Vision Statement"
+              />
+
+              <h5>
+                Supporting Documents
+              </h5>
+
+              <table className="support-table">
+
+                <tbody>
+
+                  <tr>
+
+                    <td>
+                      Vision Document
+                    </td>
+
+                    <td>
+                      <FileUpload
+                        file={visionFile}
+                        type="vision"
+                      />
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+            <div className="mapping-card">
+
+              <h4>
+                Department Vision
+              </h4>
+
+              <textarea
+                placeholder="Enter Department Vision"
+              />
+
+              <h5>
+                Supporting Documents
+              </h5>
+
+              <table className="support-table">
+
+                <tbody>
+
+                  <tr>
+
+                    <td>
+                      Department Vision Document
+                    </td>
+
+                    <td>
+
+                      <label className="custom-file-btn">
+
+                        Choose File
+
+                        <input
+                          type="file"
+                          accept="application/pdf"
+                          className="custom-file-input"
+                        />
+
+                      </label>
+
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+          {/* =================================================
+              1.1.3
+          ================================================= */}
+
+          <div className="main-section">
+            1.1.3 Mission of the Institute and the Department
+          </div>
+
+          <div className="mapping-wrapper">
+
+            <div className="mapping-card">
+
+              <h4>
+                Institute Mission
+              </h4>
+
+              <textarea
+                value={missionDescription}
+                onChange={(e) =>
+                  setMissionDescription(e.target.value)
+                }
+                placeholder="Enter Institute Mission"
+              />
+
+              <h5>
+                Supporting Documents
+              </h5>
+
+              <table className="support-table">
+
+                <tbody>
+
+                  <tr>
+
+                    <td>
+                      Mission Document
+                    </td>
+
+                    <td>
+
+                      <FileUpload
+                        file={missionFile}
+                        type="mission"
+                      />
+
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+            <div className="mapping-card">
+
+              <h4>
+                Department Mission
+              </h4>
+
+              <textarea
+                placeholder="Enter Department Mission"
+              />
+
+              <h5>
+                Supporting Documents
+              </h5>
+
+              <table className="support-table">
+
+                <tbody>
+
+                  <tr>
+
+                    <td>
+                      Department Mission Document
+                    </td>
+
+                    <td>
+
+                      <label className="custom-file-btn">
+
+                        Choose File
+
+                        <input
+                          type="file"
+                          accept="application/pdf"
+                          className="custom-file-input"
+                        />
+
+                      </label>
+
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+          {/* =================================================
+              1.1.4
+          ================================================= */}
+
+          <div className="main-section">
+            1.1.4 Program Educational Objectives
+          </div>
+
+          <table className="nba-table">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Sr. No.
+                </th>
+
+                <th>
+                  PEO
+                </th>
+
+                <th>
+                  Description
+                </th>
+
+                <th>
+                  Attachment (PDF only)
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr>
+
+                <td>
+                  1
+                </td>
+
+                <td>
+                  PEO1
+                </td>
+
+                <td>
+
+                  <textarea
+                    value={peoDescription}
+                    onChange={(e) =>
+                      setPeoDescription(e.target.value)
+                    }
+                    placeholder="Enter PEO1 description"
+                  />
+
+                </td>
+
+                <td>
+
+                  <FileUpload
+                    file={peoFile}
+                    type="peo"
+                  />
+
+                </td>
+
+              </tr>
+
+              <tr>
+
+                <td>
+                  2
+                </td>
+
+                <td>
+                  PEO2
+                </td>
+
+                <td>
+
+                  <textarea
+                    placeholder="Enter PEO2 description"
+                  />
+
+                </td>
+
+                <td>
+
+                  <FileUpload
+                    file={peoFile}
+                    type="peo"
+                  />
+
+                </td>
+
+              </tr>
+
+              <tr>
+
+                <td>
+                  3
+                </td>
+
+                <td>
+                  PEO3
+                </td>
+
+                <td>
+
+                  <textarea
+                    placeholder="Enter PEO3 description"
+                  />
+
+                </td>
+
+                <td>
+
+                  <FileUpload
+                    file={peoFile}
+                    type="peo"
+                  />
+
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+          {/* =================================================
+              1.1.5
+          ================================================= */}
+
+          <div className="main-section">
+            1.1.5 Mapping of PEOs with Mission
+          </div>
+
+          <div className="mapping-wrapper">
+
+            {/* MAPPING TABLE */}
+
+            <div className="mapping-card">
+
+              <h4>
+                PEO - Mission Mapping
+              </h4>
+
+              <table className="mapping-table">
+
+                <thead>
+
+                  <tr>
+
+                    <th>
+                      PEO
+                    </th>
+
+                    <th>
+                      Mission 1
+                    </th>
+
+                    <th>
+                      Mission 2
+                    </th>
+
+                    <th>
+                      Mission 3
+                    </th>
+
+                  </tr>
+
+                </thead>
+
+                <tbody>
+
+                  <tr>
+
+                    <td>
+                      PEO1
+                    </td>
+
+                    <td>
+                      <input
+                        type="text"
+                        value={mappingData.PEO1.Mission1}
+                        onChange={(e) =>
+                          handleMappingChange(
+                            "PEO1",
+                            "Mission1",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </td>
+
+                    <td>
+                      <input
+                        type="text"
+                        value={mappingData.PEO1.Mission2}
+                        onChange={(e) =>
+                          handleMappingChange(
+                            "PEO1",
+                            "Mission2",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </td>
+
+                    <td>
+                      <input
+                        type="text"
+                        value={mappingData.PEO1.Mission3}
+                        onChange={(e) =>
+                          handleMappingChange(
+                            "PEO1",
+                            "Mission3",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </td>
+
+                  </tr>
+
+                  <tr>
+
+                    <td>
+                      PEO2
+                    </td>
+
+                    <td>
+                      <input
+                        type="text"
+                        value={mappingData.PEO2.Mission1}
+                        onChange={(e) =>
+                          handleMappingChange(
+                            "PEO2",
+                            "Mission1",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </td>
+
+                    <td>
+                      <input
+                        type="text"
+                        value={mappingData.PEO2.Mission2}
+                        onChange={(e) =>
+                          handleMappingChange(
+                            "PEO2",
+                            "Mission2",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </td>
+
+                    <td>
+                      <input
+                        type="text"
+                        value={mappingData.PEO2.Mission3}
+                        onChange={(e) =>
+                          handleMappingChange(
+                            "PEO2",
+                            "Mission3",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </td>
+
+                  </tr>
+
+                  <tr>
+
+                    <td>
+                      PEO3
+                    </td>
+
+                    <td>
+                      <input
+                        type="text"
+                        value={mappingData.PEO3.Mission1}
+                        onChange={(e) =>
+                          handleMappingChange(
+                            "PEO3",
+                            "Mission1",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </td>
+
+                    <td>
+                      <input
+                        type="text"
+                        value={mappingData.PEO3.Mission2}
+                        onChange={(e) =>
+                          handleMappingChange(
+                            "PEO3",
+                            "Mission2",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </td>
+
+                    <td>
+                      <input
+                        type="text"
+                        value={mappingData.PEO3.Mission3}
+                        onChange={(e) =>
+                          handleMappingChange(
+                            "PEO3",
+                            "Mission3",
+                            e.target.value
+                          )
+                        }
+                      />
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+              <div className="mapping-note">
+
+                <strong>
+                  Correlation:
+                </strong>
+
+                <br />
+
+                3 - High correlation
+                <br />
+
+                2 - Moderate correlation
+                <br />
+
+                1 - Low correlation
+                <br />
+
+                0 - No correlation
+
+              </div>
+
+            </div>
+
+            {/* NOTE CARD */}
+
+            <div className="mapping-card">
+
+              <h4>
+                Mapping Justification
+              </h4>
+
+              <textarea
+                value={mappingNote}
+                onChange={(e) =>
+                  setMappingNote(e.target.value)
+                }
+                placeholder="Enter justification for PEO and Mission mapping..."
+              />
+
+              <div className="mapping-note-box">
+
+                <h4>
+                  Note
+                </h4>
+
+                <ul>
+
+                  <li>
+                    The mapping should demonstrate the relationship
+                    between PEOs and Mission statements.
+                  </li>
+
+                  <li>
+                    Provide appropriate supporting evidence wherever
+                    applicable.
+                  </li>
+
+                  <li>
+                    Correlation values should be justified.
+                  </li>
+
+                </ul>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* =================================================
+              BOTTOM BUTTONS
+          ================================================= */}
+
+          <div className="btn-row">
+
+            <button
+              type="button"
+              className="previous-btn"
+              onClick={() => window.history.back()}
+            >
+              <FaArrowLeft />
+              &nbsp; Previous
+            </button>
+
+            <button
+              type="button"
+              className="back-btn"
+              onClick={() => window.history.back()}
+            >
+              <FaArrowLeft />
+              &nbsp; Back
+            </button>
+
+            <button
+              type="button"
+              className="save-btn"
+              onClick={handleSave}
+            >
+              <FaSave />
+              &nbsp; Save
+            </button>
+
+            <button
+              type="button"
+              className="delete-btn"
+              onClick={handleDelete}
+            >
+              <FaTrash />
+              &nbsp; Delete
+            </button>
+
+            <button
+              type="button"
+              className="clear-btn"
+              onClick={handleClear}
+            >
+              <FaBroom />
+              &nbsp; Clear
+            </button>
+
+            <button
+              type="button"
+              className="print-btn"
+              onClick={handlePrint}
+            >
+              <FaPrint />
+              &nbsp; Print
+            </button>
+
+            <Link
+              to="/criteria/1.1.2"
+              className="next-page-btn"
+            >
+              <FaArrowRight />
+              &nbsp; Next
+            </Link>
+
+          </div>
+
+        </div>
+
+      </main>
+
     </div>
-
-  </div>
-
-  {/* Right Card */}
-
-  <div className="mapping-card">
-
-    <h4>B. Justification of Correlation Parameters</h4>
-
-    <label>Description </label>
-
-    <textarea
-  rows="7"
-  value={justification}
-  onChange={(e) => setJustification(e.target.value)}
-/>
-    <h5>Supporting Documents (PDF only)</h5>
-
-    <table className="support-table">
-
-      <tbody>
-
-        <tr>
-          <td>1</td>
-          <td>Justification Document</td>
-          <td>
-
-  <input
-    type="file"
-    id="justificationFile"
-    className="custom-file-input"
-    onChange={(e) => {
-      if (e.target.files.length > 0) {
-        setJustificationFile(e.target.files[0]);
-        setFileName(e.target.files[0].name);
-      }
-    }}
-  />
-<label className="choose-file-btn">
-Choose File
-<input
-  type="file"
-  hidden
-  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-  onChange={(e) => {
-
-    if (e.target.files.length > 0) {
-
-      const file = e.target.files[0];
-
-      // Actual file
-      setJustificationFile(file);
-
-      // Filename localStorage मध्ये
-      saveFileName("justificationFile", file);
-
-    }
-
-  }}
-/>
-</label>
-{(
-  justificationFile ||
-  savedFileNames.justificationFile
-) && (
-  <div className="pdf-name">
-    {justificationFile?.name ||
-      savedFileNames.justificationFile}
-  </div>
-)}
-
-<div className="document-actions">
-<button
-  type="button"
-  className="view-btn"
-  onClick={() =>
-    handleFileView(
-      justificationFile?.name ||
-      savedFileNames.justificationFile
-    )
-  }
->
-  <FaEye />
-</button>
-<button
-  type="button"
-  className="download-btn"
-  onClick={() =>
-    handleFileDownload(
-      justificationFile?.name ||
-      savedFileNames.justificationFile
-    )
-  }
->
-  <FaDownload />
-</button>
-</div>
-</td>
-        </tr>
-
-      </tbody>
-
-    </table>
-
-  </div>
-
-</div>
-<div className="mapping-note-box">
-</div>
- <div className="btn-row">
-  <button
-    className="save-btn"
-    onClick={handleSave}
-  >
-    Save
-  </button>
-  
-<button
-  type="button"
-  className="clear-btn"
-  onClick={handleClear}
->
-  Clear
-</button>
-<button
-  className="print-btn"
-  onClick={handlePrint}
->
-  Print
-</button>
-
-<Link to="/curriculum">
-  <button className="next-page-btn">
-    Next →
-  </button>
-</Link>
-</div>
-
-</div>
-    
   );
 }
 

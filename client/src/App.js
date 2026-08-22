@@ -88,6 +88,19 @@ import SwayamDevelopmentView from "./pages/SwayamDevelopmentView";
 import DevelopmentActivityAdd from "./pages/DevelopmentActivityAdd";
 import DevelopmentActivityView from "./pages/DevelopmentActivityView";
 
+
+//criteria 7//
+import Criteria7_1 from "./pages/criteria7/Criteria7_1";
+import Criteria7_2 from "./pages/criteria7/Criteria7_2";
+import Criteria7_3 from "./pages/criteria7/Criteria7_3";
+import Criteria7_4 from "./pages/criteria7/Criteria7_4";
+import Criteria7_5 from "./pages/criteria7/Criteria7_5";
+
+//criteria 8//
+import Criteria8_1 from "./pages/criteria8/Criteria8_1";
+import Criteria8_2 from "./pages/criteria8/Criteria8_2";
+import Criteria8_3 from "./pages/criteria8/Criteria8_3";
+import Criteria8_4 from "./pages/criteria8/Criteria8_4";
 // =========================================================
 // APP
 // =========================================================
@@ -546,7 +559,17 @@ function App() {
         path="*"
         element={<Navigate to="/" replace />}
       />
+        <Route path="/criteria/7.1" element={<Criteria7_1 />} />
+        <Route path="/criteria/7.2" element={<Criteria7_2 />} />
+        <Route path="/criteria/7.3" element={<Criteria7_3 />} />
+        <Route path="/criteria/7.4" element={<Criteria7_4 />} />
+        <Route path="/criteria/7.5" element={<Criteria7_5 />} />
 
+      
+      <Route path="/criteria/8.1" element={<Criteria8_1 />} />
+        <Route path="/criteria/8.2" element={<Criteria8_2 />} />
+        <Route path="/criteria/8.3" element={<Criteria8_3 />} />
+        <Route path="/criteria/8.4" element={<Criteria8_4 />} />
     </Routes>
   );
 }

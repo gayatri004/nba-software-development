@@ -89,20 +89,7 @@ const handleSave = async () => {
     alert("Please upload Supporting Document.");
     return;
   }
-if (!projectType) {
-  alert("Please select Project Type.");
-  return;
-}
 
-if (!status) {
-  alert("Please select Project Status.");
-  return;
-}
-
-if (!achievement.trim()) {
-  alert("Please enter Achievement.");
-  return;
-}
   try {
 
     const formData = new FormData();

@@ -1,21 +1,104 @@
-.popso-page{
-  padding:30px;
-  background:#f5f6fa;
-  min-height:100vh;
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI", sans-serif;
 }
+
+body{
+  margin:0;
+  padding:0;
+  background:#f5f6fa;
+}
+
+
+/* =========================================================
+   SIDEBAR LAYOUT
+========================================================= */
+
+/*
+   NBASidebar is fixed on the left.
+   Main PoPso content starts after sidebar.
+*/
+
+.popso-page{
+  margin-left:260px;
+  width:calc(100% - 260px);
+  min-height:100vh;
+
+  padding:30px;
+
+  background:#f5f6fa;
+
+  overflow-x:hidden;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
 
 .popso-container{
-  background:white;
+  width:100%;
+
+  background:#ffffff;
+
   padding:25px;
+
   border-radius:12px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.1);
+
+  box-shadow:0 2px 10px rgba(0,0,0,0.08);
 }
 
-.po-card{
-  margin-bottom:35px;
-  border-bottom:1px dashed #d8d8d8;
-  padding-bottom:30px;
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.page-header{
+  margin-bottom:25px;
 }
+
+.page-header h2{
+  font-size:34px;
+  color:#1f4ba5;
+
+  margin-bottom:15px;
+
+  font-weight:600;
+
+  line-height:1.3;
+}
+
+.page-header p{
+  font-size:17px;
+  line-height:1.8;
+  color:#555;
+}
+
+
+/* =========================================================
+   PO CARD
+========================================================= */
+
+.po-card{
+  width:100%;
+
+  margin-bottom:40px;
+
+  padding-bottom:35px;
+
+  border-bottom:1px solid #e5e7eb;
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
 
 .card-header{
   background:linear-gradient(
@@ -23,299 +106,958 @@
     #4f6af3,
     #5265f5
   );
+
   color:white;
+
   padding:18px 25px;
+
   border-radius:10px 10px 0 0;
 
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
 
   font-size:20px;
 }
+
+
+/* =========================================================
+   CARD BODY
+========================================================= */
+
 .card-body{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:40px;
-    padding:30px;
-}
-.card-body h4{
-    font-size:30px;
-    font-weight:600;
-    color:#1b2559;
-    margin-bottom:15px;
-    line-height:1.4;
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:flex-start;
+
+  gap:40px;
+
+  padding:30px;
 }
 
-.card-body h4 span{
-    color:#2563eb;
-    font-size:22px;
+
+/* =========================================================
+   LEFT SECTION
+========================================================= */
+
+.popso-left{
+  flex:2.5;
+  min-width:0;
 }
-.card-body input[type="file"]{
+
+.popso-left h4{
+  font-size:28px;
+
+  line-height:1.4;
+
+  font-weight:600;
+
+  color:#1b2559;
+
+  margin-bottom:15px;
+}
+
+.popso-left h4 span{
+  display:inline;
+
+  white-space:nowrap;
+
+  font-size:20px;
+
+  color:#2563eb;
+}
+
+
+/* =========================================================
+   SECTION DESCRIPTION
+========================================================= */
+
+.section-text{
+  font-size:17px;
+
+  line-height:1.8;
+
+  color:#555;
+
+  margin-top:10px;
+
+  max-width:900px;
+}
+
+
+/* =========================================================
+   RIGHT SECTION
+========================================================= */
+
+.popso-right{
   flex:1;
+
+  max-width:420px;
+
+  min-width:320px;
+}
+
+
+/* =========================================================
+   FILE UPLOAD ROW
+========================================================= */
+
+.file-upload-row{
+  width:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+}
+
+
+/* =========================================================
+   CHOOSE FILE BUTTON
+========================================================= */
+
+.choose-file-btn{
+  min-width:105px;
+
+  height:38px;
+
+  padding:0 15px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  background:#2563eb;
+
+  color:#ffffff;
+
+  border-radius:7px;
+
+  font-size:13px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:0.2s ease;
+
+  white-space:nowrap;
+}
+
+.choose-file-btn:hover{
+  background:#1d4ed8;
+
+  transform:translateY(-1px);
+}
+
+
+/* Hide actual file input */
+
+.custom-file-input{
+  display:none !important;
+}
+
+
+/* =========================================================
+   FILE NAME
+========================================================= */
+
+.pdf-name{
+  flex:1;
+
+  min-width:120px;
+
+  max-width:220px;
+
+  padding:8px 10px;
+
+  background:#f8fafc;
+
+  border:1px solid #e2e8f0;
+
+  border-radius:6px;
+
+  color:#475569;
+
+  font-size:12px;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+}
+
+
+/* =========================================================
+   DOCUMENT ACTIONS
+========================================================= */
+
+.document-actions{
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:8px;
+
+  flex-wrap:nowrap;
+}
+
+.document-actions button{
+  width:38px;
+
+  height:34px;
+
+  border:none;
+
+  border-radius:6px;
+
+  color:#ffffff;
+
+  font-size:14px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  cursor:pointer;
+
+  transition:0.2s ease;
+}
+
+
+/* View */
+
+.view-btn{
+  background:#2563eb;
+}
+
+.view-btn:hover{
+  background:#1d4ed8;
+
+  transform:translateY(-1px);
+}
+
+
+/* Download */
+
+.download-btn{
+  width:38px !important;
+
+  height:34px !important;
+
+  background:#16a34a;
+
+  color:#ffffff;
+
+  border:none;
+
+  border-radius:6px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  cursor:pointer;
+
+  transition:0.2s ease;
+}
+
+.download-btn:hover{
+  background:#15803d;
+
+  transform:translateY(-1px);
+}
+
+
+/* =========================================================
+   FILE INPUT FALLBACK
+========================================================= */
+
+.card-body input[type="file"]{
   padding:15px;
+
   border:1px solid #ddd;
+
   border-radius:8px;
 }
+
+
+/* =========================================================
+   FILE NAME OLD STYLE
+========================================================= */
 
 .file-name{
   color:#666;
-  font-size:10px;
+
+  font-size:12px;
+
+  margin-top:5px;
 }
+
+
+/* =========================================================
+   POPSO ACTIONS
+========================================================= */
+
+.popso-actions{
+  display:flex;
+
+  flex-direction:row;
+
+  justify-content:flex-end;
+
+  align-items:center;
+
+  gap:10px;
+
+  margin-top:15px;
+}
+
+.popso-actions button{
+  width:95px;
+
+  height:36px;
+
+  border:none;
+
+  border-radius:8px;
+
+  color:#ffffff;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:5px;
+
+  cursor:pointer;
+
+  transition:0.2s ease;
+}
+
+.popso-actions button:hover{
+  transform:translateY(-2px);
+
+  box-shadow:0 6px 15px rgba(0,0,0,.15);
+}
+
+
+/* =========================================================
+   POPSO VIEW / DOWNLOAD / PRINT
+========================================================= */
+
+.popso-view-btn{
+  background:#2563eb;
+}
+
+.popso-download-btn{
+  background:#16a34a;
+}
+
+.popso-print-btn{
+  background:#f97316;
+}
+
+
+/* =========================================================
+   POPSO FILE BOX
+========================================================= */
+
+.popso-file-box{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+
+  flex:1;
+}
+
+
+/* =========================================================
+   POPSO BODY
+========================================================= */
+
+.popso-body{
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:20px;
+}
+
+
+/* =========================================================
+   CONTEXT BOX
+========================================================= */
+
+.context-box{
+  background:#eef5ff;
+
+  border-left:5px solid #2563eb;
+
+  padding:20px;
+
+  border-radius:8px;
+
+  margin:30px 0;
+}
+
+.context-box h3{
+  margin-bottom:15px;
+
+  color:#1f4ba5;
+}
+
+.context-box ul{
+  margin-left:20px;
+}
+
+.context-box li{
+  margin-bottom:10px;
+
+  line-height:1.7;
+}
+
+
+/* =========================================================
+   SECTION DIVIDER
+========================================================= */
+
+.section-divider{
+  border:0;
+
+  border-top:1px solid #dcdcdc;
+
+  margin:35px 0 0 0;
+}
+
+
+/* =========================================================
+   BUTTON ROW
+========================================================= */
 
 .btn-row{
   display:flex;
-  gap:25px;
-  margin-top:20px;
+
+  align-items:center;
+
+  justify-content:flex-start;
+
+  gap:8px;
+
+  width:100%;
+
+  margin-top:25px;
+
+  flex-wrap:nowrap;
 }
 
-.save-btn{
-  background:#2563eb;
-  color:white;
+
+/* =========================================================
+   COMMON ACTION BUTTON
+========================================================= */
+
+.btn-row button{
+  width:90px;
+
+  height:34px;
+
   border:none;
-  padding:15px 35px;
-  border-radius:5px;
-  font-size:18px;
+
+  border-radius:6px;
+
+  color:#ffffff;
+
+  font-family:"Segoe UI", sans-serif;
+
+  font-size:13px;
+
+  font-weight:600;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:5px;
+
   cursor:pointer;
+
+  padding:0;
+
+  box-sizing:border-box;
+
+  transition:all 0.2s ease;
 }
+
+.btn-row button:hover{
+  transform:translateY(-1px);
+
+  box-shadow:0 4px 10px rgba(0,0,0,0.12);
+}
+
+.btn-row button:active{
+  transform:scale(0.97);
+}
+
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
+
+.previous-btn{
+  background:#ff7209 !important;
+}
+
+.previous-btn:hover{
+  background:#e86605 !important;
+}
+
+
+/* =========================================================
+   BACK
+========================================================= */
+
+.back-btn{
+  background:#61748b !important;
+}
+
+.back-btn:hover{
+  background:#52657a !important;
+}
+
+
+/* =========================================================
+   SAVE
+========================================================= */
+
+.save-btn{
+  background:#218c4b !important;
+
+  color:#ffffff;
+
+  border:none;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:5px;
+}
+
+.save-btn:hover{
+  background:#19783f !important;
+}
+
+
+/* =========================================================
+   UPDATE
+========================================================= */
 
 .update-btn{
   background:#16a34a;
+
   color:white;
+
   border:none;
-  padding:15px 35px;
+
   border-radius:8px;
+
+  padding:15px 35px;
+
   font-size:18px;
+
   cursor:pointer;
 }
+
+.update-btn:hover{
+  opacity:0.9;
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
 
 .delete-btn{
   background:#ef4444;
+
   color:white;
+
   border:none;
+
+  border-radius:8px;
+
   padding:15px 35px;
-  border-radius:8px;
+
   font-size:18px;
+
   cursor:pointer;
 }
 
-.save-btn:hover,
-.update-btn:hover,
 .delete-btn:hover{
-  opacity:0.9;
+  background:#dc2626;
 }
-.next-page-btn{
-  background:#7c3aed;
+
+
+/* =========================================================
+   CLEAR
+========================================================= */
+
+.clear-btn{
+  background:#f5a208 !important;
+
   color:white;
+
   border:none;
-  width:130px;
-  height:42px;
-  border-radius:8px;
-  font-size:15px;
-  font-weight:600;
-  cursor:pointer;
 }
 
-.next-page-btn:hover{
-  background:#6d28d9;
-}
-.download-btn-small{
-    margin-left:15px;
-    background:#2563eb;
-    color:#fff;
-    border:none;
-    border-radius:6px;
-    padding:9px 18px;
-    cursor:pointer;
-    font-size:14px;
-    font-weight:600;
-    transition:.3s;
+.clear-btn:hover{
+  background:#df9105 !important;
 }
 
-.download-btn-small:hover{
-    background:#1d4ed8;
-}
+
+/* =========================================================
+   PRINT
+========================================================= */
+
 .print-btn{
-    background:#16a34a;
-    color:#fff;
-    border:none;
-    border-radius:8px;
-    padding:12px 30px;
-    cursor:pointer;
-    font-size:16px;
-    font-weight:600;
+  background:#7059ad !important;
+
+  color:#ffffff;
+
+  border:none;
+
+  border-radius:6px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:5px;
+
+  cursor:pointer;
 }
 
 .print-btn:hover{
-    background:#15803d;
+  background:#5f489b !important;
 }
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+.next-page-btn{
+  background:#078b83 !important;
+
+  color:white;
+
+  border:none;
+
+  width:90px;
+
+  height:34px;
+
+  border-radius:6px;
+
+  font-size:13px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+}
+
+.next-page-btn:hover{
+  background:#06766f !important;
+}
+
+
+/* =========================================================
+   SMALL DOWNLOAD BUTTON
+========================================================= */
+
+.download-btn-small{
+  margin-left:15px;
+
+  background:#2563eb;
+
+  color:#fff;
+
+  border:none;
+
+  border-radius:6px;
+
+  padding:9px 18px;
+
+  cursor:pointer;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  transition:.3s;
+}
+
+.download-btn-small:hover{
+  background:#1d4ed8;
+}
+
+
+/* =========================================================
+   PREVIEW BUTTON
+========================================================= */
+
 .preview-btn{
   background:#2563eb;
+
   color:white;
+
   border:none;
+
   padding:10px 22px;
+
   border-radius:6px;
+
   cursor:pointer;
+
   font-size:15px;
+
   font-weight:600;
+
   margin-right:10px;
 }
 
 .preview-btn:hover{
   background:#1d4ed8;
 }
-.popso-actions{
-    display:flex;
-    flex-direction:row;   /* column ऐवजी row */
-    justify-content:flex-end;
-    align-items:center;
-    gap:10px;
-    margin-top:10px;
-}
-.popso-actions button{
 
-    width:95px;
-    height:36px;
 
-    border:none;
-    border-radius:8px;
+/* =========================================================
+   OLD PRINT BUTTON SUPPORT
+========================================================= */
 
-    color:#fff;
-    font-size:14px;
-    font-weight:600;
+.popso-container > .print-btn{
+  background:#16a34a;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:5px;
+  color:#fff;
 
-    cursor:pointer;
-}
-.popso-view-btn{
-    background:#2563eb;
-}
-.popso-download-btn{
-    background:#16a34a;
-}
-.popso-print-btn{
-    background:#f97316;
-}
-.popso-actions button:hover{
-    transform:translateY(-2px);
-    box-shadow:0 6px 15px rgba(0,0,0,.15);
-}
-.popso-file-box{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    flex:1;
-}
-.popso-body{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-}
-/* Left & Right Layout */
+  border:none;
 
-.popso-left{
-    flex:2;
+  border-radius:8px;
+
+  padding:12px 30px;
+
+  cursor:pointer;
+
+  font-size:16px;
+
+  font-weight:600;
 }
 
-.popso-right{
-    flex:1;
-    max-width:430px;
-}
 
-/* Description */
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
 
-.section-text{
-    font-size:17px;
-    line-height:1.8;
-    color:#555;
-    margin-top:10px;
-}
+@media(max-width:1200px){
 
-/* Page Header */
+  .popso-page{
+    margin-left:240px;
 
-.page-header{
-    margin-bottom:25px;
-}
+    width:calc(100% - 240px);
 
-.page-header h2{
-    font-size:34px;
-    color:#1f4ba5;
-    margin-bottom:15px;
-    font-weight:500;
-}
-
-.page-header p{
-    font-size:17px;
-    line-height:1.8;
-    color:#555;
-}
-
-/* Context Box */
-
-.context-box{
-    background:#eef5ff;
-    border-left:5px solid #2563eb;
     padding:20px;
-    border-radius:8px;
-    margin:30px 0;
+  }
+
+  .popso-container{
+    padding:20px;
+  }
+
+  .card-body{
+    gap:25px;
+
+    padding:20px;
+  }
+
+  .popso-left h4{
+    font-size:24px;
+  }
+
+  .section-text{
+    font-size:15px;
+  }
+
+  .popso-right{
+    max-width:360px;
+
+    min-width:280px;
+  }
 }
 
-.context-box h3{
-    margin-bottom:15px;
-    color:#1f4ba5;
-}
 
-.context-box ul{
-    margin-left:20px;
-}
+/* =========================================================
+   RESPONSIVE - SMALL TABLET
+========================================================= */
 
-.context-box li{
-    margin-bottom:10px;
-    line-height:1.7;
-}
-.popso-left h4{
-    font-size:28px;
-    line-height:1.4;
-    font-weight:600;
-}
+@media(max-width:900px){
 
-.popso-left h4 span{
-    display:inline;
-    white-space:nowrap;
-    font-size:20px;
-    color:#2563eb;
-}
-.popso-left{
-    flex:2.5;
-}
+  .popso-page{
+    margin-left:0;
 
-.popso-right{
-    flex:1;
-    max-width:420px;
-}
-.popso-right input[type="file"]{
     width:100%;
-    padding:16px;
-    border:1px solid #ddd;
+
+    padding:15px;
+  }
+
+  .card-body{
+    flex-direction:column;
+
+    gap:25px;
+  }
+
+  .popso-left,
+  .popso-right{
+    width:100%;
+
+    max-width:none;
+
+    min-width:0;
+  }
+
+  .popso-right{
+    width:100%;
+  }
+
+  .file-upload-row{
+    width:100%;
+  }
+
+  .pdf-name{
+    max-width:none;
+
+    flex:1;
+  }
+
+  .btn-row{
+    flex-wrap:wrap;
+
+    justify-content:flex-start;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+  .popso-page{
+    padding:10px;
+  }
+
+  .popso-container{
+    padding:12px;
+
     border-radius:8px;
-}
-.popso-actions{
-    margin-top:15px;
-    gap:12px;
-}
-.po-card{
-    margin-bottom:40px;
-    padding-bottom:35px;
-    border-bottom:1px solid #e5e7eb;
-}
-.section-divider{
-    border:0;
-    border-top:1px solid #dcdcdc;
-    margin:35px 0 0 0;
+  }
+
+  .page-header h2{
+    font-size:24px;
+  }
+
+  .card-body{
+    padding:15px;
+
+    gap:20px;
+  }
+
+  .popso-left h4{
+    font-size:21px;
+  }
+
+  .section-text{
+    font-size:14px;
+
+    line-height:1.6;
+  }
+
+  .file-upload-row{
+    flex-direction:column;
+
+    align-items:stretch;
+  }
+
+  .choose-file-btn{
+    width:100%;
+  }
+
+  .pdf-name{
+    width:100%;
+
+    max-width:none;
+
+    text-align:center;
+  }
+
+  .document-actions{
+    width:100%;
+
+    justify-content:center;
+  }
+
+  .document-actions button{
+    width:45px;
+  }
+
+  .btn-row{
+    gap:6px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+  }
+
+  .btn-row button{
+    width:85px;
+
+    height:34px;
+  }
 }

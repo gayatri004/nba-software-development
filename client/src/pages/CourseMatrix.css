@@ -1,657 +1,826 @@
-.course-matrix-page{
-  padding:25px;
-  background:#f5f7fb;
-  min-height:100vh;
-}
-
-/* Title */
-
-.page-title h1{
-  margin:0 0 20px;
-  color:#1b2559;
-  font-size:34px;
-  font-weight:700;
-}
-
-/* Filter Section */
-
-.filter-card{
-  background:white;
-  border-radius:12px;
-  padding:20px;
-  display:flex;
-  gap:20px;
-  align-items:end;
-  margin-bottom:20px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.08);
-}
-
-.filter-box{
-  display:flex;
-  flex-direction:column;
-  flex:1;
-}
-
-.filter-box label{
-  margin-bottom:8px;
-  font-size:14px;
-  font-weight:600;
-  color:#333;
-}
-
-.filter-box select{
-  height:45px;
-  border:1px solid #ddd;
-  border-radius:8px;
-  padding:0 12px;
-  font-size:15px;
-}
-
-.download-btn{
-  background:white;
-  color:#3d4cff;
-  border:1px solid #3d4cff;
-  height:45px;
-  padding:0 20px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:600;
-}
-
-/* Section Card */
-
-.section-card{
-  background:white;
-  border-radius:12px;
-  margin-bottom:20px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.08);
-  overflow:hidden;
-}
-
-.section-header{
-  background:linear-gradient(
-    90deg,
-    #304ffe,
-    #8e44ff
-  );
-  color:white;
-  padding:12px 20px;
-  font-size:18px;
-  font-weight:600;
-}
-
-.section-content{
-  display:flex;
-  gap:25px;
-  padding:20px;
-}
-
-.left-content{
-  flex:1;
-}
-
-.top-row{
-  display:flex;
-  gap:15px;
-  margin-bottom:15px;
-}
-
-.top-row select{
-  height:42px;
-  border:1px solid #ddd;
-  border-radius:8px;
-  padding:0 12px;
-  min-width:180px;
-}
-
-.add-btn{
-  background:white;
-  border:1px solid #304ffe;
-  color:#304ffe;
-  padding:10px 15px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:600;
-}
-
-/* Table */
-
-table{
-  width:100%;
-  border-collapse:collapse;
-}
-
-table th{
-  background:#f7f8fc;
-  border:1px solid #e5e7eb;
-  padding:10px;
-  text-align:center;
-  font-size:14px;
-}
-
-table td:last-child{
-  text-align:center;
-}
-
-.action-buttons{
-  display:flex;
-  flex-direction:row !important;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-}
-
-table tbody tr:hover{
-  background:#fafbff;
-}
-
-/* Upload Panel */
-.upload-panel{
-  width:280px;
-  min-height:250px;
-  border:2px dashed #d7d7d7;
-  border-radius:10px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  cursor:pointer;
-  text-align:center;
-}
-
-.pdf-name{
-  margin-top:15px;
-  color:#090a13;
-  font-weight:600;
-  word-break:break-all;
-}
-
-.upload-icon{
-  font-size:45px;
-  color:#304ffe;
-  margin-bottom:10px;
-}
-
-.upload-panel h4{
-  margin:10px 0 5px;
-  color:#1b2559;
-}
-
-.upload-panel p{
-  margin-bottom:15px;
-  color:#777;
-  font-size:13px;
-}
-
-.upload-panel input[type="file"]{
-  width:180px;
-}
-
-/* Action Buttons */
-.icon-btn{
-  width:38px;
-  height:38px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:15px;
-}
-
-.edit{
-  background:#4361ee;
-}
-
-.delete{
-  background:#ff4d4f;
-}
-
-.view-btn{
-  background:#304ffe;
-  color:white;
-  border:none;
-  padding:8px 15px;
-  border-radius:6px;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-
-/* Footer Buttons */
-/* FOOTER BUTTONS */
-
-.footer-buttons{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:15px;
-  margin-top:30px;
-  flex-wrap:wrap;
-}
-
-/* COMMON SIZE */
-
-.previous-btn,
-.draft-btn,
-.submit-btn,
-.next-page-btn{
-  width:160px;
-  height:50px;
-  border:none;
-  border-radius:8px;
-  font-size:16px;
-  font-weight:600;
-  color:white;
-  cursor:pointer;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-/* COLORS */
-
-.previous-btn{
-  background:#f97316;
-}
-
-.draft-btn{
-  background:#4361ee;
-}
-
-.submit-btn{
-  background:#16a34a;
-}
-
-.next-page-btn{
-  background:#7c3aed;
-}
-
-/* HOVER */
-
-.previous-btn:hover,
-.draft-btn:hover,
-.submit-btn:hover,
-.next-page-btn:hover,
-.add-btn:hover,
-.download-btn:hover{
-  opacity:0.9;
-}
-.action-buttons{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.edit-btn,
-.delete-btn{
-  width: 40px;
-  height: 40px;
-  border: none;
-  cursor: pointer;
-}
-table {
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
-}
-
-table th,
-table td {
-  padding: 8px;
-  text-align: center;
-  border: 1px solid #ddd;
-}
-
-table input {
-  width: 45px;
-  height: 30px;
-  text-align: center;
-}
-.print-btn{
-    width: 160px;
-    height: 50px;
-    background:#1d79c5;
-    color:white;
-    border:none;
-    border-radius:12px;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-
-    transition:.3s;
-}
-
-
-.matrix-save-btn{
-    background: none;
-    border: none;
-    color: black;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 0;
-}
-.upload-panel{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-}
-.upload-box{
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-width:280px;
-
-}
-
-
-.document-actions{
-  display:flex;
-  gap:10px;
-  margin-top:15px;
-  justify-content:center;
-}
-
-.view-btn,
-.download-btn-upload,
-.print-btn-upload{
-
-  border:none;
-  padding:8px 14px;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:14px;
-  font-weight:600;
-}
-
-.view-btn{
-  background:#0d6efd;
-  color:white;
-}
-
-.download-btn-upload{
-  background:#198754;
-  color:white;
-}
-
-.print-btn-upload{
-  background:#fd7e14;
-  color:white;
-}
-.criteria-description{
-    background:#fff;
-    padding:15px 20px;
-    border-radius:10px;
-    margin:20px 0 10px;
-}
-
-.criteria-description p{
-    font-size:17px;
-    line-height:1.8;
-    color:#444;
-}
-
-.context-box{
-    background:#eef5ff;
-    border:1px solid #bcd3ff;
-    border-radius:10px;
-    padding:20px;
-    margin-bottom:25px;
-}
-
-.context-box h3{
-    color:#0d47c7;
-    margin-bottom:12px;
-    font-size:20px;
-}
-
-.context-box ul{
-    margin-left:20px;
-}
-
-.context-box li{
-    margin-bottom:10px;
-    line-height:1.7;
-    color:#333;
-}
-/* ================= FOOTER BUTTONS ================= */
-
-.footer-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  margin-top: 30px;
-  flex-wrap: nowrap;
-}
-
-
-/* ================= COMMON BUTTON SIZE ================= */
-
-.footer-buttons button {
-  width: 140px;
-  height: 35px;
-
-  border: none;
-  border-radius: 12px;
-
-  font-size: 18px;
-  font-weight: 600;
-  color: white;
-
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
+/* =========================================================
+   COURSE MATRIX - MAIN LAYOUT
+========================================================= */
+
+* {
   box-sizing: border-box;
 }
 
+.course-matrix-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f7fb;
+}
 
-/* ================= PREVIOUS ================= */
+.course-matrix-content {
+  flex: 1;
+  min-width: 0;
+  margin-left: 250px;
+  padding: 25px 30px 40px;
+}
 
-.footer-buttons .previous-btn {
-  background: #ff7414;
+.course-matrix-page {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
 
-/* ================= SAVE ================= */
+/* =========================================================
+   PAGE TITLE
+========================================================= */
 
-.footer-buttons .submit-btn {
-  background: #198b43;
+.page-title {
+  background: linear-gradient(
+    135deg,
+    #0b4ea2,
+    #1769c2
+  );
+  padding: 20px 25px;
+  border-radius: 12px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 14px rgba(11, 78, 162, 0.18);
+}
+
+.page-title h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
 }
 
 
-/* ================= PRINT ================= */
+/* =========================================================
+   FILTER CARD
+========================================================= */
 
-.footer-buttons .print-btn {
-  background: #f23d43;
+.filter-card {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  gap: 20px;
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  border: 1px solid #e3e8f0;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.filter-box {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.filter-box label {
+  color: #26364d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.filter-box select {
+  width: 100%;
+  min-height: 43px;
+  padding: 9px 12px;
+  border: 1px solid #cfd7e3;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #26364d;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.filter-box select:focus {
+  border-color: #1769c2;
+  box-shadow: 0 0 0 3px rgba(23, 105, 194, 0.10);
 }
 
 
-/* ================= CLEAR / DRAFT ================= */
+/* =========================================================
+   SECTION CARD
+========================================================= */
 
-.footer-buttons .draft-btn {
-  background: #6738a0;
+.section-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e0e6ef;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.section-header {
+  background: linear-gradient(
+    135deg,
+    #0b4ea2,
+    #1769c2
+  );
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 15px 20px;
+}
+
+.section-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 25px;
+  padding: 22px;
+  align-items: start;
+}
+
+.left-content {
+  min-width: 0;
 }
 
 
-/* ================= NEXT ================= */
+/* =========================================================
+   TOP ROW
+========================================================= */
 
-.footer-buttons .next-page-btn {
-  background: #2865e8;
+.top-row {
+  display: grid;
+  grid-template-columns: 150px minmax(220px, 1fr);
+  gap: 15px;
+  align-items: end;
+  margin-bottom: 15px;
+}
+
+.top-row > select {
+  width: 100%;
+  min-height: 43px;
+  padding: 9px 12px;
+  border: 1px solid #cfd7e3;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #26364d;
+  font-size: 14px;
+  outline: none;
+}
+
+.top-row > select:focus {
+  border-color: #1769c2;
+  box-shadow: 0 0 0 3px rgba(23, 105, 194, 0.10);
+}
+
+.top-row .filter-box {
+  width: 100%;
 }
 
 
-/* ================= HOVER ================= */
+/* =========================================================
+   COURSE OUTCOME TEXTAREA
+========================================================= */
 
-.footer-buttons button:hover {
-  opacity: 0.9;
+.co-textarea {
+  width: 100%;
+  min-height: 105px;
+  resize: vertical;
+  padding: 12px 14px;
+  border: 1px solid #cfd7e3;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #26364d;
+  background: #ffffff;
+  outline: none;
+  margin-bottom: 13px;
+  line-height: 1.5;
 }
-/* =========================================
-   NBA FOOTER BUTTONS - FINAL STYLE
-========================================= */
+
+.co-textarea::placeholder {
+  color: #9aa5b5;
+}
+
+.co-textarea:focus {
+  border-color: #1769c2;
+  box-shadow: 0 0 0 3px rgba(23, 105, 194, 0.10);
+}
+
+
+/* =========================================================
+   ADD BUTTON
+========================================================= */
+
+.add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 7px;
+  background: #1769c2;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 18px;
+}
+
+.add-btn:hover {
+  background: #0b4ea2;
+  transform: translateY(-1px);
+}
+
+.add-btn:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.left-content table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: #ffffff;
+}
+
+.left-content table th {
+  background: #edf4fc;
+  color: #17365d;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 12px 10px;
+  border: 1px solid #d7e0eb;
+  text-align: center;
+}
+
+.left-content table td {
+  padding: 11px 10px;
+  border: 1px solid #d7e0eb;
+  color: #354052;
+  font-size: 13px;
+  text-align: center;
+  vertical-align: middle;
+  word-break: break-word;
+}
+
+.left-content table tbody tr:nth-child(even) {
+  background: #fafcff;
+}
+
+.left-content table tbody tr:hover {
+  background: #f2f7fd;
+}
+
+
+/* =========================================================
+   COURSE OUTCOME TABLE WIDTH
+========================================================= */
+
+.section-card:first-of-type
+.left-content table th:nth-child(1),
+.section-card:first-of-type
+.left-content table td:nth-child(1) {
+  width: 8%;
+}
+
+.section-card:first-of-type
+.left-content table th:nth-child(2),
+.section-card:first-of-type
+.left-content table td:nth-child(2) {
+  width: 52%;
+  text-align: left;
+}
+
+.section-card:first-of-type
+.left-content table th:nth-child(3),
+.section-card:first-of-type
+.left-content table td:nth-child(3) {
+  width: 18%;
+}
+
+.section-card:first-of-type
+.left-content table th:nth-child(4),
+.section-card:first-of-type
+.left-content table td:nth-child(4) {
+  width: 22%;
+}
+
+
+/* =========================================================
+   COURSE OUTCOME DESCRIPTION
+========================================================= */
+
+.co-description {
+  text-align: left !important;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.edit-btn,
+.delete-btn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffffff;
+  transition: 0.2s ease;
+}
+
+.edit-btn {
+  background: #f0a500;
+}
+
+.edit-btn:hover {
+  background: #d98e00;
+  transform: translateY(-1px);
+}
+
+.delete-btn {
+  background: #dc3545;
+}
+
+.delete-btn:hover {
+  background: #bb2635;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   FILE UPLOAD ROW
+========================================================= */
+
+.file-upload-row {
+  width: 100%;
+  min-height: 150px;
+  border: 1px dashed #b8c7da;
+  border-radius: 10px;
+  background: #f8fbff;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+
+/* =========================================================
+   CHOOSE FILE BUTTON
+========================================================= */
+
+.choose-file-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 130px;
+  min-height: 40px;
+  padding: 8px 16px;
+  border-radius: 7px;
+  background: #1769c2;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.choose-file-btn:hover {
+  background: #0b4ea2;
+  transform: translateY(-1px);
+}
+
+.custom-file-input {
+  display: none;
+}
+
+
+/* =========================================================
+   FILE NAME
+========================================================= */
+
+.pdf-name {
+  width: 100%;
+  max-width: 220px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid #d9e1eb;
+  color: #34445a;
+  font-size: 12px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   DOCUMENT ACTIONS
+========================================================= */
+
+.document-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.view-btn,
+.download-btn,
+.download-btn-upload {
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffffff;
+  transition: 0.2s ease;
+}
+
+.view-btn {
+  background: #1769c2;
+}
+
+.view-btn:hover {
+  background: #0b4ea2;
+}
+
+.download-btn,
+.download-btn-upload {
+  background: #198754;
+}
+
+.download-btn:hover,
+.download-btn-upload:hover {
+  background: #146c43;
+}
+
+
+/* =========================================================
+   MATRIX TABLE
+========================================================= */
+
+.section-card:last-of-type .left-content {
+  width: 100%;
+}
+
+.section-card:last-of-type .top-row {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.section-card:last-of-type .top-row > select {
+  width: 100%;
+  min-height: 43px;
+}
+
+.section-card:last-of-type .left-content table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.section-card:last-of-type .left-content table th,
+.section-card:last-of-type .left-content table td {
+  text-align: center;
+}
+
+.section-card:last-of-type .left-content table th:nth-child(1),
+.section-card:last-of-type .left-content table td:nth-child(1) {
+  width: 12%;
+}
+
+.section-card:last-of-type .left-content table th:nth-child(2),
+.section-card:last-of-type .left-content table td:nth-child(2),
+.section-card:last-of-type .left-content table th:nth-child(3),
+.section-card:last-of-type .left-content table td:nth-child(3),
+.section-card:last-of-type .left-content table th:nth-child(4),
+.section-card:last-of-type .left-content table td:nth-child(4),
+.section-card:last-of-type .left-content table th:nth-child(5),
+.section-card:last-of-type .left-content table td:nth-child(5),
+.section-card:last-of-type .left-content table th:nth-child(6),
+.section-card:last-of-type .left-content table td:nth-child(6) {
+  width: 12%;
+}
+
+.section-card:last-of-type .left-content table th:nth-child(7),
+.section-card:last-of-type .left-content table td:nth-child(7) {
+  width: 16%;
+}
+
+
+/* =========================================================
+   MATRIX INPUT
+========================================================= */
+
+.left-content table td input[type="number"] {
+  width: 75px;
+  height: 36px;
+  padding: 6px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 13px;
+  outline: none;
+  background: #ffffff;
+}
+
+.left-content table td input[type="number"]:focus {
+  border-color: #1769c2;
+  box-shadow: 0 0 0 3px rgba(23, 105, 194, 0.10);
+}
+
+
+/* Remove number arrows */
+
+.left-content table td input[type="number"]::-webkit-inner-spin-button,
+.left-content table td input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   MATRIX SAVE BUTTON
+========================================================= */
+
+.matrix-save-btn {
+  min-width: 75px;
+  min-height: 35px;
+  padding: 7px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #1769c2;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.matrix-save-btn:hover {
+  background: #0b4ea2;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   FOOTER BUTTONS
+========================================================= */
 
 .footer-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-    margin-top: 30px;
-    flex-wrap: nowrap;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 25px;
+  padding: 18px 0 5px;
 }
-
-
-/* Common Button */
 
 .footer-buttons button {
-    width: 90px;
-    height: 34px;
+  min-height: 40px;
+  padding: 9px 17px;
+  border: none;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: 0.2s ease;
+}
 
-    border: none;
-    border-radius: 6px;
+.previous-btn {
+  background: #6c757d;
+  color: #ffffff;
+}
 
-    color: #fff;
-    font-family: "Segoe UI", sans-serif;
-    font-size: 13px;
-    font-weight: 600;
+.previous-btn:hover {
+  background: #565e64;
+}
 
-    display: flex;
-    align-items: center;
+.back-btn {
+  background: #495057;
+  color: #ffffff;
+}
+
+.back-btn:hover {
+  background: #343a40;
+}
+
+.submit-btn {
+  background: #198754;
+  color: #ffffff;
+}
+
+.submit-btn:hover {
+  background: #146c43;
+}
+
+.clear-btn {
+  background: #dc3545;
+  color: #ffffff;
+}
+
+.clear-btn:hover {
+  background: #bb2635;
+}
+
+.print-btn {
+  background: #1769c2;
+  color: #ffffff;
+}
+
+.print-btn:hover {
+  background: #0b4ea2;
+}
+
+.next-page-btn {
+  background: #0b4ea2;
+  color: #ffffff;
+}
+
+.next-page-btn:hover {
+  background: #083b7d;
+}
+
+.footer-buttons button:hover {
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   WORD / EXCEL PREVIEW
+========================================================= */
+
+.word-parsed-content {
+  padding: 20px;
+  background: #ffffff;
+  line-height: 1.6;
+  color: #222222;
+}
+
+.excel-parsed-content {
+  width: 100%;
+  overflow-x: auto;
+  background: #ffffff;
+  padding: 10px;
+}
+
+.excel-parsed-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.excel-parsed-content th,
+.excel-parsed-content td {
+  border: 1px solid #cccccc;
+  padding: 8px;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .course-matrix-content {
+    margin-left: 220px;
+    padding: 20px;
+  }
+
+  .section-content {
+    grid-template-columns: minmax(0, 1fr) 210px;
+    gap: 18px;
+  }
+
+  .filter-card {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .top-row {
+    grid-template-columns: 130px minmax(180px, 1fr);
+  }
+
+  .left-content table td input[type="number"] {
+    width: 60px;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .course-matrix-content {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  .page-title {
+    padding: 17px;
+  }
+
+  .page-title h1 {
+    font-size: 20px;
+  }
+
+  .filter-card {
+    grid-template-columns: 1fr;
+    padding: 17px;
+  }
+
+  .section-content {
+    grid-template-columns: 1fr;
+    padding: 17px;
+  }
+
+  .top-row {
+    grid-template-columns: 1fr;
+  }
+
+  .file-upload-row {
+    min-height: 130px;
+  }
+
+  .left-content {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .left-content table {
+    min-width: 650px;
+  }
+
+  .footer-buttons {
     justify-content: center;
+  }
 
-    cursor: pointer;
-    padding: 0;
-
-    box-sizing: border-box;
-
-    transition: all 0.2s ease;
 }
 
 
-/* =========================================
-   PREVIOUS - ORANGE
-========================================= */
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
 
-.footer-buttons .previous-btn {
-    background: #ff7209 !important;
-}
+@media (max-width: 500px) {
 
+  .course-matrix-content {
+    padding: 10px;
+  }
 
-/* =========================================
-   BACK - SLATE BLUE
-========================================= */
+  .page-title h1 {
+    font-size: 17px;
+  }
 
-.footer-buttons .back-btn {
-    background: #61748b !important;
-}
+  .section-header {
+    font-size: 15px;
+    padding: 13px 15px;
+  }
 
+  .section-content {
+    padding: 13px;
+  }
 
-/* =========================================
-   SAVE / SUBMIT - GREEN
-========================================= */
+  .footer-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
 
-.footer-buttons .submit-btn,
-.footer-buttons .save-btn {
-    background: #218c4b !important;
-}
+  .footer-buttons button {
+    width: 100%;
+  }
 
+  .add-btn {
+    width: 100%;
+  }
 
-/* =========================================
-   DELETE - RED
-========================================= */
-
-.footer-buttons .delete-btn,
-.footer-buttons .delete-main-btn {
-    background: #ef4444 !important;
-}
-
-
-/* =========================================
-   CLEAR / DRAFT - ORANGE
-========================================= */
-
-.footer-buttons .draft-btn,
-.footer-buttons .clear-btn {
-    background: #f5a208 !important;
-}
-
-
-/* =========================================
-   PRINT - PURPLE
-========================================= */
-
-.footer-buttons .print-btn {
-    background: #7059ad !important;
-}
-
-
-/* =========================================
-   NEXT - TEAL
-========================================= */
-
-.footer-buttons .next-page-btn {
-    background: #078b83 !important;
-}
-
-
-/* =========================================
-   HOVER
-========================================= */
-
-.footer-buttons .previous-btn:hover {
-    background: #e86605 !important;
-}
-
-.footer-buttons .back-btn:hover {
-    background: #52657a !important;
-}
-
-.footer-buttons .submit-btn:hover,
-.footer-buttons .save-btn:hover {
-    background: #19783f !important;
-}
-
-.footer-buttons .delete-btn:hover,
-.footer-buttons .delete-main-btn:hover {
-    background: #dc2626 !important;
-}
-
-.footer-buttons .draft-btn:hover,
-.footer-buttons .clear-btn:hover {
-    background: #df9105 !important;
-}
-
-.footer-buttons .print-btn:hover {
-    background: #5f489b !important;
-}
-
-.footer-buttons .next-page-btn:hover {
-    background: #06766f !important;
-}
-
-
-/* Click Effect */
-
-.footer-buttons button:active {
-    transform: scale(0.97);
 }

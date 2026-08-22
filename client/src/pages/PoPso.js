@@ -1,739 +1,1058 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./PoPso.css";
+import NBASidebar from "../pages/NBASidebar";
+
 import {
   FaSave,
-  FaUpload,
   FaEye,
   FaDownload,
   FaPrint
 } from "react-icons/fa";
+
 import mammoth from "mammoth";
 import * as XLSX from "xlsx";
+
 function PoPso({ onNext, onPrevious }) {
+
   const navigate = useNavigate();
-const [poPsoFile, setPoPsoFile] = useState(null);
-const [mappingFile, setMappingFile] = useState(null);
-const [justificationFile, setJustificationFile] = useState(null);
-const [displayFileNames, setDisplayFileNames] = useState({});
-// ================= AUTO SAVE =================
 
-const STORAGE_KEY = "popso_1_3_data";
+  // =====================================================
+  // FILE STATES
+  // =====================================================
 
-const [savedFileNames, setSavedFileNames] = useState({});
-const [loaded, setLoaded] = useState(false);
-const saveFileName = (key, file) => {
+  const [poPsoFile, setPoPsoFile] = useState(null);
+  const [mappingFile, setMappingFile] = useState(null);
+  const [justificationFile, setJustificationFile] = useState(null);
 
-  if (!file) return;
+  const [displayFileNames, setDisplayFileNames] = useState({});
 
-  setSavedFileNames((prev) => ({
-    ...prev,
-    [key]: file.name
-  }));
+  // =====================================================
+  // AUTO SAVE
+  // =====================================================
 
-};
-useEffect(() => {
+  const STORAGE_KEY = "popso_1_3_data";
 
-  const saved = localStorage.getItem(STORAGE_KEY);
+  const [savedFileNames, setSavedFileNames] = useState({});
+  const [loaded, setLoaded] = useState(false);
 
-  if (saved) {
+  // =====================================================
+  // SAVE FILE NAME
+  // =====================================================
+
+  const saveFileName = (key, file) => {
+
+    if (!file) return;
+
+    setSavedFileNames((prev) => ({
+      ...prev,
+      [key]: file.name
+    }));
+
+  };
+
+  // =====================================================
+  // RESTORE LOCAL STORAGE
+  // =====================================================
+
+  useEffect(() => {
+
+    const saved = localStorage.getItem(STORAGE_KEY);
+
+    if (saved) {
+
+      try {
+
+        const data = JSON.parse(saved);
+
+        if (data.files) {
+
+          setSavedFileNames(data.files);
+
+          setDisplayFileNames(data.files);
+
+        }
+
+      } catch (error) {
+
+        console.log(
+          "PO/PSO Restore Error:",
+          error
+        );
+
+      }
+
+    }
+
+    setLoaded(true);
+
+  }, []);
+
+  // =====================================================
+  // AUTO SAVE LOCAL STORAGE
+  // =====================================================
+
+  useEffect(() => {
+
+    if (!loaded) return;
+
+    const data = {
+      files: savedFileNames
+    };
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(data)
+    );
+
+  }, [
+    loaded,
+    savedFileNames
+  ]);
+
+  // =====================================================
+  // SAVE
+  // =====================================================
+
+  const handleSave = async () => {
 
     try {
 
-      const data = JSON.parse(saved);
+      if (
+        (!poPsoFile && !savedFileNames.poPsoFile) ||
+        (!mappingFile && !savedFileNames.mappingFile) ||
+        (!justificationFile &&
+          !savedFileNames.justificationFile)
+      ) {
 
-      if (data.files) {
-        setSavedFileNames(data.files);
-         setDisplayFileNames(data.files);
+        alert("Please fill all required fields.");
+
+        return;
+
       }
+
+      const formData = new FormData();
+
+      if (poPsoFile) {
+
+        formData.append(
+          "poPsoFile",
+          poPsoFile
+        );
+
+      }
+
+      if (mappingFile) {
+
+        formData.append(
+          "mappingFile",
+          mappingFile
+        );
+
+      }
+
+      if (justificationFile) {
+
+        formData.append(
+          "justificationFile",
+          justificationFile
+        );
+
+      }
+
+      const response = await fetch(
+        "http://localhost:5000/save-popso",
+        {
+          method: "POST",
+          body: formData
+        }
+      );
+
+      const data = await response.json();
+
+      alert(data.message);
 
     } catch (error) {
 
-      console.log(
-        "PO/PSO Restore Error:",
-        error
-      );
+      console.log(error);
+
+      alert("Save Error");
 
     }
-  }
 
-  setLoaded(true);
-
-}, []);
-useEffect(() => {
-
-  if (!loaded) return;
-
-  const data = {
-    files: savedFileNames
   };
 
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(data)
-  );
+  // =====================================================
+  // READ FILE CONTENT
+  // =====================================================
 
-}, [
-  loaded,
-  savedFileNames
-]);
-const handleSave = async () => {
-  try {
-if (
-  (!poPsoFile && !savedFileNames.poPsoFile) ||
-  (!mappingFile && !savedFileNames.mappingFile) ||
-  (!justificationFile && !savedFileNames.justificationFile)
-) {
-  alert("Please fill all required fields.");
-  return;
-}
-    const formData = new FormData();
-if (poPsoFile) {
-  formData.append("poPsoFile", poPsoFile);
-}
-   if (mappingFile) {
-  formData.append("mappingFile", mappingFile);
-}
+  const readFileContentHTML = async (fileName) => {
 
-   if (justificationFile) {
-  formData.append("justificationFile", justificationFile);
-}
-    const response = await fetch(
-      "http://localhost:5000/save-popso",
-      {
-        method: "POST",
-        body: formData
-      }
-    );
+    const ext =
+      fileName
+        .split(".")
+        .pop()
+        .toLowerCase();
 
-    const data = await response.json();
+    // PDF
+    if (ext === "pdf") {
 
-    alert(data.message);
-
-  } catch (error) {
-
-    console.log(error);
-
-    alert("Save Error");
-
-  }
-
-};
-const readFileContentHTML = async (fileName) => {
-
-  const ext = fileName.split(".").pop().toLowerCase();
-
-  // PDF
-  if (ext === "pdf") {
-
-    return `
-      <embed
-        src="http://localhost:5000/uploads/${fileName}"
-        type="application/pdf"
-        style="width:100%;height:900px;"
-      />
-    `;
-
-  }
-
-  // Image
-  if (["jpg","jpeg","png","gif","webp"].includes(ext)) {
-
-    return `
-      <img
-        src="http://localhost:5000/uploads/${fileName}"
-        style="width:100%;"
-      />
-    `;
-
-  }
-
-  // DOCX
-  if (ext === "docx") {
-
-    const response = await fetch(
-      `http://localhost:5000/uploads/${fileName}`
-    );
-
-    const blob = await response.blob();
-
-    const buffer = await blob.arrayBuffer();
-
-    const result = await mammoth.convertToHtml({
-      arrayBuffer: buffer
-    });
-
-    return result.value;
-
-  }
-
-  // Excel
-  if (["xlsx","xls"].includes(ext)) {
-
-    const response = await fetch(
-      `http://localhost:5000/uploads/${fileName}`
-    );
-
-    const blob = await response.blob();
-
-    const buffer = await blob.arrayBuffer();
-
-    const workbook = XLSX.read(buffer, {
-      type: "array"
-    });
-
-    const sheet =
-      workbook.Sheets[
-        workbook.SheetNames[0]
-      ];
-
-    return XLSX.utils.sheet_to_html(sheet);
-
-  }
-
-  return "";
-
-};
-const handlePrint = async () => {
-
-  try {
-
-    const res = await fetch(
-      "http://localhost:5000/print-popso-files"
-    );
-
-    const data = await res.json();
-
-    const documents = [
-
-      {
-        title: "1.3.1 POs and PSOs",
-        file: data.po_pso_file
-      },
-
-      {
-        title: "1.3.2 Mapping between Courses and POs/PSOs",
-        file: data.mapping_file
-      },
-
-      {
-        title: "1.3.3 Justification of Mapping",
-        file: data.justification_file
-      }
-
-    ].filter(item => item.file);
-
-    let html = "";
-
-    for (const doc of documents) {
-
-      const preview =
-        await readFileContentHTML(doc.file);
-
-      html += `
-
-      <div class="doc-section">
-
-        <h2>${doc.title}</h2>
-
-        ${preview}
-
-        <hr/>
-
-      </div>
-
+      return `
+        <embed
+          src="http://localhost:5000/uploads/${fileName}"
+          type="application/pdf"
+          style="width:100%;height:900px;"
+        />
       `;
 
     }
 
-    const printWindow = window.open("", "_blank");
+    // IMAGE
+    if (
+      [
+        "jpg",
+        "jpeg",
+        "png",
+        "gif",
+        "webp"
+      ].includes(ext)
+    ) {
 
-    printWindow.document.write(`
+      return `
+        <img
+          src="http://localhost:5000/uploads/${fileName}"
+          style="width:100%;"
+        />
+      `;
 
-    <html>
+    }
 
-    <head>
+    // DOCX
+    if (ext === "docx") {
 
-      <title>PO PSO Documents</title>
+      const response = await fetch(
+        `http://localhost:5000/uploads/${fileName}`
+      );
 
-      <style>
+      const blob = await response.blob();
 
-      body{
-        font-family:Arial;
-        margin:20px;
+      const buffer =
+        await blob.arrayBuffer();
+
+      const result =
+        await mammoth.convertToHtml({
+          arrayBuffer: buffer
+        });
+
+      return result.value;
+
+    }
+
+    // EXCEL
+    if (
+      ["xlsx", "xls"].includes(ext)
+    ) {
+
+      const response = await fetch(
+        `http://localhost:5000/uploads/${fileName}`
+      );
+
+      const blob =
+        await response.blob();
+
+      const buffer =
+        await blob.arrayBuffer();
+
+      const workbook =
+        XLSX.read(
+          buffer,
+          {
+            type: "array"
+          }
+        );
+
+      const sheet =
+        workbook.Sheets[
+          workbook.SheetNames[0]
+        ];
+
+      return XLSX.utils.sheet_to_html(
+        sheet
+      );
+
+    }
+
+    return "";
+
+  };
+
+  // =====================================================
+  // PRINT
+  // =====================================================
+
+  const handlePrint = async () => {
+
+    try {
+
+      const res = await fetch(
+        "http://localhost:5000/print-popso-files"
+      );
+
+      const data = await res.json();
+
+      const documents = [
+
+        {
+          title: "1.3.1 POs and PSOs",
+          file: data.po_pso_file
+        },
+
+        {
+          title:
+            "1.3.2 Mapping between Courses and POs/PSOs",
+          file: data.mapping_file
+        },
+
+        {
+          title:
+            "1.3.3 Justification of Mapping",
+          file: data.justification_file
+        }
+
+      ].filter(
+        (item) => item.file
+      );
+
+      let html = "";
+
+      for (const doc of documents) {
+
+        const preview =
+          await readFileContentHTML(
+            doc.file
+          );
+
+        html += `
+
+          <div class="doc-section">
+
+            <h2>${doc.title}</h2>
+
+            ${preview}
+
+            <hr/>
+
+          </div>
+
+        `;
+
       }
 
-      h1{
-        text-align:center;
-        color:#0b4ea2;
-      }
+      const printWindow =
+        window.open(
+          "",
+          "_blank"
+        );
 
-      h2{
-        margin-top:35px;
-        color:#0b4ea2;
-        border-bottom:1px solid #ddd;
-        padding-bottom:8px;
-      }
+      printWindow.document.write(`
 
-      embed{
-        width:100%;
-        height:900px;
-      }
+        <html>
 
-      img{
-        width:100%;
-      }
+        <head>
 
-      table{
-        width:100%;
-        border-collapse:collapse;
-      }
+          <title>
+            PO PSO Documents
+          </title>
 
-      td,th{
-        border:1px solid #ddd;
-        padding:8px;
-      }
+          <style>
 
-      </style>
+            body {
+              font-family: Arial;
+              margin: 20px;
+            }
 
-    </head>
+            h1 {
+              text-align: center;
+              color: #0b4ea2;
+            }
 
-    <body>
+            h2 {
+              margin-top: 35px;
+              color: #0b4ea2;
+              border-bottom: 1px solid #ddd;
+              padding-bottom: 8px;
+            }
 
-      <h1>1.3 PO, PSO and their Mapping with Courses</h1>
+            embed {
+              width: 100%;
+              height: 900px;
+            }
 
-      ${html}
+            img {
+              width: 100%;
+            }
 
-    </body>
+            table {
+              width: 100%;
+              border-collapse: collapse;
+            }
 
-    </html>
+            td,
+            th {
+              border: 1px solid #ddd;
+              padding: 8px;
+            }
 
-    `);
+          </style>
 
-    printWindow.document.close();
+        </head>
 
-    setTimeout(() => {
+        <body>
 
-      printWindow.focus();
+          <h1>
+            1.3 PO, PSO and their Mapping with Courses
+          </h1>
 
-      printWindow.print();
+          ${html}
 
-    },1000);
+        </body>
 
-  } catch (err) {
+        </html>
 
-    console.log(err);
+      `);
 
-    alert("Print Error");
+      printWindow.document.close();
 
-  }
+      setTimeout(() => {
 
-};
-const handleView = (fileName) => {
+        printWindow.focus();
 
-  if (!fileName) {
-    alert("Please upload file first.");
-    return;
-  }
+        printWindow.print();
 
-  const extension = fileName.split(".").pop().toLowerCase();
+      }, 1000);
 
-  if (extension === "pdf") {
+    } catch (err) {
 
-    window.open(
-      `http://localhost:5000/uploads/${fileName}`,
-      "_blank"
-    );
+      console.log(err);
 
-  } else {
+      alert("Print Error");
+
+    }
+
+  };
+
+  // =====================================================
+  // VIEW FILE
+  // =====================================================
+
+  const handleView = (fileName) => {
+
+    if (!fileName) {
+
+      alert(
+        "Please upload file first."
+      );
+
+      return;
+
+    }
+
+    const extension =
+      fileName
+        .split(".")
+        .pop()
+        .toLowerCase();
+
+    if (extension === "pdf") {
+
+      window.open(
+        `http://localhost:5000/uploads/${fileName}`,
+        "_blank"
+      );
+
+    } else {
+
+      window.open(
+        `http://localhost:5000/download/${fileName}`,
+        "_blank"
+      );
+
+    }
+
+  };
+
+  // =====================================================
+  // DOWNLOAD FILE
+  // =====================================================
+
+  const handleDownload = (fileName) => {
+
+    if (!fileName) {
+
+      alert(
+        "Please upload file first."
+      );
+
+      return;
+
+    }
 
     window.open(
       `http://localhost:5000/download/${fileName}`,
       "_blank"
     );
 
-  }
+  };
 
-};
-const handleDownload = (fileName) => {
-
-  if (!fileName) {
-    alert("Please upload file first.");
-    return;
-  }
-
-  window.open(
-    `http://localhost:5000/download/${fileName}`,
-    "_blank"
-  );
-
-};
+  // =====================================================
+  // UPDATE
+  // =====================================================
 
   const handleUpdate = () => {
-    alert("Data Updated Successfully");
+
+    alert(
+      "Data Updated Successfully"
+    );
+
   };
+
+  // =====================================================
+  // DELETE
+  // =====================================================
 
   const handleDelete = () => {
-    alert("Data Deleted Successfully");
+
+    alert(
+      "Data Deleted Successfully"
+    );
+
   };
-// ================= HANDLE CLEAR =================
-// ================= HANDLE CLEAR =================
 
-const handleClear = () => {
+  // =====================================================
+  // CLEAR
+  // =====================================================
 
-  const confirmClear = window.confirm(
-    "Are you sure you want to clear uploaded files?"
-  );
+  const handleClear = () => {
 
-  if (!confirmClear) return;
+    const confirmClear =
+      window.confirm(
+        "Are you sure you want to clear uploaded files?"
+      );
 
+    if (!confirmClear) return;
 
-  // ================= FRONTEND FILES CLEAR =================
+    // Clear frontend file objects
+    setPoPsoFile(null);
+    setMappingFile(null);
+    setJustificationFile(null);
 
-  setPoPsoFile(null);
-  setMappingFile(null);
-  setJustificationFile(null);
+    // Clear current screen names
+    setDisplayFileNames({});
 
+    // Clear file inputs
+    document
+      .querySelectorAll(
+        'input[type="file"]'
+      )
+      .forEach((input) => {
+        input.value = "";
+      });
 
-  // ================= CURRENT SCREEN FILE NAMES CLEAR =================
+    // Do NOT clear:
+    // savedFileNames
+    // localStorage
+    // database
+    // backend files
 
-  setDisplayFileNames({});
+    alert(
+      "Uploaded files cleared successfully."
+    );
 
+  };
 
-  // ================= FILE INPUTS CLEAR =================
+  // =====================================================
+  // FILE UPLOAD HANDLER
+  // =====================================================
 
-  document
-    .querySelectorAll('input[type="file"]')
-    .forEach((input) => {
-      input.value = "";
-    });
+  const handlePoPsoUpload = (e) => {
 
+    if (
+      e.target.files.length > 0
+    ) {
 
-  // ❌ DO NOT USE:
-  // setSavedFileNames({});
-  // localStorage.removeItem(STORAGE_KEY);
-  // Any DELETE API
+      const file =
+        e.target.files[0];
 
+      setPoPsoFile(file);
 
-  alert("Uploaded files cleared successfully.");
-};
+      saveFileName(
+        "poPsoFile",
+        file
+      );
+
+      setDisplayFileNames(
+        (prev) => ({
+          ...prev,
+          poPsoFile: file.name
+        })
+      );
+
+    }
+
+  };
+
+  const handleMappingUpload = (e) => {
+
+    if (
+      e.target.files.length > 0
+    ) {
+
+      const file =
+        e.target.files[0];
+
+      setMappingFile(file);
+
+      saveFileName(
+        "mappingFile",
+        file
+      );
+
+      setDisplayFileNames(
+        (prev) => ({
+          ...prev,
+          mappingFile: file.name
+        })
+      );
+
+    }
+
+  };
+
+  const handleJustificationUpload = (e) => {
+
+    if (
+      e.target.files.length > 0
+    ) {
+
+      const file =
+        e.target.files[0];
+
+      setJustificationFile(file);
+
+      saveFileName(
+        "justificationFile",
+        file
+      );
+
+      setDisplayFileNames(
+        (prev) => ({
+          ...prev,
+          justificationFile: file.name
+        })
+      );
+
+    }
+
+  };
+
+  // =====================================================
+  // PAGE
+  // =====================================================
+
   return (
-    <div className="popso-page">
 
-      <div className="popso-container">
+    <div className="popso-layout">
 
-        {/* 1.3.1 */}
-        <div className="po-card">
+      {/* =================================================
+          SAME NBA SIDEBAR
+      ================================================= */}
 
-          <div className="page-header">
-  <h2>1.3 PO, PSO and their Mapping with Courses</h2>
+      <NBASidebar />
 
-</div>
+      {/* =================================================
+          MAIN CONTENT
+      ================================================= */}
 
-          <div className="card-body">
+      <main className="popso-main">
 
-  {/* Left Side */}
-  <div className="popso-left">
+        <div className="popso-page">
 
-    <h4>
-      1.3.1 POs and PSOs <span></span>
-    </h4>
+          <div className="popso-container">
 
-    <p className="section-text">
-      Provide the approved list of Program Outcomes (POs) and Program
-      Specific Outcomes (PSOs) applicable to the program under
-      consideration.
-    </p>
+            {/* =================================================
+                1.3.1
+            ================================================= */}
 
-  </div>
+            <div className="po-card">
 
-  {/* Right Side */}
-  <div className="popso-right">
+              <div className="page-header">
 
-<div className="file-upload-row">
+                <h2>
+                  1.3 PO, PSO and their Mapping with Courses
+                </h2>
 
-<label
-htmlFor="poPsoFile"
-className="choose-file-btn"
->
-Choose File
-</label>
+              </div>
 
-<input
-id="poPsoFile"
-type="file"
-className="custom-file-input"
-accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
-onChange={(e) => {
+              <div className="card-body">
 
-  if (e.target.files.length > 0) {
+                <div className="popso-left">
 
-    const file = e.target.files[0];
+                  <h4>
+                    1.3.1 POs and PSOs
+                    <span></span>
+                  </h4>
 
-    setPoPsoFile(file);
+                  <p className="section-text">
 
-    saveFileName("poPsoFile", file);
+                    Provide the approved list of
+                    Program Outcomes (POs) and
+                    Program Specific Outcomes (PSOs)
+                    applicable to the program under
+                    consideration.
 
-    setDisplayFileNames((prev) => ({
-      ...prev,
-      poPsoFile: file.name
-    }));
+                  </p>
 
-  }
+                </div>
 
-}}
-/>
-{(poPsoFile || displayFileNames.poPsoFile) && (
-  <div className="pdf-name">
-    {poPsoFile?.name || displayFileNames.poPsoFile}
-  </div>
-)}
+                <div className="popso-right">
 
-<div className="document-actions">
+                  <div className="file-upload-row">
 
-<button
-className="view-btn"
-onClick={()=>handleView(poPsoFile?.name)}
->
-<FaEye/>
-</button>
+                    <label
+                      htmlFor="poPsoFile"
+                      className="choose-file-btn"
+                    >
+                      Choose File
+                    </label>
 
-<button
-className="download-btn"
-onClick={()=>handleDownload(poPsoFile?.name)}
->
-<FaDownload/>
-</button>
+                    <input
+                      id="poPsoFile"
+                      type="file"
+                      className="custom-file-input"
+                      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
+                      onChange={handlePoPsoUpload}
+                    />
 
-</div>
+                    {(
+                      poPsoFile ||
+                      displayFileNames.poPsoFile
+                    ) && (
 
-</div>
+                      <div className="pdf-name">
 
-</div>
-</div>
-</div> 
-        <div className="card-body">
+                        {
+                          poPsoFile?.name ||
+                          displayFileNames.poPsoFile
+                        }
 
-  {/* Left Side */}
-  <div className="popso-left">
+                      </div>
 
-    <h4>
-      1.3.2 Mapping between Courses and POs/PSOs
-      <span></span>
-    </h4>
+                    )}
 
-    <p className="section-text">
-      Upload the course-wise mapping matrix indicating the contribution
-      of each course towards the attainment of the Program Outcomes (POs)
-      and Program Specific Outcomes (PSOs).
-    </p>
+                    <div className="document-actions">
 
-  </div>
+                      <button
+                        className="view-btn"
+                        onClick={() =>
+                          handleView(
+                            poPsoFile?.name ||
+                            displayFileNames.poPsoFile
+                          )
+                        }
+                      >
+                        <FaEye />
+                      </button>
 
-  {/* Right Side */}
-  <div className="popso-right">
+                      <button
+                        className="download-btn"
+                        onClick={() =>
+                          handleDownload(
+                            poPsoFile?.name ||
+                            displayFileNames.poPsoFile
+                          )
+                        }
+                      >
+                        <FaDownload />
+                      </button>
 
-  <div className="file-upload-row">
+                    </div>
 
-    <label
-      htmlFor="mappingFile"
-      className="choose-file-btn"
-    >
-      Choose File
-    </label>
+                  </div>
 
-    <input
-      id="mappingFile"
-      type="file"
-      className="custom-file-input"
-      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
-    onChange={(e) => {
+                </div>
 
-  if (e.target.files.length > 0) {
+              </div>
 
-    const file = e.target.files[0];
+            </div>
 
-    setMappingFile(file);
 
-    saveFileName("mappingFile", file);
+            {/* =================================================
+                1.3.2
+            ================================================= */}
 
-    setDisplayFileNames((prev) => ({
-      ...prev,
-      mappingFile: file.name
-    }));
+            <div className="card-body">
 
-  }
+              <div className="popso-left">
 
-}}
-    />
-{(mappingFile || displayFileNames.mappingFile) && (
-  <div className="pdf-name">
-    {mappingFile?.name || displayFileNames.mappingFile}
-  </div>
-)}
+                <h4>
+                  1.3.2 Mapping between Courses and POs/PSOs
+                  <span></span>
+                </h4>
 
-    <div className="document-actions">
+                <p className="section-text">
 
-      <button
-        className="view-btn"
-        onClick={() => handleView(mappingFile?.name)}
-      >
-        <FaEye />
-      </button>
+                  Upload the course-wise mapping matrix
+                  indicating the contribution of each course
+                  towards the attainment of the Program
+                  Outcomes (POs) and Program Specific
+                  Outcomes (PSOs).
 
-      <button
-        className="download-btn"
-        onClick={() => handleDownload(mappingFile?.name)}
-      >
-        <FaDownload />
-      </button>
+                </p>
 
-    </div>
+              </div>
 
-  </div>
+              <div className="popso-right">
 
-</div>
+                <div className="file-upload-row">
 
-</div>
+                  <label
+                    htmlFor="mappingFile"
+                    className="choose-file-btn"
+                  >
+                    Choose File
+                  </label>
 
-<hr className="section-divider" />
+                  <input
+                    id="mappingFile"
+                    type="file"
+                    className="custom-file-input"
+                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
+                    onChange={handleMappingUpload}
+                  />
 
+                  {(
+                    mappingFile ||
+                    displayFileNames.mappingFile
+                  ) && (
 
+                    <div className="pdf-name">
 
-<div className="po-card">
+                      {
+                        mappingFile?.name ||
+                        displayFileNames.mappingFile
+                      }
 
-  <div className="card-body">
+                    </div>
 
-    {/* Left Side */}
-    <div className="popso-left">
+                  )}
 
-      <h4>
-        1.3.3 Justification of Mapping
-        <span></span>
-      </h4>
-
-      <p className="section-text">
-        Provide a brief justification explaining the methodology adopted
-        for mapping the courses with the Program Outcomes (POs) and
-        Program Specific Outcomes (PSOs), including the rationale for
-        the assigned correlation levels.
-      </p>
-
-    </div>
-
-    {/* Right Side */}
-    <div className="popso-right">
-
-  <div className="file-upload-row">
-
-    <label
-      htmlFor="justificationFile"
-      className="choose-file-btn"
-    >
-      Choose File
-    </label>
-
-    <input
-      id="justificationFile"
-      type="file"
-      className="custom-file-input"
-      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
-    onChange={(e) => {
-
-  if (e.target.files.length > 0) {
-
-    const file = e.target.files[0];
-
-    setJustificationFile(file);
-
-    saveFileName("justificationFile", file);
-
-    setDisplayFileNames((prev) => ({
-      ...prev,
-      justificationFile: file.name
-    }));
-
-  }
-
-}}
-    />
- {(justificationFile || displayFileNames.justificationFile) && (
-  <div className="pdf-name">
-    {justificationFile?.name || displayFileNames.justificationFile}
-  </div>
-)}
-
-    <div className="document-actions">
-
-      <button
-        className="view-btn"
-        onClick={() => handleView(justificationFile?.name)}
-      >
-        <FaEye />
-      </button>
-
-      <button
-        className="download-btn"
-        onClick={() => handleDownload(justificationFile?.name)}
-      >
-        <FaDownload />
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-  </div>
-
-</div>
-        <div className="btn-row">
-<button
-  className="previous-btn"
-  onClick={() => navigate("/curriculum")}
->
-  ← Previous
-</button>
-<button
-  type="button"
-  className="back-btn"
-  onClick={() => navigate("/vision")}
->
-  ← Back
-</button>
-          <button
-            className="save-btn"
-            onClick={handleSave}
-          >
-            <FaSave /> Save
-          </button>
-          <button
-  type="button"
-  className="clear-btn"
-  onClick={handleClear}
->
-  Clear
-</button>
-<button
-  className="print-btn"
-  onClick={handlePrint}
->
-  <FaPrint /> Print
-</button>
-         
-         <button
-  className="next-page-btn"
-  onClick={() => navigate("/course-matrix")}
->
-  Next →
-</button>
+                  <div className="document-actions">
+
+                    <button
+                      className="view-btn"
+                      onClick={() =>
+                        handleView(
+                          mappingFile?.name ||
+                          displayFileNames.mappingFile
+                        )
+                      }
+                    >
+                      <FaEye />
+                    </button>
+
+                    <button
+                      className="download-btn"
+                      onClick={() =>
+                        handleDownload(
+                          mappingFile?.name ||
+                          displayFileNames.mappingFile
+                        )
+                      }
+                    >
+                      <FaDownload />
+                    </button>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <hr className="section-divider" />
+
+
+            {/* =================================================
+                1.3.3
+            ================================================= */}
+
+            <div className="po-card">
+
+              <div className="card-body">
+
+                <div className="popso-left">
+
+                  <h4>
+                    1.3.3 Justification of Mapping
+                    <span></span>
+                  </h4>
+
+                  <p className="section-text">
+
+                    Provide a brief justification explaining
+                    the methodology adopted for mapping the
+                    courses with the Program Outcomes (POs)
+                    and Program Specific Outcomes (PSOs),
+                    including the rationale for the assigned
+                    correlation levels.
+
+                  </p>
+
+                </div>
+
+                <div className="popso-right">
+
+                  <div className="file-upload-row">
+
+                    <label
+                      htmlFor="justificationFile"
+                      className="choose-file-btn"
+                    >
+                      Choose File
+                    </label>
+
+                    <input
+                      id="justificationFile"
+                      type="file"
+                      className="custom-file-input"
+                      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xls,.xlsx"
+                      onChange={handleJustificationUpload}
+                    />
+
+                    {(
+                      justificationFile ||
+                      displayFileNames.justificationFile
+                    ) && (
+
+                      <div className="pdf-name">
+
+                        {
+                          justificationFile?.name ||
+                          displayFileNames.justificationFile
+                        }
+
+                      </div>
+
+                    )}
+
+                    <div className="document-actions">
+
+                      <button
+                        className="view-btn"
+                        onClick={() =>
+                          handleView(
+                            justificationFile?.name ||
+                            displayFileNames.justificationFile
+                          )
+                        }
+                      >
+                        <FaEye />
+                      </button>
+
+                      <button
+                        className="download-btn"
+                        onClick={() =>
+                          handleDownload(
+                            justificationFile?.name ||
+                            displayFileNames.justificationFile
+                          )
+                        }
+                      >
+                        <FaDownload />
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            {/* =================================================
+                ACTION BUTTONS
+            ================================================= */}
+
+            <div className="btn-row">
+
+              <button
+                className="previous-btn"
+                onClick={() =>
+                  navigate("/curriculum")
+                }
+              >
+                ← Previous
+              </button>
+
+              <button
+                type="button"
+                className="back-btn"
+                onClick={() =>
+                  navigate("/vision")
+                }
+              >
+                ← Back
+              </button>
+
+              <button
+                className="save-btn"
+                onClick={handleSave}
+              >
+                <FaSave />
+                Save
+              </button>
+
+              <button
+                type="button"
+                className="clear-btn"
+                onClick={handleClear}
+              >
+                Clear
+              </button>
+
+              <button
+                className="print-btn"
+                onClick={handlePrint}
+              >
+                <FaPrint />
+                Print
+              </button>
+
+              <button
+                className="next-page-btn"
+                onClick={() =>
+                  navigate("/course-matrix")
+                }
+              >
+                Next →
+              </button>
+
+            </div>
+
+          </div>
+
         </div>
 
-      </div>
+      </main>
 
     </div>
+
   );
+
 }
 
 export default PoPso;

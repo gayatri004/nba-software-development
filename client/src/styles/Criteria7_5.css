@@ -1,6 +1,6 @@
-/* criteria7_5.css */
-
-/* Sidebar मुळे विस्कळीत न होणारा फ्लेक्सिबल बेस लेआउट wrapper */
+/* ==========================================
+   1. Base & Flexible Layout Structure
+   ========================================== */
 .criteria-main-layout {
     width: 100%;
     padding-left: 10px;
@@ -16,7 +16,9 @@
     box-sizing: border-box;
 }
 
-/* Header Grid Styling */
+/* ==========================================
+   2. Header & Branding Section
+   ========================================== */
 .header {
     display: flex;
     justify-content: space-between;
@@ -49,12 +51,14 @@
     font-size: 16px;
     color: #1e3a8a;
     font-weight: 700;
+    margin: 0;
 }
 
 .brand-text p {
     font-size: 11px;
     color: #64748b;
     font-weight: 600;
+    margin: 0;
 }
 
 .title-section h2 {
@@ -62,6 +66,7 @@
     color: #1e3a8a;
     font-weight: 700;
     text-align: center;
+    margin: 0;
 }
 
 .title-section p {
@@ -129,7 +134,7 @@
 .profile-info .role { font-weight: 700; color: #1e3a8a; }
 .profile-info .username { color: #64748b; font-size: 10px; }
 
-/* Breadcrumbs navigation */
+/* Breadcrumbs Navigation */
 .breadcrumb {
     font-size: 13px;
     color: #64748b;
@@ -138,7 +143,9 @@
 .breadcrumb a { color: #64748b; text-decoration: none; }
 .breadcrumb a.active { color: #2563eb; font-weight: 600; }
 
-/* Global Filters section layout */
+/* ==========================================
+   3. Global Filters & Content Controls
+   ========================================== */
 .filters-container {
     display: flex;
     justify-content: space-between;
@@ -197,7 +204,9 @@
     cursor: pointer;
 }
 
-/* Main Block Specifics for 7.5 */
+/* ==========================================
+   4. Criteria Main Card & Content Layout
+   ========================================== */
 .content-card {
     border: 1px solid #e2e8f0;
     border-radius: 8px;
@@ -235,7 +244,6 @@
     font-weight: 700;
 }
 
-/* Top Right Upload Document layout button */
 .btn-upload-supporting {
     background-color: #fff;
     color: #2563eb;
@@ -268,7 +276,9 @@
     margin-bottom: 14px;
 }
 
-/* Data Table Structure for 7.5 */
+/* ==========================================
+   5. Data Table Styling
+   ========================================== */
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -283,7 +293,7 @@
 }
 
 .data-table th {
-    background-color: #fef3c7; /* लाइट पिवळा हेडर बॅकग्राउंड */
+    background-color: #fef3c7;
     color: #000;
     font-weight: 700;
     text-align: center;
@@ -308,7 +318,7 @@
     border-color: #3b82f6;
 }
 
-/* Action column vertical stack styling */
+/* Action Cell Controls */
 .action-cell {
     display: flex;
     flex-direction: column;
@@ -340,7 +350,7 @@
     font-size: 12px;
 }
 
-/* Bottom Actions Operational Buttons */
+/* Bottom Operational Buttons */
 .bottom-actions {
     display: flex;
     justify-content: center;
@@ -368,7 +378,7 @@
 .btn-print { background-color: #6366f1; }
 .btn-next { background-color: #008080; }
 
-/* Legand symbols row footer alignment */
+/* Legend Indicators Footer */
 .footer-indicators {
     display: flex;
     gap: 20px;
@@ -386,7 +396,197 @@
 .square-green { width: 12px; height: 12px; background-color: #16a34a; border-radius: 2px; }
 .square-red { width: 12px; height: 12px; background-color: #dc2626; border-radius: 2px; }
 
+/* ==========================================
+   6. Report Layout Structure
+   ========================================== */
+.main-header { 
+    text-align: center; 
+    border-bottom: 2px solid #00133e; 
+    padding: 0 0 8px 0; 
+    margin: 0 0 12px 0;
+}
 
+.main-header h1 { 
+    margin: 0; 
+    color: #00133e; 
+    font-size: 18px; 
+    text-transform: uppercase; 
+}
 
+.crit-section { 
+    margin-top: 0;
+}
 
+.section-title { 
+    background: #00133e; 
+    color: #fff; 
+    padding: 6px 10px; 
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    border-radius: 4px; 
+    font-size: 15px; 
+}
 
+.file-card { 
+    border: 1px solid #cbd5e0; 
+    border-radius: 6px; 
+    margin-bottom: 10px; 
+    overflow: hidden; 
+}
+
+.card-title { 
+    background-color: #edf2f7; 
+    color: #00133e; 
+    padding: 6px 10px; 
+    font-weight: bold; 
+    font-size: 14px; 
+    border-bottom: 1px solid #cbd5e0; 
+}
+
+.card-body { 
+    padding: 10px; 
+    background-color: #fff; 
+    font-size: 13px;
+}
+
+.content-preview { 
+    margin-top: 6px; 
+    padding-top: 6px; 
+    border-top: 1px dashed #cbd5e0; 
+}
+
+.embed-view { 
+    width: 100%; 
+    height: 420px; 
+    border: 1px solid #cbd5e0; 
+    margin-top: 6px; 
+    border-radius: 4px; 
+}
+
+.img-view { 
+    max-width: 100%; 
+    max-height: 400px; 
+    display: block; 
+    margin: 6px auto; 
+    border: 1px solid #cbd5e0; 
+    border-radius: 4px; 
+}
+
+.word-parsed-content { 
+    padding: 10px; 
+    border: 1px solid #cbd5e0; 
+    background: #ffffff; 
+    border-radius: 4px; 
+    line-height: 1.4; 
+    font-size: 13px; 
+}
+
+.excel-parsed-content { 
+    overflow-x: auto; 
+    margin-top: 6px; 
+}
+
+.excel-parsed-content table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    font-size: 12px; 
+}
+
+.excel-parsed-content th, .excel-parsed-content td { 
+    border: 1px solid #cbd5e0; 
+    padding: 5px 8px; 
+    text-align: left; 
+}
+
+/* ==========================================
+   7. Complete @media print Engine Fixes
+   ========================================== */
+@media print {
+    @page { 
+        size: A4 portrait; 
+        margin: 10mm 12mm; 
+    }
+
+    /* Force height auto to remove huge vertical gaps and avoid cutoffs */
+    html, body, .criteria-main-layout, .container, #root, div {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        overflow: visible !important;
+        background: #fff !important;
+    }
+
+    body {
+        display: block !important;
+    }
+
+    /* Header Tight Alignment */
+    .main-header { 
+        display: block !important;
+        text-align: center !important; 
+        border-bottom: 2px solid #00133e !important; 
+        padding: 0 0 6px 0 !important; 
+        margin: 0 0 10px 0 !important; 
+        height: auto !important;
+        page-break-before: avoid !important;
+        break-before: avoid !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+    }
+
+    .main-header h1 {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-size: 15pt !important;
+    }
+
+    /* Keep First Section Attached to Header */
+    .crit-section { 
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: auto !important;
+        page-break-before: auto !important;
+    }
+
+    .crit-section:first-of-type,
+    .crit-section:first-child {
+        page-break-before: avoid !important;
+        break-before: avoid !important;
+    }
+
+    .section-title { 
+        margin-top: 6px !important;
+        margin-bottom: 8px !important;
+        page-break-after: avoid !important; 
+        break-after: avoid !important;
+    }
+
+    .file-card { 
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        margin-bottom: 12px !important;
+    }
+
+    .card-title {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+    }
+
+    .embed-view { 
+        height: 380px !important; 
+    }
+
+    /* Hide Navigation and UI Elements */
+    .bottom-actions, 
+    .filters-container, 
+    .user-controls, 
+    .breadcrumb, 
+    .header,
+    .btn-download-report,
+    .btn-save-draft {
+        display: none !important;
+    }
+}

@@ -1,0 +1,256 @@
+/* ========================================= */
+/* Same Sidebar Layout as Criteria 7.1 */
+/* ========================================= */
+
+.main-container-84{
+    display:flex;
+    min-height:100vh;
+    background:#f4f7fb;
+}
+
+.criteria-main-layout-84 {
+      flex:1;
+    margin-left:270px;      /* Sidebar Width */
+    min-height:100vh;
+    background:#f4f7fb;
+    padding:20px;
+    box-sizing:border-box;
+    overflow-x:auto;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+}
+
+.container-84 {
+    width:100%;
+    max-width:1400px;
+    margin:0 auto;
+    background:#ffffff;
+    border-radius:10px;
+    padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    box-sizing:border-box;
+}
+
+.criterion-title-row-84 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.badge-id-84 {
+    background-color: #0056b3;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.criterion-heading-84 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+/* ==========================================================================
+   टेबल आणि इनपुट्स/टेक्स्टएरिया डिझाइन
+   ========================================================================== */
+.table-responsive-container-84 {
+    width: 100%;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.data-table-84 {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.data-table-84 th, .data-table-84 td {
+    border: 1px solid #cbd5e1;
+    padding: 10px 8px;
+    vertical-align: middle;
+}
+
+.data-table-84 th {
+    background-color: #fffbeb; /* फिकट पिवळा कलर */
+    color: #334155;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* कॉलम विड्थ कंट्रोल्स */
+.th-sn-84 { width: 4%; }
+.th-item-84 { width: 22%; }
+.th-status-before-84 { width: 16%; }
+.th-actions-take-84 { width: 16%; }
+.th-status-after-84 { width: 16%; }
+.th-impact-84 { width: 16%; }
+.th-action-84 { width: 10%; }
+
+.td-item-text-84 {
+    text-align: left;
+    color: #334155;
+    padding-left: 10px !important;
+    font-weight: 500;
+}
+
+/* मऊ गोल कोपरे असलेले इनपुट्स आणि टेक्स्टएरिया */
+.table-input-84 {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+.table-textarea-84 {
+    width: 100%;
+    height: 60px;
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 13px;
+    box-sizing: border-box;
+    resize: none;
+    font-family: inherit;
+}
+
+.table-input-84:focus, .table-textarea-84:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+/* ==========================================================================
+   ॲक्शन कॉलममधील सिंगल रो अपलोड डिझाइन
+   ========================================================================== */
+.action-cell-84 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    width: 100%;
+}
+
+/* स्वतंत्र रो-वाईज अपलोड बटण */
+.c84-row-upload-btn {
+    background: #f0f4ff;
+    color: #2563eb;
+    border: 1px dashed #3b82f6;
+    padding: 5px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.c84-row-upload-btn:hover {
+    background: #dbeafe;
+    border-style: solid;
+}
+
+.c84-row-file-status {
+    font-size: 10px;
+    color: #16a34a;
+    font-weight: 600;
+    text-align: center;
+}
+
+.btn-table-view-84, .btn-table-download-84 {
+    width: 100%;
+    padding: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #ffffff;
+    text-align: center;
+}
+
+.btn-table-view-84 {
+    color: #2563eb;
+    border: 1px solid #cbd5e1;
+}
+
+.btn-table-view-84:hover {
+    background: #f8fafc;
+}
+
+.btn-table-download-84 {
+    color: #16a34a;
+    border: 1px solid #bbf7d0;
+}
+
+.btn-table-download-84:hover {
+    background: #f0fdf4;
+}
+
+/* ==========================================================================
+   तळामधील कंट्रोल्स आणि लेजंड्स
+   ========================================================================== */
+.bottom-actions-84 {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 30px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 20px;
+}
+
+.btn-act-84 {
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    color: white;
+}
+
+.btn-prev-84 { background-color: #64748b; } 
+.btn-bk-84 { background-color: #475569; }     
+.btn-sv-84 { background-color: #22c55e; }     
+.btn-sub-84 { background-color: #2563eb; }   
+.btn-del-84 { background-color: #ef4444; }   
+.btn-prt-84 { background-color: #a855f7; }    
+.btn-nxt-84 { background-color: #008080; }     
+
+.footer-indicators-84 {
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    margin-top: 20px;
+    color: #64748b;
+}
+
+.indicator-item-84 {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.square-green-84 { display: inline-block; width: 12px; height: 12px; background: #22c55e; border-radius: 2px; }
+.square-red-84 { display: inline-block; width: 12px; height: 12px; background: #ef4444; border-radius: 2px; }
+
+.c84-hidden-file { display: none; }
+
+/* रिकामा रकाना असल्यास लाल बॉर्डर */
+.input-error {
+    border: 1px solid red !important;
+    background-color: #fff0f0 !important;
+}
+
+/* डॉक्युमेंट अपलोड न केल्यास अपलोड बटन लाल करणे */
+.btn-error {
+    background-color: #d9534f !important;
+    color: white !important;
+    border-color: #d43f3a !important;
+}
