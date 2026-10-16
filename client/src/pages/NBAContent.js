@@ -1,108 +1,106 @@
 import React from "react";
 import "./NBAContent.css";
 
-import {
-  FaBell,
-  FaChevronRight,
-} from "react-icons/fa";
-
-import { Link } from "react-router-dom";
+import { FaBell, FaChevronRight } from "react-icons/fa";
 
 import NBASidebar from "./NBASidebar";
 
-
 function NBAContent() {
-
   // =====================================================
   // NBA CONTENT DATA
   // =====================================================
 
   const rows = [
-
     {
       code: "PART A",
       item: "Institutional Information",
-      path: "/part-a"
+      path: "/part-a",
     },
 
     {
       code: "PART B",
       item: "Criteria Summary",
-      path: "/part-b"
+      path: "/part-b",
     },
 
     {
-      section: "PROGRAM LEVEL CRITERIA"
+      section: "PROGRAM LEVEL CRITERIA",
     },
 
     {
       code: "Criterion 1",
       item: "Outcome-Based Curriculum",
-      path: "/vision"
+      path: "/vision",
     },
 
     {
       code: "Criterion 2",
       item: "Outcome-Based Teaching Learning",
-      path: "/criteria/2.1-quality-teaching-learning"
+      path: "/criteria/2.1-quality-teaching-learning",
     },
 
     {
       code: "Criterion 3",
       item: "Outcome-Based Assessment",
-      path: "/criteria/3.1"
+      path: "/criteria/3.1",
     },
 
     {
       code: "Criterion 4",
       item: "Students' Performance",
-      path: "/criteria/4.1"
+      path: "/criteria/4.1",
     },
 
     {
       code: "Criterion 5",
       item: "Faculty Information",
-      path: "/criteria5/sfr"
+      path: "/criteria5/sfr",
     },
-
-    // =====================================================
-    // CRITERION 6
-    // GO TO SECTION → FACULTY DEVELOPMENT
-    // =====================================================
 
     {
       code: "Criterion 6",
       item: "Faculty Contributions",
-      path: "/criteria6/faculty-development"
+      path: "/criteria6/faculty-development",
     },
 
     {
       code: "Criterion 7",
       item: "Facilities and Technical Support",
-      path: "/criteria/7.1"
+      path: "/criteria/7.1",
     },
 
     {
       code: "Criterion 8",
       item: "Continuous Improvement",
-      path: "/criteria/8.1"
+      path: "/criteria/8.1",
     },
 
+    // =====================================================
+    // INSTITUTE LEVEL CRITERIA
+    // =====================================================
+
     {
-      section: "INSTITUTE LEVEL CRITERIA"
+      section: "INSTITUTE LEVEL CRITERIA",
     },
 
     {
       code: "Criterion 9",
       item: "Student Support and Governance",
-      path: "/criteria/9.1"
-    }
-
+     path: "/criteria9/1",
+    },
   ];
 
+  // =====================================================
+  // HANDLE GO TO SECTION
+  // =====================================================
+
+  const handleGoToSection = (path) => {
+    console.log("Navigating to:", path);
+
+    window.location.href = path;
+  };
 
   return (
-
     <div className="layout">
 
       {/* =====================================================
@@ -111,13 +109,11 @@ function NBAContent() {
 
       <NBASidebar />
 
-
       {/* =====================================================
           MAIN CONTENT
       ===================================================== */}
 
       <div className="main-content">
-
 
         {/* =====================================================
             TOPBAR
@@ -143,7 +139,6 @@ function NBAContent() {
 
         </div>
 
-
         {/* =====================================================
             BANNER
         ===================================================== */}
@@ -162,7 +157,6 @@ function NBAContent() {
 
           </div>
 
-
           <div className="banner-right">
 
             <div className="nba-logo">
@@ -172,7 +166,6 @@ function NBAContent() {
           </div>
 
         </div>
-
 
         {/* =====================================================
             TABLE
@@ -187,7 +180,7 @@ function NBAContent() {
               <tr>
 
                 <th>
-                  Serial Code & Link to Item
+                  Serial Code &amp; Link to Item
                 </th>
 
                 <th>
@@ -202,85 +195,83 @@ function NBAContent() {
 
             </thead>
 
-
             <tbody>
 
-              {rows.map((row, index) => (
+              {rows.map((row, index) => {
 
-                row.section ? (
+                // =================================================
+                // SECTION HEADER
+                // =================================================
 
-                  /* =================================================
-                     SECTION HEADER
-                  ================================================= */
+                if (row.section) {
+                  return (
+                    <tr
+                      key={index}
+                      className="section"
+                    >
+                      <td colSpan="3">
+                        {row.section}
+                      </td>
+                    </tr>
+                  );
+                }
 
-                  <tr
-                    key={index}
-                    className="section"
-                  >
+                // =================================================
+                // NORMAL ROW
+                // =================================================
 
-                    <td colSpan="3">
-
-                      {row.section}
-
-                    </td>
-
-                  </tr>
-
-                ) : (
-
-                  /* =================================================
-                     NORMAL ROW
-                  ================================================= */
-
+                return (
                   <tr key={index}>
 
-                    <td>
+                    {/* =================================================
+                        CODE
+                    ================================================= */}
 
+                    <td>
                       <b>
                         {row.code}
                       </b>
-
                     </td>
 
+                    {/* =================================================
+                        ITEM
+                    ================================================= */}
 
                     <td>
-
                       {row.item}
-
                     </td>
 
+                    {/* =================================================
+                        GO TO SECTION BUTTON
+                    ================================================= */}
 
                     <td>
 
-                      <Link to={row.path}>
+                      <button
+                        className="go-btn"
+                        type="button"
+                        onClick={() => handleGoToSection(row.path)}
+                      >
 
-                        <button
-                          className="go-btn"
-                          type="button"
-                        >
-
+                        <span>
                           Go to Section
+                        </span>
 
-                          <FaChevronRight />
+                        <FaChevronRight />
 
-                        </button>
-
-                      </Link>
+                      </button>
 
                     </td>
 
                   </tr>
-
-                )
-
-              ))}
+                );
+              })}
 
             </tbody>
 
           </table>
 
         </div>
-
 
         {/* =====================================================
             FOOTER
@@ -298,13 +289,11 @@ function NBAContent() {
 
         </div>
 
-
       </div>
 
     </div>
-
   );
-
 }
 
 export default NBAContent;
+

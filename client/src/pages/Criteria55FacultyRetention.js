@@ -1,25 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import {
   FaInfoCircle,
   FaUsers,
   FaCalculator,
-  FaTrophy,
   FaFileAlt,
   FaLightbulb,
-  FaChevronLeft,
-  FaChevronRight,
   FaSave,
   FaEdit,
   FaTrash,
-  FaSyncAlt,
   FaPrint,
-  FaCloudUploadAlt,
+  FaUpload,
+  FaArrowLeft,
+  FaArrowRight,
+  FaSyncAlt,
 } from "react-icons/fa";
 
 import "./Criteria55FacultyRetention.css";
-import NBASidebar from "../pages/NBASidebar";
 
-const Criteria55FacultyRetention = () => {
+function Criteria55FacultyRetention() {
+
+  const navigate = useNavigate();
+  const fileRef = useRef(null);
+
+  /* =========================
+      STATES
+  ========================= */
+
+  const [recordId, setRecordId] = useState(null);
+
+  const [students, setStudents] = useState(0);
+
   const [faculty, setFaculty] = useState({
     A: 0,
     B: 0,
@@ -28,69 +41,426 @@ const Criteria55FacultyRetention = () => {
     E: 0,
   });
 
-  const [file, setFile] = useState(null);
+  const [documentName, setDocumentName] = useState("");
 
-  const handleChange = (key, value) => {
-    const num = Math.max(0, Number(value) || 0);
+  const [loadingStudents, setLoadingStudents] = useState(false);
+
+  /* =========================
+      FETCH STUDENTS FROM SFR
+  ========================= */
+
+  const fetchStudents = async () => {
+
+    try {
+
+      setLoadingStudents(true);
+
+      const res = await axios.get(
+        "http://localhost:5000/api/criteria5/sfr/latest"
+      );
+
+      const value = Number(res.data.students) || 0;
+
+      setStudents(value);
+
+    } catch (err) {
+
+      console.log("SFR Fetch Error:", err);
+
+      setStudents(0);
+
+    } finally {
+
+      setLoadingStudents(false);
+
+    }
+
+  };
+
+  useEffect(() => {
+
+    fetchStudents();
+
+  }, []);
+
+  /* =========================
+      FACULTY CHANGE
+  ========================= */
+
+  const handleFacultyChange = (category, value) => {
+
+    const numberValue = Math.max(
+      0,
+      Number(value) || 0
+    );
 
     setFaculty((prev) => ({
       ...prev,
-      [key]: num,
+      [category]: numberValue,
     }));
+
   };
 
-  const totalAF =
-    faculty.A +
-    faculty.B +
-    faculty.C +
-    faculty.D +
-    faculty.E;
+  /* =========================
+      CALCULATIONS
+  ========================= */
 
-  // DS / 20
-  const DS = 0;
-  const RF = DS / 20;
+  const A = Number(faculty.A) || 0;
+  const B = Number(faculty.B) || 0;
+  const C = Number(faculty.C) || 0;
+  const D = Number(faculty.D) || 0;
+  const E = Number(faculty.E) || 0;
 
-  const weightedSum =
-    faculty.A * 0 +
-    faculty.B * 1 +
-    faculty.C * 2 +
-    faculty.D * 3 +
-    faculty.E * 4;
+  const availableFaculty =
+    A + B + C + D + E;
 
-  const FR =
-    RF > 0
-      ? (weightedSum / RF) * 2.5
+  /* RF = DS / 20 */
+
+  const requiredFaculty =
+    students > 0
+      ? students / 20
       : 0;
 
-  const finalScore = Math.min(10, FR);
+  /* Weighted calculations */
 
-  const percentage = (finalScore / 10) * 100;
+  const weightedA = A * 0;
+  const weightedB = B * 1;
+  const weightedC = C * 2;
+  const weightedD = D * 3;
+  const weightedE = E * 4;
+
+  const totalWeighted =
+    weightedA +
+    weightedB +
+    weightedC +
+    weightedD +
+    weightedE;
+
+  /* FR Formula */
+
+  let facultyRetentionScore = 0;
+
+  if (requiredFaculty > 0) {
+
+    facultyRetentionScore =
+      (totalWeighted / requiredFaculty) * 2.5;
+
+  }
+
+  if (facultyRetentionScore > 10) {
+    facultyRetentionScore = 10;
+  }
+
+  if (facultyRetentionScore < 0) {
+    facultyRetentionScore = 0;
+  }
+
+  const finalMarks = facultyRetentionScore;
+
+  const percentage =
+    ((finalMarks / 10) * 100).toFixed(2);
+
+  /* =========================
+      GRADE
+  ========================= */
 
   let grade = "Poor";
 
-  if (finalScore >= 9) {
+  if (finalMarks >= 9) {
+
     grade = "Excellent";
-  } else if (finalScore >= 7) {
+
+  } else if (finalMarks >= 7) {
+
     grade = "Very Good";
-  } else if (finalScore >= 5) {
+
+  } else if (finalMarks >= 5) {
+
     grade = "Good";
-  } else if (finalScore >= 3) {
+
+  } else if (finalMarks >= 3) {
+
     grade = "Average";
+
+  } else {
+
+    grade = "Poor";
+
   }
 
-  const handleFile = (e) => {
-    const selected = e.target.files[0];
+  /* =========================
+      SAVE
+  ========================= */
 
-    if (selected) {
-      setFile(selected);
+  const handleSave = async () => {
+
+    try {
+
+      const res = await axios.post(
+        "http://localhost:5000/api/criteria55",
+        {
+          A,
+          B,
+          C,
+          D,
+          E,
+          students,
+          af: availableFaculty,
+          rf: requiredFaculty,
+          weighted_sum: totalWeighted,
+          fr_score: facultyRetentionScore,
+          final_marks: finalMarks,
+        }
+      );
+
+      setRecordId(res.data.id);
+
+      alert("Faculty Retention Saved Successfully");
+
+    } catch (err) {
+
+      console.log("Save Error:", err);
+
+      alert(
+        err.response?.data?.error ||
+        "Save Failed"
+      );
+
     }
+
   };
 
-  const handlePrint = () => {
-    window.print();
+  /* =========================
+      UPDATE
+  ========================= */
+
+  const handleUpdate = async () => {
+
+    if (!recordId) {
+
+      alert("Please Save Record First");
+
+      return;
+
+    }
+
+    try {
+
+      await axios.put(
+        `http://localhost:5000/api/criteria55/${recordId}`,
+        {
+          A,
+          B,
+          C,
+          D,
+          E,
+          students,
+          af: availableFaculty,
+          rf: requiredFaculty,
+          weighted_sum: totalWeighted,
+          fr_score: facultyRetentionScore,
+          final_marks: finalMarks,
+        }
+      );
+
+      alert("Updated Successfully");
+
+    } catch (err) {
+
+      console.log("Update Error:", err);
+
+      alert(
+        err.response?.data?.error ||
+        "Update Failed"
+      );
+
+    }
+
   };
+
+  /* =========================
+      DELETE
+  ========================= */
+
+  const handleDelete = async () => {
+
+    if (!recordId) {
+
+      alert("No Record Selected");
+
+      return;
+
+    }
+
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this record?"
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+
+      await axios.delete(
+        `http://localhost:5000/api/criteria55/${recordId}`
+      );
+
+      handleClear();
+
+      alert("Deleted Successfully");
+
+    } catch (err) {
+
+      console.log("Delete Error:", err);
+
+      alert(
+        err.response?.data?.error ||
+        "Delete Failed"
+      );
+
+    }
+
+  };
+
+  /* =========================
+      VIEW / LOAD LATEST
+  ========================= */
+
+  const handleView = async () => {
+
+    try {
+
+      const res = await axios.get(
+        "http://localhost:5000/api/criteria55"
+      );
+
+      if (
+        !res.data ||
+        res.data.length === 0
+      ) {
+
+        alert("No Faculty Retention Record Found");
+
+        return;
+
+      }
+
+      const row = res.data[0];
+
+      setRecordId(row.id);
+
+      setFaculty({
+        A: Number(row.a) || 0,
+        B: Number(row.b) || 0,
+        C: Number(row.c) || 0,
+        D: Number(row.d) || 0,
+        E: Number(row.e) || 0,
+      });
+
+      setStudents(
+        Number(row.students) || 0
+      );
+
+      setDocumentName(
+        row.document || ""
+      );
+
+      alert("Latest Record Loaded");
+
+    } catch (err) {
+
+      console.log("View Error:", err);
+
+      alert("Unable to load record");
+
+    }
+
+  };
+
+  /* =========================
+      DOCUMENT UPLOAD
+  ========================= */
+
+  const handleUpload = async (event) => {
+
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    if (!recordId) {
+
+      alert(
+        "Please Save Faculty Retention Record First"
+      );
+
+      if (fileRef.current) {
+        fileRef.current.value = "";
+      }
+
+      return;
+
+    }
+
+    setDocumentName(file.name);
+
+    try {
+
+      const formData = new FormData();
+
+      formData.append(
+        "document",
+        file
+      );
+
+      formData.append(
+        "id",
+        recordId
+      );
+
+      const res = await axios.post(
+        "http://localhost:5000/api/criteria55/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type":
+              "multipart/form-data",
+          },
+        }
+      );
+
+      if (res.data?.data?.document) {
+
+        setDocumentName(
+          res.data.data.document
+        );
+
+      }
+
+      alert("Document Uploaded Successfully");
+
+    } catch (err) {
+
+      console.log(
+        "Upload Error:",
+        err
+      );
+
+      alert(
+        err.response?.data?.error ||
+        "Document Upload Failed"
+      );
+
+    }
+
+  };
+
+  /* =========================
+      CLEAR
+  ========================= */
 
   const handleClear = () => {
+
+    setRecordId(null);
+
     setFaculty({
       A: 0,
       B: 0,
@@ -99,573 +469,82 @@ const Criteria55FacultyRetention = () => {
       E: 0,
     });
 
-    setFile(null);
+    setDocumentName("");
+
+    if (fileRef.current) {
+
+      fileRef.current.value = "";
+
+    }
+
+    fetchStudents();
+
   };
 
-  const rows = [
-    {
-      key: "A",
-      title: "Less than 1 year",
-      description:
-        "No. of faculty members with less than 1 year of experience",
-    },
-    {
-      key: "B",
-      title: "More than 1 year and less than 2 years",
-      description:
-        "No. of faculty members with more than 1 year and less than 2 years of experience",
-    },
-    {
-      key: "C",
-      title: "More than 2 years and less than 3 years",
-      description:
-        "No. of faculty members with more than 2 years and less than 3 years of experience",
-    },
-    {
-      key: "D",
-      title: "More than 3 years and less than 4 years",
-      description:
-        "No. of faculty members with more than 3 years and less than 4 years of experience",
-    },
-    {
-      key: "E",
-      title: "More than 4 years",
-      description:
-        "No. of faculty members with more than 4 years of experience",
-    },
-  ];
+  /* =========================
+      PRINT
+  ========================= */
+
+  const handlePrint = () => {
+
+    window.print();
+
+  };
+
+  /* =========================
+      NAVIGATION
+  ========================= */
+
+  const handlePrevious = () => {
+
+    navigate("/criteria5/visiting-faculty");
+
+  };
+
+  const handleNext = () => {
+
+    navigate("/criteria6");
+
+  };
+
+  /* =========================
+      RENDER
+  ========================= */
 
   return (
+
     <div className="criteria55-page">
 
-      {/* =====================================================
-          NBA SIDEBAR
-      ===================================================== */}
+      <div className="criteria55-container">
 
-      <NBASidebar />
+        {/* ================= HEADER ================= */}
 
+        <div className="criteria55-header">
 
-      {/* =====================================================
-          HEADER
-      ===================================================== */}
-
-      <div className="criteria55-header">
-
-        <div className="criteria55-number">
-          5.5
-        </div>
-
-        <div className="criteria55-title">
-          <h1>Faculty Retention</h1>
-          <p>Evaluation as per NBA SAR Guidelines</p>
-        </div>
-
-        <div className="criteria55-max">
-          <span>Maximum Marks</span>
-          <strong>10</strong>
-        </div>
-
-      </div>
-
-
-      {/* =====================================================
-          FORMULA + GUIDELINES
-      ===================================================== */}
-
-      <div className="criteria55-info">
-
-        <div className="criteria55-formula">
-
-          <div className="criteria55-section-title">
-            <FaInfoCircle />
-            <span>Formula</span>
+          <div className="criteria55-number">
+            5.5
           </div>
 
-          <div className="criteria55-formula-text">
-            FR = (((A*0) + (B*1) + (C*2) + (D*3) + (E*4))/RF) * 2.50
-          </div>
-
-          <div className="criteria55-red-text">
-            (Points limited to 10)
-          </div>
-
-        </div>
-
-
-        <div className="criteria55-guidelines">
-
-          <div className="criteria55-bullet">
-            ❖ RF = No. of required faculty in the Department to adhere to the
-            20:1 Student-Faculty ratio, with calculations based on both student
-            numbers and faculty requirements as per section 5.1 of SAR;
-            (RF = DS/20).
-          </div>
-
-          <div className="criteria55-bullet">
-            ❖ AF = The no. of available faculty members in the Department.
-          </div>
-
-          <div className="criteria55-bullet">
-            ❖ The programs, such as <b>MCA, BCA, Diploma (Engineering)</b>, and
-            other non-engineering programs running in the Department, need to
-            have sufficient faculty members to support them and exclude the
-            faculty members listed in Table No. 5.5.1 (AF).
-          </div>
-
-          <div className="criteria55-bullet">
-            ❖ A = The no. of faculty members at the current institute with less
-            than 1 year of experience (A in AF)
-          </div>
-
-          <div className="criteria55-bullet">
-            ❖ B = The no. of faculty members at the current institute with more
-            than 1 year and less than 2 years of experience (B in AF)
-          </div>
-
-        </div>
-
-      </div>
-
-
-      {/* =====================================================
-          MAIN TWO COLUMN AREA
-      ===================================================== */}
-
-      <div className="criteria55-main-grid">
-
-
-        {/* =================================================
-            FACULTY DATA
-        ================================================= */}
-
-        <div className="criteria55-card">
-
-          <div className="criteria55-card-heading">
-            <FaUsers />
-
-            <span>
-              Faculty Data <small>(At Current Institute)</small>
-            </span>
-          </div>
-
-
-          <div className="criteria55-table">
-
-            <div className="criteria55-table-head">
-              <div>Experience (Years)</div>
-              <div>Description</div>
-              <div>No. of Faculty (AF)</div>
-            </div>
-
-
-            {rows.map((row) => (
-
-              <div
-                className="criteria55-table-row"
-                key={row.key}
-              >
-
-                <div className="criteria55-experience">
-
-                  <span
-                    className={`criteria55-letter criteria55-${row.key}`}
-                  >
-                    {row.key}
-                  </span>
-
-                  <span>
-                    {row.title}
-                  </span>
-
-                </div>
-
-
-                <div className="criteria55-description">
-                  {row.description}
-                </div>
-
-
-                <div className="criteria55-input-box">
-
-                  <input
-                    type="number"
-                    min="0"
-                    value={faculty[row.key]}
-                    onChange={(e) =>
-                      handleChange(row.key, e.target.value)
-                    }
-                  />
-
-                </div>
-
-              </div>
-
-            ))}
-
-
-            <div className="criteria55-total-row">
-
-              <strong>
-                Total Available Faculty (AF) = A + B + C + D + E
-              </strong>
-
-              <input
-                type="text"
-                value={totalAF}
-                readOnly
-              />
-
-            </div>
-
-
-            <div className="criteria55-rf-row">
-
-              <span>
-                Required Faculty (RF = DS / 20)
-              </span>
-
-              <input
-                type="text"
-                value={RF}
-                readOnly
-              />
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        {/* =================================================
-            CALCULATION
-        ================================================= */}
-
-        <div className="criteria55-right-column">
-
-          <div className="criteria55-card">
-
-            <div className="criteria55-card-heading">
-              <FaCalculator />
-              <span>Calculation &amp; Results</span>
-            </div>
-
-
-            <div className="criteria55-calculation">
-
-              {[
-                ["A", "Less than 1 year", 0],
-                ["B", "More than 1 year and less than 2 years", 1],
-                ["C", "More than 2 years and less than 3 years", 2],
-                ["D", "More than 3 years and less than 4 years", 3],
-                ["E", "More than 4 years", 4],
-              ].map(([key, label, multiplier]) => (
-
-                <div
-                  className="criteria55-calc-row"
-                  key={key}
-                >
-
-                  <span>
-                    {key} ({label})
-                  </span>
-
-                  <strong>
-                    {faculty[key]}
-                  </strong>
-
-                  <span>
-                    ×
-                  </span>
-
-                  <strong>
-                    {multiplier}
-                  </strong>
-
-                  <span>
-                    =
-                  </span>
-
-                  <strong>
-                    {faculty[key] * multiplier}
-                  </strong>
-
-                </div>
-
-              ))}
-
-
-              <div className="criteria55-calc-total">
-
-                <span>
-                  Total Weighted Sum (A*0 + B*1 + C*2 + D*3 + E*4)
-                </span>
-
-                <strong>
-                  {weightedSum}
-                </strong>
-
-              </div>
-
-
-              <div className="criteria55-fr-row">
-
-                <span>
-                  Faculty Retention Score (FR)
-                </span>
-
-                <span>
-                  ({weightedSum} / {RF}) × 2.50
-                </span>
-
-                <strong>
-                  {FR.toFixed(2)}
-                </strong>
-
-              </div>
-
-            </div>
-
-
-            <div className="criteria55-final-score">
-
-              <div>
-                <FaTrophy />
-                <span>
-                  Final Score (Points Limited to 10)
-                </span>
-              </div>
-
-              <strong>
-                {finalScore.toFixed(2)} / 10
-              </strong>
-
-            </div>
-
-          </div>
-
-
-          {/* =================================================
-              EXHIBITS
-          ================================================= */}
-
-          <div className="criteria55-card criteria55-exhibit">
-
-            <div className="criteria55-card-heading">
-
-              <FaFileAlt />
-
-              <span>
-                Exhibits / Context to be Observed / Assessed
-              </span>
-
-            </div>
-
-            <ul>
-
-              <li>
-                Documentary evidence.
-              </li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      {/* =====================================================
-          IMPORTANT NOTES
-      ===================================================== */}
-
-      <div className="criteria55-notes">
-
-        <div className="criteria55-notes-title">
-          <FaLightbulb />
-          <span>Important Notes</span>
-        </div>
-
-
-        <div className="criteria55-notes-grid">
-
-          <div>
-
-            <ul>
-
-              <li>
-                RF = No. of required faculty in the Department to adhere to the
-                20:1 Student-Faculty ratio, with calculations based on both
-                student numbers and faculty requirements as per section 5.1 of
-                SAR; (RF = DS/20).
-              </li>
-
-              <li>
-                AF = The no. of available faculty members in the Department.
-              </li>
-
-              <li>
-                The programs, such as MCA, BCA, Diploma (Engineering), and
-                other non-engineering programs running in the Department, need
-                to have sufficient faculty members to support them and exclude
-                the faculty members listed in Table No. 5.5.1 (AF).
-              </li>
-
-            </ul>
-
-          </div>
-
-
-          <div>
-
-            <ul>
-
-              <li>
-                A = The no. of faculty members at the current institute with
-                less than 1 year of experience (A in AF)
-              </li>
-
-              <li>
-                B = The no. of faculty members at the current institute with
-                more than 1 year and less than 2 years of experience (B in AF)
-              </li>
-
-              <li>
-                C = The no. of faculty members at the current institute with
-                more than 2 years and less than 3 years of experience (C in AF)
-              </li>
-
-              <li>
-                D = The no. of faculty members at the current institute with
-                more than 3 years and less than 4 years of experience (D in AF)
-              </li>
-
-              <li>
-                E = The no. of faculty members at the current institute with
-                more than 4 years of experience (E in AF)
-              </li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      {/* =====================================================
-          BOTTOM THREE CARDS
-      ===================================================== */}
-
-      <div className="criteria55-bottom-grid">
-
-
-        {/* =================================================
-            NBA CALCULATION
-        ================================================= */}
-
-        <div className="criteria55-bottom-card">
-
-          <div className="criteria55-bottom-header blue">
-            <FaCalculator />
-            NBA Calculation
-          </div>
-
-
-          <div className="criteria55-nba-table">
-
-            <div>
-              <span>
-                A (&lt; 1 year)
-              </span>
-
-              <strong>
-                {faculty.A}
-              </strong>
-            </div>
-
-
-            <div>
-              <span>
-                B (&gt; 1 &amp; &lt; 2 years)
-              </span>
-
-              <strong>
-                {faculty.B}
-              </strong>
-            </div>
-
-
-            <div>
-              <span>
-                C (&gt; 2 &amp; &lt; 3 years)
-              </span>
-
-              <strong>
-                {faculty.C}
-              </strong>
-            </div>
-
-
-            <div>
-              <span>
-                D (&gt; 3 &amp; &lt; 4 years)
-              </span>
-
-              <strong>
-                {faculty.D}
-              </strong>
-            </div>
-
-
-            <div>
-              <span>
-                E (&gt; 4 years)
-              </span>
-
-              <strong>
-                {faculty.E}
-              </strong>
-            </div>
-
-
-            <div>
-              <span>
-                RF (DS/20)
-              </span>
-
-              <strong className="blue-text">
-                {RF}
-              </strong>
-            </div>
-
-          </div>
-
-
-          <div className="criteria55-small-formula">
-
-            <strong>
-              FR Formula
-            </strong>
+          <div className="criteria55-title">
+
+            <h1>
+              Faculty Retention
+            </h1>
 
             <p>
-              (((A*0) + (B*1) + (C*2) + (D*3) + (E*4))/RF) * 2.50
+              Evaluation as per NBA SAR Guidelines
             </p>
 
           </div>
 
-
-          <div className="criteria55-total-marks">
+          <div className="criteria55-maxmarks">
 
             <span>
-              Total Marks
+              Maximum Marks
             </span>
 
             <strong>
-              {finalScore.toFixed(2)}
-              <small> / 10</small>
+              10
             </strong>
 
           </div>
@@ -673,153 +552,621 @@ const Criteria55FacultyRetention = () => {
         </div>
 
 
-        {/* =================================================
-            NBA EVALUATION
-        ================================================= */}
+        {/* ================= FORMULA ================= */}
 
-        <div className="criteria55-bottom-card">
+        <div className="criteria55-formula-card">
 
-          <div className="criteria55-bottom-header green">
+          <div className="formula-box">
 
-            <FaTrophy />
+            <div className="section-icon">
+              <FaCalculator />
+            </div>
 
-            NBA Evaluation
+            <h3>
+              Formula
+            </h3>
+
+            <div className="formula-text">
+
+              FR = (((A×0) + (B×1) + (C×2)
+              + (D×3) + (E×4)) / RF) × 2.50
+
+            </div>
+
+            <strong className="formula-warning">
+              (Points limited to 10)
+            </strong>
+
+          </div>
+
+          <div className="formula-guidelines">
+
+            <p>
+              ❖ <b>RF</b> = No. of required faculty in
+              the Department to adhere to the 20:1
+              Student-Faculty ratio, with calculations
+              based on both student numbers and faculty
+              requirements as per section 5.1 of SAR;
+              (RF = DS/20).
+            </p>
+
+            <p>
+              ❖ <b>AF</b> = The no. of available faculty
+              members in the Department.
+            </p>
+
+            <p>
+              ❖ The programs, such as
+              <b> MCA, BCA, Diploma (Engineering)</b>,
+              and other non-engineering programs running
+              in the Department, need to have sufficient
+              faculty members to support them.
+            </p>
+
+            <p>
+              ❖ <b>A</b> = Faculty members with less than
+              1 year of experience.
+            </p>
+
+            <p>
+              ❖ <b>B</b> = Faculty members with more than
+              1 year and less than 2 years of experience.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        {/* ================= MAIN TWO COLUMN ================= */}
+
+        <div className="criteria55-main-grid">
+
+
+          {/* ================= FACULTY DATA ================= */}
+
+          <div className="faculty-data-card">
+
+            <div className="card-heading">
+
+              <FaUsers />
+
+              <span>
+                Faculty Data
+              </span>
+
+              <small>
+                (At Current Institute)
+              </small>
+
+            </div>
+
+
+            <table className="faculty-table">
+
+              <thead>
+
+                <tr>
+
+                  <th>
+                    Experience (Years)
+                  </th>
+
+                  <th>
+                    Description
+                  </th>
+
+                  <th>
+                    No. of Faculty (AF)
+                  </th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <tr>
+
+                  <td>
+
+                    <div className="experience-cell">
+
+                      <span className="letter a">
+                        A
+                      </span>
+
+                      <b>
+                        Less than 1 year
+                      </b>
+
+                    </div>
+
+                  </td>
+
+                  <td>
+                    No. of faculty members with
+                    less than 1 year of experience
+                  </td>
+
+                  <td>
+
+                    <input
+                      type="number"
+                      min="0"
+                      value={A}
+                      onChange={(e) =>
+                        handleFacultyChange(
+                          "A",
+                          e.target.value
+                        )
+                      }
+                    />
+
+                  </td>
+
+                </tr>
+
+
+                <tr>
+
+                  <td>
+
+                    <div className="experience-cell">
+
+                      <span className="letter b">
+                        B
+                      </span>
+
+                      <b>
+                        More than 1 year
+                        <br />
+                        and less than 2 years
+                      </b>
+
+                    </div>
+
+                  </td>
+
+                  <td>
+                    No. of faculty members with
+                    more than 1 year and less than
+                    2 years of experience
+                  </td>
+
+                  <td>
+
+                    <input
+                      type="number"
+                      min="0"
+                      value={B}
+                      onChange={(e) =>
+                        handleFacultyChange(
+                          "B",
+                          e.target.value
+                        )
+                      }
+                    />
+
+                  </td>
+
+                </tr>
+
+
+                <tr>
+
+                  <td>
+
+                    <div className="experience-cell">
+
+                      <span className="letter c">
+                        C
+                      </span>
+
+                      <b>
+                        More than 2 years
+                        <br />
+                        and less than 3 years
+                      </b>
+
+                    </div>
+
+                  </td>
+
+                  <td>
+                    No. of faculty members with
+                    more than 2 years and less than
+                    3 years of experience
+                  </td>
+
+                  <td>
+
+                    <input
+                      type="number"
+                      min="0"
+                      value={C}
+                      onChange={(e) =>
+                        handleFacultyChange(
+                          "C",
+                          e.target.value
+                        )
+                      }
+                    />
+
+                  </td>
+
+                </tr>
+
+
+                <tr>
+
+                  <td>
+
+                    <div className="experience-cell">
+
+                      <span className="letter d">
+                        D
+                      </span>
+
+                      <b>
+                        More than 3 years
+                        <br />
+                        and less than 4 years
+                      </b>
+
+                    </div>
+
+                  </td>
+
+                  <td>
+                    No. of faculty members with
+                    more than 3 years and less than
+                    4 years of experience
+                  </td>
+
+                  <td>
+
+                    <input
+                      type="number"
+                      min="0"
+                      value={D}
+                      onChange={(e) =>
+                        handleFacultyChange(
+                          "D",
+                          e.target.value
+                        )
+                      }
+                    />
+
+                  </td>
+
+                </tr>
+
+
+                <tr>
+
+                  <td>
+
+                    <div className="experience-cell">
+
+                      <span className="letter e">
+                        E
+                      </span>
+
+                      <b>
+                        More than 4 years
+                      </b>
+
+                    </div>
+
+                  </td>
+
+                  <td>
+                    No. of faculty members with
+                    more than 4 years of experience
+                  </td>
+
+                  <td>
+
+                    <input
+                      type="number"
+                      min="0"
+                      value={E}
+                      onChange={(e) =>
+                        handleFacultyChange(
+                          "E",
+                          e.target.value
+                        )
+                      }
+                    />
+
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+
+            {/* AF */}
+
+            <div className="calculation-input-row">
+
+              <div>
+
+                <b>
+                  Total Available Faculty (AF)
+                </b>
+
+                <span>
+                  = A + B + C + D + E
+                </span>
+
+              </div>
+
+              <strong>
+                {availableFaculty}
+              </strong>
+
+            </div>
+
+
+            {/* STUDENTS */}
+
+            <div className="calculation-input-row">
+
+              <div>
+
+                <b>
+                  Student Count (DS)
+                </b>
+
+                <span>
+                  From Criteria 5.1 SFR
+                </span>
+
+              </div>
+
+              <strong>
+                {loadingStudents
+                  ? "Loading..."
+                  : students}
+              </strong>
+
+            </div>
+
+
+            {/* RF */}
+
+            <div className="calculation-input-row rf-row">
+
+              <div>
+
+                <b>
+                  Required Faculty (RF)
+                </b>
+
+                <span>
+                  = DS / 20
+                </span>
+
+              </div>
+
+              <strong>
+                {requiredFaculty.toFixed(2)}
+              </strong>
+
+            </div>
 
           </div>
 
 
-          <div className="criteria55-evaluation">
+          {/* ================= CALCULATION ================= */}
 
-            <div>
+          <div className="calculation-card">
+
+            <div className="card-heading">
+
+              <FaCalculator />
 
               <span>
-                Maximum Marks
+                Calculation & Results
+              </span>
+
+            </div>
+
+
+            <div className="weighted-list">
+
+              <div className="weighted-row">
+
+                <span>
+                  A (Less than 1 year)
+                </span>
+
+                <b>{A}</b>
+
+                <span>×</span>
+
+                <b>0</b>
+
+                <span>=</span>
+
+                <strong>
+                  {weightedA}
+                </strong>
+
+              </div>
+
+
+              <div className="weighted-row">
+
+                <span>
+                  B (More than 1 year and less than 2 years)
+                </span>
+
+                <b>{B}</b>
+
+                <span>×</span>
+
+                <b>1</b>
+
+                <span>=</span>
+
+                <strong>
+                  {weightedB}
+                </strong>
+
+              </div>
+
+
+              <div className="weighted-row">
+
+                <span>
+                  C (More than 2 years and less than 3 years)
+                </span>
+
+                <b>{C}</b>
+
+                <span>×</span>
+
+                <b>2</b>
+
+                <span>=</span>
+
+                <strong>
+                  {weightedC}
+                </strong>
+
+              </div>
+
+
+              <div className="weighted-row">
+
+                <span>
+                  D (More than 3 years and less than 4 years)
+                </span>
+
+                <b>{D}</b>
+
+                <span>×</span>
+
+                <b>3</b>
+
+                <span>=</span>
+
+                <strong>
+                  {weightedD}
+                </strong>
+
+              </div>
+
+
+              <div className="weighted-row">
+
+                <span>
+                  E (More than 4 years)
+                </span>
+
+                <b>{E}</b>
+
+                <span>×</span>
+
+                <b>4</b>
+
+                <span>=</span>
+
+                <strong>
+                  {weightedE}
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div className="result-row">
+
+              <span>
+                Total Weighted Sum
+                (A×0 + B×1 + C×2 + D×3 + E×4)
               </span>
 
               <strong>
-                10
+                {totalWeighted}
               </strong>
 
             </div>
 
 
-            <div>
+            <div className="result-row">
 
               <span>
-                Obtained Marks
+                Faculty Retention Score (FR)
               </span>
 
-              <strong className="red-text">
-                {finalScore.toFixed(2)} / 10
+              <strong className="green-result">
+
+                {requiredFaculty > 0
+                  ? `(${totalWeighted} / ${requiredFaculty.toFixed(2)}) × 2.50`
+                  : "0.00"}
+
+                <br />
+
+                {facultyRetentionScore.toFixed(2)}
+
               </strong>
 
             </div>
 
 
-            <div>
+            {/* FINAL SCORE */}
 
-              <span>
-                Percentage
-              </span>
+            <div className="final-score">
 
-              <strong className="blue-text">
-                {percentage.toFixed(2)}%
-              </strong>
+              <div>
 
-            </div>
+                <FaCalculator />
 
+                <span>
+                  Final Score
+                </span>
 
-            <div>
+                <small>
+                  (Points Limited to 10)
+                </small>
 
-              <span>
-                Grade
-              </span>
-
-              <strong className="grade-pill">
-                {grade}
-              </strong>
-
-            </div>
-
-          </div>
-
-
-          <div className="criteria55-grade-table">
-
-            <div className="grade-head">
-
-              <span>
-                Marks Range
-              </span>
-
-              <span>
-                Grade
-              </span>
-
-            </div>
-
-
-            <div>
-
-              <span>
-                9 - 10
-              </span>
+              </div>
 
               <strong>
-                Excellent
+                {finalMarks.toFixed(2)} / 10
               </strong>
 
             </div>
 
 
-            <div>
+            {/* EXHIBITS */}
 
-              <span>
-                7 - 8.99
-              </span>
+            <div className="exhibits-card">
 
-              <strong>
-                Very Good
-              </strong>
+              <div className="exhibits-heading">
 
-            </div>
+                <FaFileAlt />
 
+                <b>
+                  Exhibits / Context to be Observed / Assessed
+                </b>
 
-            <div>
+              </div>
 
-              <span>
-                5 - 6.99
-              </span>
+              <ul>
 
-              <strong>
-                Good
-              </strong>
+                <li>
+                  Documentary evidence.
+                </li>
 
-            </div>
-
-
-            <div>
-
-              <span>
-                3 - 4.99
-              </span>
-
-              <strong>
-                Average
-              </strong>
-
-            </div>
-
-
-            <div>
-
-              <span>
-                0 - 2.99
-              </span>
-
-              <strong>
-                Poor
-              </strong>
+              </ul>
 
             </div>
 
@@ -828,63 +1175,68 @@ const Criteria55FacultyRetention = () => {
         </div>
 
 
-        {/* =================================================
-            SUPPORTING DOCUMENT
-        ================================================= */}
+        {/* ================= IMPORTANT NOTES ================= */}
 
-        <div className="criteria55-bottom-card">
+        <div className="important-notes">
 
-          <div className="criteria55-bottom-header purple">
+          <div className="notes-title">
 
-            <FaFileAlt />
+            <FaLightbulb />
 
-            Supporting Document
+            <b>
+              Important Notes
+            </b>
 
           </div>
 
+          <div className="notes-grid">
 
-          <div className="criteria55-upload">
-
-            <label
-              htmlFor="supportingFile"
-              className="criteria55-upload-box"
-            >
-
-              <FaCloudUploadAlt />
-
-              <span>
-                {file
-                  ? file.name
-                  : "No File Uploaded"}
-              </span>
-
-            </label>
-
-
-            <input
-              id="supportingFile"
-              type="file"
-              onChange={handleFile}
-              hidden
-            />
-
-
-            <label
-              htmlFor="supportingFile"
-              className="criteria55-upload-button"
-            >
-              Upload Supporting Document
-            </label>
-
-
-            <div className="criteria55-upload-note">
-
-              <strong>
-                Note :
-              </strong>
+            <div>
 
               <p>
-                Kindly upload relevant supporting documents as evidence.
+                ❖ RF = No. of required faculty in the
+                Department to adhere to the 20:1
+                Student-Faculty ratio.
+              </p>
+
+              <p>
+                ❖ AF = No. of available faculty members
+                in the Department.
+              </p>
+
+              <p>
+                ❖ Programs such as MCA, BCA, Diploma
+                (Engineering) and other non-engineering
+                programs need sufficient faculty members.
+              </p>
+
+            </div>
+
+            <div>
+
+              <p>
+                ❖ A = Faculty members with less than
+                1 year experience.
+              </p>
+
+              <p>
+                ❖ B = Faculty members with more than
+                1 year and less than 2 years.
+              </p>
+
+              <p>
+                ❖ C = Faculty members with more than
+                2 years and less than 3 years.
+              </p>
+
+              <p>
+                ❖ D = Faculty members with more than
+                3 years and less than 4 years.
+              </p>
+
+              <p>
+                ❖ E = Faculty members with more than
+                4 years experience.
               </p>
 
             </div>
@@ -893,87 +1245,384 @@ const Criteria55FacultyRetention = () => {
 
         </div>
 
-      </div>
+
+        {/* ================= BOTTOM CARDS ================= */}
+
+        <div className="bottom-cards">
 
 
-      {/* =====================================================
-          BOTTOM ACTION BUTTONS
-      ===================================================== */}
+          {/* NBA CALCULATION */}
 
-      <div className="criteria55-actions">
+          <div className="nba-calc-card">
 
-        <button className="previous">
+            <div className="bottom-card-header blue">
 
-          <FaChevronLeft />
+              <FaCalculator />
 
-          Previous
+              <span>
+                NBA Calculation
+              </span>
 
-        </button>
+            </div>
+
+            <div className="nba-line">
+              <span>A (&lt; 1 year)</span>
+              <b>{A}</b>
+            </div>
+
+            <div className="nba-line">
+              <span>B (&gt; 1 &amp; &lt; 2 years)</span>
+              <b>{B}</b>
+            </div>
+
+            <div className="nba-line">
+              <span>C (&gt; 2 &amp; &lt; 3 years)</span>
+              <b>{C}</b>
+            </div>
+
+            <div className="nba-line">
+              <span>D (&gt; 3 &amp; &lt; 4 years)</span>
+              <b>{D}</b>
+            </div>
+
+            <div className="nba-line">
+              <span>E (&gt; 4 years)</span>
+              <b>{E}</b>
+            </div>
+
+            <div className="nba-line">
+              <span>RF (DS/20)</span>
+              <b className="blue-text">
+                {requiredFaculty.toFixed(2)}
+              </b>
+            </div>
+
+            <div className="fr-formula">
+
+              <b>
+                FR Formula
+              </b>
+
+              <p>
+                (((A×0)+(B×1)+(C×2)+(D×3)+(E×4))
+                /RF) × 2.50
+              </p>
+
+            </div>
+
+            <div className="total-marks">
+
+              <span>
+                Total Marks
+              </span>
+
+              <strong>
+                {finalMarks.toFixed(2)} / 10
+              </strong>
+
+            </div>
+
+          </div>
 
 
-        <button className="save">
+          {/* NBA EVALUATION */}
 
-          <FaSave />
+          <div className="evaluation-card">
 
-          Save
+            <div className="bottom-card-header green">
 
-        </button>
+              <FaCalculator />
+
+              <span>
+                NBA Evaluation
+              </span>
+
+            </div>
+
+            <div className="evaluation-line">
+
+              <span>
+                Maximum Marks
+              </span>
+
+              <b>
+                10
+              </b>
+
+            </div>
+
+            <div className="evaluation-line">
+
+              <span>
+                Obtained Marks
+              </span>
+
+              <b className="red-text">
+                {finalMarks.toFixed(2)} / 10
+              </b>
+
+            </div>
+
+            <div className="evaluation-line">
+
+              <span>
+                Percentage
+              </span>
+
+              <b className="blue-text">
+                {percentage}%
+              </b>
+
+            </div>
+
+            <div className="evaluation-line">
+
+              <span>
+                Grade
+              </span>
+
+              <strong
+                className={`grade ${grade
+                  .toLowerCase()
+                  .replace(" ", "-")}`}
+              >
+                {grade}
+              </strong>
+
+            </div>
 
 
-        <button className="update">
+            <table className="grade-table">
 
-          <FaEdit />
+              <thead>
 
-          Update
+                <tr>
 
-        </button>
+                  <th>
+                    Marks Range
+                  </th>
+
+                  <th>
+                    Grade
+                  </th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                <tr>
+                  <td>9 - 10</td>
+                  <td className="excellent">
+                    Excellent
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>7 - 8.99</td>
+                  <td className="very-good">
+                    Very Good
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>5 - 6.99</td>
+                  <td className="good">
+                    Good
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>3 - 4.99</td>
+                  <td className="average">
+                    Average
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>0 - 2.99</td>
+                  <td className="poor">
+                    Poor
+                  </td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
 
 
-        <button className="delete">
+          {/* DOCUMENT */}
 
-          <FaTrash />
+          <div className="document-card">
 
-          Delete
+            <div className="bottom-card-header purple">
 
-        </button>
+              <FaFileAlt />
 
+              <span>
+                Supporting Document
+              </span>
+
+            </div>
+
+            <div className="upload-area">
+
+              <FaUpload />
+
+              <p>
+                {documentName ||
+                  "No File Uploaded"}
+              </p>
+
+            </div>
+
+            <button
+              className="upload-button"
+              onClick={() =>
+                fileRef.current.click()
+              }
+            >
+
+              <FaUpload />
+
+              Upload Supporting Document
+
+            </button>
+
+            <input
+              type="file"
+              hidden
+              ref={fileRef}
+              accept=".pdf,.doc,.docx"
+              onChange={handleUpload}
+            />
+
+            <div className="document-note">
+
+              <b>
+                Note :
+              </b>
+
+              <p>
+                Kindly upload relevant supporting
+                documents as evidence.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        {/* ================= BUTTONS ================= */}
+
+        <div className="bottom-actions">
+
+          <button
+            className="action previous"
+            onClick={handlePrevious}
+          >
+
+            <FaArrowLeft />
+
+            Previous
+
+          </button>
+
+
+          <button
+            className="action save"
+            onClick={handleSave}
+          >
+
+            <FaSave />
+
+            Save
+
+          </button>
+
+
+          <button
+            className="action update"
+            onClick={handleUpdate}
+          >
+
+            <FaEdit />
+
+            Update
+
+          </button>
+
+
+          <button
+            className="action delete"
+            onClick={handleDelete}
+          >
+
+            <FaTrash />
+
+            Delete
+
+          </button>
+
+
+          <button
+            className="action clear"
+            onClick={handleClear}
+          >
+
+            <FaSyncAlt />
+
+            Clear
+
+          </button>
+
+
+          <button
+            className="action print"
+            onClick={handlePrint}
+          >
+
+            <FaPrint />
+
+            Print
+
+          </button>
+
+
+          <button
+            className="action next"
+            onClick={handleNext}
+          >
+
+            Next
+
+            <FaArrowRight />
+
+          </button>
+
+        </div>
+
+
+        {/* VIEW BUTTON */}
 
         <button
-          className="clear"
-          onClick={handleClear}
+          className="hidden-view-button"
+          onClick={handleView}
         >
-
-          <FaSyncAlt />
-
-          Clear
-
-        </button>
-
-
-        <button
-          className="print"
-          onClick={handlePrint}
-        >
-
-          <FaPrint />
-
-          Print
-
-        </button>
-
-
-        <button className="next">
-
-          Next
-
-          <FaChevronRight />
-
+          Load Saved Record
         </button>
 
       </div>
 
     </div>
+
   );
-};
+
+}
 
 export default Criteria55FacultyRetention;

@@ -5,7 +5,6 @@ import * as mammoth from "mammoth";
 import * as XLSX from "xlsx";
 import NBASidebar from "../NBASidebar";
 import "../../styles/Criteria8_4.css";
-
 const API_BASE_URL = "http://localhost:5000/api/criteria/8";
 const LOCAL_STORAGE_KEY = "criteria_8_4_table_data";
 
@@ -206,7 +205,7 @@ const Criteria8_4 = () => {
                 );
             }
 
-            alert(" Saved Successfully");
+            alert("Saved Successfully");
             setIsSaved(true);
         } catch (err) {
             console.log(err);
@@ -234,11 +233,9 @@ const Criteria8_4 = () => {
         }
     };
 
-    // 🟢 अपग्रेटेड आणि सेफ फाईल पार्सिंग फंक्शन
     const readFileContentHTML = async (fileName, fileObj) => {
         let arrayBuffer = null;
 
-        // १. जर युजरने आत्ताच फाईल सिलेक्ट केली असेल तर मेमरीमधून डायरेक्ट वाचणे
         if (fileObj) {
             try {
                 arrayBuffer = await fileObj.arrayBuffer();
@@ -247,7 +244,6 @@ const Criteria8_4 = () => {
             }
         }
 
-        // २. जर फाईल मेमरीत नसेल, तर बॅकएंड सर्व्हरवरून फेच करणे
         if (!arrayBuffer && fileName) {
             try {
                 const response = await fetch(`http://localhost:5000/uploads/${fileName}`);
@@ -261,7 +257,6 @@ const Criteria8_4 = () => {
 
         const ext = fileName ? fileName.split('.').pop().toLowerCase() : '';
 
-        // Word File (.docx) Safe Parsing
         if (ext === 'docx') {
             if (arrayBuffer && arrayBuffer.byteLength > 0) {
                 try {
@@ -271,7 +266,6 @@ const Criteria8_4 = () => {
                     console.error("Mammoth error:", err);
                 }
             }
-            // एरर ऐवजी क्लीन डाउनलोड कार्ड दाखवणे
             return `
                 <div style="padding:10px 14px; border:1px solid #cbd5e0; background:#f8fafc; color:#334155; border-radius:6px; margin-top:6px;">
                     <p style="margin:0 0 4px 0; font-weight:bold; font-size:13px; color:#0f172a;">📄 Attached Document: ${fileName || 'Document.docx'}</p>
@@ -280,7 +274,6 @@ const Criteria8_4 = () => {
             `;
         }
 
-        // Excel File (.xlsx, .xls, .csv) Safe Parsing
         if (['xlsx', 'xls', 'csv'].includes(ext)) {
             if (arrayBuffer && arrayBuffer.byteLength > 0) {
                 try {
@@ -304,7 +297,6 @@ const Criteria8_4 = () => {
         return null;
     };
 
-    // 🟢 Consolidated Print Function
     const handlePrint = async () => {
         const printWindow = window.open('', '_blank');
         if (!printWindow) { 
@@ -337,7 +329,6 @@ const Criteria8_4 = () => {
             const critSub = item.sub;
             let sectionData = [];
 
-            // १. Backend API Fetching
             try {
                 const response = await axios.get(`http://localhost:5000/api/criteria/${critMain}/${critSub}/data`, {
                     params: {
@@ -353,7 +344,6 @@ const Criteria8_4 = () => {
                 console.warn(`API failed for Criteria ${critSub}, checking LocalStorage...`);
             }
 
-            // २. LocalStorage fallback
             if (!sectionData || sectionData.length === 0) {
                 if (critSub === '8.4') {
                     sectionData = tableData;
@@ -384,7 +374,6 @@ const Criteria8_4 = () => {
                 }
             }
 
-            // ३. फाइल्स आणि डेटा प्रोसेस करणे
             if (Array.isArray(sectionData) && sectionData.length > 0) {
                 for (const row of sectionData) {
                     const pointName = row.point || row.item || row.pointName || row.title || (row.s_n || row.srNo ? `Point ${row.s_n || row.srNo}` : '');
@@ -498,25 +487,19 @@ const Criteria8_4 = () => {
                 <div style={{ backgroundColor: '#ffffff', borderRadius: '8px', padding: '16px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)', border: '1px solid #e2e8f0', width: '100%', boxSizing: 'border-box' }}>
                     <div style={{ backgroundColor: '#001a4d', color: '#ffffff', padding: '10px 14px', borderRadius: '6px 6px 0 0' }}>
                         <h2 style={{ margin: 0, fontSize: '15px', fontWeight: 'bold' }}>
-                            8.4 &nbsp;&nbsp; Improvement in Academic Performance (10)
+                            8.4 &nbsp;&nbsp; Improvement in Academic Performance 
                         </h2>
                     </div>
 
-                    <div style={{ width: '100%', marginBottom: '12px', border: '1px solid #e2e8f0', borderTop: 'none', overflowX: 'auto' }}>
-                        <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: '#fff', fontSize: '12px' }}>
+                    {/* Compact Table Container */}
+                    <div style={{ background: '#ffffff', padding: '8px', borderRadius: '0 0 6px 6px', border: '1px solid #cbd5e0', borderTop: 'none', boxShadow: '0 1px 4px rgba(0,0,0,0.08)', overflowX: 'auto' }}>
+                        <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: '#fff', fontSize: '11px', border: '1px solid #cbd5e0' }}>
                             <thead>
-                                <tr style={{ backgroundColor: '#fffdf5', borderBottom: '1px solid #e2e8f0' }}>
-                                    <th style={{ padding: '8px 4px', width: '50px', textAlign: 'center', color: '#1e293b', fontWeight: 'bold', borderRight: '1px solid #e2e8f0' }}>Sr. No.</th>
-                                    <th style={{ padding: '8px', color: '#1e293b', fontWeight: 'bold', textAlign: 'center', borderRight: '1px solid #e2e8f0' }}>Point</th>
-                                    <th style={{ padding: '8px', color: '#1e293b', fontWeight: 'bold', textAlign: 'center', borderRight: '1px solid #e2e8f0' }}>Description / Details</th>
-                                    <th colSpan="3" style={{ padding: '6px 4px', width: '220px', textAlign: 'center', color: '#1e293b', fontWeight: 'bold' }}>
-                                        <div style={{ marginBottom: '4px' }}>Action</div>
-                                        <div style={{ display: 'flex', justifyContent: 'space-around', fontSize: '11px', color: '#334155', fontWeight: '600' }}>
-                                            <span>View</span>
-                                            <span>Upload</span>
-                                            <span>Download</span>
-                                        </div>
-                                    </th>
+                                <tr style={{ backgroundColor: '#f1f5f9', color: '#1e293b', borderBottom: '2px solid #cbd5e0' }}>
+                                    <th style={{ width: '5%', padding: '5px 4px', fontWeight: 'bold', textAlign: 'center', color: '#0a2540', borderRight: '1px solid #cbd5e0' }}>Sr. No.</th>
+                                    <th style={{ width: '32%', padding: '5px 6px', fontWeight: 'bold', textAlign: 'center', color: '#0a2540', borderRight: '1px solid #cbd5e0' }}>Point</th>
+                                    <th style={{ width: '35%', padding: '5px 6px', fontWeight: 'bold', textAlign: 'center', color: '#0a2540', borderRight: '1px solid #cbd5e0' }}>Description / Details</th>
+                                    <th style={{ width: '28%', padding: '5px 4px', fontWeight: 'bold', textAlign: 'center', color: '#0a2540' }}>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -524,14 +507,14 @@ const Criteria8_4 = () => {
                                     const currentFileName = row.fileObject ? row.fileObject.name : row.fileName;
 
                                     return (
-                                        <tr key={row.id} style={{ borderBottom: '1px solid #e2e8f0', backgroundColor: '#ffffff' }}>
-                                            <td style={{ padding: '8px 4px', textAlign: 'center', fontWeight: 'bold', color: '#1e293b', borderRight: '1px solid #e2e8f0' }}>
+                                        <tr key={row.id} style={{ borderBottom: '1px solid #cbd5e0', backgroundColor: '#ffffff' }}>
+                                            <td style={{ padding: '6px 4px', textAlign: 'center', fontWeight: 'bold', color: '#1e293b', borderRight: '1px solid #cbd5e0' }}>
                                                 {row.srNo}
                                             </td>
                                             
-                                            <td style={{ padding: '8px', borderRight: '1px solid #e2e8f0', width: '35%' }}>
+                                            <td style={{ padding: '6px', borderRight: '1px solid #cbd5e0', width: '32%' }}>
                                                 {index < 3 ? (
-                                                    <span style={{ color: '#1e3a8a', fontWeight: '700', lineHeight: '1.3', display: 'block' }}>
+                                                    <span style={{ color: '#1e3a8a', fontWeight: '700', lineHeight: '1.2', display: 'block', fontSize: '11px' }}>
                                                         {row.point}
                                                     </span>
                                                 ) : (
@@ -540,73 +523,105 @@ const Criteria8_4 = () => {
                                                         onChange={(e) => handleInputChange(row.id, 'point', e.target.value)} 
                                                         placeholder="Enter Point Title..."
                                                         disabled={isSubmitting}
-                                                        rows={2}
-                                                        style={{ width: '100%', padding: '4px 6px', borderRadius: '4px', border: errors[`${row.id}-point`] ? '1px solid #ef4444' : '1px solid #cbd5e1', outline: 'none', fontSize: '11px', resize: 'vertical', boxSizing: 'border-box' }}
+                                                        rows={1}
+                                                        style={{ width: '100%', padding: '3px 5px', borderRadius: '3px', border: errors[`${row.id}-point`] ? '1px solid #ef4444' : '1px solid #cbd5e1', outline: 'none', fontSize: '11px', resize: 'vertical', boxSizing: 'border-box' }}
                                                     />
                                                 )}
                                             </td>
                                             
-                                            <td style={{ padding: '8px', borderRight: '1px solid #e2e8f0', width: '40%' }}>
+                                            <td style={{ padding: '6px', borderRight: '1px solid #cbd5e0', width: '35%' }}>
                                                 <textarea 
                                                     value={row.details} 
                                                     onChange={(e) => handleInputChange(row.id, 'details', e.target.value)} 
                                                     disabled={isSubmitting}
-                                                    rows={2}
-                                                    style={{ width: '100%', padding: '4px 6px', borderRadius: '4px', border: errors[`${row.id}-details`] ? '1px solid #ef4444' : '1px solid #cbd5e1', outline: 'none', fontSize: '11px', resize: 'vertical', boxSizing: 'border-box' }}
+                                                    rows={1}
+                                                    placeholder="Enter details..."
+                                                    style={{ width: '100%', padding: '3px 5px', borderRadius: '3px', border: errors[`${row.id}-details`] ? '1px solid #ef4444' : '1px solid #cbd5e1', outline: 'none', fontSize: '11px', resize: 'vertical', boxSizing: 'border-box' }}
                                                 />
                                             </td>
                                             
-                                            <td style={{ padding: '6px 2px', textAlign: 'center', width: '40px' }}>
-                                                <button 
-                                                    type="button"
-                                                    onClick={() => handleViewFile(row)}
-                                                    title="View Document"
-                                                    style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '16px', opacity: (row.fileObject || row.fileName) ? 1 : 0.4 }}
-                                                >
-                                                    👁️
-                                                </button>
-                                            </td>
+                                            <td style={{ padding: '6px 4px', textAlign: 'center', width: '28%' }}>
+                                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '4px', width: '100%' }}>
+                                                    
+                                                    <input 
+                                                        type="file" 
+                                                        id={`file-input-84-${row.id}`}
+                                                        style={{ display: 'none' }}
+                                                        onChange={(e) => handleFileChange(row.id, e)}
+                                                        accept=".pdf,.png,.jpg,.jpeg,.docx,.xlsx,.xls,.csv"
+                                                        disabled={isSubmitting}
+                                                    />
 
-                                            <td style={{ padding: '6px 4px', textAlign: 'center', width: '140px' }}>
-                                                <input 
-                                                    type="file" 
-                                                    id={`file-input-84-${row.id}`}
-                                                    style={{ display: 'none' }}
-                                                    onChange={(e) => handleFileChange(row.id, e)}
-                                                    accept=".pdf,.png,.jpg,.jpeg,.docx,.xlsx,.xls,.csv"
-                                                    disabled={isSubmitting}
-                                                />
-                                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px' }}>
                                                     <button 
                                                         type="button" 
                                                         onClick={() => document.getElementById(`file-input-84-${row.id}`).click()}
                                                         disabled={isSubmitting}
-                                                        style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '16px' }}
-                                                        title="Upload File"
+                                                        style={{ 
+                                                            backgroundColor: '#f1f5f9', 
+                                                            color: '#0f172a', 
+                                                            border: '1px solid #cbd5e1', 
+                                                            padding: '2px 8px', 
+                                                            borderRadius: '3px', 
+                                                            cursor: 'pointer', 
+                                                            fontSize: '10px', 
+                                                            fontWeight: '600'
+                                                        }}
                                                     >
-                                                        ☁️
+                                                        Choose File
                                                     </button>
                                                     
-                                                    {currentFileName && (
+                                                    {currentFileName ? (
                                                         <span 
                                                             title={currentFileName}
-                                                            style={{ fontSize: '10px', color: '#0284c7', fontWeight: '600', maxWidth: '120px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}
+                                                            style={{ fontSize: '10px', color: '#475569', maxWidth: '140px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}
                                                         >
                                                             📄 {currentFileName}
                                                         </span>
+                                                    ) : (
+                                                        <span style={{ fontSize: '10px', color: '#94a3b8', fontStyle: 'italic' }}>No file chosen</span>
                                                     )}
-                                                </div>
-                                            </td>
 
-                                            <td style={{ padding: '6px 2px', textAlign: 'center', width: '40px' }}>
-                                                <button 
-                                                    type="button"
-                                                    onClick={() => handleDownloadFile(row)}
-                                                    title="Download Document"
-                                                    style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '16px', opacity: (row.fileObject || row.fileName) ? 1 : 0.4 }}
-                                                >
-                                                    📥
-                                                </button>
+                                                    <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', width: '100%' }}>
+                                                        <button 
+                                                            type="button"
+                                                            onClick={() => handleViewFile(row)}
+                                                            title="View Document"
+                                                            style={{ 
+                                                                backgroundColor: '#2563eb', 
+                                                                color: '#ffffff', 
+                                                                border: 'none', 
+                                                                padding: '2px 8px', 
+                                                                borderRadius: '3px', 
+                                                                cursor: 'pointer', 
+                                                                fontSize: '10px', 
+                                                                fontWeight: '600',
+                                                                opacity: (row.fileObject || row.fileName) ? 1 : 0.5 
+                                                            }}
+                                                        >
+                                                            View
+                                                        </button>
+
+                                                        <button 
+                                                            type="button"
+                                                            onClick={() => handleDownloadFile(row)}
+                                                            title="Download Document"
+                                                            style={{ 
+                                                                backgroundColor: '#16a34a', 
+                                                                color: '#ffffff', 
+                                                                border: 'none', 
+                                                                padding: '2px 6px', 
+                                                                borderRadius: '3px', 
+                                                                cursor: 'pointer', 
+                                                                fontSize: '10px', 
+                                                                fontWeight: '600',
+                                                                opacity: (row.fileObject || row.fileName) ? 1 : 0.5 
+                                                            }}
+                                                        >
+                                                            Download
+                                                        </button>
+                                                    </div>
+
+                                                </div>
                                             </td>
 
                                         </tr>
@@ -616,59 +631,60 @@ const Criteria8_4 = () => {
                         </table>
                     </div>
 
-                    <div style={{ marginBottom: '14px' }}>
+                    <div style={{ marginTop: '8px' }}>
                         <button 
                             type="button" 
                             onClick={handleAddRow}
                             disabled={isSubmitting}
-                            style={{ backgroundColor: '#0284c7', color: '#ffffff', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', fontSize: '11px', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                            style={{ backgroundColor: '#2d3748', color: '#ffffff', border: 'none', padding: '5px 10px', borderRadius: '3px', cursor: 'pointer', fontWeight: '600', fontSize: '10px' }}
                         >
-                            ➕ Add Row
+                            + Add Row
                         </button>
                     </div>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', paddingTop: '12px', borderTop: '1px solid #e2e8f0', overflowX: 'auto', paddingBottom: '4px' }}>
+                    {/* Centered Bottom Buttons */}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', paddingTop: '14px', borderTop: '1px solid #e2e8f0', marginTop: '12px', flexWrap: 'wrap' }}>
                         <button 
                             type="button" 
                             onClick={() => navigate('/criteria/8.1')} 
                             disabled={isSubmitting}
-                            style={{ backgroundColor: '#475569', color: '#fff', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}
+                            style={{ backgroundColor: '#475569', color: '#fff', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}
                         >
-                             Back
+                            Back
                         </button>
 
                         <button 
                             type="button" 
                             onClick={() => navigate('/criteria/8.3')} 
                             disabled={isSubmitting}
-                            style={{ backgroundColor: '#64748b', color: '#fff', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}
+                            style={{ backgroundColor: '#64748b', color: '#fff', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}
                         >
-                             Previous
+                            Previous
                         </button>
 
                         <button 
                             type="button" 
                             onClick={handleSave} 
                             disabled={isSubmitting}
-                            style={{ backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}
+                            style={{ backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}
                         >
-                            {isSubmitting ? "💾 Saving..." : "💾 Save "}
+                            {isSubmitting ? "Saving..." : "Save"}
                         </button>
 
                         <button 
                             type="button" 
                             onClick={handleDelete} 
                             disabled={isSubmitting}
-                            style={{ backgroundColor: '#ef4444', color: '#fff', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}
+                            style={{ backgroundColor: '#ef4444', color: '#fff', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}
                         >
-                             Delete
+                            Delete
                         </button>
 
                         <button 
                             type="button" 
                             onClick={handlePrint} 
                             disabled={isSubmitting}
-                            style={{ backgroundColor: '#8b5cf6', color: '#fff', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}
+                            style={{ backgroundColor: '#8b5cf6', color: '#fff', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}
                         >
                             Generate Report All
                         </button>
@@ -677,11 +693,10 @@ const Criteria8_4 = () => {
                             type="button" 
                             onClick={handleClear} 
                             disabled={isSubmitting}
-                            style={{ backgroundColor: '#f97316', color: '#fff', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}
+                            style={{ backgroundColor: '#f97316', color: '#fff', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}
                         >
                             Clear
                         </button>
-
                     </div>
 
                 </div>

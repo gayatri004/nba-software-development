@@ -2,1041 +2,1042 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Criteria5Qual.css";
-import NBASidebar from "../pages/NBASidebar";
+
 
 function Criteria5Qual() {
 
-  const navigate = useNavigate();
-  const fileRef = useRef(null);
+const navigate = useNavigate();
+const fileRef = useRef(null);
 
-  /* =====================================================
-     INITIAL DATA
-  ===================================================== */
 
-  const initialData = [
-    {
-      id: 1,
-      name: "Ph.D.",
-      m1: 0,
-      m2: 0,
-      m3: 0
-    },
-    {
-      id: 2,
-      name: "M.Tech / M.E.",
-      m1: 0,
-      m2: 0,
-      m3: 0
-    },
-    {
-      id: 3,
-      name: "B.Tech",
-      m1: 0,
-      m2: 0,
-      m3: 0
-    },
-    {
-      id: 4,
-      name: "Others",
-      m1: 0,
-      m2: 0,
-      m3: 0
-    }
-  ];
+const initialData = [
+  { id:1, name:"Ph.D.", m1:0, m2:0, m3:0 },
+  { id:2, name:"M.Tech / M.E.", m1:0, m2:0, m3:0 },
+  { id:3, name:"B.Tech", m1:0, m2:0, m3:0 },
+  { id:4, name:"Others", m1:0, m2:0, m3:0 }
+];
 
-  /* =====================================================
-     STATES
-  ===================================================== */
 
-  const [data, setData] = useState(initialData);
+const [data,setData] = useState(initialData);
 
-  const [qualificationId, setQualificationId] =
-    useState(null);
+const [qualificationId,setQualificationId] = useState(null);
 
-  const [documentName, setDocumentName] =
-    useState("");
+const [documentName,setDocumentName] = useState("");
 
-  const [selectedYear, setSelectedYear] =
-    useState("m1");
+const [selectedYear,setSelectedYear] = useState("m1");
+const [students,setStudents] = useState(0);
 
-  const [students, setStudents] =
-    useState(0);
+useEffect(() => {
+  fetchStudents();
+}, []);
 
-  /* =====================================================
-     FETCH STUDENTS
-  ===================================================== */
+const fetchStudents = async () => {
+  try {
 
-  useEffect(() => {
-    fetchStudents();
-  }, []);
-
-  const fetchStudents = async () => {
-
-    try {
-
-      const res = await axios.get(
-        "http://localhost:5000/api/criteria5/sfr/latest"
-      );
-
-      setStudents(
-        Number(res.data.students)
-      );
-
-    } catch (err) {
-
-      console.log(err);
-
-    }
-
-  };
-
-  /* =====================================================
-     TABLE CHANGE
-  ===================================================== */
-
-  const handleChange = (
-    index,
-    field,
-    value
-  ) => {
-
-    const updated = [...data];
-
-    updated[index][field] =
-      Number(value) || 0;
-
-    setData(updated);
-
-  };
-
-  /* =====================================================
-     TOTALS
-  ===================================================== */
-
-  const totalM1 = data.reduce(
-    (sum, item) =>
-      sum + Number(item.m1),
-    0
-  );
-
-  const totalM2 = data.reduce(
-    (sum, item) =>
-      sum + Number(item.m2),
-    0
-  );
-
-  const totalM3 = data.reduce(
-    (sum, item) =>
-      sum + Number(item.m3),
-    0
-  );
-
-  const totalTeachers = {
-    m1: totalM1,
-    m2: totalM2,
-    m3: totalM3
-  };
-
-  /* =====================================================
-     PERCENTAGE
-  ===================================================== */
-
-  const calculatePercentage = (
-    value,
-    total
-  ) => {
-
-    if (total === 0)
-      return "0.00";
-
-    return (
-      (Number(value) / Number(total)) * 100
-    ).toFixed(2);
-
-  };
-
-  /* =====================================================
-     FQI
-  ===================================================== */
-
-  const phd =
-    Number(
-      data[0][selectedYear] || 0
+    const res = await axios.get(
+      "http://localhost:5000/api/criteria5/sfr/latest"
     );
 
-  const mtech =
-    Number(
-      data[1][selectedYear] || 0
-    );
-
-  const rf =
-    students > 0
-      ? Number(
-          (students / 20).toFixed(2)
-        )
-      : 0;
+    setStudents(Number(res.data.students));
 
-  const fqi =
-    rf > 0
-      ? (
-          2.5 *
-          (
-            (
-              (10 * phd) +
-              (4 * mtech)
-            ) / rf
-          )
-        ).toFixed(2)
-      : "0.00";
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-  /* =====================================================
-     NBA MARKS
-  ===================================================== */
+/* ================= TABLE CHANGE ================= */
 
-  let marks = Number(fqi);
+const handleChange = (index,field,value)=>{
 
-  if (marks > 25)
-    marks = 25;
+const updated=[...data];
 
-  const nbaPercentage =
-    ((marks / 25) * 100).toFixed(2);
+updated[index][field]=Number(value)||0;
 
-  let status = "Poor";
+setData(updated);
 
-  if (marks >= 20)
-    status = "Excellent";
-  else if (marks >= 15)
-    status = "Very Good";
-  else if (marks >= 10)
-    status = "Good";
-  else if (marks >= 5)
-    status = "Average";
+};
 
-  /* =====================================================
-     NAVIGATION
-  ===================================================== */
 
-  const handlePrevious = () => {
-    navigate("/criteria5/sfr");
-  };
 
-  const handleNext = () => {
-    navigate("/criteria5/cadre");
-  };
+/* ================= TOTAL ================= */
 
-  /* =====================================================
-     SAVE
-  ===================================================== */
 
-  const handleSave = async () => {
+const totalM1=data.reduce(
+(sum,item)=>sum+Number(item.m1),0
+);
 
-    try {
 
-      const res = await axios.post(
-        "http://localhost:5000/api/criteria5/qualification",
-        {
-          data,
-          students,
-          rf,
-          fqi,
-          marks
-        }
-      );
+const totalM2=data.reduce(
+(sum,item)=>sum+Number(item.m2),0
+);
 
-      setQualificationId(
-        res.data.id
-      );
 
-      alert(
-        "Data Saved Successfully"
-      );
+const totalM3=data.reduce(
+(sum,item)=>sum+Number(item.m3),0
+);
 
-    } catch (err) {
 
-      console.log(err);
 
-      alert("Save Failed");
+const totalTeachers={
+m1:totalM1,
+m2:totalM2,
+m3:totalM3
+};
 
-    }
 
-  };
 
-  /* =====================================================
-     UPDATE
-  ===================================================== */
+/* ================= PERCENTAGE ================= */
 
-  const handleUpdate = async () => {
 
-    if (!qualificationId) {
+const calculatePercentage=(value,total)=>{
 
-      alert(
-        "Please Save Data First"
-      );
+if(total===0)
+return "0.00";
 
-      return;
+return ((value/total)*100).toFixed(2);
 
-    }
+};
 
-    try {
 
-      await axios.put(
-        `http://localhost:5000/api/criteria5/qualification/${qualificationId}`,
-        {
-          data
-        }
-      );
 
-      alert(
-        "Updated Successfully"
-      );
 
-    } catch (err) {
+/* ================= FQI ================= */
 
-      console.log(err);
 
-      alert("Update Failed");
+const phd =
+Number(data[0][selectedYear] || 0);
 
-    }
 
-  };
+const mtech =
+Number(data[1][selectedYear] || 0);
 
-  /* =====================================================
-     DELETE
-  ===================================================== */
+const rf =
+students > 0
+  ? Number((students / 20).toFixed(2))
+  : 0;
 
-  const handleDelete = async () => {
+const fqi =
+rf > 0
+  ? (
+      2.5 *
+      (((10 * phd) + (4 * mtech)) / rf)
+    ).toFixed(2)
+  : "0.00";
+/* ================= NBA MARKS ================= */
 
-    if (!qualificationId) {
 
-      alert(
-        "Please Save Data First"
-      );
+let marks = Number(fqi);
 
-      return;
 
-    }
+if(marks>25)
+marks=25;
 
-    if (
-      !window.confirm(
-        "Are you sure you want to delete this record?"
-      )
-    ) {
-      return;
-    }
 
-    try {
 
-      await axios.delete(
-        `http://localhost:5000/api/criteria5/qualification/${qualificationId}`
-      );
+const nbaPercentage =
+((marks/25)*100).toFixed(2);
 
-      alert(
-        "Deleted Successfully"
-      );
 
-      setData(
-        initialData.map(item => ({
-          ...item
-        }))
-      );
 
-      setQualificationId(null);
+let status="Poor";
 
-      setDocumentName("");
 
-    } catch (err) {
+if(marks>=20)
+status="Excellent";
 
-      console.log(err);
+else if(marks>=15)
+status="Very Good";
 
-      alert("Delete Failed");
+else if(marks>=10)
+status="Good";
 
-    }
+else if(marks>=5)
+status="Average";
 
-  };
 
-  /* =====================================================
-     CLEAR
-  ===================================================== */
 
-  const handleClear = () => {
+/* ================= NAVIGATION ================= */
 
-    setData(
-      initialData.map(item => ({
-        ...item
-      }))
-    );
 
-    setSelectedYear("m1");
+const handlePrevious=()=>{
+navigate("/criteria5/sfr");
+};
 
-    setDocumentName("");
 
-    setQualificationId(null);
+const handleNext=()=>{
+navigate("/criteria5/cadre");
+};
+/* ================= SAVE ================= */
 
-    setStudents(0);
+const handleSave = async()=>{
 
-    if (fileRef.current) {
-      fileRef.current.value = "";
-    }
+try{
 
-  };
+const res = await axios.post(
+"http://localhost:5000/api/criteria5/qualification",
+{
+ data,
+ students,
+ rf,
+ fqi,
+ marks
+}
+);
 
-  /* =====================================================
-     UPLOAD
-  ===================================================== */
 
-  const handleUpload = async (e) => {
+setQualificationId(res.data.id);
 
-    const file =
-      e.target.files[0];
 
-    if (!file)
-      return;
+alert("Data Saved Successfully");
 
-    if (!qualificationId) {
-
-      alert(
-        "Please Save Data First"
-      );
-
-      e.target.value = "";
-
-      return;
-
-    }
-
-    try {
-
-      const formData =
-        new FormData();
-
-      formData.append(
-        "document",
-        file
-      );
-
-      formData.append(
-        "id",
-        qualificationId
-      );
-
-      const res = await axios.post(
-        "http://localhost:5000/api/criteria5/qualification/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type":
-              "multipart/form-data"
-          }
-        }
-      );
-
-      setDocumentName(
-        res.data.data.document
-      );
-
-      alert(
-        "Document Uploaded Successfully"
-      );
-
-    } catch (err) {
-
-      console.log(err);
-
-      alert("Upload Failed");
-
-    }
-
-  };
-
-  /* =====================================================
-     JSX
-  ===================================================== */
-
-  return (
-
-    <div className="criteria5qual-layout">
-
-      {/* =================================================
-          NBA SIDEBAR
-      ================================================= */}
-
-      <NBASidebar />
-
-      {/* =================================================
-          SIDEBAR NANTAR MAIN CONTENT
-      ================================================= */}
-
-      <main className="criteria5qual-content">
-
-        <div className="criteria5qual">
-
-          <div className="main-card">
-
-            <div className="table-container">
-
-              {/* =================================================
-                  HEADER
-              ================================================= */}
-
-              <div className="criteria5qual-header">
-
-                <div className="title-badge">
-                  5.2
-                </div>
-
-                <div className="header-text">
-
-                  <h2>
-                    Faculty Qualifications
-                  </h2>
-
-                  <p>
-                    Faculty Qualification Details
-                  </p>
-
-                </div>
-
-              </div>
-
-              {/* =================================================
-                  QUALIFICATION LAYOUT
-              ================================================= */}
-
-              <div className="qualification-layout">
-
-                {/* =================================================
-                    TABLE
-                ================================================= */}
-
-                <div className="table-area">
-
-                  <table>
-
-                    <thead>
-
-                      <tr>
-
-                        <th rowSpan="2">
-                          Sr.No
-                        </th>
-
-                        <th rowSpan="2">
-                          Faculty Qualification
-                        </th>
-
-                        <th colSpan="2">
-                          CAY M1
-                          <br />
-                          (2024-25)
-                        </th>
-
-                        <th colSpan="2">
-                          CAY M2
-                          <br />
-                          (2023-24)
-                        </th>
-
-                        <th colSpan="2">
-                          CAY M3
-                          <br />
-                          (2022-23)
-                        </th>
-
-                        <th rowSpan="2">
-
-                          <select
-                            className="yearDropdown"
-                            value={selectedYear}
-                            onChange={(e) =>
-                              setSelectedYear(
-                                e.target.value
-                              )
-                            }
-                          >
-
-                            <option value="m1">
-                              CAY M1
-                            </option>
-
-                            <option value="m2">
-                              CAY M2
-                            </option>
-
-                            <option value="m3">
-                              CAY M3
-                            </option>
-
-                          </select>
-
-                          <br />
-
-                          Total Teachers
-
-                        </th>
-
-                        <th rowSpan="2">
-                          %
-                        </th>
-
-                      </tr>
-
-                      <tr>
-
-                        <th>
-                          No.
-                        </th>
-
-                        <th>
-                          %
-                        </th>
-
-                        <th>
-                          No.
-                        </th>
-
-                        <th>
-                          %
-                        </th>
-
-                        <th>
-                          No.
-                        </th>
-
-                        <th>
-                          %
-                        </th>
-
-                      </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                      {data.map(
-                        (item, index) => (
-
-                          <tr
-                            key={item.id}
-                          >
-
-                            <td>
-                              {index + 1}
-                            </td>
-
-                            <td className="left">
-                              {item.name}
-                            </td>
-
-                            {/* M1 */}
-
-                            <td>
-
-                              <input
-                                type="number"
-                                min="0"
-                                value={item.m1}
-                                onChange={(e) =>
-                                  handleChange(
-                                    index,
-                                    "m1",
-                                    e.target.value
-                                  )
-                                }
-                              />
-
-                            </td>
-
-                            <td>
-
-                              {
-                                calculatePercentage(
-                                  item.m1,
-                                  totalM1
-                                )
-                              }%
-
-                            </td>
-
-                            {/* M2 */}
-
-                            <td>
-
-                              <input
-                                type="number"
-                                min="0"
-                                value={item.m2}
-                                onChange={(e) =>
-                                  handleChange(
-                                    index,
-                                    "m2",
-                                    e.target.value
-                                  )
-                                }
-                              />
-
-                            </td>
-
-                            <td>
-
-                              {
-                                calculatePercentage(
-                                  item.m2,
-                                  totalM2
-                                )
-                              }%
-
-                            </td>
-
-                            {/* M3 */}
-
-                            <td>
-
-                              <input
-                                type="number"
-                                min="0"
-                                value={item.m3}
-                                onChange={(e) =>
-                                  handleChange(
-                                    index,
-                                    "m3",
-                                    e.target.value
-                                  )
-                                }
-                              />
-
-                            </td>
-
-                            <td>
-
-                              {
-                                calculatePercentage(
-                                  item.m3,
-                                  totalM3
-                                )
-                              }%
-
-                            </td>
-
-                            {/* SELECTED YEAR */}
-
-                            <td>
-
-                              {
-                                item[
-                                  selectedYear
-                                ]
-                              }
-
-                            </td>
-
-                            {/* SELECTED YEAR % */}
-
-                            <td>
-
-                              {
-                                calculatePercentage(
-                                  item[
-                                    selectedYear
-                                  ],
-                                  totalTeachers[
-                                    selectedYear
-                                  ]
-                                )
-                              }%
-
-                            </td>
-
-                          </tr>
-
-                        )
-                      )}
-
-                      {/* =================================================
-                          TOTAL ROW
-                      ================================================= */}
-
-                      <tr className="total-row">
-
-                        <td colSpan="2">
-
-                          <b>
-                            Total Full Time Teachers (F)
-                          </b>
-
-                        </td>
-
-                        <td>
-                          <b>
-                            {totalM1}
-                          </b>
-                        </td>
-
-                        <td>
-                          100%
-                        </td>
-
-                        <td>
-                          <b>
-                            {totalM2}
-                          </b>
-                        </td>
-
-                        <td>
-                          100%
-                        </td>
-
-                        <td>
-                          <b>
-                            {totalM3}
-                          </b>
-                        </td>
-
-                        <td>
-                          100%
-                        </td>
-
-                        <td>
-                          <b>
-                            {
-                              totalTeachers[
-                                selectedYear
-                              ]
-                            }
-                          </b>
-                        </td>
-
-                        <td>
-                          100%
-                        </td>
-
-                      </tr>
-
-                    </tbody>
-
-                  </table>
-
-                </div>
-
-                {/* =================================================
-                    BOTTOM CARDS
-                ================================================= */}
-
-                <div className="cards-row">
-
-                  {/* FQI CARD */}
-
-                  <div className="formula-card">
-
-                    <h3>
-                      FQI Calculation
-                    </h3>
-
-                    <div className="student-input">
-
-                      <label>
-                        Total Students
-                      </label>
-
-                      <input
-                        type="number"
-                        value={students}
-                        readOnly
-                      />
-
-                    </div>
-
-                    <p>
-                      FQI = 2.5 × [(10X + 4Y) / RF]
-                    </p>
-
-                    <p>
-                      X (Ph.D.) = {phd}
-                    </p>
-
-                    <p>
-                      Y (M.Tech/M.E.) = {mtech}
-                    </p>
-
-                    <p>
-                      RF = {rf}
-                    </p>
-
-                    <hr />
-
-                    <h2>
-                      {fqi}
-                    </h2>
-
-                  </div>
-
-                  {/* EVALUATION CARD */}
-
-                  <div className="evaluation-card">
-
-                    <h3>
-                      NBA Evaluation
-                    </h3>
-
-                    <div className="eval-row">
-
-                      <span>
-                        Maximum Marks
-                      </span>
-
-                      <b>
-                        25
-                      </b>
-
-                    </div>
-
-                    <div className="eval-row">
-
-                      <span>
-                        Obtained Marks
-                      </span>
-
-                      <b>
-                        {marks.toFixed(2)}/25
-                      </b>
-
-                    </div>
-
-                    <div className="eval-row">
-
-                      <span>
-                        Percentage
-                      </span>
-
-                      <b>
-                        {nbaPercentage}%
-                      </b>
-
-                    </div>
-
-                    <div className="status">
-                      {status}
-                    </div>
-
-                  </div>
-
-                  {/* DOCUMENT CARD */}
-
-                  <div className="document-card">
-
-                    <h3>
-                      Supporting Document
-                    </h3>
-
-                    <div className="file-box">
-
-                      {
-                        documentName ||
-                        "No File Uploaded"
-                      }
-
-                    </div>
-
-                    <button
-                      type="button"
-                      className="upload-btn2"
-                      onClick={() => {
-
-                        if (fileRef.current) {
-                          fileRef.current.click();
-                        }
-
-                      }}
-                    >
-
-                      Upload Supporting Document
-
-                    </button>
-
-                  </div>
-
-                </div>
-
-                {/* =================================================
-                    HIDDEN FILE INPUT
-                ================================================= */}
-
-                <input
-                  type="file"
-                  hidden
-                  ref={fileRef}
-                  onChange={handleUpload}
-                />
-
-                {/* =================================================
-                    ACTION BUTTONS
-                ================================================= */}
-
-                <div className="action-buttons">
-
-                  <button
-                    type="button"
-                    className="btn previous"
-                    onClick={handlePrevious}
-                  >
-                    Previous
-                  </button>
-
-                  <button
-                    type="button"
-                    className="btn save"
-                    onClick={handleSave}
-                  >
-                    Save
-                  </button>
-
-                  <button
-                    type="button"
-                    className="btn update"
-                    onClick={handleUpdate}
-                  >
-                    Update
-                  </button>
-
-                  <button
-                    type="button"
-                    className="btn delete"
-                    onClick={handleDelete}
-                  >
-                    Delete
-                  </button>
-
-                  <button
-                    type="button"
-                    className="btn clear"
-                    onClick={handleClear}
-                  >
-                    Clear
-                  </button>
-
-                  <button
-                    type="button"
-                    className="btn next"
-                    onClick={handleNext}
-                  >
-                    Next
-                  </button>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </main>
-
-    </div>
-
-  );
 
 }
+catch(err){
+
+console.log(err);
+
+alert("Save Failed");
+
+}
+
+};
+
+
+
+
+/* ================= UPDATE ================= */
+
+
+const handleUpdate = async()=>{
+
+
+if(!qualificationId){
+
+alert("Please Save Data First");
+
+return;
+
+}
+
+
+try{
+
+
+await axios.put(
+
+`http://localhost:5000/api/criteria5/qualification/${qualificationId}`,
+
+{
+data
+}
+
+);
+
+
+alert("Updated Successfully");
+
+
+}
+catch(err){
+
+console.log(err);
+
+alert("Update Failed");
+
+}
+
+};
+
+
+
+
+/* ================= DELETE ================= */
+
+
+const handleDelete=async()=>{
+
+
+if(!qualificationId){
+
+alert("Please Save Data First");
+
+return;
+
+}
+
+
+try{
+
+
+await axios.delete(
+
+`http://localhost:5000/api/criteria5/qualification/${qualificationId}`
+
+);
+
+
+alert("Deleted Successfully");
+
+
+setData(initialData);
+
+setQualificationId(null);
+
+setDocumentName("");
+
+
+}
+
+catch(err){
+
+console.log(err);
+
+alert("Delete Failed");
+
+}
+
+};
+
+
+
+
+/* ================= CLEAR ================= */
+
+
+const handleClear=()=>{
+
+
+setData(initialData);
+
+setSelectedYear("m1");
+
+setDocumentName("");
+
+setQualificationId(null);
+
+setStudents(0);
+if(fileRef.current){
+
+fileRef.current.value="";
+
+}
+
+
+};
+
+
+
+
+/* ================= UPLOAD ================= */
+
+
+const handleUpload=async(e)=>{
+
+
+const file=e.target.files[0];
+
+
+if(!file)
+return;
+
+
+
+if(!qualificationId){
+
+alert("Please Save Data First");
+
+return;
+
+}
+
+
+
+try{
+
+
+const formData=new FormData();
+
+
+formData.append(
+"document",
+file
+);
+
+
+formData.append(
+"id",
+qualificationId
+);
+
+
+
+const res=await axios.post(
+
+"http://localhost:5000/api/criteria5/qualification/upload",
+
+formData,
+
+{
+headers:{
+"Content-Type":"multipart/form-data"
+}
+}
+
+);
+
+
+
+setDocumentName(
+res.data.data.document
+);
+
+
+alert("Document Uploaded Successfully");
+
+
+}
+
+catch(err){
+
+console.log(err);
+
+alert("Upload Failed");
+
+}
+
+
+};
+
+
+
+
+return (
+
+<div className="criteria5qual">
+
+
+<div className="main-card">
+
+
+<div className="table-container">
+
+
+
+<div className="criteria5qual-header">
+
+
+<div className="title-badge">
+
+5.2
+
+</div>
+
+
+<div className="header-text">
+
+<h2>
+Faculty Qualifications
+</h2>
+
+<p>
+Faculty Qualification Details
+</p>
+
+</div>
+
+
+</div>
+
+
+
+
+<div className="qualification-layout">
+
+
+<div className="table-area">
+
+
+
+<table>
+
+
+<thead>
+
+
+<tr>
+
+
+<th rowSpan="2">
+Sr.No
+</th>
+
+
+<th rowSpan="2">
+Faculty Qualification
+</th>
+
+
+<th colSpan="2">
+CAY M1
+<br/>
+(2024-25)
+</th>
+
+
+<th colSpan="2">
+CAY M2
+<br/>
+(2023-24)
+</th>
+
+
+<th colSpan="2">
+CAY M3
+<br/>
+(2022-23)
+</th>
+
+
+
+<th rowSpan="2">
+
+
+<select
+
+className="yearDropdown"
+
+value={selectedYear}
+
+onChange={(e)=>setSelectedYear(e.target.value)}
+
+>
+
+
+<option value="m1">
+CAY M1
+</option>
+
+
+<option value="m2">
+CAY M2
+</option>
+
+
+<option value="m3">
+CAY M3
+</option>
+
+
+</select>
+
+
+<br/>
+
+Total Teachers
+
+
+</th>
+
+
+<th rowSpan="2">
+%
+</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+
+<th>No.</th>
+<th>%</th>
+
+<th>No.</th>
+<th>%</th>
+
+<th>No.</th>
+<th>%</th>
+
+
+</tr>
+
+
+
+</thead>
+
+
+
+
+<tbody>
+
+
+{
+data.map((item,index)=>(
+
+
+<tr key={item.id}>
+
+
+<td>
+{index+1}
+</td>
+
+
+<td className="left">
+{item.name}
+</td>
+
+
+
+<td>
+
+<input
+
+type="number"
+
+value={item.m1}
+
+onChange={(e)=>
+handleChange(index,"m1",e.target.value)
+}
+
+/>
+
+</td>
+
+
+<td>
+{calculatePercentage(item.m1,totalM1)}%
+</td>
+
+
+
+
+<td>
+
+<input
+
+type="number"
+
+value={item.m2}
+
+onChange={(e)=>
+handleChange(index,"m2",e.target.value)
+}
+
+/>
+
+</td>
+
+
+
+<td>
+{calculatePercentage(item.m2,totalM2)}%
+</td>
+
+
+
+
+<td>
+
+<input
+
+type="number"
+
+value={item.m3}
+
+onChange={(e)=>
+handleChange(index,"m3",e.target.value)
+}
+
+/>
+
+</td>
+
+
+<td>
+{calculatePercentage(item.m3,totalM3)}%
+</td>
+
+
+
+
+<td>
+
+{
+item[selectedYear]
+}
+
+</td>
+
+
+
+<td>
+
+{
+calculatePercentage(
+item[selectedYear],
+totalTeachers[selectedYear]
+)
+}%
+
+</td>
+
+
+
+</tr>
+
+
+))
+
+}
+
+
+
+
+<tr className="total-row">
+
+
+<td colSpan="2">
+
+<b>
+Total Full Time Teachers (F)
+</b>
+
+</td>
+
+
+<td>
+<b>{totalM1}</b>
+</td>
+
+
+<td>
+100%
+</td>
+
+
+<td>
+<b>{totalM2}</b>
+</td>
+
+
+<td>
+100%
+</td>
+
+
+
+<td>
+<b>{totalM3}</b>
+</td>
+
+
+<td>
+100%
+</td>
+
+
+<td>
+<b>
+{totalTeachers[selectedYear]}
+</b>
+</td>
+
+
+<td>
+100%
+</td>
+
+
+
+</tr>
+
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+</div>
+
+
+
+{/* ================= CARDS ================= */}
+
+
+
+<div className="cards-row">
+
+
+
+<div className="formula-card">
+
+
+<h3>
+FQI Calculation
+</h3>
+
+<div className="student-input">
+
+<label>Total Students</label>
+
+<input
+type="number"
+value={students}
+readOnly
+/>
+
+</div>
+<p>
+FQI = 2.5 × [(10X + 4Y) / RF]
+</p>
+
+
+<p>
+X (Ph.D.) = {phd}
+</p>
+
+
+<p>
+Y (M.Tech/M.E.) = {mtech}
+</p>
+
+
+<p>
+RF = {rf}
+</p>
+
+
+<hr/>
+
+
+<h2>
+{fqi}
+</h2>
+
+
+</div>
+
+
+
+
+
+<div className="evaluation-card">
+
+
+<h3>
+NBA Evaluation
+</h3>
+
+
+
+<div className="eval-row">
+
+<span>
+Maximum Marks
+</span>
+
+<b>
+25
+</b>
+
+</div>
+
+
+
+<div className="eval-row">
+
+<span>
+Obtained Marks
+</span>
+
+<b>
+{marks.toFixed(2)}/25
+</b>
+
+</div>
+
+
+
+
+<div className="eval-row">
+
+<span>
+Percentage
+</span>
+
+<b>
+{nbaPercentage}%
+</b>
+
+</div>
+
+
+
+<div className="status">
+
+{status}
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div className="document-card">
+
+
+<h3>
+Supporting Document
+</h3>
+
+
+<div className="file-box">
+
+{
+documentName || "No File Uploaded"
+}
+
+</div>
+
+
+
+<button
+
+className="upload-btn2"
+
+onClick={()=>
+fileRef.current.click()
+}
+
+>
+
+Upload Supporting Document
+
+</button>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<input
+
+type="file"
+
+hidden
+
+ref={fileRef}
+
+onChange={handleUpload}
+
+/>
+
+
+
+
+
+<div className="action-buttons">
+
+
+<button 
+className="btn previous"
+onClick={handlePrevious}
+>
+Previous
+</button>
+
+
+
+<button
+className="btn save"
+onClick={handleSave}
+>
+Save
+</button>
+
+
+
+
+<button
+className="btn update"
+onClick={handleUpdate}
+>
+Update
+</button>
+
+
+
+
+<button
+className="btn delete"
+onClick={handleDelete}
+>
+Delete
+</button>
+
+
+
+
+<button
+className="btn clear"
+onClick={handleClear}
+>
+Clear
+</button>
+
+
+
+
+<button
+className="btn next"
+onClick={handleNext}
+>
+Next
+</button>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+);
+
+
+}
+
 
 export default Criteria5Qual;

@@ -1,0 +1,1993 @@
+/* ============================================================
+   CRITERIA 9.13 - FPADS
+   FACULTY PERFORMANCE APPRAISAL AND DEVELOPMENT SYSTEM
+
+   IMPORTANT:
+   ALL CSS IS SCOPED TO .criteria913-container
+   ============================================================ */
+
+
+/* ============================================================
+   MAIN PAGE
+   ============================================================ */
+
+.criteria913-container {
+  width: 98%;
+  max-width: 1550px;
+  margin: 20px auto;
+  padding: 24px;
+
+  background: #ffffff;
+
+  border: 1px solid #d8e2ec;
+  border-radius: 12px;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+
+  font-family: "Segoe UI", Arial, sans-serif;
+
+  color: #222222;
+
+  box-sizing: border-box;
+}
+
+.criteria913-container *,
+.criteria913-container *::before,
+.criteria913-container *::after {
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.criteria913-container .criteria913-header {
+  width: 100%;
+
+  min-height: 88px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 16px 20px;
+
+  margin-bottom: 18px;
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    135deg,
+    #075bb5,
+    #1976d2
+  );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 4px 10px rgba(7, 91, 181, 0.20);
+}
+
+
+/* HEADER ICON */
+
+.criteria913-container .criteria913-icon {
+  width: 58px;
+  height: 58px;
+
+  min-width: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.16);
+
+  border: 2px solid rgba(255, 255, 255, 0.55);
+
+  font-size: 27px;
+
+  color: #ffffff;
+}
+
+
+/* HEADER TITLE */
+
+.criteria913-container .criteria913-title {
+  flex: 1;
+
+  min-width: 0;
+}
+
+.criteria913-container .criteria913-title h1 {
+  margin: 0 0 6px 0;
+
+  color: #ffffff;
+
+  font-size: 25px;
+
+  line-height: 1.35;
+
+  font-weight: 700;
+}
+
+.criteria913-container .criteria913-title p {
+  margin: 0;
+
+  color: #eaf4ff;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+  font-weight: 500;
+}
+
+
+/* TOTAL MARKS */
+
+.criteria913-container .criteria913-total {
+  width: 125px;
+
+  min-width: 125px;
+
+  padding: 11px 10px;
+
+  border-radius: 8px;
+
+  background: rgba(0, 45, 100, 0.38);
+
+  text-align: center;
+}
+
+.criteria913-container .criteria913-total span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.criteria913-container .criteria913-total strong {
+  display: block;
+
+  color: #ffffff;
+
+  font-size: 30px;
+
+  line-height: 1;
+}
+
+
+/* ============================================================
+   NBA GUIDELINE
+   ============================================================ */
+
+.criteria913-container .criteria913-guideline {
+  width: 100%;
+
+  margin-bottom: 18px;
+
+  border: 1px solid #c8d9e9;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+
+/* GUIDELINE HEADER */
+
+.criteria913-container .guideline-heading {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-height: 48px;
+
+  padding: 10px 15px;
+
+  border-bottom: 1px solid #c8d9e9;
+
+  background: #edf6ff;
+}
+
+.criteria913-container .guideline-heading svg {
+  color: #075bb5;
+
+  font-size: 19px;
+}
+
+.criteria913-container .guideline-heading h2 {
+  margin: 0;
+
+  color: #0753a0;
+
+  font-size: 17px;
+
+  font-weight: 700;
+}
+
+
+/* GUIDELINE ROW */
+
+.criteria913-container .guideline-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 14px;
+
+  padding: 14px;
+}
+
+
+/* GUIDELINE ITEM */
+
+.criteria913-container .guideline-item {
+  min-height: 75px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 12px;
+
+  border: 1px solid #d2dfeb;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+}
+
+
+/* LETTER */
+
+.criteria913-container .guideline-code {
+  width: 40px;
+  height: 40px;
+
+  min-width: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  background: #075bb5;
+
+  color: #ffffff;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+
+/* TEXT */
+
+.criteria913-container .guideline-item > div:nth-child(2) {
+  flex: 1;
+}
+
+.criteria913-container .guideline-item h3 {
+  margin: 0;
+
+  color: #222222;
+
+  font-size: 13px;
+
+  line-height: 1.55;
+
+  font-weight: 500;
+}
+
+
+/* MARK */
+
+.criteria913-container .guideline-marks {
+  min-width: 85px;
+
+  padding: 9px 8px;
+
+  border-radius: 6px;
+
+  background: #e8f3ff;
+
+  color: #0753a0;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-align: center;
+}
+
+
+/* ============================================================
+   COMMON SECTION
+   ============================================================ */
+
+.criteria913-container .criteria913-section {
+  width: 100%;
+
+  margin-bottom: 18px;
+
+  border: 1px solid #c8d9e9;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+
+/* SECTION HEADER */
+
+.criteria913-container .section-title {
+  min-height: 50px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px 15px;
+
+  border-bottom: 1px solid #c8d9e9;
+
+  background: #edf6ff;
+}
+
+.criteria913-container .section-title > svg {
+  width: 34px;
+  height: 34px;
+
+  padding: 8px;
+
+  border-radius: 6px;
+
+  background: #075bb5;
+
+  color: #ffffff;
+
+  font-size: 15px;
+}
+
+.criteria913-container .section-title h2 {
+  margin: 0;
+
+  color: #0753a0;
+
+  font-size: 17px;
+
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   EXHIBITS
+   ============================================================ */
+
+.criteria913-container .exhibits-container {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 14px;
+
+  padding: 15px;
+}
+
+.criteria913-container .exhibit-card {
+  min-height: 78px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 12px;
+
+  border: 1px solid #d3e0eb;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+}
+
+.criteria913-container .exhibit-letter {
+  width: 40px;
+  height: 40px;
+
+  min-width: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  background: #075bb5;
+
+  color: #ffffff;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+.criteria913-container .exhibit-content {
+  flex: 1;
+}
+
+.criteria913-container .exhibit-content h3 {
+  margin: 0;
+
+  color: #222222;
+
+  font-size: 13px;
+
+  line-height: 1.55;
+
+  font-weight: 500;
+}
+
+
+/* ============================================================
+   SUPPORTING DOCUMENT TABLE
+   ============================================================ */
+
+.criteria913-container .document-table-wrapper {
+  width: 100%;
+
+  padding: 15px;
+
+  overflow-x: auto;
+}
+
+.criteria913-container .document-table {
+  width: 100%;
+
+  min-width: 900px;
+
+  border-collapse: collapse;
+
+  border: 1px solid #c9d7e5;
+}
+
+
+/* TABLE HEADER */
+
+.criteria913-container .document-table thead th {
+  padding: 12px 10px;
+
+  border: 1px solid #ffffff;
+
+  background: #075bb5;
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+
+/* TABLE BODY */
+
+.criteria913-container .document-table tbody td {
+  padding: 11px 10px;
+
+  border: 1px solid #d3dee8;
+
+  background: #ffffff;
+
+  color: #333333;
+
+  font-size: 12px;
+
+  line-height: 1.45;
+
+  vertical-align: middle;
+}
+
+.criteria913-container .document-table tbody tr:hover td {
+  background: #f5faff;
+}
+
+.criteria913-container .document-table tbody td:first-child {
+  width: 70px;
+
+  text-align: center;
+
+  color: #075bb5;
+
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   UPLOAD BUTTON
+   ============================================================ */
+
+.criteria913-container .upload-btn {
+  height: 36px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 0 13px;
+
+  border: 1px solid #1976d2;
+
+  border-radius: 5px;
+
+  background: #ffffff;
+
+  color: #075bb5;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.criteria913-container .upload-btn:hover {
+  background: #075bb5;
+
+  color: #ffffff;
+}
+
+
+/* FILE NAME */
+
+.criteria913-container .selected-file {
+  max-width: 210px;
+
+  margin-top: 6px;
+
+  padding: 4px 6px;
+
+  border-radius: 4px;
+
+  background: #f0f5fa;
+
+  color: #4c5d6d;
+
+  font-size: 10px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   VIEW BUTTON
+   ============================================================ */
+
+.criteria913-container .view-btn {
+  height: 36px;
+
+  min-width: 75px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 0 12px;
+
+  border: 1px solid #1976d2;
+
+  border-radius: 5px;
+
+  background: #ffffff;
+
+  color: #075bb5;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.criteria913-container .view-btn:hover:not(:disabled) {
+  background: #075bb5;
+
+  color: #ffffff;
+}
+
+.criteria913-container .view-btn:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   EVALUATION CARD
+   ============================================================ */
+
+.criteria913-container .evaluation-card {
+  width: 100%;
+
+  margin-bottom: 18px;
+
+  border: 1px solid #bfd2e4;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+
+/* ============================================================
+   EVALUATION HEADER
+   ============================================================ */
+
+.criteria913-container .evaluation-card-header {
+  min-height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 12px 14px;
+
+  border-bottom: 1px solid #c8d9e9;
+
+  background: #eef7ff;
+}
+
+
+/* HEADING */
+
+.criteria913-container .evaluation-heading {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  min-width: 0;
+}
+
+
+/* A / B BOX */
+
+.criteria913-container .evaluation-letter {
+  width: 40px;
+  height: 40px;
+
+  min-width: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  background: #075bb5;
+
+  color: #ffffff;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+
+/* EVALUATION TITLE */
+
+.criteria913-container .evaluation-heading h2 {
+  margin: 0;
+
+  color: #0753a0;
+
+  font-size: 15px;
+
+  line-height: 1.45;
+
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   MAXIMUM MARKS
+   ============================================================ */
+
+.criteria913-container .maximum-marks {
+  min-width: 145px;
+
+  min-height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 8px 12px;
+
+  border-radius: 6px;
+
+  background: #e3f0fd;
+
+  color: #0753a0;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.criteria913-container .maximum-marks strong {
+  color: #075bb5;
+
+  font-size: 20px;
+
+  font-weight: 800;
+}
+
+
+/* ============================================================
+   EVALUATION CONTENT
+   ============================================================ */
+
+.criteria913-container .evaluation-content {
+  width: 100%;
+
+  min-height: 92px;
+
+  display: flex;
+  align-items: stretch;
+
+  background: #ffffff;
+}
+
+
+/* POINT */
+
+.criteria913-container .evaluation-points {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  padding: 18px 14px;
+}
+
+.criteria913-container .evaluation-point {
+  width: 100%;
+
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 10px 13px;
+
+  border-left: 4px solid #075bb5;
+
+  border-radius: 4px;
+
+  background: #f5f9fc;
+}
+
+.criteria913-container .evaluation-point p {
+  margin: 0;
+
+  color: #222222;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  font-weight: 500;
+}
+
+
+/* ============================================================
+   MARKS BOX
+   ============================================================ */
+
+.criteria913-container .marks-box {
+  width: 175px;
+
+  min-width: 175px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px;
+
+  border-left: 1px solid #cfdce8;
+
+  background: #ffffff;
+}
+
+
+/* LABEL */
+
+.criteria913-container .marks-box label {
+  margin-bottom: 8px;
+
+  color: #0753a0;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-align: center;
+}
+
+.criteria913-container .marks-box label span {
+  color: #667788;
+
+  font-size: 10px;
+
+  font-weight: 500;
+}
+
+
+/* INPUT */
+
+.criteria913-container .marks-box input {
+  width: 82px;
+
+  height: 42px;
+
+  padding: 5px;
+
+  border: 1px solid #9eb5ca;
+
+  border-radius: 5px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #075bb5;
+
+  font-family: inherit;
+
+  font-size: 19px;
+
+  font-weight: 700;
+
+  text-align: center;
+}
+
+.criteria913-container .marks-box input:focus {
+  border-color: #1976d2;
+
+  box-shadow:
+    0 0 0 3px rgba(25, 118, 210, 0.10);
+}
+
+
+/* REMOVE NUMBER ARROWS */
+
+.criteria913-container .marks-box input::-webkit-inner-spin-button,
+.criteria913-container .marks-box input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+
+  margin: 0;
+}
+
+.criteria913-container .marks-box input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+/* ============================================================
+   REMARKS
+   ============================================================ */
+
+.criteria913-container .remarks-section {
+  width: 100%;
+
+  padding: 12px 14px 16px;
+
+  border-top: 1px solid #d7e1ea;
+
+  background: #ffffff;
+}
+
+.criteria913-container .remarks-section label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #0753a0;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+.criteria913-container .remarks-section textarea {
+  width: 100%;
+
+  min-height: 82px;
+
+  padding: 10px;
+
+  resize: vertical;
+
+  border: 1px solid #aebfd0;
+
+  border-radius: 5px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #333333;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+.criteria913-container .remarks-section textarea::placeholder {
+  color: #8b9aaa;
+
+  font-size: 11px;
+}
+
+.criteria913-container .remarks-section textarea:focus {
+  border-color: #1976d2;
+
+  box-shadow:
+    0 0 0 3px rgba(25, 118, 210, 0.08);
+}
+
+
+/* ============================================================
+   CALCULATION
+   ============================================================ */
+
+.criteria913-container .calculation-card {
+  width: 100%;
+
+  margin-bottom: 18px;
+
+  border: 1px solid #c8d9e9;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+
+/* CALC HEADER */
+
+.criteria913-container .calculation-header {
+  min-height: 50px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px 15px;
+
+  border-bottom: 1px solid #c8d9e9;
+
+  background: #edf6ff;
+}
+
+.criteria913-container .calculation-header svg {
+  color: #075bb5;
+
+  font-size: 19px;
+}
+
+.criteria913-container .calculation-header h2 {
+  margin: 0;
+
+  color: #0753a0;
+
+  font-size: 17px;
+
+  font-weight: 700;
+}
+
+
+/* CALC GRID */
+
+.criteria913-container .calculation-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, 1fr);
+}
+
+
+/* CALC ITEM */
+
+.criteria913-container .calculation-item {
+  min-height: 95px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px;
+
+  border-right: 1px solid #d4dfe9;
+}
+
+.criteria913-container .calculation-item:last-child {
+  border-right: none;
+}
+
+.criteria913-container .calculation-item span {
+  margin-bottom: 8px;
+
+  color: #526476;
+
+  font-size: 11px;
+
+  line-height: 1.4;
+
+  font-weight: 600;
+
+  text-align: center;
+}
+
+.criteria913-container .calculation-item strong {
+  color: #075bb5;
+
+  font-size: 21px;
+
+  font-weight: 800;
+}
+
+.criteria913-container .status-calculation strong {
+  font-size: 14px;
+
+  text-align: center;
+}
+
+
+/* ============================================================
+   ACTION BUTTONS
+   ============================================================ */
+
+.criteria913-container .action-buttons {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding-top: 2px;
+
+  flex-wrap: wrap;
+}
+
+
+/* COMMON BUTTON */
+
+.criteria913-container .action-btn {
+  min-width: 105px;
+
+  height: 42px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 0 14px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.criteria913-container .action-btn:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.criteria913-container .action-btn:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+
+/* BUTTON COLORS */
+
+.criteria913-container .previous-btn {
+  background: #607080;
+}
+
+.criteria913-container .clear-btn {
+  background: #ef8b00;
+}
+
+.criteria913-container .save-btn {
+  background: #31943d;
+}
+
+.criteria913-container .update-btn {
+  background: #287ac7;
+}
+
+.criteria913-container .delete-btn {
+  background: #df3030;
+}
+
+.criteria913-container .print-btn {
+  background: #3d5063;
+}
+
+.criteria913-container .submit-btn {
+  background: #7042a1;
+}
+
+.criteria913-container .next-btn {
+  background: #075bb5;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 1100px) {
+
+  .criteria913-container {
+    width: 97%;
+
+    padding: 18px;
+  }
+
+  .criteria913-container .criteria913-title h1 {
+    font-size: 22px;
+  }
+
+  .criteria913-container .guideline-row {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria913-container .calculation-grid {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+
+  .criteria913-container .calculation-item {
+    border-bottom: 1px solid #d4dfe9;
+  }
+
+  .criteria913-container
+    .calculation-item:nth-child(3) {
+    border-right: none;
+  }
+
+}
+
+
+/* ============================================================
+   TABLET / SMALL SCREEN
+   ============================================================ */
+
+@media (max-width: 850px) {
+
+  .criteria913-container {
+    width: 96%;
+
+    padding: 15px;
+  }
+
+  .criteria913-container .criteria913-header {
+    flex-wrap: wrap;
+  }
+
+  .criteria913-container .criteria913-title {
+    width: calc(100% - 80px);
+  }
+
+  .criteria913-container .criteria913-total {
+    width: 100%;
+  }
+
+  .criteria913-container .exhibits-container {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria913-container .evaluation-content {
+    flex-direction: column;
+  }
+
+  .criteria913-container .marks-box {
+    width: 100%;
+
+    min-width: 100%;
+
+    flex-direction: row;
+
+    gap: 15px;
+
+    border-top: 1px solid #d4dfe9;
+
+    border-left: none;
+  }
+
+  .criteria913-container .marks-box label {
+    margin-bottom: 0;
+  }
+
+  .criteria913-container .calculation-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .criteria913-container .calculation-item:nth-child(2n) {
+    border-right: none;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .criteria913-container {
+    width: 100%;
+
+    margin: 0;
+
+    padding: 10px;
+
+    border-radius: 0;
+  }
+
+  .criteria913-container .criteria913-header {
+    flex-direction: column;
+
+    text-align: center;
+
+    gap: 12px;
+  }
+
+  .criteria913-container .criteria913-title {
+    width: 100%;
+  }
+
+  .criteria913-container .criteria913-title h1 {
+    font-size: 19px;
+  }
+
+  .criteria913-container .criteria913-title p {
+    font-size: 12px;
+  }
+
+  .criteria913-container .criteria913-total {
+    width: 100%;
+  }
+
+  .criteria913-container .guideline-row {
+    grid-template-columns: 1fr;
+
+    padding: 10px;
+  }
+
+  .criteria913-container .guideline-item {
+    align-items: flex-start;
+
+    flex-wrap: wrap;
+  }
+
+  .criteria913-container .guideline-marks {
+    width: 100%;
+  }
+
+  .criteria913-container .evaluation-card-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .criteria913-container .evaluation-heading {
+    width: 100%;
+  }
+
+  .criteria913-container .maximum-marks {
+    width: 100%;
+  }
+
+  .criteria913-container .evaluation-point p {
+    font-size: 12px;
+  }
+
+  .criteria913-container .calculation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria913-container .calculation-item {
+    border-right: none !important;
+
+    border-bottom: 1px solid #d4dfe9;
+  }
+
+  .criteria913-container
+    .calculation-item:last-child {
+    border-bottom: none;
+  }
+
+  .criteria913-container .action-buttons {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .criteria913-container .action-btn {
+    width: 100%;
+  }
+
+}
+
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+
+@media print {
+
+  .criteria913-container {
+    width: 100%;
+
+    margin: 0;
+
+    padding: 10px;
+
+    border: none;
+
+    box-shadow: none;
+  }
+
+  .criteria913-container .action-buttons {
+    display: none !important;
+  }
+
+  .criteria913-container .upload-btn,
+  .criteria913-container .view-btn {
+    display: none !important;
+  }
+
+  .criteria913-container .evaluation-card,
+  .criteria913-container .criteria913-section,
+  .criteria913-container .calculation-card {
+    break-inside: avoid;
+  }
+
+}
+/* ============================================================
+   CRITERIA 9.13 - COLOR THEME
+   SAME COLOR COMBINATION AS CRITERIA 9.11
+   ONLY COLORS UPDATED
+   ============================================================ */
+
+
+/* ============================================================
+   MAIN PAGE
+   ============================================================ */
+
+.criteria913-container {
+  background: #f3f6fb;
+  color: #102a43;
+  border-color: #d7dfeb;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ============================================================
+   HEADER - BLUE
+   ============================================================ */
+
+.criteria913-container .criteria913-header {
+  background: linear-gradient(
+    135deg,
+    #1769c2,
+    #1264bd
+  );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 5px 18px rgba(23, 105, 194, 0.18);
+}
+
+.criteria913-container .criteria913-icon {
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+}
+
+.criteria913-container .criteria913-title h1 {
+  color: #ffffff;
+}
+
+.criteria913-container .criteria913-title p {
+  color: #ffffff;
+}
+
+
+/* ============================================================
+   TOTAL MARKS
+   ============================================================ */
+
+.criteria913-container .criteria913-total {
+  background: rgba(0, 45, 100, 0.38);
+}
+
+.criteria913-container .criteria913-total span,
+.criteria913-container .criteria913-total strong {
+  color: #ffffff;
+}
+
+
+/* ============================================================
+   GUIDELINE
+   ============================================================ */
+
+.criteria913-container .criteria913-guideline {
+  background: #ffffff;
+  border-color: #d7dfeb;
+}
+
+.criteria913-container .guideline-heading {
+  background: #f7f9fc;
+  border-color: #d7dfeb;
+}
+
+.criteria913-container .guideline-heading svg {
+  color: #1769c2;
+}
+
+.criteria913-container .guideline-heading h2 {
+  color: #1769c2;
+}
+
+
+/* ============================================================
+   GUIDELINE ITEMS
+   ============================================================ */
+
+.criteria913-container .guideline-item {
+  background: #ffffff;
+  border-color: #d7dfeb;
+}
+
+.criteria913-container .guideline-code {
+  background: #1769c2;
+  color: #ffffff;
+}
+
+.criteria913-container .guideline-item h3 {
+  color: #20364d;
+}
+
+.criteria913-container .guideline-marks {
+  background: #eaf2fc;
+  color: #1769c2;
+}
+
+
+/* ============================================================
+   COMMON SECTION
+   ============================================================ */
+
+.criteria913-container .criteria913-section {
+  background: #ffffff;
+  border-color: #d7dfeb;
+}
+
+.criteria913-container .section-title {
+  background: #f7f9fc;
+  border-color: #d7dfeb;
+}
+
+.criteria913-container .section-title > svg {
+  background: #1769c2;
+  color: #ffffff;
+}
+
+.criteria913-container .section-title h2 {
+  color: #1769c2;
+}
+
+
+/* ============================================================
+   EXHIBITS
+   ============================================================ */
+
+.criteria913-container .exhibits-container {
+  background: #ffffff;
+}
+
+.criteria913-container .exhibit-card {
+  background: #ffffff;
+  border-color: #d7dfeb;
+}
+
+.criteria913-container .exhibit-letter {
+  background: #1769c2;
+  color: #ffffff;
+}
+
+.criteria913-container .exhibit-content h3 {
+  color: #20364d;
+}
+
+
+/* ============================================================
+   SUPPORTING DOCUMENTS
+   ============================================================ */
+
+.criteria913-container .document-table {
+  border-color: #d7dfeb;
+}
+
+.criteria913-container .document-table thead th {
+  background: #f0eef8;
+  color: #3e159b;
+  border-color: #d7dfeb;
+}
+
+.criteria913-container .document-table tbody td {
+  background: #ffffff;
+  border-color: #d7dfeb;
+  color: #303f57;
+}
+
+.criteria913-container .document-table tbody tr:nth-child(even) td {
+  background: #f8fbff;
+}
+
+.criteria913-container .document-table tbody tr:hover td {
+  background: #f3f7fc;
+}
+
+.criteria913-container .document-table tbody td:first-child {
+  color: #1769c2;
+}
+
+
+/* ============================================================
+   UPLOAD BUTTON
+   ============================================================ */
+
+.criteria913-container .upload-btn {
+  background: #ffffff;
+  border-color: #1769c2;
+  color: #1769c2;
+}
+
+.criteria913-container .upload-btn:hover {
+  background: #1769c2;
+  color: #ffffff;
+}
+
+
+/* ============================================================
+   SELECTED FILE
+   ============================================================ */
+
+.criteria913-container .selected-file {
+  background: #f0f5fa;
+  color: #526476;
+}
+
+
+/* ============================================================
+   VIEW BUTTON - PURPLE
+   ============================================================ */
+
+.criteria913-container .view-btn {
+  background: #f0eef8;
+  border-color: #d5cdea;
+  color: #4b159d;
+}
+
+.criteria913-container .view-btn:hover:not(:disabled) {
+  background: #4b159d;
+  color: #ffffff;
+}
+
+
+/* ============================================================
+   EVALUATION CARD
+   ============================================================ */
+
+.criteria913-container .evaluation-card {
+  background: #ffffff;
+  border-color: #d7dfeb;
+
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ============================================================
+   EVALUATION HEADER
+   ============================================================ */
+
+.criteria913-container .evaluation-card-header {
+  background: #f1f7fd;
+  border-color: #d7dfeb;
+}
+
+.criteria913-container .evaluation-letter {
+  background: #1769c2;
+  color: #ffffff;
+}
+
+.criteria913-container .evaluation-heading h2 {
+  color: #1769c2;
+}
+
+
+/* ============================================================
+   MAXIMUM MARKS
+   ============================================================ */
+
+.criteria913-container .maximum-marks {
+  background: #eaf2fc;
+  color: #1769c2;
+}
+
+.criteria913-container .maximum-marks strong {
+  color: #1769c2;
+}
+
+
+/* ============================================================
+   EVALUATION CONTENT
+   ============================================================ */
+
+.criteria913-container .evaluation-content {
+  background: #ffffff;
+}
+
+.criteria913-container .evaluation-point {
+  background: #f5f9fc;
+  border-left-color: #1769c2;
+}
+
+.criteria913-container .evaluation-point p {
+  color: #20364d;
+}
+
+
+/* ============================================================
+   MARKS BOX
+   ============================================================ */
+
+.criteria913-container .marks-box {
+  background: #ffffff;
+  border-left-color: #d7dfeb;
+}
+
+.criteria913-container .marks-box label {
+  color: #1769c2;
+}
+
+.criteria913-container .marks-box label span {
+  color: #7b8794;
+}
+
+.criteria913-container .marks-box input {
+  background: #ffffff;
+  border-color: #c9d3e2;
+  color: #1769c2;
+}
+
+.criteria913-container .marks-box input:focus {
+  border-color: #1769c2;
+
+  box-shadow:
+    0 0 0 3px rgba(23, 105, 194, 0.12);
+}
+
+
+/* ============================================================
+   REMARKS
+   ============================================================ */
+
+.criteria913-container .remarks-section {
+  background: #ffffff;
+  border-top-color: #d7dfeb;
+}
+
+.criteria913-container .remarks-section label {
+  color: #1769c2;
+}
+
+.criteria913-container .remarks-section textarea {
+  background: #ffffff;
+  border-color: #c9d3e2;
+  color: #24334e;
+}
+
+.criteria913-container .remarks-section textarea:focus {
+  border-color: #4b159d;
+
+  box-shadow:
+    0 0 0 3px rgba(75, 21, 157, 0.10);
+}
+
+.criteria913-container .remarks-section textarea::placeholder {
+  color: #9ba1b2;
+}
+
+
+/* ============================================================
+   CALCULATION CARD
+   ============================================================ */
+
+.criteria913-container .calculation-card {
+  background: #ffffff;
+  border-color: #d7dfeb;
+}
+
+.criteria913-container .calculation-header {
+  background: #f7f9fc;
+  border-color: #d7dfeb;
+}
+
+.criteria913-container .calculation-header svg {
+  color: #1769c2;
+}
+
+.criteria913-container .calculation-header h2 {
+  color: #1769c2;
+}
+
+
+/* ============================================================
+   CALCULATION ITEMS
+   ============================================================ */
+
+.criteria913-container .calculation-item {
+  background: #ffffff;
+  border-right-color: #d7dfeb;
+  border-bottom-color: #d7dfeb;
+}
+
+.criteria913-container .calculation-item span {
+  color: #526476;
+}
+
+.criteria913-container .calculation-item strong {
+  color: #1769c2;
+}
+
+.criteria913-container .status-calculation strong {
+  color: #4b159d;
+}
+
+
+/* ============================================================
+   ACTION BUTTONS
+   SAME STYLE FAMILY AS 9.11
+   ============================================================ */
+
+.criteria913-container .previous-btn {
+  background: #ffffff;
+  color: #4a159e;
+  border: 1px solid #d5d5df;
+}
+
+.criteria913-container .previous-btn:hover {
+  background: #f5f1ff;
+}
+
+.criteria913-container .clear-btn {
+  background: #ef8b00;
+  color: #ffffff;
+}
+
+.criteria913-container .clear-btn:hover {
+  background: #d97b00;
+}
+
+.criteria913-container .save-btn {
+  background: #12a957;
+  color: #ffffff;
+}
+
+.criteria913-container .save-btn:hover {
+  background: #0f9149;
+}
+
+.criteria913-container .update-btn {
+  background: #1769c2;
+  color: #ffffff;
+}
+
+.criteria913-container .update-btn:hover {
+  background: #1257a5;
+}
+
+.criteria913-container .delete-btn {
+  background: #ed1c24;
+  color: #ffffff;
+}
+
+.criteria913-container .delete-btn:hover {
+  background: #c91d14;
+}
+
+.criteria913-container .print-btn {
+  background: #5721ad;
+  color: #ffffff;
+}
+
+.criteria913-container .print-btn:hover {
+  background: #46198e;
+}
+
+.criteria913-container .submit-btn {
+  background: #1769c2;
+  color: #ffffff;
+}
+
+.criteria913-container .submit-btn:hover {
+  background: #1257a5;
+}
+
+.criteria913-container .next-btn {
+  background: #ffffff;
+  color: #4a159e;
+  border: 1px solid #d5d5df;
+}
+
+.criteria913-container .next-btn:hover {
+  background: #f5f1ff;
+}
+
+
+/* ============================================================
+   COMMON ACTION BUTTON HOVER
+   ============================================================ */
+
+.criteria913-container .action-btn:hover {
+  box-shadow:
+    0 4px 9px rgba(0, 0, 0, 0.13);
+}
+
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+.criteria913-container ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.criteria913-container ::-webkit-scrollbar-track {
+  background: #eef2f7;
+}
+
+.criteria913-container ::-webkit-scrollbar-thumb {
+  background: #aebbd0;
+  border-radius: 4px;
+}
+
+.criteria913-container ::-webkit-scrollbar-thumb:hover {
+  background: #8797b0;
+}
+
+
+/* ============================================================
+   PRINT COLORS
+   ============================================================ */
+
+@media print {
+
+  .criteria913-container {
+    background: #ffffff;
+  }
+
+  .criteria913-container .criteria913-header,
+  .criteria913-container .guideline-code,
+  .criteria913-container .section-title > svg,
+  .criteria913-container .exhibit-letter,
+  .criteria913-container .evaluation-letter {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .criteria913-container .document-table thead th {
+    background: #f0eef8 !important;
+    color: #3e159b !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

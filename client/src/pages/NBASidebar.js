@@ -64,7 +64,7 @@ function NBASidebar() {
 
         <li>
 
-          <Link to="/">
+          <Link to="/dashboard">
 
             <FaHome />
 
@@ -109,7 +109,7 @@ function NBASidebar() {
 
         <li>
 
-          <Link to="/student">
+          <Link to="/students">
 
             <FaUserGraduate />
 
@@ -683,7 +683,7 @@ function NBASidebar() {
 
           <li>
 
-            <Link to="/criteria9/9.1">
+            <Link to="/criteria9/1">
               9.1 Student Support & Governance
             </Link>
 

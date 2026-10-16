@@ -1,237 +1,667 @@
-.faculty-development{
+/* =========================================================
+   FACULTY DEVELOPMENT - FINAL CSS
+   Sidebar spacing unchanged
+========================================================= */
 
-padding:30px;
 
-background:#f5f7fb;
+/* =========================================================
+   MAIN PAGE
+========================================================= */
 
-min-height:100vh;
-
+.faculty-development {
+  min-height: 100vh;
+  width: 100%;
+  background: #f4f7fb;
+  box-sizing: border-box;
 }
 
-.page-header{
 
-margin-bottom:30px;
+/* =========================================================
+   MAIN CONTENT
+   SIDEBAR SAME
+========================================================= */
 
+.faculty-development-content {
+  margin-left: 260px;
+  width: calc(100% - 260px);
+  min-height: 100vh;
+  padding: 10px 12px 20px;
+  box-sizing: border-box;
 }
 
-.page-header h2{
 
-margin:0;
+/* =========================================================
+   HEADER
+   WIDTH INCREASED
+   HEIGHT REDUCED
+========================================================= */
 
-font-size:30px;
+.faculty-development .page-header {
+  width: 97%;
 
-color:#1e3a8a;
+  margin-left: auto;
+  margin-right: auto;
 
-}
+  min-height: 72px;
 
-.page-header p{
-
-margin-top:8px;
-
-color:#666;
-
-}
-
-.fd-card{
-
-background:#fff;
-
-border-radius:12px;
-
-padding:20px;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-margin-bottom:20px;
-
-box-shadow:0 4px 12px rgba(0,0,0,.08);
-
-transition:.3s;
-
-}
-
-.fd-card:hover{
-
-transform:translateY(-3px);
-
-}
-
-.fd-left{
-
-display:flex;
-
-align-items:center;
-
-gap:18px;
-
-}
-
-.fd-icon{
-
-width:55px;
-
-height:55px;
-
-border-radius:50%;
-
-background:#dbeafe;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:24px;
-
-}
-
-.fd-left h3{
-
-margin:0;
-
-font-size:19px;
-
-color:#1e3a8a;
-
-}
-
-.fd-left p{
-
-margin-top:8px;
-
-color:#666;
-
-font-size:14px;
-
-}
-
-.fd-buttons{
-
-display:flex;
-
-gap:12px;
-
-}
-
-.view-btn{
-
-background:#2563eb;
-
-color:#fff;
-
-border:none;
-
-padding:10px 18px;
-
-border-radius:8px;
-
-cursor:pointer;
-
-font-weight:600;
-
-}
-
-.add-btn{
-
-background:#16a34a;
-
-color:#fff;
-
-border:none;
-
-padding:10px 18px;
-
-border-radius:8px;
-
-cursor:pointer;
-
-font-weight:600;
-
-}
-
-.view-btn:hover{
-
-background:#1d4ed8;
-
-}
-
-.add-btn:hover{
-
-background:#15803d;
-
-}
-.module-navigation{
-    margin-top:35px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.module-prev,
-.module-next{
-    border:none;
-    padding:14px 28px;
-    border-radius:10px;
-    font-size:16px;
-    font-weight:600;
-    color:#fff;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.module-prev{
-    background:#6b7280;
-}
-
-.module-prev:hover{
-    background:#4b5563;
-}
-
-.module-next{
-    background:#203a96;
-}
-
-.module-next:hover{
-    background:#302e9b;
-}
-.fd-buttons {
   display: flex;
-  gap: 12px;
   align-items: center;
+
+  gap: 15px;
+
+  background: linear-gradient(
+    90deg,
+    #304ffe,
+    #9c4dff
+  );
+
+  border-radius: 10px;
+
+  padding: 12px 20px;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 2px 7px rgba(15, 23, 42, 0.07);
+
+  margin-bottom: 14px;
 }
 
-.fd-view-btn,
-.fd-add-btn {
-  width: 100px;
-  height: 46px;
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 16px;
+
+/* =========================================================
+   HEADER TITLE
+========================================================= */
+
+.faculty-development .page-header h2 {
+  margin: 0;
+
+  font-size: 25px;
+
+  color: #ffffff;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+
+/* =========================================================
+   HEADER DESCRIPTION
+========================================================= */
+
+.faculty-development .page-header p {
+  margin: 0;
+
+  font-size: 17px;
+
+  color: #f5d27a;
+
   font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  line-height: 1.3;
 }
 
-.fd-view-btn {
+
+/* =========================================================
+   FACULTY CARD
+   WIDTH INCREASED
+   HEIGHT REDUCED
+========================================================= */
+
+.faculty-development .fd-card {
+  width: 97%;
+
+  min-height: 112px;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  margin-bottom: 14px;
+
+  padding: 18px 22px;
+
+  background: #ffffff;
+
+  border: 1px solid #e1e7ef;
+
+  border-radius: 10px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 2px 7px rgba(15, 23, 42, 0.07);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.faculty-development .fd-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 5px 14px rgba(15, 23, 42, 0.10);
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.faculty-development .fd-left {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+/* =========================================================
+   ICON
+   SMALLER
+========================================================= */
+
+.faculty-development .fd-icon {
+  width: 58px;
+
+  height: 58px;
+
+  min-width: 58px;
+
+  border-radius: 50%;
+
+  background: #dbeafe;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 25px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.faculty-development .fd-left > div:last-child {
+  min-width: 0;
+}
+
+
+/* =========================================================
+   CARD TITLE
+========================================================= */
+
+.faculty-development .fd-left h3 {
+  margin: 0;
+
+  color: #1e4388;
+
+  font-size: 19px;
+
+  font-weight: 600;
+
+  line-height: 1.35;
+
+  word-break: normal;
+
+  overflow-wrap: break-word;
+}
+
+
+/* =========================================================
+   CARD DESCRIPTION
+========================================================= */
+
+.faculty-development .fd-left p {
+  margin: 6px 0 0 0;
+
+  color: #666666;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   BUTTON CONTAINER
+========================================================= */
+
+.faculty-development .fd-buttons {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-left: 20px;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   VIEW / ADD BUTTONS
+   SMALLER
+========================================================= */
+
+.faculty-development .fd-view-btn,
+.faculty-development .fd-add-btn {
+  width: 105px;
+
+  height: 44px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  color: #ffffff;
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+
+/* =========================================================
+   VIEW
+========================================================= */
+
+.faculty-development .fd-view-btn {
   background: #2563eb;
 }
 
-.fd-view-btn:hover {
+.faculty-development .fd-view-btn:hover {
   background: #1d4ed8;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 3px 8px rgba(37, 99, 235, 0.25);
 }
 
-.fd-add-btn {
+
+/* =========================================================
+   ADD
+========================================================= */
+
+.faculty-development .fd-add-btn {
   background: #16a34a;
 }
 
-.fd-add-btn:hover {
+.faculty-development .fd-add-btn:hover {
   background: #15803d;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 3px 8px rgba(22, 163, 74, 0.25);
+}
+
+
+/* =========================================================
+   BUTTON ACTIVE
+========================================================= */
+
+.faculty-development .fd-view-btn:active,
+.faculty-development .fd-add-btn:active {
+  transform: scale(0.97);
+}
+
+
+/* =========================================================
+   PREVIOUS / NEXT
+========================================================= */
+
+.faculty-development .module-navigation {
+  width: 97%;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  margin-top: 20px;
+
+  padding: 0 0 8px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  box-sizing: border-box;
+}
+
+
+.faculty-development .module-prev,
+.faculty-development .module-next {
+  min-width: 110px;
+
+  height: 40px;
+
+  padding: 0 20px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  color: #ffffff;
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
+}
+
+
+.faculty-development .module-prev {
+  background: #61748b;
+}
+
+.faculty-development .module-prev:hover {
+  background: #52657a;
+
+  transform: translateY(-1px);
+}
+
+
+.faculty-development .module-next {
+  background: #304ffe;
+}
+
+.faculty-development .module-next:hover {
+  background: #263fd1;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .faculty-development-content {
+    margin-left: 240px;
+
+    width: calc(100% - 240px);
+
+    padding: 10px;
+  }
+
+  .faculty-development .page-header {
+    width: 96%;
+  }
+
+  .faculty-development .fd-card {
+    width: 96%;
+
+    padding: 17px 20px;
+  }
+
+  .faculty-development .fd-left h3 {
+    font-size: 18px;
+  }
+
+  .faculty-development .fd-view-btn,
+  .faculty-development .fd-add-btn {
+    width: 95px;
+
+    height: 42px;
+
+    font-size: 15px;
+  }
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .faculty-development-content {
+    margin-left: 220px;
+
+    width: calc(100% - 220px);
+  }
+
+  .faculty-development .page-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    gap: 5px;
+  }
+
+  .faculty-development .fd-card {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+
+  .faculty-development .fd-buttons {
+    width: 100%;
+
+    margin-left: 0;
+  }
+
+  .faculty-development .fd-view-btn,
+  .faculty-development .fd-add-btn {
+    flex: 1;
+
+    width: auto;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .faculty-development-content {
+    margin-left: 0;
+
+    width: 100%;
+
+    padding: 8px;
+  }
+
+  .faculty-development .page-header {
+    width: 100%;
+
+    min-height: 70px;
+
+    padding: 14px;
+
+    border-radius: 8px;
+  }
+
+  .faculty-development .page-header h2 {
+    font-size: 20px;
+  }
+
+  .faculty-development .page-header p {
+    font-size: 14px;
+  }
+
+  .faculty-development .fd-card {
+    width: 100%;
+
+    min-height: 100px;
+
+    padding: 15px;
+
+    border-radius: 8px;
+  }
+
+  .faculty-development .fd-left {
+    width: 100%;
+
+    align-items: flex-start;
+
+    gap: 13px;
+  }
+
+  .faculty-development .fd-icon {
+    width: 52px;
+
+    height: 52px;
+
+    min-width: 52px;
+
+    font-size: 22px;
+  }
+
+  .faculty-development .fd-left h3 {
+    font-size: 16px;
+  }
+
+  .faculty-development .fd-left p {
+    font-size: 13px;
+  }
+
+  .faculty-development .fd-buttons {
+    width: 100%;
+
+    gap: 8px;
+  }
+
+  .faculty-development .fd-view-btn,
+  .faculty-development .fd-add-btn {
+    width: 50%;
+
+    height: 42px;
+
+    font-size: 15px;
+  }
+
+  .faculty-development .module-navigation {
+    width: 100%;
+
+    margin-top: 18px;
+  }
+
+  .faculty-development .module-prev,
+  .faculty-development .module-next {
+    min-width: 100px;
+
+    height: 38px;
+
+    padding: 0 15px;
+
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .faculty-development-content {
+    padding: 6px;
+  }
+
+  .faculty-development .fd-card {
+    padding: 13px;
+  }
+
+  .faculty-development .fd-left {
+    gap: 10px;
+  }
+
+  .faculty-development .fd-icon {
+    width: 48px;
+
+    height: 48px;
+
+    min-width: 48px;
+
+    font-size: 20px;
+  }
+
+  .faculty-development .fd-left h3 {
+    font-size: 15px;
+  }
+
+  .faculty-development .fd-left p {
+    font-size: 12px;
+  }
+
+  .faculty-development .fd-view-btn,
+  .faculty-development .fd-add-btn {
+    height: 40px;
+
+    font-size: 14px;
+  }
 }

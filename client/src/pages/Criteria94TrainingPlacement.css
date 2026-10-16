@@ -1,0 +1,1041 @@
+/* =========================================================
+   CRITERIA 9.4 - TRAINING & PLACEMENT SUPPORT
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f3f6fb;
+  color: #102a43;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
+
+.training94-page {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 10px 14px 30px;
+  background: #f3f6fb;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.training94-header {
+  width: 100%;
+  min-height: 86px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 20px;
+
+  background: linear-gradient(
+    135deg,
+    #1769c2,
+    #1264bd
+  );
+
+  border-radius: 0 0 12px 12px;
+
+  color: #ffffff;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+
+  margin-bottom: 12px;
+}
+
+.training94-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.training94-number {
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: rgba(255, 255, 255, 0.13);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.training94-header h1 {
+  margin: 0 0 4px;
+
+  font-size: 25px;
+  font-weight: 700;
+
+  color: #ffffff;
+}
+
+.training94-header p {
+  margin: 0;
+
+  font-size: 13px;
+
+  color: #ffffff;
+}
+
+.training94-max-marks {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 9px 16px;
+
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.14);
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.training94-max-marks span {
+  font-size: 13px;
+}
+
+.training94-max-marks strong {
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   SUB CRITERIA
+   ========================================================= */
+
+.training94-subcriteria {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 280px 1fr;
+
+  background: #ffffff;
+
+  border: 1px solid #d8e0eb;
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  margin-bottom: 12px;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.training94-sub-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 18px;
+
+  background: #f8f9fd;
+
+  color: #3e159b;
+
+  border-right: 1px solid #e0e4ec;
+}
+
+.training94-sub-title svg {
+  width: 30px;
+  height: 30px;
+
+  padding: 7px;
+
+  color: #ffffff;
+
+  background: #4b18ad;
+
+  border-radius: 50%;
+}
+
+.training94-sub-title strong {
+  font-size: 14px;
+}
+
+.training94-sub-content {
+  padding: 10px 22px;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+
+  gap: 5px 30px;
+}
+
+.training94-sub-content div {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  font-size: 13px;
+
+  min-height: 22px;
+}
+
+.training94-sub-content strong {
+  width: 18px;
+  color: #111;
+}
+
+.training94-sub-content span {
+  color: #222;
+}
+
+
+/* =========================================================
+   TOP GRID
+   ========================================================= */
+
+.training94-top-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(300px, 1fr);
+
+  gap: 10px;
+
+  margin-bottom: 12px;
+}
+
+.training94-side {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+
+/* =========================================================
+   COMMON CARD
+   ========================================================= */
+
+.training94-card {
+  background: #ffffff;
+
+  border: 1px solid #d7dfeb;
+
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.training94-card-title {
+  min-height: 42px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px 16px;
+
+  background: #f7f9fc;
+
+  border-bottom: 1px solid #d7dfeb;
+
+  color: #073f91;
+}
+
+.training94-card-title svg {
+  font-size: 16px;
+
+  color: #1769c2;
+}
+
+.training94-card-title h2 {
+  margin: 0;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  color: #102a43;
+}
+
+
+/* =========================================================
+   EVALUATION TABLE
+   ========================================================= */
+
+.training94-evaluation-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+
+  font-size: 13px;
+}
+
+.training94-evaluation-table th {
+  background: #1769c2;
+
+  color: #ffffff;
+
+  font-weight: 700;
+
+  padding: 10px 8px;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+
+  text-align: center;
+}
+
+.training94-evaluation-table th:nth-child(1) {
+  width: 80px;
+}
+
+.training94-evaluation-table th:nth-child(2) {
+  width: auto;
+}
+
+.training94-evaluation-table th:nth-child(3) {
+  width: 105px;
+}
+
+.training94-evaluation-table td {
+  padding: 12px 10px;
+
+  border-right: 1px solid #d7dfeb;
+  border-bottom: 1px solid #d7dfeb;
+
+  vertical-align: top;
+}
+
+.training94-code {
+  text-align: center;
+
+  color: #1769c2;
+
+  font-size: 15px;
+}
+
+.training94-description strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #132f55;
+
+  font-size: 13px;
+}
+
+.training94-description ul {
+  margin: 5px 0 0;
+  padding-left: 20px;
+}
+
+.training94-description li {
+  margin-bottom: 5px;
+
+  line-height: 1.35;
+
+  color: #20364d;
+}
+
+.training94-marks {
+  text-align: center;
+
+  vertical-align: middle !important;
+
+  font-size: 15px;
+
+  color: #111;
+}
+
+.training94-total-row td {
+  background: #eaf2fc;
+
+  color: #064194;
+
+  font-weight: 700;
+
+  padding: 9px;
+
+  text-align: right;
+}
+
+.training94-total-row td:last-child {
+  text-align: center;
+}
+
+
+/* =========================================================
+   INSTRUCTIONS
+   ========================================================= */
+
+.training94-instructions {
+  background: #ffffff;
+}
+
+.training94-instructions .training94-card-title {
+  background: #eefaf2;
+  color: #13733b;
+}
+
+.training94-instructions .training94-card-title svg {
+  color: #168447;
+}
+
+.training94-instructions ul {
+  margin: 0;
+
+  padding: 12px 18px 14px 34px;
+}
+
+.training94-instructions li {
+  margin-bottom: 8px;
+
+  font-size: 13px;
+
+  line-height: 1.45;
+
+  color: #263746;
+}
+
+
+/* =========================================================
+   EXHIBITS
+   ========================================================= */
+
+.training94-exhibits .training94-card-title {
+  color: #4b159d;
+
+  background: #ffffff;
+}
+
+.training94-exhibits .training94-card-title svg {
+  color: #4b159d;
+}
+
+.training94-exhibits p {
+  margin: 0;
+
+  padding: 13px 18px 17px;
+
+  font-size: 13px;
+
+  line-height: 1.55;
+
+  color: #20364d;
+}
+
+
+/* =========================================================
+   SUPPORTING DOCUMENTS
+   ========================================================= */
+
+.training94-documents {
+  margin-bottom: 12px;
+}
+
+.training94-document-table {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.training94-document-header,
+.training94-document-row {
+  display: grid;
+
+  grid-template-columns:
+    65px
+    minmax(210px, 1.15fr)
+    minmax(250px, 1.4fr)
+    minmax(245px, 1.25fr)
+    75px;
+
+  min-width: 845px;
+}
+
+.training94-document-header {
+  background: #f0eef8;
+
+  color: #3e159b;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-align: center;
+}
+
+.training94-document-header div {
+  padding: 9px 7px;
+
+  border-right: 1px solid #d7dfeb;
+  border-bottom: 1px solid #d7dfeb;
+}
+
+.training94-document-row {
+  min-height: 42px;
+
+  font-size: 12px;
+
+  color: #17324d;
+}
+
+.training94-document-row div {
+  display: flex;
+  align-items: center;
+
+  padding: 7px 9px;
+
+  border-right: 1px solid #d7dfeb;
+  border-bottom: 1px solid #d7dfeb;
+}
+
+.training94-document-row div:first-child {
+  justify-content: center;
+}
+
+.training94-document-row div:nth-child(5) {
+  justify-content: center;
+}
+
+.training94-document-row input[type="file"] {
+  width: 100%;
+
+  font-size: 11px;
+
+  color: #333;
+}
+
+.training94-document-row input[type="file"]::file-selector-button {
+  padding: 4px 8px;
+
+  margin-right: 5px;
+
+  border: none;
+
+  border-radius: 4px;
+
+  background: #e7f2ff;
+
+  color: #1769c2;
+
+  cursor: pointer;
+
+  font-size: 11px;
+}
+
+.training94-document-row button {
+  width: 32px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: #e8f1ff;
+
+  color: #1769c2;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.training94-document-row button:hover {
+  background: #1769c2;
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   EVALUATION & MARKS
+   ========================================================= */
+
+.training94-evaluation {
+  margin-bottom: 12px;
+}
+
+.training94-mark-grid {
+  padding: 12px;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 10px;
+}
+
+.training94-mark-box {
+  min-height: 65px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 10px 12px;
+
+  border: 1px solid #d8dfeb;
+
+  border-radius: 6px;
+
+  background: #fbfcff;
+}
+
+.training94-mark-box > div:first-child {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.training94-mark-box strong {
+  font-size: 12px;
+
+  color: #132f55;
+}
+
+.training94-mark-box span {
+  font-size: 11px;
+
+  color: #60758b;
+}
+
+.training94-input-wrap {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  white-space: nowrap;
+}
+
+.training94-input-wrap input {
+  width: 58px;
+  height: 34px;
+
+  text-align: center;
+
+  border: 1px solid #c9d3e2;
+
+  border-radius: 6px;
+
+  background: #ffffff;
+
+  color: #111;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  outline: none;
+}
+
+.training94-input-wrap input:focus {
+  border-color: #1769c2;
+
+  box-shadow: 0 0 0 2px rgba(23, 105, 194, 0.12);
+}
+
+.training94-input-wrap > span {
+  font-size: 13px;
+
+  color: #34495e;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   BOTTOM EVALUATION
+   ========================================================= */
+
+.training94-bottom {
+  display: grid;
+
+  grid-template-columns: 460px 1fr;
+
+  gap: 20px;
+
+  padding: 12px 20px 18px;
+
+  border-top: 1px solid #d7dfeb;
+}
+
+.training94-final-mark {
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.training94-final-mark label {
+  font-size: 13px;
+
+  font-weight: 700;
+
+  color: #102a43;
+}
+
+.training94-final-mark div {
+  min-width: 180px;
+
+  padding: 11px 20px;
+
+  text-align: center;
+
+  border-radius: 6px;
+
+  background: #eaf2ff;
+
+  border: 1px solid #c4daf8;
+
+  color: #1555a0;
+
+  font-size: 16px;
+
+  font-weight: 700;
+}
+
+.training94-remarks {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.training94-remarks label {
+  font-size: 12px;
+
+  font-weight: 700;
+
+  color: #102a43;
+}
+
+.training94-remarks textarea {
+  width: 100%;
+
+  min-height: 70px;
+
+  resize: vertical;
+
+  padding: 10px 12px;
+
+  border: 1px solid #c9d3e2;
+
+  border-radius: 6px;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  outline: none;
+}
+
+.training94-remarks textarea:focus {
+  border-color: #1769c2;
+
+  box-shadow: 0 0 0 2px rgba(23, 105, 194, 0.1);
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.training94-buttons {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 0 0 15px;
+}
+
+.training94-btn {
+  min-width: 120px;
+
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  padding: 0 18px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.training94-btn:hover {
+  transform: translateY(-1px);
+
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.12);
+}
+
+.training94-btn:active {
+  transform: translateY(0);
+}
+
+
+/* PREVIOUS */
+
+.training94-previous {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+
+/* BACK */
+
+.training94-back {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+
+/* SAVE */
+
+.training94-save {
+  background: #12a957;
+
+  color: #ffffff;
+}
+
+
+/* DELETE */
+
+.training94-delete {
+  background: #ed1c24;
+
+  color: #ffffff;
+}
+
+
+/* PRINT */
+
+.training94-print {
+  background: #5721ad;
+
+  color: #ffffff;
+}
+
+
+/* NEXT */
+
+.training94-next {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .training94-top-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .training94-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .training94-final-mark {
+    justify-content: flex-start;
+  }
+
+  .training94-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+}
+
+
+@media (max-width: 800px) {
+
+  .training94-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .training94-max-marks {
+    align-self: flex-start;
+  }
+
+  .training94-subcriteria {
+    grid-template-columns: 1fr;
+  }
+
+  .training94-sub-title {
+    border-right: none;
+
+    border-bottom: 1px solid #e0e4ec;
+  }
+
+  .training94-sub-content {
+    grid-template-columns: 1fr;
+  }
+
+  .training94-mark-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .training94-final-mark {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .training94-page {
+    padding: 6px;
+  }
+
+  .training94-header {
+    padding: 12px;
+
+    border-radius: 8px;
+  }
+
+  .training94-header-left {
+    gap: 10px;
+  }
+
+  .training94-number {
+    width: 54px;
+    height: 54px;
+
+    font-size: 21px;
+  }
+
+  .training94-header h1 {
+    font-size: 19px;
+  }
+
+  .training94-header p {
+    font-size: 11px;
+  }
+
+  .training94-buttons {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .training94-btn {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+  .training94-bottom {
+    padding: 12px;
+  }
+
+}
+
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+  body {
+    background: #ffffff;
+  }
+
+  .training94-page {
+    padding: 0;
+  }
+
+  .training94-buttons {
+    display: none !important;
+  }
+
+  .training94-header {
+    box-shadow: none;
+
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .training94-card {
+    box-shadow: none;
+  }
+
+  .training94-document-row input[type="file"] {
+    display: none;
+  }
+
+  .training94-document-row button {
+    display: none;
+  }
+}

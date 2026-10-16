@@ -1,0 +1,1768 @@
+/* =========================================================
+   CRITERIA 9.2 - MONITORING SYSTEM
+   SAME COLOR THEME AS CRITERIA 9.1
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.monitoring92-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 16px;
+  background: #f5f3fa;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #17142a;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.monitoring92-header {
+  width: 100%;
+  min-height: 88px;
+  padding: 10px 18px;
+  border-radius: 9px;
+
+  /* 9.1 SAME HEADER COLOR */
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f7f3ff 100%
+  );
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #17142a;
+  border: 1px solid #ddd7eb;
+  box-shadow: 0 3px 12px rgba(53, 36, 95, 0.08);
+}
+
+.monitoring92-header-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.monitoring92-number {
+  width: 74px;
+  height: 62px;
+
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 31px;
+  font-weight: 800;
+
+  /* 9.1 PURPLE */
+  background: linear-gradient(135deg, #5926b5, #7546d6);
+  color: #ffffff;
+  border: none;
+
+  box-shadow: 0 4px 10px rgba(89, 38, 181, 0.25);
+}
+
+.monitoring92-title h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  color: #17142a;
+}
+
+.monitoring92-title p {
+  margin: 4px 0 0;
+  font-size: 15px;
+  color: #686579;
+  opacity: 1;
+}
+
+.monitoring92-max-marks {
+  width: 180px;
+  min-height: 72px;
+
+  border-radius: 7px;
+
+  /* 9.1 SAME */
+  background: #eee6fb;
+  color: #5725b4;
+  border: 1px solid #d9c9f4;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: none;
+}
+
+.monitoring92-max-marks span {
+  font-size: 14px;
+  font-weight: 700;
+  color: #5d5870;
+}
+
+.monitoring92-max-marks strong {
+  margin-top: 1px;
+  font-size: 29px;
+  line-height: 30px;
+  color: #5725b4;
+}
+
+
+/* =========================================================
+   COMMON CARD
+========================================================= */
+
+.monitoring92-card {
+  background: #ffffff;
+  border: 1px solid #ddd8e9;
+  border-radius: 8px;
+  overflow: hidden;
+
+  box-shadow: 0 2px 8px rgba(50, 35, 90, 0.06);
+}
+
+
+/* =========================================================
+   SUB CRITERIA
+========================================================= */
+
+.monitoring92-subcriteria {
+  width: 100%;
+  min-height: 67px;
+
+  margin-top: 10px;
+
+  display: grid;
+  grid-template-columns: 29% 71%;
+
+  border: 1px solid #ddd8e9;
+  border-radius: 8px;
+  overflow: hidden;
+
+  background: #ffffff;
+}
+
+.subcriteria-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 12px 20px;
+
+  background: #f7f3ff;
+  color: #5525b3;
+
+  font-size: 16px;
+}
+
+.subcriteria-title svg {
+  width: 32px;
+  height: 32px;
+
+  padding: 7px;
+
+  border-radius: 50%;
+
+  /* 9.1 PURPLE */
+  background: linear-gradient(135deg, #5926b5, #7546d6);
+  color: white;
+}
+
+.subcriteria-content {
+  padding: 10px 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 5px;
+
+  color: #17142a;
+  font-size: 14px;
+}
+
+.subcriteria-content div {
+  display: flex;
+  gap: 15px;
+}
+
+.subcriteria-content strong {
+  width: 20px;
+}
+
+
+/* =========================================================
+   TOP GRID
+========================================================= */
+
+.monitoring92-top-grid {
+  display: grid;
+  grid-template-columns: 62% 38%;
+  gap: 10px;
+
+  margin-top: 10px;
+}
+
+.monitoring92-right-top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+/* =========================================================
+   CARD TITLE
+========================================================= */
+
+.monitoring92-card-title {
+  min-height: 45px;
+
+  padding: 9px 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  color: #5525b3;
+}
+
+.monitoring92-card-title svg {
+  font-size: 20px;
+  color: #5725b4;
+}
+
+.monitoring92-card-title h2 {
+  margin: 0;
+
+  font-size: 17px;
+  font-weight: 750;
+  color: #5525b3;
+}
+
+.green-title {
+  color: #5525b3;
+}
+
+
+/* =========================================================
+   GUIDELINES TABLE
+========================================================= */
+
+.guidelines92-table {
+  width: 100%;
+  border-top: 1px solid #ddd4eb;
+}
+
+.guidelines92-header {
+  display: grid;
+  grid-template-columns: 32% 52% 16%;
+
+  /* 9.1 LIGHT PURPLE */
+  background: #f0e7fb;
+  color: #5525b3;
+
+  font-weight: 700;
+  text-align: center;
+
+  font-size: 14px;
+}
+
+.guidelines92-header div {
+  padding: 7px;
+  border-right: 1px solid #ddd4eb;
+}
+
+.guidelines92-row {
+  display: grid;
+  grid-template-columns: 32% 52% 16%;
+
+  min-height: 112px;
+
+  border-bottom: 1px solid #e1dce8;
+}
+
+.guideline-subcriteria {
+  padding: 18px 12px;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  display: flex;
+  align-items: flex-start;
+
+  color: #17142a;
+}
+
+.guideline-description {
+  padding: 10px 14px;
+
+  font-size: 12.5px;
+
+  border-left: 1px solid #e1dce8;
+  border-right: 1px solid #e1dce8;
+
+  color: #252038;
+}
+
+.guideline-description ul {
+  margin: 0;
+  padding-left: 19px;
+}
+
+.guideline-description li {
+  margin-bottom: 5px;
+}
+
+.guideline-marks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  color: #17142a;
+}
+
+.guidelines92-total {
+  display: grid;
+  grid-template-columns: 32% 52% 16%;
+
+  min-height: 30px;
+
+  /* 9.1 RESULT BACKGROUND */
+  background: #f2eafb;
+
+  align-items: center;
+  text-align: center;
+
+  color: #5523b2;
+}
+
+.guidelines92-total strong {
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   INSTRUCTIONS
+========================================================= */
+
+.instructions92-card {
+  /* 9.1 PURPLE CARD */
+  background: #f7f3ff;
+  border-color: #ddd4eb;
+}
+
+.instructions92-card ul {
+  margin: 0;
+  padding: 8px 22px 16px 43px;
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.instructions92-card li {
+  margin-bottom: 4px;
+}
+
+
+/* =========================================================
+   EXHIBITS
+========================================================= */
+
+.exhibits92-card {
+  min-height: 145px;
+  background: #f7f9ff;
+  border-color: #dce4f4;
+}
+
+.exhibit92-content {
+  display: flex;
+  gap: 13px;
+
+  padding: 8px 25px 20px;
+
+  font-size: 13px;
+  line-height: 1.7;
+
+  color: #202033;
+}
+
+.exhibit92-content span {
+  color: #6b35c5;
+  font-size: 17px;
+}
+
+.exhibit92-content p {
+  margin: 0;
+}
+
+
+/* =========================================================
+   DOCUMENTS
+========================================================= */
+
+.documents92-card {
+  margin-top: 10px;
+}
+
+.documents92-table {
+  width: 100%;
+  border-top: 1px solid #ddd4eb;
+}
+
+.documents92-header,
+.documents92-row {
+  display: grid;
+  grid-template-columns: 7% 24% 32% 27% 10%;
+}
+
+.documents92-header {
+  min-height: 34px;
+
+  /* 9.1 DOCUMENT HEADER */
+  background: #f0e7fb;
+
+  color: #5525b3;
+
+  font-size: 13px;
+  font-weight: 750;
+
+  text-align: center;
+  align-items: center;
+}
+
+.documents92-header div {
+  padding: 8px;
+  border-right: 1px solid #ddd4eb;
+}
+
+.documents92-row {
+  min-height: 35px;
+
+  border-top: 1px solid #e1dce8;
+
+  font-size: 12.5px;
+  align-items: center;
+
+  background: #ffffff;
+}
+
+.documents92-row > div {
+  min-height: 35px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 5px 10px;
+
+  border-right: 1px solid #e1dce8;
+}
+
+.document92-serial {
+  justify-content: center;
+}
+
+.document92-name {
+  font-weight: 600;
+  color: #252038;
+}
+
+.document92-description {
+  color: #3c3a49;
+}
+
+.document92-upload {
+  justify-content: center;
+}
+
+.document92-upload input[type="file"] {
+  width: 100%;
+  max-width: 270px;
+  font-size: 11px;
+}
+
+.document92-view {
+  justify-content: center;
+}
+
+.document92-view button {
+  width: 31px;
+  height: 27px;
+
+  border: none;
+  border-radius: 5px;
+
+  background: transparent;
+  color: #1760ca;
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.document92-view button:hover {
+  background: #edf4ff;
+}
+
+
+/* =========================================================
+   EVALUATION
+========================================================= */
+
+.evaluation92-card {
+  margin-top: 10px;
+}
+
+.evaluation92-content {
+  padding: 5px 25px 18px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.evaluation92-item {
+  min-height: 54px;
+
+  padding: 8px 12px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border: 1px solid #ddd8e9;
+  border-radius: 6px;
+
+  background: #faf8fe;
+}
+
+.evaluation92-label {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.evaluation92-label strong {
+  font-size: 12.5px;
+  color: #17142a;
+}
+
+.evaluation92-label span {
+  font-size: 11px;
+  color: #686579;
+}
+
+.evaluation92-item input {
+  width: 62px;
+  height: 34px;
+
+  border: 1px solid #cfc9dc;
+  border-radius: 5px;
+
+  text-align: center;
+
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.evaluation92-max {
+  font-weight: 700;
+  color: #55515f;
+}
+
+.evaluation92-total {
+  min-height: 60px;
+
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.evaluation92-total label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #17142a;
+}
+
+.evaluation92-total-box {
+  min-width: 200px;
+  min-height: 42px;
+
+  padding: 10px 20px;
+
+  border-radius: 5px;
+
+  /* 9.1 MARKS BOX */
+  background: #f0e6fc;
+  color: #5725b4;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.remarks92-box {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.remarks92-box label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #17142a;
+}
+
+.remarks92-box textarea {
+  width: 100%;
+  min-height: 58px;
+
+  padding: 10px;
+
+  resize: vertical;
+
+  border: 1px solid #cec8d8;
+  border-radius: 5px;
+
+  outline: none;
+
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.remarks92-box textarea:focus {
+  border-color: #7041ca;
+  box-shadow: 0 0 0 2px rgba(112, 65, 202, 0.1);
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.monitoring92-buttons {
+  width: 100%;
+
+  margin-top: 12px;
+
+  display: grid;
+  grid-template-columns:
+    1fr
+    1fr
+    1.05fr
+    1.1fr
+    1.1fr
+    1.1fr
+    1fr;
+
+  gap: 24px;
+}
+
+.monitoring92-btn {
+  min-height: 50px;
+
+  border-radius: 6px;
+
+  border: 1px solid #ddd;
+
+  background: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.monitoring92-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+
+/* 9.1 BUTTON COLORS */
+
+.previous92-btn {
+  background: #607d9c;
+  border-color: #607d9c;
+  color: white;
+}
+
+.back92-btn {
+  background: #7d8491;
+  border-color: #7d8491;
+  color: white;
+}
+
+.next92-btn {
+  background: #6530bd;
+  border-color: #6530bd;
+  color: white;
+}
+
+.save92-btn {
+  background: #2878d4;
+  border-color: #2878d4;
+  color: white;
+}
+
+.submit92-btn {
+  background: #2c9a62;
+  border-color: #2c9a62;
+  color: white;
+}
+
+.delete92-btn {
+  background: #d94b4b;
+  border-color: #d94b4b;
+  color: white;
+}
+
+.print92-btn {
+  background: #5e6470;
+  border-color: #5e6470;
+  color: white;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .monitoring92-top-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .evaluation92-content {
+    grid-template-columns: 1fr;
+  }
+
+  .monitoring92-buttons {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+}
+
+
+@media (max-width: 750px) {
+
+  .monitoring92-page {
+    padding: 8px;
+  }
+
+  .monitoring92-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .monitoring92-max-marks {
+    width: 100%;
+  }
+
+  .monitoring92-subcriteria {
+    grid-template-columns: 1fr;
+  }
+
+  .guidelines92-header,
+  .guidelines92-row,
+  .guidelines92-total {
+    grid-template-columns: 1fr;
+  }
+
+  .guideline-description {
+    border-left: none;
+    border-right: none;
+  }
+
+  .documents92-header {
+    display: none;
+  }
+
+  .documents92-row {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    padding: 8px;
+  }
+
+  .documents92-row > div {
+    border: none;
+  }
+
+  .document92-upload,
+  .document92-view {
+    grid-column: 2;
+  }
+
+  .monitoring92-buttons {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+  .monitoring92-page {
+    background: white;
+    padding: 0;
+  }
+
+  .monitoring92-buttons {
+    display: none;
+  }
+
+  .monitoring92-card,
+  .monitoring92-header,
+  .monitoring92-subcriteria {
+    box-shadow: none;
+  }
+
+  .monitoring92-header {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+}
+/* =========================================================
+   CRITERIA 9.2 - SAME COLOR THEME AS CRITERIA 9.1
+   STRUCTURE / SIZE / LAYOUT UNCHANGED
+========================================================= */
+
+/* Main background */
+.monitoring92-page {
+  background: #f5f3fa;
+  color: #172033;
+}
+
+/* Header */
+.monitoring92-header {
+  background: linear-gradient(135deg, #ffffff 0%, #f7f3ff 100%);
+  color: #17142a;
+  border: 1px solid #ddd7eb;
+  box-shadow: 0 3px 12px rgba(53, 36, 95, 0.08);
+}
+
+/* Header number */
+.monitoring92-number {
+  background: linear-gradient(135deg, #5926b5, #7546d6);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 10px rgba(89, 38, 181, 0.25);
+}
+
+/* Header title */
+.monitoring92-title h1 {
+  color: #17142a;
+}
+
+.monitoring92-title p {
+  color: #686579;
+}
+
+/* Maximum marks */
+.monitoring92-max-marks {
+  background: #eee6fb;
+  color: #5725b4;
+  border: 1px solid #d9c9f4;
+  box-shadow: none;
+}
+
+.monitoring92-max-marks span {
+  color: #5d5870;
+}
+
+.monitoring92-max-marks strong {
+  color: #5725b4;
+}
+
+/* Common card */
+.monitoring92-card {
+  background: #ffffff;
+  border-color: #ddd8e9;
+  box-shadow: 0 2px 8px rgba(50, 35, 90, 0.06);
+}
+
+/* Sub criteria */
+.monitoring92-subcriteria {
+  border-color: #ddd8e9;
+  background: #ffffff;
+}
+
+.subcriteria-title {
+  background: #f7f3ff;
+  color: #5525b3;
+}
+
+.subcriteria-title svg {
+  background: #5725b4;
+  color: #ffffff;
+}
+
+.subcriteria-content {
+  color: #17142a;
+}
+
+/* Card titles */
+.monitoring92-card-title {
+  color: #5525b3;
+}
+
+.monitoring92-card-title svg {
+  color: #5725b4;
+}
+
+/* Remove green title color */
+.green-title {
+  color: #5525b3 !important;
+}
+
+/* Guidelines header */
+.guidelines92-header {
+  background: #f0e7fb;
+  color: #5525b3;
+}
+
+.guidelines92-header div {
+  border-right-color: #ddd4eb;
+}
+
+/* Guidelines rows */
+.guidelines92-row {
+  border-bottom-color: #e1dce8;
+}
+
+.guideline-subcriteria {
+  color: #17142a;
+}
+
+.guideline-description {
+  color: #252038;
+  border-left-color: #e1dce8;
+  border-right-color: #e1dce8;
+}
+
+.guideline-marks {
+  color: #5525b3;
+}
+
+/* Guidelines total */
+.guidelines92-total {
+  background: #f0e7fb;
+  color: #5525b3;
+}
+
+/* Instructions */
+.instructions92-card {
+  background: #f7f3ff;
+  border-color: #ddd4eb;
+}
+
+/* Exhibits */
+.exhibits92-card {
+  background: #ffffff;
+  border-color: #ddd8e9;
+}
+
+.exhibit92-content span {
+  color: #5725b4;
+}
+
+/* Documents */
+.documents92-header {
+  background: #f0e7fb;
+  color: #5525b3;
+}
+
+.documents92-header div {
+  border-right-color: #ddd4eb;
+}
+
+.documents92-row {
+  border-top-color: #e1dce8;
+  background: #ffffff;
+}
+
+.documents92-row > div {
+  border-right-color: #e1dce8;
+}
+
+.document92-name {
+  color: #252038;
+}
+
+.document92-description {
+  color: #3c3a4c;
+}
+
+.document92-view button {
+  color: #5725b4;
+}
+
+.document92-view button:hover {
+  background: #eee6fb;
+}
+
+/* Evaluation */
+.evaluation92-item {
+  border-color: #ddd8e9;
+  background: #faf9fd;
+}
+
+.evaluation92-item input {
+  border-color: #cfc9dc;
+}
+
+.evaluation92-item input:focus {
+  border-color: #7141cc;
+  box-shadow: 0 0 0 2px rgba(113, 65, 204, 0.1);
+}
+
+.evaluation92-total-box {
+  background: #f0e6fc;
+  color: #5725b4;
+}
+
+.remarks92-box textarea:focus {
+  border-color: #7041ca;
+  box-shadow: 0 0 0 2px rgba(112, 65, 202, 0.1);
+}
+
+/* =========================================================
+   BUTTON COLORS - SAME AS 9.1
+========================================================= */
+
+.previous92-btn {
+  background: #607d9c;
+  border-color: #607d9c;
+  color: white;
+}
+
+.back92-btn {
+  background: #7d8491;
+  border-color: #7d8491;
+  color: white;
+}
+
+.save92-btn {
+  background: #2878d4;
+  border-color: #2878d4;
+  color: white;
+}
+
+.submit92-btn {
+  background: #2c9a62;
+  border-color: #2c9a62;
+  color: white;
+}
+
+.delete92-btn {
+  background: #d94b4b;
+  border-color: #d94b4b;
+  color: white;
+}
+
+.print92-btn {
+  background: #5e6470;
+  border-color: #5e6470;
+  color: white;
+}
+
+.next92-btn {
+  background: #6530bd;
+  border-color: #6530bd;
+  color: white;
+}
+
+/* Button hover */
+.previous92-btn:hover,
+.back92-btn:hover,
+.save92-btn:hover,
+.submit92-btn:hover,
+.delete92-btn:hover,
+.print92-btn:hover,
+.next92-btn:hover {
+  color: white;
+  filter: brightness(0.95);
+}
+/* =========================================================
+   CRITERIA 9.2 - SAME COLOR THEME AS CRITERIA 9.1
+   STRUCTURE / SIZE / LAYOUT UNCHANGED
+========================================================= */
+
+/* Main background */
+.monitoring92-page {
+  background: #f5f3fa;
+  color: #172033;
+}
+
+/* Header */
+.monitoring92-header {
+  background: linear-gradient(135deg, #ffffff 0%, #f7f3ff 100%);
+  color: #17142a;
+  border: 1px solid #ddd7eb;
+  box-shadow: 0 3px 12px rgba(53, 36, 95, 0.08);
+}
+
+/* Header number */
+.monitoring92-number {
+  background: linear-gradient(135deg, #5926b5, #7546d6);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 10px rgba(89, 38, 181, 0.25);
+}
+
+/* Header title */
+.monitoring92-title h1 {
+  color: #17142a;
+}
+
+.monitoring92-title p {
+  color: #686579;
+}
+
+/* Maximum marks */
+.monitoring92-max-marks {
+  background: #eee6fb;
+  color: #5725b4;
+  border: 1px solid #d9c9f4;
+  box-shadow: none;
+}
+
+.monitoring92-max-marks span {
+  color: #5d5870;
+}
+
+.monitoring92-max-marks strong {
+  color: #5725b4;
+}
+
+/* Common card */
+.monitoring92-card {
+  background: #ffffff;
+  border-color: #ddd8e9;
+  box-shadow: 0 2px 8px rgba(50, 35, 90, 0.06);
+}
+
+/* Sub criteria */
+.monitoring92-subcriteria {
+  border-color: #ddd8e9;
+  background: #ffffff;
+}
+
+.subcriteria-title {
+  background: #f7f3ff;
+  color: #5525b3;
+}
+
+.subcriteria-title svg {
+  background: #5725b4;
+  color: #ffffff;
+}
+
+.subcriteria-content {
+  color: #17142a;
+}
+
+/* Card titles */
+.monitoring92-card-title {
+  color: #5525b3;
+}
+
+.monitoring92-card-title svg {
+  color: #5725b4;
+}
+
+/* Remove green title color */
+.green-title {
+  color: #5525b3 !important;
+}
+
+/* Guidelines header */
+.guidelines92-header {
+  background: #f0e7fb;
+  color: #5525b3;
+}
+
+.guidelines92-header div {
+  border-right-color: #ddd4eb;
+}
+
+/* Guidelines rows */
+.guidelines92-row {
+  border-bottom-color: #e1dce8;
+}
+
+.guideline-subcriteria {
+  color: #17142a;
+}
+
+.guideline-description {
+  color: #252038;
+  border-left-color: #e1dce8;
+  border-right-color: #e1dce8;
+}
+
+.guideline-marks {
+  color: #5525b3;
+}
+
+/* Guidelines total */
+.guidelines92-total {
+  background: #f0e7fb;
+  color: #5525b3;
+}
+
+/* Instructions */
+.instructions92-card {
+  background: #f7f3ff;
+  border-color: #ddd4eb;
+}
+
+/* Exhibits */
+.exhibits92-card {
+  background: #ffffff;
+  border-color: #ddd8e9;
+}
+
+.exhibit92-content span {
+  color: #5725b4;
+}
+
+/* Documents */
+.documents92-header {
+  background: #f0e7fb;
+  color: #5525b3;
+}
+
+.documents92-header div {
+  border-right-color: #ddd4eb;
+}
+
+.documents92-row {
+  border-top-color: #e1dce8;
+  background: #ffffff;
+}
+
+.documents92-row > div {
+  border-right-color: #e1dce8;
+}
+
+.document92-name {
+  color: #252038;
+}
+
+.document92-description {
+  color: #3c3a4c;
+}
+
+.document92-view button {
+  color: #5725b4;
+}
+
+.document92-view button:hover {
+  background: #eee6fb;
+}
+
+/* Evaluation */
+.evaluation92-item {
+  border-color: #ddd8e9;
+  background: #faf9fd;
+}
+
+.evaluation92-item input {
+  border-color: #cfc9dc;
+}
+
+.evaluation92-item input:focus {
+  border-color: #7141cc;
+  box-shadow: 0 0 0 2px rgba(113, 65, 204, 0.1);
+}
+
+.evaluation92-total-box {
+  background: #f0e6fc;
+  color: #5725b4;
+}
+
+.remarks92-box textarea:focus {
+  border-color: #7041ca;
+  box-shadow: 0 0 0 2px rgba(112, 65, 202, 0.1);
+}
+
+/* =========================================================
+   BUTTON COLORS - SAME AS 9.1
+========================================================= */
+
+.previous92-btn {
+  background: #607d9c;
+  border-color: #607d9c;
+  color: white;
+}
+
+.back92-btn {
+  background: #7d8491;
+  border-color: #7d8491;
+  color: white;
+}
+
+.save92-btn {
+  background: #2878d4;
+  border-color: #2878d4;
+  color: white;
+}
+
+.submit92-btn {
+  background: #2c9a62;
+  border-color: #2c9a62;
+  color: white;
+}
+
+.delete92-btn {
+  background: #d94b4b;
+  border-color: #d94b4b;
+  color: white;
+}
+
+.print92-btn {
+  background: #5e6470;
+  border-color: #5e6470;
+  color: white;
+}
+
+.next92-btn {
+  background: #6530bd;
+  border-color: #6530bd;
+  color: white;
+}
+
+/* Button hover */
+.previous92-btn:hover,
+.back92-btn:hover,
+.save92-btn:hover,
+.submit92-btn:hover,
+.delete92-btn:hover,
+.print92-btn:hover,
+.next92-btn:hover {
+  color: white;
+  filter: brightness(0.95);
+}
+/* =========================================================
+   CRITERIA 9.2 - SAME COLOR AS CRITERIA 9.4
+   STRUCTURE / SIZE / LAYOUT UNCHANGED
+========================================================= */
+
+/* Main Background */
+.monitoring92-page {
+  background: #f3f6fb;
+  color: #102a43;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.monitoring92-header {
+  background: linear-gradient(
+    135deg,
+    #1769c2,
+    #1264bd
+  );
+
+  color: #ffffff;
+  border: none;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.monitoring92-number {
+  background: rgba(255, 255, 255, 0.13);
+  color: #ffffff;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  box-shadow: none;
+}
+
+.monitoring92-title h1 {
+  color: #ffffff;
+}
+
+.monitoring92-title p {
+  color: #ffffff;
+}
+
+.monitoring92-max-marks {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+
+  box-shadow: none;
+}
+
+.monitoring92-max-marks span {
+  color: #ffffff;
+}
+
+.monitoring92-max-marks strong {
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   COMMON CARD
+========================================================= */
+
+.monitoring92-card {
+  background: #ffffff;
+
+  border-color: #d7dfeb;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================================================
+   SUB CRITERIA
+========================================================= */
+
+.monitoring92-subcriteria {
+  border-color: #d8e0eb;
+  background: #ffffff;
+}
+
+.subcriteria-title {
+  background: #f8f9fd;
+  color: #3e159b;
+}
+
+.subcriteria-title svg {
+  background: #4b18ad;
+  color: #ffffff;
+}
+
+.subcriteria-content {
+  color: #102a43;
+}
+
+
+/* =========================================================
+   CARD TITLE
+========================================================= */
+
+.monitoring92-card-title {
+  color: #073f91;
+}
+
+.monitoring92-card-title svg {
+  color: #1769c2;
+}
+
+.monitoring92-card-title h2 {
+  color: #102a43;
+}
+
+.green-title {
+  color: #073f91 !important;
+}
+
+
+/* =========================================================
+   GUIDELINES TABLE
+========================================================= */
+
+.guidelines92-table {
+  border-top-color: #d7dfeb;
+}
+
+.guidelines92-header {
+  background: #1769c2;
+  color: #ffffff;
+}
+
+.guidelines92-header div {
+  border-right-color: rgba(255, 255, 255, 0.35);
+}
+
+.guidelines92-row {
+  border-bottom-color: #d7dfeb;
+}
+
+.guideline-subcriteria {
+  color: #102a43;
+}
+
+.guideline-description {
+  color: #20364d;
+
+  border-left-color: #d7dfeb;
+  border-right-color: #d7dfeb;
+}
+
+.guideline-description li {
+  color: #20364d;
+}
+
+.guideline-marks {
+  color: #111111;
+}
+
+
+/* Total */
+.guidelines92-total {
+  background: #eaf2fc;
+  color: #064194;
+}
+
+.guidelines92-total strong {
+  color: #064194;
+}
+
+
+/* =========================================================
+   INSTRUCTIONS
+========================================================= */
+
+.instructions92-card {
+  background: #ffffff;
+  border-color: #d7dfeb;
+}
+
+.instructions92-card .monitoring92-card-title {
+  background: #eefaf2;
+  color: #13733b;
+}
+
+.instructions92-card .monitoring92-card-title svg {
+  color: #168447;
+}
+
+
+/* =========================================================
+   EXHIBITS
+========================================================= */
+
+.exhibits92-card {
+  background: #ffffff;
+  border-color: #d7dfeb;
+}
+
+.exhibit92-content {
+  color: #20364d;
+}
+
+.exhibit92-content span {
+  color: #4b159d;
+}
+
+
+/* =========================================================
+   DOCUMENTS
+========================================================= */
+
+.documents92-table {
+  border-top-color: #d7dfeb;
+}
+
+.documents92-header {
+  background: #f0eef8;
+  color: #3e159b;
+}
+
+.documents92-header div {
+  border-right-color: #d7dfeb;
+}
+
+.documents92-row {
+  border-top-color: #d7dfeb;
+  background: #ffffff;
+}
+
+.documents92-row > div {
+  border-right-color: #d7dfeb;
+}
+
+.document92-name {
+  color: #17324d;
+}
+
+.document92-description {
+  color: #20364d;
+}
+
+.document92-view button {
+  color: #1769c2;
+}
+
+.document92-view button:hover {
+  background: #e7f2ff;
+}
+
+
+/* =========================================================
+   EVALUATION
+========================================================= */
+
+.evaluation92-item {
+  border-color: #d8dfeb;
+  background: #fbfcff;
+}
+
+.evaluation92-label strong {
+  color: #132f55;
+}
+
+.evaluation92-label span {
+  color: #60758b;
+}
+
+.evaluation92-item input {
+  border-color: #c9d3e2;
+  background: #ffffff;
+  color: #111111;
+}
+
+.evaluation92-item input:focus {
+  border-color: #1769c2;
+
+  box-shadow:
+    0 0 0 2px rgba(23, 105, 194, 0.12);
+}
+
+.evaluation92-max {
+  color: #34495e;
+}
+
+
+/* Total Marks */
+.evaluation92-total-box {
+  background: #eaf2ff;
+  color: #1555a0;
+
+  border: 1px solid #c4daf8;
+}
+
+.remarks92-box label {
+  color: #102a43;
+}
+
+.remarks92-box textarea {
+  border-color: #c9d3e2;
+}
+
+.remarks92-box textarea:focus {
+  border-color: #1769c2;
+
+  box-shadow:
+    0 0 0 2px rgba(23, 105, 194, 0.1);
+}
+
+
+/* =========================================================
+   BUTTONS - SAME COLOR STYLE AS 9.4
+========================================================= */
+
+.previous92-btn {
+  background: #ffffff;
+  border-color: #d5d5df;
+  color: #4a159e;
+}
+
+.back92-btn {
+  background: #ffffff;
+  border-color: #d5d5df;
+  color: #4a159e;
+}
+
+.save92-btn {
+  background: #12a957;
+  border-color: #12a957;
+  color: #ffffff;
+}
+
+.submit92-btn {
+  background: #12a957;
+  border-color: #12a957;
+  color: #ffffff;
+}
+
+.delete92-btn {
+  background: #ed1c24;
+  border-color: #ed1c24;
+  color: #ffffff;
+}
+
+.print92-btn {
+  background: #5721ad;
+  border-color: #5721ad;
+  color: #ffffff;
+}
+
+.next92-btn {
+  background: #ffffff;
+  border-color: #d5d5df;
+  color: #4a159e;
+}
+
+
+/* =========================================================
+   BUTTON HOVER
+========================================================= */
+
+.previous92-btn:hover,
+.back92-btn:hover,
+.next92-btn:hover {
+  background: #f7f3ff;
+  color: #4a159e;
+}
+
+.save92-btn:hover {
+  background: #0f944c;
+}
+
+.submit92-btn:hover {
+  background: #0f944c;
+}
+
+.delete92-btn:hover {
+  background: #d71920;
+}
+
+.print92-btn:hover {
+  background: #4b1c96;
+}

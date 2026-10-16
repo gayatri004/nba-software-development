@@ -16,6 +16,21 @@ import FacultyForm from "./pages/FacultyForm";
 import DepartmentMaster from "./pages/DepartmentMaster";
 import CollegeForm from "./pages/CollegeForm";
 import CourseMaster from "./pages/CourseMaster";
+import StudentAuth from "./pages/StudentAuth";
+import StudentDashboard from "./pages/StudentDashboard";
+
+// =========================================================
+// STUDENT MODULE FORMS (8 NBA FORMS)
+// =========================================================
+
+import CapstoneProject from "./pages/CapstoneProject";
+import MiniProject from "./pages/MiniProject";
+import InternshipRecord from "./pages/InternshipRecord";
+import NptelCertification from "./pages/NptelCertification";
+import CourseExitSurvey from "./pages/CourseExitSurvey";
+import ProgramExitSurvey from "./pages/ProgramExitSurvey";
+import StudentAchievements from "./pages/StudentAchievements";
+import PlacementHigherStudies from "./pages/PlacementHigherStudies";
 
 // =========================================================
 // CRITERIA 1
@@ -32,7 +47,7 @@ import ArticulationMatrix from "./pages/ArticulationMatrix";
 // =========================================================
 
 import QualityTeachingLearning from "./criteria/QualityTeachingLearning";
-import CapstoneProject from "./criteria/CapstoneProject";
+import CapstoneProjectCriteria from "./criteria/CapstoneProject";
 import Internship from "./criteria/Internship";
 import SeminarMiniProject from "./criteria/SeminarMiniProject";
 import CaseStudy from "./criteria/CaseStudy";
@@ -88,19 +103,44 @@ import SwayamDevelopmentView from "./pages/SwayamDevelopmentView";
 import DevelopmentActivityAdd from "./pages/DevelopmentActivityAdd";
 import DevelopmentActivityView from "./pages/DevelopmentActivityView";
 
+// =========================================================
+// CRITERIA 7
+// =========================================================
 
-//criteria 7//
 import Criteria7_1 from "./pages/criteria7/Criteria7_1";
 import Criteria7_2 from "./pages/criteria7/Criteria7_2";
 import Criteria7_3 from "./pages/criteria7/Criteria7_3";
 import Criteria7_4 from "./pages/criteria7/Criteria7_4";
 import Criteria7_5 from "./pages/criteria7/Criteria7_5";
 
-//criteria 8//
+// =========================================================
+// CRITERIA 8
+// =========================================================
+
 import Criteria8_1 from "./pages/criteria8/Criteria8_1";
 import Criteria8_2 from "./pages/criteria8/Criteria8_2";
 import Criteria8_3 from "./pages/criteria8/Criteria8_3";
 import Criteria8_4 from "./pages/criteria8/Criteria8_4";
+
+// =========================================================
+// CRITERIA 9
+// =========================================================
+
+import Criteria91FYSFR from "./pages/Criteria91FYSFR";
+import Criteria92MonitoringSystem from "./pages/Criteria92MonitoringSystem";
+import Criteria93FeedbackAnalysis from "./pages/Criteria93FeedbackAnalysis";
+import Criteria94TrainingPlacement from "./pages/Criteria94TrainingPlacement";
+import Criteria95IndustryInteraction from "./pages/Criteria95IndustryInteraction";
+import Criteria96Governance from "./pages/Criteria96Governance";
+import Criteria97InstitutionalValues from "./pages/Criteria97InstitutionalValues";
+import Criteria98MonitoringReview from "./pages/Criteria98MonitoringReview";
+import Criteria99ContinuousInternalAssessment from "./pages/Criteria99ContinuousInternalAssessment";
+import Criteria910EGovernance from "./pages/Criteria910EGovernance";
+import Criteria911SDGs from "./pages/Criteria911SDGs";
+import Criteria912InnovativeEducationalInitiatives from "./pages/Criteria912InnovativeEducationalInitiatives";
+import Criteria913FPADS from "./pages/Criteria913FPADS";
+import Criteria914OutreachActivities from "./pages/Criteria914OutreachActivities";
+
 // =========================================================
 // APP
 // =========================================================
@@ -125,7 +165,10 @@ function App() {
           DEFAULT / AUTH
       =================================================== */}
 
-      <Route path="/" element={<Welcome />} />
+      <Route
+        path="/"
+        element={<Welcome />}
+      />
 
       <Route
         path="/register"
@@ -166,7 +209,7 @@ function App() {
       />
 
       {/* ===================================================
-          FORMS
+          ADMIN / FACULTY FORMS
       =================================================== */}
 
       <Route
@@ -190,7 +233,62 @@ function App() {
       />
 
       {/* ===================================================
-          DASHBOARD
+          STUDENT MODULE ROUTES
+      =================================================== */}
+
+      <Route
+        path="/students"
+        element={<StudentAuth />}
+      />
+
+      <Route
+        path="/student-dashboard"
+        element={<StudentDashboard />}
+      />
+
+      {/* 8 Student Specific Forms */}
+      <Route
+        path="/student/capstone-project"
+        element={<CapstoneProject />}
+      />
+
+      <Route
+        path="/student/mini-project"
+        element={<MiniProject />}
+      />
+
+      <Route
+        path="/student/internship"
+        element={<InternshipRecord />}
+      />
+
+      <Route
+        path="/student/nptel"
+        element={<NptelCertification />}
+      />
+
+      <Route
+        path="/student/course-exit-survey"
+        element={<CourseExitSurvey />}
+      />
+
+      <Route
+        path="/student/program-exit-survey"
+        element={<ProgramExitSurvey />}
+      />
+
+      <Route
+        path="/student/achievements"
+        element={<StudentAchievements />}
+      />
+
+      <Route
+        path="/student/placement"
+        element={<PlacementHigherStudies />}
+      />
+
+      {/* ===================================================
+          ADMIN DASHBOARD
       =================================================== */}
 
       <Route
@@ -277,6 +375,16 @@ function App() {
       />
 
       <Route
+        path="/criteria/1.1.1"
+        element={<VisionMission />}
+      />
+
+      <Route
+        path="/criteria/1.1.2"
+        element={<Curriculum />}
+      />
+
+      <Route
         path="/curriculum"
         element={<Curriculum />}
       />
@@ -307,7 +415,7 @@ function App() {
 
       <Route
         path="/criteria/2.2-capstone-project"
-        element={<CapstoneProject />}
+        element={<CapstoneProjectCriteria />}
       />
 
       <Route
@@ -414,11 +522,6 @@ function App() {
 
       <Route
         path="/criteria6/swayam-development"
-        element={<SwayamDevelopmentView />}
-      />
-
-      <Route
-        path="/criteria6/swayam-development/view"
         element={<SwayamDevelopmentView />}
       />
 
@@ -552,24 +655,141 @@ function App() {
       />
 
       {/* ===================================================
-          UNKNOWN ROUTE
+          CRITERIA 7
+      =================================================== */}
+
+      <Route
+        path="/criteria/7.1"
+        element={<Criteria7_1 />}
+      />
+
+      <Route
+        path="/criteria/7.2"
+        element={<Criteria7_2 />}
+      />
+
+      <Route
+        path="/criteria/7.3"
+        element={<Criteria7_3 />}
+      />
+
+      <Route
+        path="/criteria/7.4"
+        element={<Criteria7_4 />}
+      />
+
+      <Route
+        path="/criteria/7.5"
+        element={<Criteria7_5 />}
+      />
+
+      {/* ===================================================
+          CRITERIA 8
+      =================================================== */}
+
+      <Route
+        path="/criteria/8.1"
+        element={<Criteria8_1 />}
+      />
+
+      <Route
+        path="/criteria/8.2"
+        element={<Criteria8_2 />}
+      />
+
+      <Route
+        path="/criteria/8.3"
+        element={<Criteria8_3 />}
+      />
+
+      <Route
+        path="/criteria/8.4"
+        element={<Criteria8_4 />}
+      />
+
+      {/* ===================================================
+          CRITERIA 9
+      =================================================== */}
+
+      <Route
+        path="/criteria9/1"
+        element={<Criteria91FYSFR />}
+      />
+
+      <Route
+        path="/criteria9/2"
+        element={<Criteria92MonitoringSystem />}
+      />
+
+      <Route
+        path="/criteria9/3"
+        element={<Criteria93FeedbackAnalysis />}
+      />
+
+      <Route
+        path="/criteria9/4"
+        element={<Criteria94TrainingPlacement />}
+      />
+
+      <Route
+        path="/criteria9/5"
+        element={<Criteria95IndustryInteraction />}
+      />
+
+      <Route
+        path="/criteria9/6"
+        element={<Criteria96Governance />}
+      />
+
+      <Route
+        path="/criteria9/7"
+        element={<Criteria97InstitutionalValues />}
+      />
+
+      <Route
+        path="/criteria9/monitoring-review"
+        element={<Criteria98MonitoringReview />}
+      />
+
+      <Route
+        path="/criteria9/continuous-internal-assessment"
+        element={<Criteria99ContinuousInternalAssessment />}
+      />
+
+      <Route
+        path="/criteria9/10"
+        element={<Criteria910EGovernance />}
+      />
+
+      <Route
+        path="/criteria9/11"
+        element={<Criteria911SDGs />}
+      />
+
+      <Route
+        path="/criteria9/12"
+        element={<Criteria912InnovativeEducationalInitiatives />}
+      />
+
+      <Route
+        path="/criteria9/13"
+        element={<Criteria913FPADS />}
+      />
+
+      <Route
+        path="/criteria9/outreach-activities"
+        element={<Criteria914OutreachActivities />}
+      />
+
+      {/* ===================================================
+          UNKNOWN ROUTE (MUST ALWAYS BE LAST)
       =================================================== */}
 
       <Route
         path="*"
         element={<Navigate to="/" replace />}
       />
-        <Route path="/criteria/7.1" element={<Criteria7_1 />} />
-        <Route path="/criteria/7.2" element={<Criteria7_2 />} />
-        <Route path="/criteria/7.3" element={<Criteria7_3 />} />
-        <Route path="/criteria/7.4" element={<Criteria7_4 />} />
-        <Route path="/criteria/7.5" element={<Criteria7_5 />} />
 
-      
-      <Route path="/criteria/8.1" element={<Criteria8_1 />} />
-        <Route path="/criteria/8.2" element={<Criteria8_2 />} />
-        <Route path="/criteria/8.3" element={<Criteria8_3 />} />
-        <Route path="/criteria/8.4" element={<Criteria8_4 />} />
     </Routes>
   );
 }

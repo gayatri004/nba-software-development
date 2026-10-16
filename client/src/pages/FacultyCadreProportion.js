@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "./FacultyCadreProportion.css";
-import NBASidebar from "../pages/NBASidebar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import {
   FaArrowLeft,
   FaSave,
@@ -14,7 +12,6 @@ import {
 
 const FacultyCadreProportion = () => {
   const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     af1: 2,
     af2: 6,
@@ -22,75 +19,72 @@ const FacultyCadreProportion = () => {
     students: 520,
     remarks: "",
   });
-
   const [fileName, setFileName] = useState("No file chosen");
   const [file, setFile] = useState(null);
-  const [recordId, setRecordId] = useState(null);
 
-  // ================= CALCULATIONS =================
+  // ================= Calculations =================
 
   const students = Number(formData.students) || 0;
   const af1 = Number(formData.af1) || 0;
   const af2 = Number(formData.af2) || 0;
   const af3 = Number(formData.af3) || 0;
-
+const [recordId, setRecordId] = useState(null);
   const rf = students / 20;
-
   const rf1 = rf / 9;
-
   const rf2 = (rf * 2) / 9;
-
   const rf3 = (rf * 6) / 9;
 
-  const professorRatio =
-    rf1 > 0 ? af1 / rf1 : 0;
-
-  const associateRatio =
-    rf2 > 0 ? (af2 / rf2) * 0.6 : 0;
-
-  const assistantRatio =
-    rf3 > 0 ? (af3 / rf3) * 0.4 : 0;
+  const professorRatio = rf1 > 0 ? af1 / rf1 : 0;
+  const associateRatio = rf2 > 0 ? (af2 / rf2) * 0.6 : 0;
+  const assistantRatio = rf3 > 0 ? (af3 / rf3) * 0.4 : 0;
 
   const totalScore =
     professorRatio +
     associateRatio +
     assistantRatio;
 
-  // ================= NBA CALCULATION =================
+  /* ================= NBA CALCULATION ================= */
 
-  let finalMarks = totalScore * 12.5;
+let finalMarks = totalScore * 12.5;
 
-  // Rule 1
-  if (af1 === 0 && af2 === 0) {
+/* Rule 1
+If AF1 = 0 and AF2 = 0
+then Marks = 0
+*/
+
+if (af1 === 0 && af2 === 0) {
     finalMarks = 0;
-  }
+}
 
-  // Rule 2 - Maximum 25
-  if (finalMarks > 25) {
+/* Rule 2
+Maximum Marks = 25
+*/
+
+if (finalMarks > 25) {
     finalMarks = 25;
-  }
+}
 
-  const percentage =
-    ((finalMarks / 25) * 100).toFixed(2);
+const percentage =
+((finalMarks / 25) * 100).toFixed(2);
 
-  // ================= STATUS =================
+/* Status */
 
-  let status = "Poor";
+let status = "Poor";
 
-  if (finalMarks >= 20) {
+if (finalMarks >= 20)
     status = "Excellent";
-  } else if (finalMarks >= 15) {
+
+else if (finalMarks >= 15)
     status = "Very Good";
-  } else if (finalMarks >= 10) {
+
+else if (finalMarks >= 10)
     status = "Good";
-  } else if (finalMarks >= 5) {
+
+else if (finalMarks >= 5)
     status = "Average";
-  }
-
-  // ================= VIEW REPORT =================
-
   const handleViewReport = () => {
-    alert(`
+
+alert(`
 Faculty Cadre Report
 
 Actual Professors : ${af1}
@@ -110,751 +104,549 @@ RF2 : ${rf2.toFixed(2)}
 RF3 : ${rf3.toFixed(2)}
 
 Final Marks : ${finalMarks.toFixed(2)} /25
+
 `);
-  };
 
-  // ================= PREVIOUS =================
+};
+const handlePrevious = () => {
+  window.history.back();
+};
+const handleSave = async()=>{
 
-  const handlePrevious = () => {
-    window.history.back();
-  };
+try{
 
-  // ================= SAVE =================
+// 1. Save main data
+const response = await axios.post(
+"http://localhost:5000/api/criteria5/cadre",
+{
+af1,
+af2,
+af3,
+students,
 
-  const handleSave = async () => {
-    try {
-      // 1. Save main data
+rf,
+rf1,
+rf2,
+rf3,
 
-      const response = await axios.post(
-        "http://localhost:5000/api/criteria5/cadre",
-        {
-          af1,
-          af2,
-          af3,
-          students,
+professorRatio,
+associateRatio,
+assistantRatio,
 
-          rf,
-          rf1,
-          rf2,
-          rf3,
+totalScore,
+finalMarks,
 
-          professorRatio,
-          associateRatio,
-          assistantRatio,
+remarks: formData.remarks
+}
+);
 
-          totalScore,
-          finalMarks,
 
-          remarks: formData.remarks,
-        }
-      );
+const savedId = response.data.id;
 
-      const savedId = response.data.id;
+setRecordId(savedId);
 
-      setRecordId(savedId);
 
-      // 2. Upload document
+// 2. Upload document
+if(file){
 
-      if (file) {
-        const uploadData = new FormData();
+const uploadData = new FormData();
 
-        uploadData.append(
-          "document",
-          file
-        );
+uploadData.append(
+"document",
+file
+);
 
-        uploadData.append(
-          "id",
-          savedId
-        );
+uploadData.append(
+"id",
+savedId
+);
 
-        await axios.post(
-          "http://localhost:5000/api/criteria5/cadre/upload",
-          uploadData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-      }
 
-      alert("Saved Successfully");
-    } catch (error) {
-      console.log(
-        "SAVE ERROR:",
-        error.response?.data || error.message
-      );
+await axios.post(
 
-      alert("Save Failed");
-    }
-  };
+"http://localhost:5000/api/criteria5/cadre/upload",
 
-  // ================= SUBMIT =================
+uploadData,
 
-  const handleSubmit = () => {
-    alert("Submitted Successfully");
+{
+headers:{
+"Content-Type":"multipart/form-data"
+}
+}
 
-    console.log({
-      ...formData,
-      rf,
-      rf1,
-      rf2,
-      rf3,
-      totalScore,
-      finalMarks,
-    });
-  };
+);
 
-  // ================= DELETE =================
+}
 
-  const handleDelete = async () => {
-    if (!recordId) {
-      alert("Please save data first");
-      return;
-    }
 
-    try {
-      await axios.delete(
-        `http://localhost:5000/api/criteria5/cadre/${recordId}`
-      );
+alert("Saved Successfully");
 
-      alert("Deleted Successfully");
 
-      setFormData({
-        af1: 0,
-        af2: 0,
-        af3: 0,
-        students: 0,
-        remarks: "",
-      });
+}
 
-      setRecordId(null);
-    } catch (error) {
-      console.log(error);
+catch(error){
 
-      alert("Delete Failed");
-    }
-  };
+console.log(
+"SAVE ERROR:",
+error.response?.data || error.message
+);
 
-  // ================= CLEAR =================
+alert("Save Failed");
 
-  const handleClear = () => {
-    setFormData({
-      af1: 0,
-      af2: 0,
-      af3: 0,
-      students: 0,
-      remarks: "",
-    });
+}
 
-    setFile(null);
+};
 
-    setFileName("No file chosen");
+const handleSubmit = () => {
+  alert("Submitted Successfully");
+  console.log({
+    ...formData,
+    rf,
+    rf1,
+    rf2,
+    rf3,
+    totalScore,
+    finalMarks,
+  });
+};
+const handleDelete = async()=>{
 
-    alert("Form Cleared Successfully");
-  };
 
-  // ================= NEXT =================
+if(!recordId){
 
-  const handleNext = () => {
-    navigate("/criteria5/visiting-faculty");
-  };
+alert("Please save data first");
 
-  // =========================================================
-  // RETURN
-  // =========================================================
+return;
 
+}
+
+
+try{
+
+
+await axios.delete(
+
+`http://localhost:5000/api/criteria5/cadre/${recordId}`
+
+);
+
+
+alert("Deleted Successfully");
+
+
+setFormData({
+
+af1:0,
+af2:0,
+af3:0,
+students:0,
+remarks:""
+
+});
+
+
+setRecordId(null);
+
+
+}
+
+catch(error){
+
+console.log(error);
+
+alert("Delete Failed");
+
+}
+
+
+};
+const handleClear = () => {
+
+  setFormData({
+    af1: 0,
+    af2: 0,
+    af3: 0,
+    students: 0,
+    remarks: "",
+  });
+
+  setFileName("No file chosen");
+
+  alert("Form Cleared Successfully");
+
+};
+const handleNext = () => {
+  navigate("/criteria5/visiting-faculty");
+};
   return (
-    <div className="fcp-layout">
+    <div className="fcp-page">
+     <div className="main-card"> 
 
-      {/* ================= SIDEBAR ================= */}
+      {/* ================= HEADER ================= */}
+ 
+      <div className="fcp-header">
 
-      <NBASidebar />
+        <div className="circle53">
+          5.3
+        </div>
 
-      {/* ================= MAIN CONTENT ================= */}
+        <div className="header-content">
+          <h2>Faculty Cadre Proportion</h2>
+          <p>Cadre Proportion Details</p>
+        </div>
 
-      <div className="fcp-main">
+      </div>
+      {/* ================= DETAILS CARD ================= */}
 
-        <div className="fcp-page">
+      <div className="details-card">
 
-          <div className="main-card">
+        <div className="table-heading">
+          <div className="left-title">
+            Actual Faculty and Student Details
+          </div>
 
-            {/* ================= HEADER ================= */}
+          <div className="right-title">
+            Required Faculty
+          </div>
+        </div>
 
-            <div className="fcp-header">
+        <div className="faculty-grid">
 
-              <div className="circle53">
-                5.3
-              </div>
+          {/* AF1 */}
 
-              <div className="header-content">
+          <div className="field">
+            <label>
+              Actual Professors
+              <br />
+              (AF1)
+            </label>
 
-                <h2>
-                  Faculty Cadre Proportion
-                </h2>
+            <input
+              type="number"
+              value={formData.af1}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  af1: e.target.value,
+                })
+              }
+            />
+          </div>
 
-                <p>
-                  Cadre Proportion Details
-                </p>
+          {/* AF2 */}
 
-              </div>
+          <div className="field">
+            <label>
+              Actual Associate Professors
+              <br />
+              (AF2)
+            </label>
 
+            <input
+              type="number"
+              value={formData.af2}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  af2: e.target.value,
+                })
+              }
+            />
+          </div>
+
+          {/* AF3 */}
+
+          <div className="field">
+            <label>
+              Actual Assistant Professors
+              <br />
+              (AF3)
+            </label>
+
+            <input
+              type="number"
+              value={formData.af3}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  af3: e.target.value,
+                })
+              }
+            />
+          </div>
+
+          {/* Students */}
+
+          <div className="field">
+            <label>
+              Total No. of Students
+              <br />
+              in the Program (S)
+            </label>
+
+            <input
+              type="number"
+              value={formData.students}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  students: e.target.value,
+                })
+              }
+            />
+          </div>
+
+          {/* RF */}
+
+          <div className="field">
+            <label>
+              Required Faculty
+              <br />
+              (RF = S / 20)
+            </label>
+
+            <input
+              type="text"
+              value={rf.toFixed(2)}
+              readOnly
+            />
+          </div>
+
+          {/* RF1 */}
+
+          <div className="field">
+            <label>
+              Required Professors
+              <br />
+              (RF1 = RF / 9)
+            </label>
+
+            <input
+              type="text"
+              value={rf1.toFixed(2)}
+              readOnly
+            />
+          </div>
+
+          {/* RF2 */}
+
+          <div className="field">
+            <label>
+              Required Associate Professors
+              <br />
+              (RF2 = 2 × RF / 9)
+            </label>
+
+            <input
+              type="text"
+              value={rf2.toFixed(2)}
+              readOnly
+            />
+          </div>
+
+          {/* RF3 */}
+
+          <div className="field">
+            <label>
+              Required Assistant Professors
+              <br />
+              (RF3 = 6 × RF / 9)
+            </label>
+
+            <input
+              type="text"
+              value={rf3.toFixed(2)}
+              readOnly
+            />
+          </div>
+
+        </div>
+
+      </div>
+      {/* ================= MARKS SECTION ================= */}
+
+      <div className="marks-card">
+
+        <div className="marks-row">
+
+          <div className="marks-title">
+            Faculty Cadre Proportion Marks
+          </div>
+
+          <div className="formula-box">
+            Marks = (AF1/RF1) + (AF2/RF2 × 0.6) + (AF3/RF3 × 0.4) × 12.5
+          </div>
+
+          <div className="marks-result">
+            {finalMarks.toFixed(2)} / 25
+          </div>
+<div
+className="status-box"
+style={{
+background:
+status==="Excellent" ? "#16a34a" :
+status==="Very Good" ? "#2563eb" :
+status==="Good" ? "#f59e0b" :
+status==="Average" ? "#fb923c" :
+"#dc2626"
+}}
+>
+{status}
+</div>
+        </div>
+
+      </div>
+
+      {/* ================= CALCULATION TABLE ================= */}
+
+      <div className="calculation-card">
+
+        <table className="calculation-table">
+
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Formula</th>
+              <th>Calculation</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr>
+              <td>Professors</td>
+              <td>AF1 / RF1</td>
+              <td>{af1} / {rf1.toFixed(2)}</td>
+              <td>{professorRatio.toFixed(2)}</td>
+            </tr>
+
+            <tr>
+              <td>Associate Professors (×0.6)</td>
+              <td>(AF2 / RF2) × 0.6</td>
+              <td>({af2} / {rf2.toFixed(2)}) × 0.6</td>
+              <td>{associateRatio.toFixed(2)}</td>
+            </tr>
+
+            <tr>
+              <td>Assistant Professors (×0.4)</td>
+              <td>(AF3 / RF3) × 0.4</td>
+              <td>({af3} / {rf3.toFixed(2)}) × 0.4</td>
+              <td>{assistantRatio.toFixed(2)}</td>
+            </tr>
+
+            <tr className="total-row">
+              <td colSpan="3">
+                Total Score (Before × 12.5)
+              </td>
+
+              <td>
+                {totalScore.toFixed(2)}
+              </td>
+            </tr>
+
+            <tr className="final-row">
+              <td colSpan="3">
+                Final Marks (×12.5)
+              </td>
+
+              <td>
+                {finalMarks.toFixed(2)} / 25
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+      {/* ================= REPORT SECTION ================= */}
+
+      <div className="report-card">
+
+        <div className="report-header">
+          Supporting Documents
+        </div>
+
+        <div className="report-body">
+
+          {/* Report */}
+
+          <div className="report-row">
+
+            <div className="report-title">
+              <FaFileAlt className="report-icon" />
+              Cadre Proportion Calculation Report
             </div>
 
+            <button
+  className="view-btn"
+  onClick={handleViewReport}
+>
+  View Report
+</button>
+          </div>
 
-            {/* ================= DETAILS CARD ================= */}
+          {/* Upload */}
 
-            <div className="details-card">
+          <div className="report-row">
 
-              <div className="table-heading">
-
-                <div className="left-title">
-                  Actual Faculty and Student Details
-                </div>
-
-                <div className="right-title">
-                  Required Faculty
-                </div>
-
-              </div>
-
-
-              <div className="faculty-grid">
-
-                {/* AF1 */}
-
-                <div className="field">
-
-                  <label>
-                    Actual Professors
-                    <br />
-                    (AF1)
-                  </label>
-
-                  <input
-                    type="number"
-                    value={formData.af1}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        af1: e.target.value,
-                      })
-                    }
-                  />
-
-                </div>
-
-
-                {/* AF2 */}
-
-                <div className="field">
-
-                  <label>
-                    Actual Associate Professors
-                    <br />
-                    (AF2)
-                  </label>
-
-                  <input
-                    type="number"
-                    value={formData.af2}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        af2: e.target.value,
-                      })
-                    }
-                  />
-
-                </div>
-
-
-                {/* AF3 */}
-
-                <div className="field">
-
-                  <label>
-                    Actual Assistant Professors
-                    <br />
-                    (AF3)
-                  </label>
-
-                  <input
-                    type="number"
-                    value={formData.af3}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        af3: e.target.value,
-                      })
-                    }
-                  />
-
-                </div>
-
-
-                {/* STUDENTS */}
-
-                <div className="field">
-
-                  <label>
-                    Total No. of Students
-                    <br />
-                    in the Program (S)
-                  </label>
-
-                  <input
-                    type="number"
-                    value={formData.students}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        students: e.target.value,
-                      })
-                    }
-                  />
-
-                </div>
-
-
-                {/* RF */}
-
-                <div className="field">
-
-                  <label>
-                    Required Faculty
-                    <br />
-                    (RF = S / 20)
-                  </label>
-
-                  <input
-                    type="text"
-                    value={rf.toFixed(2)}
-                    readOnly
-                  />
-
-                </div>
-
-
-                {/* RF1 */}
-
-                <div className="field">
-
-                  <label>
-                    Required Professors
-                    <br />
-                    (RF1 = RF / 9)
-                  </label>
-
-                  <input
-                    type="text"
-                    value={rf1.toFixed(2)}
-                    readOnly
-                  />
-
-                </div>
-
-
-                {/* RF2 */}
-
-                <div className="field">
-
-                  <label>
-                    Required Associate Professors
-                    <br />
-                    (RF2 = 2 × RF / 9)
-                  </label>
-
-                  <input
-                    type="text"
-                    value={rf2.toFixed(2)}
-                    readOnly
-                  />
-
-                </div>
-
-
-                {/* RF3 */}
-
-                <div className="field">
-
-                  <label>
-                    Required Assistant Professors
-                    <br />
-                    (RF3 = 6 × RF / 9)
-                  </label>
-
-                  <input
-                    type="text"
-                    value={rf3.toFixed(2)}
-                    readOnly
-                  />
-
-                </div>
-
-              </div>
-
+            <div className="report-title">
+              <FaUpload className="report-icon" />
+              Upload Supporting Document
             </div>
 
+            <div className="upload-box">
+<input
+type="file"
+id="supportDoc"
+hidden
+onChange={(e)=>{
 
-            {/* ================= MARKS SECTION ================= */}
+if(e.target.files.length > 0){
 
-            <div className="marks-card">
+setFile(e.target.files[0]);
 
-              <div className="marks-row">
+setFileName(
+e.target.files[0].name
+);
 
-                <div className="marks-title">
-                  Faculty Cadre Proportion Marks
-                </div>
+}
 
-                <div className="formula-box">
-                  Marks = (AF1/RF1) + (AF2/RF2 × 0.6) + (AF3/RF3 × 0.4) × 12.5
-                </div>
+}}
+/>
 
-                <div className="marks-result">
-                  {finalMarks.toFixed(2)} / 25
-                </div>
+              <label
+                htmlFor="supportDoc"
+                className="upload-btn"
+              >
+                Choose File
+              </label>
 
-
-                <div
-                  className="status-box"
-                  style={{
-                    background:
-                      status === "Excellent"
-                        ? "#16a34a"
-                        : status === "Very Good"
-                        ? "#2563eb"
-                        : status === "Good"
-                        ? "#f59e0b"
-                        : status === "Average"
-                        ? "#fb923c"
-                        : "#dc2626",
-                  }}
-                >
-                  {status}
-                </div>
-
-              </div>
-
+              <span className="file-name">
+  {fileName}
+</span>
             </div>
 
-
-            {/* ================= CALCULATION TABLE ================= */}
-
-            <div className="calculation-card">
-
-              <table className="calculation-table">
-
-                <thead>
-
-                  <tr>
-
-                    <th>
-                      Component
-                    </th>
-
-                    <th>
-                      Formula
-                    </th>
-
-                    <th>
-                      Calculation
-                    </th>
-
-                    <th>
-                      Value
-                    </th>
-
-                  </tr>
-
-                </thead>
-
-
-                <tbody>
-
-                  <tr>
-
-                    <td>
-                      Professors
-                    </td>
-
-                    <td>
-                      AF1 / RF1
-                    </td>
-
-                    <td>
-                      {af1} / {rf1.toFixed(2)}
-                    </td>
-
-                    <td>
-                      {professorRatio.toFixed(2)}
-                    </td>
-
-                  </tr>
-
-
-                  <tr>
-
-                    <td>
-                      Associate Professors (×0.6)
-                    </td>
-
-                    <td>
-                      (AF2 / RF2) × 0.6
-                    </td>
-
-                    <td>
-                      ({af2} / {rf2.toFixed(2)}) × 0.6
-                    </td>
-
-                    <td>
-                      {associateRatio.toFixed(2)}
-                    </td>
-
-                  </tr>
-
-
-                  <tr>
-
-                    <td>
-                      Assistant Professors (×0.4)
-                    </td>
-
-                    <td>
-                      (AF3 / RF3) × 0.4
-                    </td>
-
-                    <td>
-                      ({af3} / {rf3.toFixed(2)}) × 0.4
-                    </td>
-
-                    <td>
-                      {assistantRatio.toFixed(2)}
-                    </td>
-
-                  </tr>
-
-
-                  <tr className="total-row">
-
-                    <td colSpan="3">
-                      Total Score (Before × 12.5)
-                    </td>
-
-                    <td>
-                      {totalScore.toFixed(2)}
-                    </td>
-
-                  </tr>
-
-
-                  <tr className="final-row">
-
-                    <td colSpan="3">
-                      Final Marks (×12.5)
-                    </td>
-
-                    <td>
-                      {finalMarks.toFixed(2)} / 25
-                    </td>
-
-                  </tr>
-
-                </tbody>
-
-              </table>
-
-            </div>
-
-
-            {/* ================= REPORT SECTION ================= */}
-
-            <div className="report-card">
-
-              <div className="report-header">
-                Supporting Documents
-              </div>
-
-
-              <div className="report-body">
-
-                {/* REPORT */}
-
-                <div className="report-row">
-
-                  <div className="report-title">
-
-                    <FaFileAlt className="report-icon" />
-
-                    Cadre Proportion Calculation Report
-
-                  </div>
-
-
-                  <button
-                    className="view-btn"
-                    onClick={handleViewReport}
-                  >
-                    View Report
-                  </button>
-
-                </div>
-
-
-                {/* UPLOAD */}
-
-                <div className="report-row">
-
-                  <div className="report-title">
-
-                    <FaUpload className="report-icon" />
-
-                    Upload Supporting Document
-
-                  </div>
-
-
-                  <div className="upload-box">
-
-                    <input
-                      type="file"
-                      id="supportDoc"
-                      hidden
-                      onChange={(e) => {
-
-                        if (
-                          e.target.files.length > 0
-                        ) {
-
-                          setFile(
-                            e.target.files[0]
-                          );
-
-                          setFileName(
-                            e.target.files[0].name
-                          );
-
-                        }
-
-                      }}
-                    />
-
-
-                    <label
-                      htmlFor="supportDoc"
-                      className="upload-btn"
-                    >
-                      Choose File
-                    </label>
-
-
-                    <span className="file-name">
-                      {fileName}
-                    </span>
-
-                  </div>
-
-                </div>
-
-
-                {/* REMARKS */}
-
-                <div className="remarks-section">
-
-                  <label>
-                    Remarks
-                  </label>
-
-                  <textarea
-                    rows="4"
-                    placeholder="Enter remarks..."
-                    value={formData.remarks}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        remarks: e.target.value,
-                      })
-                    }
-                  />
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            {/* ================= ACTION BUTTONS ================= */}
-
-            <div className="action-buttons">
-
-              <button
-                className="previous-btn"
-                onClick={handlePrevious}
-              >
-
-                <FaArrowLeft />
-
-                <span>
-                  Previous
-                </span>
-
-              </button>
-
-
-              <button
-                className="save-btn"
-                onClick={handleSave}
-              >
-
-                <FaSave />
-
-                <span>
-                  Save
-                </span>
-
-              </button>
-
-
-              <button
-                className="delete-btn"
-                onClick={handleDelete}
-              >
-                Delete
-              </button>
-
-
-              <button
-                className="clear-btn"
-                onClick={handleClear}
-              >
-                Clear
-              </button>
-
-
-              <button
-                className="submit-btn"
-                onClick={handleSubmit}
-              >
-
-                <FaPaperPlane />
-
-                <span>
-                  Submit for Review
-                </span>
-
-              </button>
-
-
-              <button
-                className="submit-btn"
-                onClick={handleNext}
-              >
-                Next
-              </button>
-
-            </div>
+          </div>
+
+          {/* Remarks */}
+
+          <div className="remarks-section">
+
+            <label>Remarks</label>
+
+            <textarea
+              rows="4"
+              placeholder="Enter remarks..."
+              value={formData.remarks}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  remarks: e.target.value,
+                })
+              }
+            />
 
           </div>
 
@@ -862,7 +654,54 @@ Final Marks : ${finalMarks.toFixed(2)} /25
 
       </div>
 
+      {/* ================= ACTION BUTTONS ================= */}
+
+      <div className="action-buttons">
+
+        <button
+  className="previous-btn"
+  onClick={handlePrevious}
+>
+  <FaArrowLeft />
+  <span>Previous</span>
+</button>
+
+        <button
+  className="save-btn"
+  onClick={handleSave}
+>
+  <FaSave />
+  <span>Save </span>
+</button>
+
+<button
+className="delete-btn"
+onClick={handleDelete}
+>
+
+Delete
+
+</button>
+<button
+  className="clear-btn"
+  onClick={handleClear}
+>
+  Clear
+</button>
+        <button
+  className="submit-btn"
+  onClick={handleSubmit}
+>
+  <FaPaperPlane />
+  <span>Submit for Review</span>
+</button>
+ <button className="submit-btn" onClick={handleNext}>
+    Next
+  </button>
+      </div>
+
     </div>
+     </div>
   );
 };
 

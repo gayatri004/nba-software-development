@@ -1,0 +1,1168 @@
+/* =========================================================
+   CRITERIA 9.7
+   BUDGET UTILIZATION, ALLOCATION AND PUBLIC ACCOUNTING
+   SAME COLOR COMBINATION AS CRITERIA 9.5
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.institutional97-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 18px;
+  background: #f3f6fb;
+  color: #102a43;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.institutional97-header {
+  width: 100%;
+  min-height: 78px;
+  padding: 14px 18px;
+  border-radius: 7px;
+
+  background: linear-gradient(
+    135deg,
+    #1769c2,
+    #1264bd
+  );
+
+  color: #ffffff;
+
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.institutional97-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.institutional97-number {
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 9px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+  font-weight: 700;
+
+  background: rgba(255, 255, 255, 0.13);
+  color: #ffffff;
+}
+
+.institutional97-header h1 {
+  margin: 0;
+
+  font-size: 21px;
+  line-height: 1.25;
+  font-weight: 700;
+
+  color: #ffffff;
+}
+
+.institutional97-header p {
+  margin: 5px 0 0;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #ffffff;
+}
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.institutional97-summary {
+  width: 100%;
+  margin-top: 10px;
+
+  min-height: 86px;
+  padding: 12px 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  border: 1px solid #d8e0eb;
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+}
+
+.summary97-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+
+  border-radius: 7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #4b18ad;
+  color: #ffffff;
+
+  font-size: 22px;
+}
+
+.summary97-list {
+  flex: 1;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.25fr;
+
+  gap: 20px;
+  align-items: center;
+}
+
+.summary97-list > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+
+  color: #20364d;
+
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.summary97-list strong {
+  color: #1769c2;
+  font-weight: 800;
+}
+
+.summary97-list span {
+  font-weight: 500;
+  color: #20364d;
+}
+
+.summary97-list b {
+  color: #4b159d;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   MAIN GRID
+========================================================= */
+
+.institutional97-main-grid {
+  width: 100%;
+  margin-top: 10px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.75fr)
+    minmax(300px, 0.95fr);
+
+  gap: 12px;
+
+  align-items: stretch;
+}
+
+/* =========================================================
+   COMMON CARD
+========================================================= */
+
+.institutional97-card {
+  background: #ffffff;
+
+  border: 1px solid #d7dfeb;
+
+  border-radius: 6px;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+
+  overflow: hidden;
+}
+
+.institutional97-card-title {
+  min-height: 48px;
+
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #102a43;
+
+  border-bottom: 1px solid #d7dfeb;
+
+  background: #f7f9fc;
+}
+
+.institutional97-card-title svg {
+  font-size: 17px;
+  color: #1769c2;
+}
+
+.institutional97-card-title h2 {
+  margin: 0;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: #102a43;
+}
+
+/* =========================================================
+   EVALUATION TABLE
+========================================================= */
+
+.evaluation97-table {
+  width: 100%;
+
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  font-size: 13px;
+}
+
+.evaluation97-table th {
+  padding: 8px 7px;
+
+  border: 1px solid #1266b4;
+
+  background: #1769c2;
+
+  color: #ffffff;
+
+  text-align: center;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.evaluation97-table th:nth-child(1) {
+  width: 8%;
+}
+
+.evaluation97-table th:nth-child(2) {
+  width: 23%;
+}
+
+.evaluation97-table th:nth-child(3) {
+  width: 54%;
+}
+
+.evaluation97-table th:nth-child(4) {
+  width: 15%;
+}
+
+.evaluation97-table td {
+  padding: 10px 9px;
+
+  border: 1px solid #d7dfeb;
+
+  vertical-align: middle;
+
+  background: #ffffff;
+
+  color: #20364d;
+}
+
+.evaluation97-table tbody tr:nth-child(even) td {
+  background: #f8fbff;
+}
+
+.criteria-code97 {
+  text-align: center;
+
+  font-weight: 700;
+
+  color: #1769c2;
+
+  font-size: 14px;
+}
+
+.evaluation97-table td strong {
+  display: block;
+
+  color: #102a43;
+
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.evaluation97-table ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.evaluation97-table li {
+  margin: 4px 0;
+  padding-left: 2px;
+
+  color: #20364d;
+
+  line-height: 1.45;
+}
+
+.marks97 {
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+.marks97 input {
+  width: 42px;
+  height: 27px;
+
+  border: 1px solid #c9d3e2;
+
+  border-radius: 3px;
+
+  background: #ffffff;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  color: #111111;
+
+  outline: none;
+}
+
+.marks97 input:focus {
+  border-color: #1769c2;
+
+  box-shadow:
+    0 0 0 2px rgba(23, 105, 194, 0.12);
+}
+
+.marks97 span {
+  margin-left: 5px;
+
+  font-weight: 600;
+
+  color: #34495e;
+}
+
+.total-row97 td {
+  padding: 7px 10px;
+
+  background: #eaf2fc;
+
+  color: #064194;
+
+  font-weight: 700;
+
+  border-top: 1px solid #cbdff4;
+}
+
+.total-row97 td:first-child {
+  text-align: right;
+}
+
+.total-row97 td:last-child {
+  text-align: center;
+
+  font-size: 14px;
+}
+
+/* =========================================================
+   RIGHT SIDE
+========================================================= */
+
+.institutional97-side {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+/* =========================================================
+   INSTRUCTIONS
+   GREEN SAME AS CRITERIA 9.5
+========================================================= */
+
+.instructions97 {
+  padding: 14px 15px;
+
+  border-radius: 6px;
+
+  border: 1px solid #cfe5d5;
+
+  background: #eefaf2;
+
+  color: #263746;
+}
+
+/* =========================================================
+   EXHIBITS
+   PURPLE SAME AS CRITERIA 9.5
+========================================================= */
+
+.exhibits97 {
+  flex: 1;
+
+  padding: 14px 15px;
+
+  border-radius: 6px;
+
+  border: 1px solid #d7dfeb;
+
+  background: #ffffff;
+
+  color: #20364d;
+}
+
+.side-title97 {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-bottom: 8px;
+}
+
+.side-title97 svg {
+  color: #168447;
+
+  font-size: 16px;
+}
+
+.exhibits97 .side-title97 svg {
+  color: #4b159d;
+}
+
+.side-title97 h2 {
+  margin: 0;
+
+  color: #13733b;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.exhibits97 .side-title97 h2 {
+  color: #4b159d;
+}
+
+.instructions97 ul,
+.exhibits97 ul {
+  margin: 5px 0 0;
+
+  padding-left: 20px;
+}
+
+.instructions97 li,
+.exhibits97 li {
+  margin: 7px 0;
+
+  font-size: 12.5px;
+  line-height: 1.45;
+
+  color: #263746;
+}
+
+.instructions97 li::marker {
+  color: #168447;
+}
+
+.exhibits97 li::marker {
+  color: #4b159d;
+}
+
+.exhibits97 p {
+  margin: 7px 0;
+
+  font-size: 12.5px;
+  line-height: 1.45;
+
+  color: #20364d;
+}
+
+/* =========================================================
+   DOCUMENT SECTION
+========================================================= */
+
+.documents97 {
+  margin-top: 10px;
+}
+
+.document-table97 {
+  width: 100%;
+}
+
+.document-header97,
+.document-row97 {
+  display: grid;
+
+  grid-template-columns:
+    7%
+    25%
+    37%
+    23%
+    8%;
+
+  align-items: stretch;
+}
+
+.document-header97 {
+  min-height: 34px;
+
+  background: #f0eef8;
+
+  color: #3e159b;
+
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.document-header97 > div {
+  padding: 8px 7px;
+
+  border-right: 1px solid #d7dfeb;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+.document-row97 {
+  min-height: 39px;
+
+  border-top: 1px solid #d7dfeb;
+
+  background: #ffffff;
+}
+
+.document-row97:nth-child(even) {
+  background: #f8fbff;
+}
+
+.document-row97 > div {
+  padding: 7px;
+
+  border-right: 1px solid #d7dfeb;
+
+  display: flex;
+
+  align-items: center;
+}
+
+.serial97 {
+  justify-content: center;
+
+  font-size: 12px;
+
+  color: #17324d;
+}
+
+.document-name97 {
+  color: #17324d;
+
+  font-size: 11.5px;
+  font-weight: 500;
+}
+
+.document-description97 {
+  color: #303f57;
+
+  font-size: 11.5px;
+
+  line-height: 1.35;
+}
+
+.upload97 {
+  justify-content: center;
+}
+
+.upload97 input[type="file"] {
+  width: 100%;
+
+  max-width: 205px;
+
+  font-size: 11px;
+
+  color: #333333;
+}
+
+.upload97 input[type="file"]::file-selector-button {
+  padding: 4px 8px;
+
+  margin-right: 5px;
+
+  border: none;
+
+  border-radius: 4px;
+
+  background: #e7f2ff;
+
+  color: #1769c2;
+
+  cursor: pointer;
+
+  font-size: 11px;
+}
+
+.upload97 input[type="file"]::file-selector-button:hover {
+  background: #d3e7ff;
+}
+
+.view97 {
+  justify-content: center;
+}
+
+.view97 button {
+  width: 28px;
+  height: 28px;
+
+  border: none;
+
+  border-radius: 4px;
+
+  background: #f0eef8;
+
+  color: #4b159d;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.view97 button:hover {
+  background: #4b159d;
+
+  color: #ffffff;
+
+  transform: translateY(-1px);
+}
+
+.view97 button svg {
+  font-size: 14px;
+}
+
+/* =========================================================
+   EVALUATION SUMMARY
+========================================================= */
+
+.evaluation-summary97 {
+  width: 100%;
+
+  margin-top: 10px;
+
+  padding: 12px 14px;
+
+  border: 1px solid #d7dfeb;
+
+  border-radius: 6px;
+
+  background: #ffffff;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.evaluation-summary-title97 {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-bottom: 10px;
+
+  color: #102a43;
+}
+
+.evaluation-summary-title97 svg {
+  font-size: 18px;
+
+  color: #1769c2;
+}
+
+.evaluation-summary-title97 h2 {
+  margin: 0;
+
+  font-size: 15px;
+
+  color: #102a43;
+}
+
+.marks-summary97 label,
+.remarks-summary97 label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #102a43;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.marks-awarded97 {
+  width: 100%;
+
+  min-height: 39px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #c4daf8;
+
+  border-radius: 4px;
+
+  background: #eaf2ff;
+
+  color: #1555a0;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.remarks-summary97 {
+  margin-top: 12px;
+}
+
+.remarks-summary97 textarea {
+  width: 100%;
+
+  min-height: 65px;
+
+  padding: 9px;
+
+  border: 1px solid #c9d3e2;
+
+  border-radius: 5px;
+
+  resize: vertical;
+
+  outline: none;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  color: #24334e;
+}
+
+.remarks-summary97 textarea:focus {
+  border-color: #1769c2;
+
+  box-shadow:
+    0 0 0 2px rgba(23, 105, 194, 0.1);
+}
+
+.remarks-summary97 textarea::placeholder {
+  color: #7b8794;
+}
+
+/* =========================================================
+   FINAL TOTAL
+========================================================= */
+
+.final-total97 {
+  width: 100%;
+
+  min-height: 43px;
+
+  margin-top: 10px;
+
+  padding: 8px 14px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid #cbdff4;
+
+  border-radius: 5px;
+
+  background: #eaf2fc;
+
+  color: #064194;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.final-total97 strong {
+  font-size: 15px;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.institutional97-buttons {
+  width: 100%;
+
+  margin-top: 12px;
+
+  padding: 8px 0 20px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  flex-wrap: wrap;
+}
+
+.btn97 {
+  min-width: 105px;
+
+  height: 38px;
+
+  padding: 0 14px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  color: #ffffff;
+
+  font-size: 12.5px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.btn97:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 3px 7px rgba(0, 0, 0, 0.14);
+}
+
+.btn97:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
+
+.previous97 {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+.previous97:hover {
+  background: #f5f1ff;
+}
+
+/* =========================================================
+   BACK
+========================================================= */
+
+.back97 {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+.back97:hover {
+  background: #f5f1ff;
+}
+
+/* =========================================================
+   SAVE
+========================================================= */
+
+.save97 {
+  background: #12a957;
+
+  color: #ffffff;
+
+  border: 1px solid #12a957;
+}
+
+.save97:hover {
+  background: #0f9149;
+}
+
+/* =========================================================
+   SUBMIT
+========================================================= */
+
+.submit97 {
+  background: #1769c2;
+
+  color: #ffffff;
+
+  border: 1px solid #1769c2;
+}
+
+.submit97:hover {
+  background: #1257a5;
+}
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+.delete97 {
+  background: #ed1c24;
+
+  color: #ffffff;
+
+  border: 1px solid #ed1c24;
+}
+
+.delete97:hover {
+  background: #c91d14;
+}
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+.print97 {
+  background: #5721ad;
+
+  color: #ffffff;
+
+  border: 1px solid #5721ad;
+}
+
+.print97:hover {
+  background: #46198e;
+}
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+.next97 {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+.next97:hover {
+  background: #f5f1ff;
+}
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+  .institutional97-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .institutional97-side {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .summary97-list {
+    grid-template-columns: 1fr;
+
+    gap: 6px;
+  }
+
+  .institutional97-summary {
+    align-items: flex-start;
+  }
+
+  .document-header97,
+  .document-row97 {
+    grid-template-columns:
+      7%
+      24%
+      35%
+      25%
+      9%;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .institutional97-page {
+    padding: 8px;
+  }
+
+  .institutional97-header {
+    padding: 12px;
+  }
+
+  .institutional97-header h1 {
+    font-size: 17px;
+  }
+
+  .institutional97-header p {
+    font-size: 11px;
+  }
+
+  .institutional97-number {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+
+    font-size: 18px;
+  }
+
+  .institutional97-summary {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .summary97-icon {
+    display: none;
+  }
+
+  .summary97-list {
+    grid-template-columns: 1fr;
+  }
+
+  .institutional97-side {
+    display: flex;
+  }
+
+  .evaluation97-table {
+    min-width: 760px;
+  }
+
+  .guidelines97 {
+    overflow-x: auto;
+  }
+
+  .document-table97 {
+    min-width: 850px;
+  }
+
+  .documents97 {
+    overflow-x: auto;
+  }
+
+  .document-header97,
+  .document-row97 {
+    grid-template-columns:
+      60px
+      190px
+      290px
+      200px
+      70px;
+  }
+
+  .institutional97-buttons {
+    justify-content: stretch;
+  }
+
+  .btn97 {
+    flex: 1 1 120px;
+  }
+
+  .final-total97 {
+    font-size: 12px;
+  }
+
+  .final-total97 strong {
+    font-size: 13px;
+  }
+}
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+  .institutional97-page {
+    padding: 0;
+
+    background: #ffffff;
+  }
+
+  .institutional97-buttons {
+    display: none;
+  }
+
+  .institutional97-header {
+    box-shadow: none;
+
+    print-color-adjust: exact;
+
+    -webkit-print-color-adjust: exact;
+  }
+
+  .institutional97-card,
+  .evaluation-summary97 {
+    box-shadow: none;
+  }
+
+  .institutional97-main-grid {
+    grid-template-columns: 1.7fr 0.9fr;
+  }
+
+  .upload97 input {
+    display: none;
+  }
+
+  .view97 button {
+    display: none;
+  }
+
+  .evaluation97-table th,
+  .document-header97,
+  .total-row97 td,
+  .marks-awarded97 {
+    print-color-adjust: exact;
+
+    -webkit-print-color-adjust: exact;
+  }
+}

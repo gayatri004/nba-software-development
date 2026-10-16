@@ -1,0 +1,1449 @@
+/* =========================================================
+   CRITERIA 9.8 - MONITORING / REVIEW
+   COMPLETE CSS
+========================================================= */
+
+.criteria98-page {
+  min-height: 100vh;
+  padding: 28px 34px 40px;
+  background: #f4f7fb;
+  color: #1f2937;
+  font-family: "Segoe UI", Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.criteria98-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: linear-gradient(135deg, #173b7a, #2457a6);
+  color: #fff;
+  padding: 24px 28px;
+  border-radius: 14px;
+  box-shadow: 0 5px 18px rgba(23, 59, 122, 0.18);
+  margin-bottom: 20px;
+}
+
+.criteria98-header-icon {
+  width: 58px;
+  height: 58px;
+  min-width: 58px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 27px;
+}
+
+.criteria98-header h1 {
+  margin: 0 0 7px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.criteria98-header p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.92;
+}
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.criteria98-summary {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #fff;
+  border: 1px solid #dce4ef;
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 3px 12px rgba(15, 35, 70, 0.06);
+}
+
+.criteria98-summary-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 10px;
+  background: #eaf1ff;
+  color: #2457a6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+}
+
+.criteria98-summary-content {
+  flex: 1;
+}
+
+.criteria98-section-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.criteria98-section-row strong {
+  color: #173b7a;
+  margin-left: 5px;
+}
+
+.criteria98-label {
+  width: 22px;
+  font-weight: 700;
+  color: #2457a6;
+}
+
+.criteria98-total-badge {
+  white-space: nowrap;
+  background: #eaf7ef;
+  border: 1px solid #bfe5cb;
+  color: #176b38;
+  padding: 12px 17px;
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+.criteria98-total-badge strong {
+  font-size: 17px;
+  margin-left: 4px;
+}
+
+/* =========================================================
+   MAIN GRID
+========================================================= */
+
+.criteria98-main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(300px, 0.85fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.criteria98-left,
+.criteria98-right {
+  min-width: 0;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.criteria98-card {
+  background: #fff;
+  border: 1px solid #dce4ef;
+  border-radius: 13px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(15, 35, 70, 0.055);
+}
+
+.criteria98-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 19px;
+  background: #f8faff;
+  border-bottom: 1px solid #dce4ef;
+  color: #173b7a;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.criteria98-card-title svg {
+  color: #2457a6;
+  font-size: 16px;
+}
+
+/* =========================================================
+   EVALUATION TABLE
+========================================================= */
+
+.criteria98-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.criteria98-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.criteria98-table th {
+  background: #173b7a;
+  color: #fff;
+  padding: 12px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid #d1d9e6;
+}
+
+.criteria98-table td {
+  padding: 15px 12px;
+  vertical-align: top;
+  border: 1px solid #dce4ef;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.criteria98-table th:nth-child(1) {
+  width: 7%;
+}
+
+.criteria98-table th:nth-child(2) {
+  width: 22%;
+}
+
+.criteria98-table th:nth-child(3) {
+  width: 56%;
+}
+
+.criteria98-table th:nth-child(4) {
+  width: 15%;
+}
+
+.criteria98-table tbody tr:nth-child(even) {
+  background: #fbfcfe;
+}
+
+.criteria98-table tbody tr:hover {
+  background: #f5f8fd;
+}
+
+.criteria98-letter {
+  text-align: center;
+  font-size: 16px !important;
+  font-weight: 700;
+  color: #173b7a;
+}
+
+.criteria98-criteria-name {
+  font-weight: 600;
+  color: #263b5a;
+}
+
+.criteria98-table ul {
+  margin: 0;
+  padding-left: 19px;
+}
+
+.criteria98-table li {
+  margin-bottom: 7px;
+}
+
+.criteria98-table li:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   MARK INPUT
+========================================================= */
+
+.criteria98-mark-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 100px;
+}
+
+.criteria98-mark-input input {
+  width: 58px;
+  height: 40px;
+  border: 1px solid #bdc9d9;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #173b7a;
+  outline: none;
+  background: #fff;
+  transition: 0.2s ease;
+}
+
+.criteria98-mark-input input:focus {
+  border-color: #2457a6;
+  box-shadow: 0 0 0 3px rgba(36, 87, 166, 0.12);
+}
+
+.criteria98-mark-input span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #667085;
+}
+
+/* Remove number spinner */
+
+.criteria98-mark-input input::-webkit-inner-spin-button,
+.criteria98-mark-input input::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+/* =========================================================
+   EXHIBITS
+========================================================= */
+
+.criteria98-exhibits-card {
+  margin-bottom: 0;
+}
+
+.criteria98-exhibits {
+  padding: 17px 20px;
+}
+
+.criteria98-exhibits p {
+  margin: 0 0 13px;
+  padding: 12px 14px;
+  background: #f7faff;
+  border-left: 4px solid #2457a6;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.criteria98-exhibits p:last-child {
+  margin-bottom: 0;
+}
+
+.criteria98-exhibits strong {
+  color: #173b7a;
+}
+
+/* =========================================================
+   INSTRUCTIONS
+========================================================= */
+
+.criteria98-instructions ul {
+  margin: 0;
+  padding: 18px 22px 20px 38px;
+}
+
+.criteria98-instructions li {
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #475467;
+}
+
+.criteria98-instructions li:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   EVALUATION CARD
+========================================================= */
+
+.criteria98-evaluation-card {
+  text-align: center;
+}
+
+.criteria98-marks-label {
+  padding-top: 20px;
+  font-size: 13px;
+  color: #667085;
+  font-weight: 600;
+}
+
+.criteria98-total-marks {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.criteria98-total-marks span {
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 800;
+  color: #173b7a;
+}
+
+.criteria98-total-marks small {
+  font-size: 19px;
+  font-weight: 600;
+  color: #98a2b3;
+}
+
+.criteria98-auto-text {
+  margin: 9px 0 20px;
+  font-size: 12px;
+  color: #667085;
+}
+
+.criteria98-evaluation-card label {
+  display: block;
+  text-align: left;
+  margin: 0 20px 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #344054;
+}
+
+.criteria98-evaluation-card label span {
+  color: #98a2b3;
+  font-weight: 400;
+}
+
+.criteria98-evaluation-card textarea {
+  width: calc(100% - 40px);
+  min-height: 105px;
+  margin: 0 20px 20px;
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 13px;
+  color: #344054;
+  box-sizing: border-box;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.criteria98-evaluation-card textarea:focus {
+  border-color: #2457a6;
+  box-shadow: 0 0 0 3px rgba(36, 87, 166, 0.1);
+}
+
+/* =========================================================
+   DOCUMENTS
+========================================================= */
+
+.criteria98-documents-card {
+  margin-top: 22px;
+}
+
+.criteria98-documents-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.criteria98-documents-table {
+  width: 100%;
+  min-width: 1000px;
+  border-collapse: collapse;
+}
+
+.criteria98-documents-table th {
+  background: #173b7a;
+  color: #fff;
+  padding: 12px 10px;
+  border: 1px solid #d1d9e6;
+  font-size: 12px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.criteria98-documents-table td {
+  border: 1px solid #dce4ef;
+  padding: 11px 10px;
+  font-size: 12px;
+  vertical-align: middle;
+  color: #475467;
+}
+
+.criteria98-documents-table tbody tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+.criteria98-documents-table tbody tr:hover {
+  background: #f4f8ff;
+}
+
+.criteria98-documents-table th:nth-child(1) {
+  width: 7%;
+}
+
+.criteria98-documents-table th:nth-child(2) {
+  width: 19%;
+}
+
+.criteria98-documents-table th:nth-child(3) {
+  width: 36%;
+}
+
+.criteria98-documents-table th:nth-child(4) {
+  width: 25%;
+}
+
+.criteria98-documents-table th:nth-child(5),
+.criteria98-documents-table th:nth-child(6) {
+  width: 6.5%;
+}
+
+.criteria98-doc-name {
+  font-weight: 600;
+  color: #263b5a !important;
+}
+
+/* =========================================================
+   UPLOAD
+========================================================= */
+
+.criteria98-upload {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.criteria98-upload input[type="file"] {
+  width: 105px;
+  font-size: 11px;
+  color: #475467;
+}
+
+.criteria98-upload input[type="file"]::file-selector-button {
+  border: 0;
+  background: #eaf1ff;
+  color: #2457a6;
+  padding: 7px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 11px;
+  margin-right: 5px;
+}
+
+.criteria98-upload input[type="file"]::file-selector-button:hover {
+  background: #dbe7ff;
+}
+
+.criteria98-upload span {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #98a2b3;
+  font-size: 11px;
+}
+
+.criteria98-upload .criteria98-file-selected {
+  color: #176b38;
+  font-weight: 600;
+}
+
+/* =========================================================
+   VIEW / CLEAR FILE BUTTON
+========================================================= */
+
+.criteria98-view-btn,
+.criteria98-clear-file {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.criteria98-view-btn {
+  background: #eaf1ff;
+  color: #2457a6;
+}
+
+.criteria98-view-btn:hover:not(:disabled) {
+  background: #2457a6;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.criteria98-clear-file {
+  background: #fff0f0;
+  color: #d92d20;
+}
+
+.criteria98-clear-file:hover:not(:disabled) {
+  background: #d92d20;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.criteria98-view-btn:disabled,
+.criteria98-clear-file:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   BOTTOM TOTAL
+========================================================= */
+
+.criteria98-bottom-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #173b7a;
+  color: #fff;
+  padding: 17px 22px;
+  border-radius: 10px;
+  margin-top: 22px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(23, 59, 122, 0.16);
+}
+
+.criteria98-bottom-total strong {
+  font-size: 21px;
+  color: #fff;
+}
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.criteria98-message {
+  margin-top: 15px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #eaf7ef;
+  border: 1px solid #bfe5cb;
+  color: #176b38;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.criteria98-saving {
+  margin-top: 10px;
+  text-align: right;
+  color: #2457a6;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.criteria98-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+.criteria98-btn {
+  min-width: 125px;
+  height: 43px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.criteria98-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.criteria98-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.criteria98-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Previous */
+
+.criteria98-btn.previous {
+  background: #667085;
+  color: #fff;
+}
+
+/* Clear */
+
+.criteria98-btn.clear {
+  background: #fff;
+  color: #d92d20;
+  border: 1px solid #f0b5b0;
+}
+
+.criteria98-btn.clear:hover:not(:disabled) {
+  background: #fff0f0;
+}
+
+/* Save */
+
+.criteria98-btn.save {
+  background: #176b38;
+  color: #fff;
+}
+
+.criteria98-btn.save:hover:not(:disabled) {
+  background: #12562d;
+}
+
+/* Next */
+
+.criteria98-btn.next {
+  background: #2457a6;
+  color: #fff;
+}
+
+.criteria98-btn.next:hover:not(:disabled) {
+  background: #173b7a;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.criteria98-table-wrapper::-webkit-scrollbar,
+.criteria98-documents-wrapper::-webkit-scrollbar {
+  height: 7px;
+}
+
+.criteria98-table-wrapper::-webkit-scrollbar-track,
+.criteria98-documents-wrapper::-webkit-scrollbar-track {
+  background: #eef2f7;
+  border-radius: 10px;
+}
+
+.criteria98-table-wrapper::-webkit-scrollbar-thumb,
+.criteria98-documents-wrapper::-webkit-scrollbar-thumb {
+  background: #aebbd0;
+  border-radius: 10px;
+}
+
+.criteria98-table-wrapper::-webkit-scrollbar-thumb:hover,
+.criteria98-documents-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #8797b0;
+}
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .criteria98-page {
+    padding: 22px 20px 35px;
+  }
+
+  .criteria98-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria98-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .criteria98-right .criteria98-card {
+    margin-bottom: 0;
+  }
+
+  .criteria98-summary {
+    align-items: flex-start;
+  }
+
+}
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .criteria98-page {
+    padding: 14px 10px 25px;
+  }
+
+  .criteria98-header {
+    padding: 18px 15px;
+    gap: 12px;
+    border-radius: 10px;
+  }
+
+  .criteria98-header-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    font-size: 20px;
+  }
+
+  .criteria98-header h1 {
+    font-size: 17px;
+  }
+
+  .criteria98-header p {
+    font-size: 12px;
+  }
+
+  .criteria98-summary {
+    flex-direction: column;
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .criteria98-summary-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .criteria98-section-row {
+    align-items: flex-start;
+    font-size: 12px;
+  }
+
+  .criteria98-total-badge {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .criteria98-main-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .criteria98-right {
+    display: block;
+  }
+
+  .criteria98-right .criteria98-card {
+    margin-bottom: 15px;
+  }
+
+  .criteria98-card-title {
+    padding: 13px 14px;
+    font-size: 13px;
+  }
+
+  .criteria98-table {
+    min-width: 700px;
+  }
+
+  .criteria98-table td,
+  .criteria98-table th {
+    font-size: 11px;
+    padding: 9px 8px;
+  }
+
+  .criteria98-mark-input {
+    min-height: 80px;
+  }
+
+  .criteria98-mark-input input {
+    width: 48px;
+    height: 35px;
+    font-size: 14px;
+  }
+
+  .criteria98-exhibits {
+    padding: 13px;
+  }
+
+  .criteria98-exhibits p {
+    font-size: 12px;
+  }
+
+  .criteria98-instructions ul {
+    padding: 15px 18px 15px 32px;
+  }
+
+  .criteria98-instructions li {
+    font-size: 12px;
+  }
+
+  .criteria98-total-marks span {
+    font-size: 42px;
+  }
+
+  .criteria98-bottom-total {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    padding: 14px;
+  }
+
+  .criteria98-actions {
+    gap: 8px;
+  }
+
+  .criteria98-btn {
+    min-width: 110px;
+    height: 40px;
+    font-size: 12px;
+    padding: 0 13px;
+  }
+
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 430px) {
+
+  .criteria98-header {
+    align-items: flex-start;
+  }
+
+  .criteria98-header h1 {
+    font-size: 15px;
+  }
+
+  .criteria98-header p {
+    font-size: 11px;
+  }
+
+  .criteria98-section-row {
+    flex-wrap: wrap;
+  }
+
+  .criteria98-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .criteria98-btn {
+    width: 100%;
+  }
+
+  .criteria98-btn.next {
+    grid-column: span 1;
+  }
+
+  .criteria98-btn.save {
+    grid-column: span 1;
+  }
+
+}
+/* =========================================================
+   CRITERIA 9.8 - SAME COLOR COMBINATION AS CRITERIA 9.7
+   ONLY COLORS UPDATED
+========================================================= */
+
+/* PAGE */
+.criteria98-page {
+  background: #f3f6fb;
+  color: #102a43;
+}
+
+/* =========================================================
+   HEADER - BLUE
+========================================================= */
+
+.criteria98-header {
+  background: linear-gradient(
+    135deg,
+    #1769c2,
+    #1264bd
+  );
+
+  box-shadow: 0 5px 18px rgba(23, 105, 194, 0.18);
+}
+
+.criteria98-header-icon {
+  background: rgba(255, 255, 255, 0.13);
+}
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.criteria98-summary {
+  border-color: #d8e0eb;
+  background: #ffffff;
+}
+
+.criteria98-summary-icon {
+  background: #eaf2ff;
+  color: #1769c2;
+}
+
+.criteria98-section-row strong {
+  color: #1769c2;
+}
+
+.criteria98-label {
+  color: #1769c2;
+}
+
+.criteria98-total-badge {
+  background: #eefaf2;
+  border-color: #cfe5d5;
+  color: #13733b;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.criteria98-card {
+  border-color: #d7dfeb;
+  background: #ffffff;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.criteria98-card-title {
+  background: #f7f9fc;
+  border-color: #d7dfeb;
+  color: #102a43;
+}
+
+.criteria98-card-title svg {
+  color: #1769c2;
+}
+
+/* =========================================================
+   EVALUATION TABLE - BLUE
+========================================================= */
+
+.criteria98-table th {
+  background: #1769c2;
+  border-color: #1266b4;
+  color: #ffffff;
+}
+
+.criteria98-table td {
+  border-color: #d7dfeb;
+  color: #20364d;
+}
+
+.criteria98-table tbody tr:nth-child(even) {
+  background: #f8fbff;
+}
+
+.criteria98-table tbody tr:hover {
+  background: #f3f7fc;
+}
+
+.criteria98-letter {
+  color: #1769c2;
+}
+
+.criteria98-criteria-name {
+  color: #102a43;
+}
+
+/* =========================================================
+   MARK INPUT
+========================================================= */
+
+.criteria98-mark-input input {
+  border-color: #c9d3e2;
+  color: #1769c2;
+}
+
+.criteria98-mark-input input:focus {
+  border-color: #1769c2;
+  box-shadow: 0 0 0 3px rgba(23, 105, 194, 0.12);
+}
+
+.criteria98-mark-input span {
+  color: #34495e;
+}
+
+/* =========================================================
+   EXHIBITS - PURPLE
+========================================================= */
+
+.criteria98-exhibits p {
+  background: #f0eef8;
+  border-left-color: #4b159d;
+}
+
+.criteria98-exhibits strong {
+  color: #4b159d;
+}
+
+/* =========================================================
+   INSTRUCTIONS - GREEN
+========================================================= */
+
+.criteria98-instructions li {
+  color: #263746;
+}
+
+.criteria98-instructions li::marker {
+  color: #168447;
+}
+
+/* =========================================================
+   EVALUATION
+========================================================= */
+
+.criteria98-marks-label {
+  color: #667085;
+}
+
+.criteria98-total-marks span {
+  color: #1769c2;
+}
+
+.criteria98-total-marks small {
+  color: #98a2b3;
+}
+
+.criteria98-auto-text {
+  color: #667085;
+}
+
+.criteria98-evaluation-card label {
+  color: #102a43;
+}
+
+.criteria98-evaluation-card textarea {
+  border-color: #c9d3e2;
+  color: #24334e;
+}
+
+.criteria98-evaluation-card textarea:focus {
+  border-color: #1769c2;
+  box-shadow: 0 0 0 3px rgba(23, 105, 194, 0.10);
+}
+
+/* =========================================================
+   DOCUMENTS - BLUE HEADER
+========================================================= */
+
+.criteria98-documents-table th {
+  background: #1769c2;
+  border-color: #1266b4;
+}
+
+.criteria98-documents-table td {
+  border-color: #d7dfeb;
+  color: #303f57;
+}
+
+.criteria98-documents-table tbody tr:nth-child(even) {
+  background: #f8fbff;
+}
+
+.criteria98-documents-table tbody tr:hover {
+  background: #f3f7fc;
+}
+
+.criteria98-doc-name {
+  color: #17324d !important;
+}
+
+/* =========================================================
+   UPLOAD - LIGHT BLUE
+========================================================= */
+
+.criteria98-upload input[type="file"] {
+  color: #333333;
+}
+
+.criteria98-upload input[type="file"]::file-selector-button {
+  background: #e7f2ff;
+  color: #1769c2;
+}
+
+.criteria98-upload input[type="file"]::file-selector-button:hover {
+  background: #d3e7ff;
+}
+
+.criteria98-upload .criteria98-file-selected {
+  color: #168447;
+}
+
+/* =========================================================
+   VIEW - PURPLE
+========================================================= */
+
+.criteria98-view-btn {
+  background: #f0eef8;
+  color: #4b159d;
+}
+
+.criteria98-view-btn:hover:not(:disabled) {
+  background: #4b159d;
+  color: #ffffff;
+}
+
+/* =========================================================
+   CLEAR FILE - RED
+========================================================= */
+
+.criteria98-clear-file {
+  background: #fff0f0;
+  color: #ed1c24;
+}
+
+.criteria98-clear-file:hover:not(:disabled) {
+  background: #ed1c24;
+  color: #ffffff;
+}
+
+/* =========================================================
+   BOTTOM TOTAL - BLUE
+========================================================= */
+
+.criteria98-bottom-total {
+  background: #1769c2;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(23, 105, 194, 0.16);
+}
+
+.criteria98-bottom-total strong {
+  color: #ffffff;
+}
+
+/* =========================================================
+   MESSAGE - GREEN
+========================================================= */
+
+.criteria98-message {
+  background: #eefaf2;
+  border-color: #cfe5d5;
+  color: #13733b;
+}
+
+.criteria98-saving {
+  color: #1769c2;
+}
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+/* Previous */
+.criteria98-btn.previous {
+  background: #ffffff;
+  color: #4a159e;
+  border: 1px solid #d5d5df;
+}
+
+.criteria98-btn.previous:hover:not(:disabled) {
+  background: #f5f1ff;
+}
+
+/* Clear */
+.criteria98-btn.clear {
+  background: #ffffff;
+  color: #ed1c24;
+  border: 1px solid #edb8b8;
+}
+
+.criteria98-btn.clear:hover:not(:disabled) {
+  background: #fff0f0;
+}
+
+/* Save - GREEN */
+.criteria98-btn.save {
+  background: #12a957;
+  color: #ffffff;
+}
+
+.criteria98-btn.save:hover:not(:disabled) {
+  background: #0f9149;
+}
+
+/* Next - BLUE */
+.criteria98-btn.next {
+  background: #1769c2;
+  color: #ffffff;
+}
+
+.criteria98-btn.next:hover:not(:disabled) {
+  background: #1257a5;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.criteria98-table-wrapper::-webkit-scrollbar-track,
+.criteria98-documents-wrapper::-webkit-scrollbar-track {
+  background: #eef2f7;
+}
+
+.criteria98-table-wrapper::-webkit-scrollbar-thumb,
+.criteria98-documents-wrapper::-webkit-scrollbar-thumb {
+  background: #aebbd0;
+}
+
+.criteria98-table-wrapper::-webkit-scrollbar-thumb:hover,
+.criteria98-documents-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #8797b0;
+}
+/* =========================================================
+   CRITERIA 9.8 FILE SECTION
+   EXACT SAME COLOR COMBINATION AS CRITERIA 9.7
+========================================================= */
+
+.criteria98-documents-card {
+  border-color: #d7dfeb;
+  background: #ffffff;
+}
+
+/* File table header */
+.criteria98-documents-table th {
+  background: #f0eef8 !important;
+  color: #3e159b !important;
+  border-color: #d7dfeb !important;
+}
+
+/* File table rows */
+.criteria98-documents-table td {
+  background: #ffffff;
+  color: #303f57;
+  border-color: #d7dfeb;
+}
+
+.criteria98-documents-table tbody tr:nth-child(even) td {
+  background: #f8fbff;
+}
+
+/* Document name */
+.criteria98-doc-name {
+  color: #17324d !important;
+}
+
+/* =========================================================
+   CHOOSE FILE
+========================================================= */
+
+.criteria98-upload input[type="file"] {
+  color: #333333;
+  background: transparent;
+}
+
+.criteria98-upload input[type="file"]::file-selector-button {
+  padding: 4px 8px !important;
+  margin-right: 5px;
+
+  border: none !important;
+  border-radius: 4px !important;
+
+  background: #e7f2ff !important;
+  color: #1769c2 !important;
+
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.criteria98-upload input[type="file"]::file-selector-button:hover {
+  background: #d3e7ff !important;
+}
+
+/* Selected file name */
+.criteria98-upload .criteria98-file-selected {
+  color: #168447 !important;
+  font-weight: 600;
+}
+
+/* Normal file name */
+.criteria98-upload span {
+  color: #7b8794;
+}
+
+/* =========================================================
+   VIEW BUTTON - PURPLE
+========================================================= */
+
+.criteria98-view-btn {
+  width: 28px;
+  height: 28px;
+
+  border: none;
+  border-radius: 4px;
+
+  background: #f0eef8 !important;
+  color: #4b159d !important;
+}
+
+.criteria98-view-btn:hover:not(:disabled) {
+  background: #4b159d !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   CLEAR BUTTON - RED
+========================================================= */
+
+.criteria98-clear-file {
+  width: 28px;
+  height: 28px;
+
+  border: none;
+  border-radius: 4px;
+
+  background: #fff0f0 !important;
+  color: #ed1c24 !important;
+}
+
+.criteria98-clear-file:hover:not(:disabled) {
+  background: #ed1c24 !important;
+  color: #ffffff !important;
+}
+
+/* Disabled */
+.criteria98-view-btn:disabled,
+.criteria98-clear-file:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   FILE TABLE BORDERS
+========================================================= */
+
+.criteria98-documents-table {
+  border-color: #d7dfeb;
+}
+
+.criteria98-documents-table th,
+.criteria98-documents-table td {
+  border: 1px solid #d7dfeb !important;
+}
+
+/* =========================================================
+   FILE SECTION SCROLLBAR
+========================================================= */
+
+.criteria98-documents-wrapper::-webkit-scrollbar {
+  height: 7px;
+}
+
+.criteria98-documents-wrapper::-webkit-scrollbar-track {
+  background: #eef2f7;
+  border-radius: 10px;
+}
+
+.criteria98-documents-wrapper::-webkit-scrollbar-thumb {
+  background: #aebbd0;
+  border-radius: 10px;
+}
+
+.criteria98-documents-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #8797b0;
+}

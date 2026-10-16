@@ -1,68 +1,26 @@
 /* =========================================================
    CRITERIA 5 QUALIFICATION
-   SIDEBAR + CONTENT LAYOUT
+   ALL CSS IS SCOPED TO .criteria5qual
 ========================================================= */
 
 
 /* =========================================================
-   PAGE LAYOUT
+   MAIN CONTAINER
 ========================================================= */
 
-.criteria5qual-layout {
-
+.criteria5qual {
     width: 100%;
     min-height: 100vh;
 
     background: #eef3f8;
 
-    display: flex;
-
-    box-sizing: border-box;
-
-}
-
-
-/* =========================================================
-   SIDEBAR
-   NBASidebar IS FIXED
-========================================================= */
-
-.criteria5qual-layout > *:first-child {
-
-    flex-shrink: 0;
-
-}
-
-
-/*
-   Main content is kept away from the fixed sidebar.
-   Change 250px only if your NBASidebar width is different.
-*/
-
-.criteria5qual-layout .criteria5qual {
-
-    width: calc(100% - 270px);
-
-    max-width: calc(100% - 270px);
-
-    min-width: 0;
-
-    min-height: 100vh;
-
-    margin-left: 270px;
-
     padding: 20px;
-
-    box-sizing: border-box;
-
-    background: #eef3f8;
 
     font-family: "Segoe UI", Arial, sans-serif;
 
     color: #222;
 
-    overflow-x: hidden;
-
+    box-sizing: border-box;
 }
 
 
@@ -82,26 +40,8 @@
 
     padding: 0;
 
-    box-sizing: border-box;
-
     box-shadow:
         0 4px 18px rgba(0, 0, 0, 0.12);
-
-}
-
-
-/* =========================================================
-   TABLE CONTAINER
-========================================================= */
-
-.criteria5qual .table-container {
-
-    width: 100%;
-
-    padding: 0;
-
-    box-sizing: border-box;
-
 }
 
 
@@ -130,10 +70,9 @@
 
     border-radius: 14px 14px 0 0;
 
-    margin: 0;
+    margin-bottom: 12px;
 
     box-sizing: border-box;
-
 }
 
 
@@ -176,7 +115,6 @@
 
     box-shadow:
         0 2px 6px rgba(0, 0, 0, 0.15);
-
 }
 
 
@@ -191,7 +129,6 @@
     flex-direction: column;
 
     justify-content: center;
-
 }
 
 
@@ -206,7 +143,6 @@
     font-weight: 700;
 
     line-height: 1.2;
-
 }
 
 
@@ -219,28 +155,22 @@
     font-size: 15px;
 
     line-height: 1.4;
-
 }
 
 
 /* =========================================================
-   QUALIFICATION LAYOUT
+   TABLE CONTAINER
 ========================================================= */
 
-.criteria5qual .qualification-layout {
+.criteria5qual .table-container {
 
     width: 100%;
 
-    padding: 18px 14px 20px;
+    padding: 14px;
 
     box-sizing: border-box;
-
 }
 
-
-/* =========================================================
-   TABLE AREA
-========================================================= */
 
 .criteria5qual .table-area {
 
@@ -248,12 +178,7 @@
 
     overflow-x: auto;
 
-    overflow-y: hidden;
-
     border-radius: 6px;
-
-    box-sizing: border-box;
-
 }
 
 
@@ -265,18 +190,13 @@
 
     width: 100%;
 
-    max-width: 100%;
-
-    min-width: 0;
-
     border-collapse: collapse;
 
     border-spacing: 0;
 
     background: #ffffff;
 
-    table-layout: fixed;
-
+    min-width: 700px;
 }
 
 
@@ -301,9 +221,6 @@
     font-weight: 700;
 
     white-space: nowrap;
-
-    vertical-align: middle;
-
 }
 
 
@@ -314,7 +231,6 @@
     color: #1848b8 !important;
 
     border: 1px solid #c9dcff !important;
-
 }
 
 
@@ -337,7 +253,6 @@
     font-size: 14px;
 
     vertical-align: middle;
-
 }
 
 
@@ -352,7 +267,6 @@
     font-weight: 600;
 
     color: #222222;
-
 }
 
 
@@ -363,14 +277,12 @@
 .criteria5qual table tbody tr {
 
     transition: background 0.2s ease;
-
 }
 
 
 .criteria5qual table tbody tr:hover td {
 
     background: #f5f9ff;
-
 }
 
 
@@ -401,29 +313,26 @@
     outline: none;
 
     box-sizing: border-box;
-
 }
 
 
 .criteria5qual input[type="number"]:focus {
 
+    outline: none;
+
     border-color: #0b2d69;
 
     box-shadow:
         0 0 0 2px rgba(11, 45, 105, 0.08);
-
 }
 
 
-/* =========================================================
-   NUMBER SPINNER
-========================================================= */
+/* Remove number spinner */
 
 .criteria5qual input[type="number"]::-webkit-inner-spin-button,
 .criteria5qual input[type="number"]::-webkit-outer-spin-button {
 
     opacity: 1;
-
 }
 
 
@@ -452,7 +361,6 @@
     cursor: pointer;
 
     outline: none;
-
 }
 
 
@@ -462,7 +370,6 @@
 
     box-shadow:
         0 0 0 2px rgba(24, 72, 184, 0.08);
-
 }
 
 
@@ -473,7 +380,6 @@
 .criteria5qual .total-row {
 
     background: #edfced !important;
-
 }
 
 
@@ -486,7 +392,6 @@
     font-weight: 700;
 
     border-color: #cce9d4 !important;
-
 }
 
 
@@ -507,8 +412,9 @@
 
     gap: 20px;
 
-    box-sizing: border-box;
+    padding: 0 14px;
 
+    box-sizing: border-box;
 }
 
 
@@ -533,7 +439,6 @@
     border-left: 5px solid #0b2d69;
 
     box-sizing: border-box;
-
 }
 
 
@@ -553,7 +458,6 @@
     font-size: 19px;
 
     font-weight: 700;
-
 }
 
 
@@ -568,7 +472,6 @@
     margin: 20px 0;
 
     font-weight: 700;
-
 }
 
 
@@ -579,7 +482,6 @@
 .criteria5qual .formula-card {
 
     min-height: 180px;
-
 }
 
 
@@ -590,44 +492,6 @@
     font-size: 14px;
 
     line-height: 1.6;
-
-}
-
-
-/* =========================================================
-   STUDENT INPUT
-========================================================= */
-
-.criteria5qual .student-input {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 12px;
-
-    margin-bottom: 12px;
-
-}
-
-
-.criteria5qual .student-input label {
-
-    color: #444;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-}
-
-
-.criteria5qual .student-input input {
-
-    width: 90px;
-
 }
 
 
@@ -648,14 +512,12 @@
     padding: 10px 0;
 
     border-bottom: 1px solid #eeeeee;
-
 }
 
 
 .criteria5qual .eval-row:last-child {
 
     border-bottom: none;
-
 }
 
 
@@ -664,7 +526,6 @@
     color: #555;
 
     font-size: 14px;
-
 }
 
 
@@ -677,7 +538,6 @@
     font-weight: 700;
 
     text-align: right;
-
 }
 
 
@@ -702,7 +562,6 @@
     font-weight: 700;
 
     font-size: 14px;
-
 }
 
 
@@ -713,7 +572,6 @@
 .criteria5qual .document-card {
 
     min-height: 180px;
-
 }
 
 
@@ -752,7 +610,6 @@
     font-size: 13px;
 
     text-align: center;
-
 }
 
 
@@ -781,7 +638,6 @@
     font-size: 14px;
 
     transition: 0.2s;
-
 }
 
 
@@ -790,7 +646,6 @@
     background: #16489b;
 
     transform: translateY(-1px);
-
 }
 
 
@@ -803,14 +658,12 @@
     background: #fffdf5;
 
     border-left-color: #f59e0b;
-
 }
 
 
 .criteria5qual .note-card h3 {
 
     color: #a16207;
-
 }
 
 
@@ -823,7 +676,6 @@
     line-height: 1.6;
 
     margin: 0;
-
 }
 
 
@@ -837,7 +689,7 @@
 
     margin-top: 30px;
 
-    padding: 0 0 10px;
+    padding: 0 14px 20px;
 
     display: flex;
 
@@ -850,7 +702,6 @@
     flex-wrap: wrap;
 
     box-sizing: border-box;
-
 }
 
 
@@ -888,7 +739,6 @@
     justify-content: center;
 
     gap: 8px;
-
 }
 
 
@@ -900,81 +750,102 @@
 
     box-shadow:
         0 3px 8px rgba(0, 0, 0, 0.12);
-
 }
 
 
 .criteria5qual .btn:active {
 
     transform: translateY(0);
-
 }
 
 
 /* =========================================================
-   BUTTON COLORS
+   PREVIOUS
 ========================================================= */
 
 .criteria5qual .previous {
 
     background: #6b7280;
-
 }
 
+
+/* =========================================================
+   SAVE
+========================================================= */
 
 .criteria5qual .save {
 
     background: #16a34a;
-
 }
 
+
+/* =========================================================
+   UPDATE
+========================================================= */
 
 .criteria5qual .update {
 
     background: #2563eb;
-
 }
 
+
+/* =========================================================
+   DELETE
+========================================================= */
 
 .criteria5qual .delete {
 
     background: #dc2626;
-
 }
 
+
+/* =========================================================
+   CLEAR
+========================================================= */
 
 .criteria5qual .clear {
 
     background: #f59e0b;
-
 }
 
+
+/* =========================================================
+   NEXT
+========================================================= */
 
 .criteria5qual .next {
 
     background: #0b2d69;
-
 }
 
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
 
 .criteria5qual .back {
 
     background: #64748b;
-
 }
 
+
+/* =========================================================
+   PRINT BUTTON
+========================================================= */
 
 .criteria5qual .print {
 
     background: #7c3aed;
-
 }
 
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
 
 .criteria5qual .submit {
 
     background: #0e55c9;
-
 }
 
 
@@ -984,11 +855,7 @@
 
 .criteria5qual select {
 
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 
@@ -1017,7 +884,6 @@
     box-sizing: border-box;
 
     outline: none;
-
 }
 
 
@@ -1027,7 +893,6 @@
 
     box-shadow:
         0 0 0 2px rgba(11, 45, 105, 0.08);
-
 }
 
 
@@ -1037,67 +902,27 @@
 
 .criteria5qual input[type="file"] {
 
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
+    font-family: "Segoe UI", Arial, sans-serif;
 
     font-size: 13px;
 
     color: #444;
 
     max-width: 100%;
-
 }
 
 
 /* =========================================================
-   LARGE SCREEN
-========================================================= */
-
-@media (max-width: 1250px) {
-
-    .criteria5qual-layout .criteria5qual {
-
-        width: calc(100% - 320px);
-        margin-left: 320px;
-        padding: 16px;
-
-    }
-
-
-    .criteria5qual .cards-row {
-
-        grid-template-columns: 1fr 1fr;
-
-    }
-
-}
-
-
-/* =========================================================
-   TABLET / SMALL LAPTOP
+   SMALL SCREEN
 ========================================================= */
 
 @media (max-width: 1100px) {
-
-    .criteria5qual-layout .criteria5qual {
-
-        width: calc(100% - 210px);
-
-        margin-left: 210px;
-
-        padding: 15px;
-
-    }
-
 
     .criteria5qual .cards-row {
 
         grid-template-columns: 1fr;
 
     }
-
 
     .criteria5qual .action-buttons {
 
@@ -1109,27 +934,14 @@
 
 
 /* =========================================================
-   SMALL TABLET
+   TABLET
 ========================================================= */
 
 @media (max-width: 800px) {
 
-    .criteria5qual-layout {
-
-        display: block;
-
-    }
-
-
-    .criteria5qual-layout .criteria5qual {
-
-        width: 100%;
-
-        margin-left: 0;
+    .criteria5qual {
 
         padding: 12px;
-
-        min-height: auto;
 
     }
 
@@ -1170,23 +982,16 @@
     }
 
 
-    .criteria5qual .qualification-layout {
-
-        padding: 12px 8px 20px;
-
-    }
-
-
     .criteria5qual .cards-row {
 
-        padding: 0;
+        padding: 0 8px;
 
     }
 
 
     .criteria5qual .action-buttons {
 
-        padding: 0 0 20px;
+        padding: 0 8px 20px;
 
         gap: 10px;
 
@@ -1210,7 +1015,7 @@
 
 @media (max-width: 600px) {
 
-    .criteria5qual-layout .criteria5qual {
+    .criteria5qual {
 
         padding: 8px;
 
@@ -1251,9 +1056,9 @@
     }
 
 
-    .criteria5qual .qualification-layout {
+    .criteria5qual .table-container {
 
-        padding: 8px 4px 15px;
+        padding: 8px;
 
     }
 
@@ -1263,6 +1068,8 @@
         margin-top: 20px;
 
         gap: 12px;
+
+        padding: 0 8px;
 
     }
 
@@ -1330,31 +1137,11 @@
 
 @media print {
 
-    .criteria5qual-layout {
-
-        display: block;
+    .criteria5qual {
 
         background: #ffffff;
-
-    }
-
-
-    .criteria5qual-layout > *:first-child {
-
-        display: none !important;
-
-    }
-
-
-    .criteria5qual-layout .criteria5qual {
-
-        width: 100%;
-
-        margin-left: 0;
 
         padding: 0;
-
-        background: #ffffff;
 
     }
 
@@ -1391,17 +1178,4 @@
 
     }
 
-}
-/* =========================================================
-   CRITERIA 5.2 - SAME SIDEBAR WIDTH AS CRITERIA 5.1
-========================================================= */
-
-.criteria5qual-layout .sidebar {
-    width: 230px;
-}
-
-.criteria5qual-layout .criteria5qual {
-    margin-left: 230px;
-    width: calc(100% - 230px);
-    max-width: calc(100% - 230px);
 }

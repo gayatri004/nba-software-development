@@ -1433,22 +1433,23 @@ function CourseMatrix({ onNext, onPrevious }) {
   // =====================================================
   // RETURN
   // =====================================================
+return (
 
-  return (
+  <div className="course-matrix-layout">
 
-    <div className="nba-layout">
+    {/* =================================================
+        NBA SIDEBAR
+    ================================================= */}
 
-      {/* =================================================
-          NBA SIDEBAR
-      ================================================= */}
+    <NBASidebar />
 
-      <NBASidebar />
+    {/* =================================================
+        MAIN CONTENT
+    ================================================= */}
 
-      {/* =================================================
-          MAIN COURSE MATRIX CONTENT
-      ================================================= */}
+    <main className="course-matrix-content">
 
-      <main className="course-matrix-page">
+      <div className="course-matrix-page">
 
         {/* ================= PAGE TITLE ================= */}
 
@@ -1473,9 +1474,7 @@ function CourseMatrix({ onNext, onPrevious }) {
             <select
               value={academicYear}
               onChange={(e) =>
-                setAcademicYear(
-                  e.target.value
-                )
+                setAcademicYear(e.target.value)
               }
             >
 
@@ -1515,6 +1514,7 @@ function CourseMatrix({ onNext, onPrevious }) {
 
           </div>
 
+
           <div className="filter-box">
 
             <label>
@@ -1524,9 +1524,7 @@ function CourseMatrix({ onNext, onPrevious }) {
             <select
               value={department}
               onChange={(e) =>
-                setDepartment(
-                  e.target.value
-                )
+                setDepartment(e.target.value)
               }
             >
 
@@ -1597,8 +1595,10 @@ function CourseMatrix({ onNext, onPrevious }) {
         </div>
 
         {/* =================================================
-            1.4.1 COURSE OUTCOMES
+            बाकी तुझा existing content इथेच राहील
         ================================================= */}
+
+        {/* 1.4.1 COURSE OUTCOMES */}
 
         <div className="section-card">
 
@@ -1612,14 +1612,10 @@ function CourseMatrix({ onNext, onPrevious }) {
 
               <div className="top-row">
 
-                {/* MAPPED PO */}
-
                 <select
                   value={mappedPO}
                   onChange={(e) =>
-                    setMappedPO(
-                      e.target.value
-                    )
+                    setMappedPO(e.target.value)
                   }
                 >
 
@@ -1627,29 +1623,14 @@ function CourseMatrix({ onNext, onPrevious }) {
                     Select PO
                   </option>
 
-                  <option value="PO1">
-                    PO1
-                  </option>
-
-                  <option value="PO2">
-                    PO2
-                  </option>
-
-                  <option value="PO3">
-                    PO3
-                  </option>
-
-                  <option value="PO4">
-                    PO4
-                  </option>
-
-                  <option value="PO5">
-                    PO5
-                  </option>
+                  <option value="PO1">PO1</option>
+                  <option value="PO2">PO2</option>
+                  <option value="PO3">PO3</option>
+                  <option value="PO4">PO4</option>
+                  <option value="PO5">PO5</option>
 
                 </select>
 
-                {/* SUBJECT */}
 
                 <div className="filter-box">
 
@@ -1658,13 +1639,9 @@ function CourseMatrix({ onNext, onPrevious }) {
                   </label>
 
                   <select
-                    value={
-                      selectedSubject
-                    }
+                    value={selectedSubject}
                     onChange={(e) =>
-                      setSelectedSubject(
-                        e.target.value
-                      )
+                      setSelectedSubject(e.target.value)
                     }
                   >
 
@@ -1672,74 +1649,53 @@ function CourseMatrix({ onNext, onPrevious }) {
                       Select Subject
                     </option>
 
-                    {subjects.map(
-                      (subject) => (
+                    {subjects.map((subject) => (
 
-                        <option
-                          key={
-                            subject.course_code
-                          }
-                          value={
-                            subject.course_code
-                          }
-                        >
+                      <option
+                        key={subject.course_code}
+                        value={subject.course_code}
+                      >
 
-                          {
-                            subject.course_name
-                          }
+                        {subject.course_name}
+                        {" ("}
+                        {subject.course_code}
+                        {")"}
 
-                          {" ("}
+                      </option>
 
-                          {
-                            subject.course_code
-                          }
-
-                          {")"}
-
-                        </option>
-
-                      )
-                    )}
+                    ))}
 
                   </select>
 
                 </div>
 
-                {/* COURSE OUTCOME */}
-
-                <textarea
-                  placeholder="Enter Course Outcome"
-                  value={
-                    courseOutcome
-                  }
-                  onChange={(e) =>
-                    setCourseOutcome(
-                      e.target.value
-                    )
-                  }
-                  className="co-textarea"
-                />
-
-                {/* ADD BUTTON */}
-
-                <button
-                  className="add-btn"
-                  onClick={
-                    handleAddCO
-                  }
-                >
-
-                  <FaPlus />
-
-                  {editId
-                    ? "Update Course Outcome"
-                    : "Add Course Outcome"}
-
-                </button>
-
               </div>
 
-              {/* CO TABLE */}
+
+              <textarea
+                placeholder="Enter Course Outcome"
+                value={courseOutcome}
+                onChange={(e) =>
+                  setCourseOutcome(e.target.value)
+                }
+                className="co-textarea"
+              />
+
+
+              <button
+                type="button"
+                className="add-btn"
+                onClick={handleAddCO}
+              >
+
+                <FaPlus />
+
+                {editId
+                  ? "Update Course Outcome"
+                  : "Add Course Outcome"}
+
+              </button>
+
 
               <table>
 
@@ -1747,9 +1703,7 @@ function CourseMatrix({ onNext, onPrevious }) {
 
                   <tr>
 
-                    <th>
-                      #
-                    </th>
+                    <th>#</th>
 
                     <th>
                       Course Outcomes
@@ -1771,69 +1725,60 @@ function CourseMatrix({ onNext, onPrevious }) {
 
                   {courseOutcomes
                     .slice(0, 5)
-                    .map(
-                      (row, index) => (
+                    .map((row, index) => (
 
-                        <tr
-                          key={row.id}
-                        >
+                      <tr key={row.id}>
 
-                          <td>
-                            {index + 1}
-                          </td>
+                        <td>
+                          {index + 1}
+                        </td>
 
-                          <td>
-                            {
-                              row.course_outcome
-                            }
-                          </td>
+                        <td className="co-description">
+                          {row.course_outcome}
+                        </td>
 
-                          <td>
-                            {
-                              row.mapped_po
-                            }
-                          </td>
+                        <td>
+                          {row.mapped_po}
+                        </td>
 
-                          <td>
+                        <td>
+
+                          <div className="action-buttons">
 
                             <button
                               type="button"
+                              className="edit-btn"
                               onClick={() =>
-                                handleEdit(
-                                  row
-                                )
+                                handleEdit(row)
                               }
                             >
-
                               <FaEdit />
-
                             </button>
 
                             <button
                               type="button"
+                              className="delete-btn"
                               onClick={() =>
-                                handleDelete(
-                                  row.id
-                                )
+                                handleDelete(row.id)
                               }
                             >
-
                               <FaTrash />
-
                             </button>
 
-                          </td>
+                          </div>
 
-                        </tr>
+                        </td>
 
-                      )
-                    )}
+                      </tr>
+
+                    ))}
 
                 </tbody>
 
               </table>
 
             </div>
+
 
             {/* OUTCOME FILE */}
 
@@ -1853,9 +1798,7 @@ function CourseMatrix({ onNext, onPrevious }) {
                 accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"
                 onChange={(e) => {
 
-                  if (
-                    e.target.files.length > 0
-                  ) {
+                  if (e.target.files.length > 0) {
 
                     const file =
                       e.target.files[0];
@@ -1867,60 +1810,46 @@ function CourseMatrix({ onNext, onPrevious }) {
                       file
                     );
 
-                    setDisplayFileNames(
-                      (prev) => ({
-
-                        ...prev,
-
-                        coFile:
-                          file.name
-
-                      })
-                    );
+                    setDisplayFileNames((prev) => ({
+                      ...prev,
+                      coFile: file.name
+                    }));
 
                   }
 
                 }}
               />
 
+
               {(coFile ||
                 displayFileNames.coFile) && (
 
                 <div className="pdf-name">
 
-                  {
-                    coFile?.name ||
-                    displayFileNames.coFile
-                  }
+                  {coFile?.name ||
+                    displayFileNames.coFile}
 
                 </div>
 
               )}
+
 
               <div className="document-actions">
 
                 <button
                   type="button"
                   className="view-btn"
-                  onClick={
-                    handleOutcomeView
-                  }
+                  onClick={handleOutcomeView}
                 >
-
                   <FaEye />
-
                 </button>
 
                 <button
                   type="button"
                   className="download-btn"
-                  onClick={
-                    handleOutcomeDownload
-                  }
+                  onClick={handleOutcomeDownload}
                 >
-
                   <FaDownload />
-
                 </button>
 
               </div>
@@ -1931,8 +1860,9 @@ function CourseMatrix({ onNext, onPrevious }) {
 
         </div>
 
+
         {/* =================================================
-            1.4.2 COURSE ARTICULATION MATRIX
+            1.4.2 MATRIX
         ================================================= */}
 
         <div className="section-card">
@@ -1945,18 +1875,12 @@ function CourseMatrix({ onNext, onPrevious }) {
 
             <div className="left-content">
 
-              {/* SUBJECT */}
-
               <div className="top-row">
 
                 <select
-                  value={
-                    selectedSubject
-                  }
+                  value={selectedSubject}
                   onChange={(e) =>
-                    setSelectedSubject(
-                      e.target.value
-                    )
+                    setSelectedSubject(e.target.value)
                   }
                 >
 
@@ -1964,40 +1888,26 @@ function CourseMatrix({ onNext, onPrevious }) {
                     Select Subject
                   </option>
 
-                  {subjects.map(
-                    (subject) => (
+                  {subjects.map((subject) => (
 
-                      <option
-                        key={
-                          subject.course_code
-                        }
-                        value={
-                          subject.course_code
-                        }
-                      >
+                    <option
+                      key={subject.course_code}
+                      value={subject.course_code}
+                    >
 
-                        {
-                          subject.course_name
-                        }
+                      {subject.course_name}
+                      {" ("}
+                      {subject.course_code}
+                      {")"}
 
-                        {" ("}
+                    </option>
 
-                        {
-                          subject.course_code
-                        }
-
-                        {")"}
-
-                      </option>
-
-                    )
-                  )}
+                  ))}
 
                 </select>
 
               </div>
 
-              {/* MATRIX TABLE */}
 
               <table>
 
@@ -2005,423 +1915,81 @@ function CourseMatrix({ onNext, onPrevious }) {
 
                   <tr>
 
-                    <th>
-                      CO/PO
-                    </th>
-
-                    <th>
-                      PO1
-                    </th>
-
-                    <th>
-                      PO2
-                    </th>
-
-                    <th>
-                      PO3
-                    </th>
-
-                    <th>
-                      PO4
-                    </th>
-
-                    <th>
-                      PO5
-                    </th>
-
-                    <th>
-                      Action
-                    </th>
+                    <th>CO/PO</th>
+                    <th>PO1</th>
+                    <th>PO2</th>
+                    <th>PO3</th>
+                    <th>PO4</th>
+                    <th>PO5</th>
+                    <th>Action</th>
 
                   </tr>
 
                 </thead>
 
+
                 <tbody>
 
-                  {/* CO1 */}
+                  {["CO1", "CO2", "CO3"].map((co) => (
 
-                  <tr id="CO1">
+                    <tr id={co} key={co}>
 
-                    <td>
-                      CO1
-                    </td>
+                      <td>
+                        {co}
+                      </td>
 
-                    <td>
 
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO1.po1
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO1",
-                            "po1",
-                            e.target.value
-                          )
-                        }
-                      />
+                      {["po1", "po2", "po3", "po4", "po5"].map(
+                        (po) => (
 
-                    </td>
+                          <td key={po}>
 
-                    <td>
+                            <input
+                              type="number"
+                              min="0"
+                              max="100"
+                              value={
+                                matrixData[co][po]
+                              }
+                              onChange={(e) =>
+                                handleMatrixChange(
+                                  co,
+                                  po,
+                                  e.target.value
+                                )
+                              }
+                            />
 
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO1.po2
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO1",
-                            "po2",
-                            e.target.value
-                          )
-                        }
-                      />
+                          </td>
 
-                    </td>
+                        )
+                      )}
 
-                    <td>
 
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO1.po3
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO1",
-                            "po3",
-                            e.target.value
-                          )
-                        }
-                      />
+                      <td>
 
-                    </td>
+                        <button
+                          type="button"
+                          className="matrix-save-btn"
+                          onClick={() =>
+                            handleMatrixSave(co)
+                          }
+                        >
+                          Save
+                        </button>
 
-                    <td>
+                      </td>
 
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO1.po4
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO1",
-                            "po4",
-                            e.target.value
-                          )
-                        }
-                      />
+                    </tr>
 
-                    </td>
-
-                    <td>
-
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO1.po5
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO1",
-                            "po5",
-                            e.target.value
-                          )
-                        }
-                      />
-
-                    </td>
-
-                    <td>
-
-                      <button
-                        type="button"
-                        className="matrix-save-btn"
-                        onClick={() =>
-                          handleMatrixSave(
-                            "CO1"
-                          )
-                        }
-                      >
-                        Save
-                      </button>
-
-                    </td>
-
-                  </tr>
-
-                  {/* CO2 */}
-
-                  <tr id="CO2">
-
-                    <td>
-                      CO2
-                    </td>
-
-                    <td>
-
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO2.po1
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO2",
-                            "po1",
-                            e.target.value
-                          )
-                        }
-                      />
-
-                    </td>
-
-                    <td>
-
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO2.po2
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO2",
-                            "po2",
-                            e.target.value
-                          )
-                        }
-                      />
-
-                    </td>
-
-                    <td>
-
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO2.po3
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO2",
-                            "po3",
-                            e.target.value
-                          )
-                        }
-                      />
-
-                    </td>
-
-                    <td>
-
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO2.po4
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO2",
-                            "po4",
-                            e.target.value
-                          )
-                        }
-                      />
-
-                    </td>
-
-                    <td>
-
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO2.po5
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO2",
-                            "po5",
-                            e.target.value
-                          )
-                        }
-                      />
-
-                    </td>
-
-                    <td>
-
-                      <button
-                        type="button"
-                        className="matrix-save-btn"
-                        onClick={() =>
-                          handleMatrixSave(
-                            "CO2"
-                          )
-                        }
-                      >
-                        Save
-                      </button>
-
-                    </td>
-
-                  </tr>
-
-                  {/* CO3 */}
-
-                  <tr id="CO3">
-
-                    <td>
-                      CO3
-                    </td>
-
-                    <td>
-
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO3.po1
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO3",
-                            "po1",
-                            e.target.value
-                          )
-                        }
-                      />
-
-                    </td>
-
-                    <td>
-
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO3.po2
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO3",
-                            "po2",
-                            e.target.value
-                          )
-                        }
-                      />
-
-                    </td>
-
-                    <td>
-
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO3.po3
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO3",
-                            "po3",
-                            e.target.value
-                          )
-                        }
-                      />
-
-                    </td>
-
-                    <td>
-
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO3.po4
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO3",
-                            "po4",
-                            e.target.value
-                          )
-                        }
-                      />
-
-                    </td>
-
-                    <td>
-
-                      <input
-                        type="number"
-                        min="0"
-                        max="100"
-                        value={
-                          matrixData.CO3.po5
-                        }
-                        onChange={(e) =>
-                          handleMatrixChange(
-                            "CO3",
-                            "po5",
-                            e.target.value
-                          )
-                        }
-                      />
-
-                    </td>
-
-                    <td>
-
-                      <button
-                        type="button"
-                        className="matrix-save-btn"
-                        onClick={() =>
-                          handleMatrixSave(
-                            "CO3"
-                          )
-                        }
-                      >
-                        Save
-                      </button>
-
-                    </td>
-
-                  </tr>
+                  ))}
 
                 </tbody>
 
               </table>
 
             </div>
+
 
             {/* MATRIX FILE */}
 
@@ -2441,9 +2009,7 @@ function CourseMatrix({ onNext, onPrevious }) {
                 accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"
                 onChange={(e) => {
 
-                  if (
-                    e.target.files.length > 0
-                  ) {
+                  if (e.target.files.length > 0) {
 
                     const file =
                       e.target.files[0];
@@ -2455,60 +2021,46 @@ function CourseMatrix({ onNext, onPrevious }) {
                       file
                     );
 
-                    setDisplayFileNames(
-                      (prev) => ({
-
-                        ...prev,
-
-                        matrixFile:
-                          file.name
-
-                      })
-                    );
+                    setDisplayFileNames((prev) => ({
+                      ...prev,
+                      matrixFile: file.name
+                    }));
 
                   }
 
                 }}
               />
 
+
               {(matrixFile ||
                 displayFileNames.matrixFile) && (
 
                 <div className="pdf-name">
 
-                  {
-                    matrixFile?.name ||
-                    displayFileNames.matrixFile
-                  }
+                  {matrixFile?.name ||
+                    displayFileNames.matrixFile}
 
                 </div>
 
               )}
+
 
               <div className="document-actions">
 
                 <button
                   type="button"
                   className="view-btn"
-                  onClick={
-                    handleMatrixView
-                  }
+                  onClick={handleMatrixView}
                 >
-
                   <FaEye />
-
                 </button>
 
                 <button
                   type="button"
                   className="download-btn"
-                  onClick={
-                    handleMatrixDownload
-                  }
+                  onClick={handleMatrixDownload}
                 >
-
                   <FaDownload />
-
                 </button>
 
               </div>
@@ -2519,8 +2071,9 @@ function CourseMatrix({ onNext, onPrevious }) {
 
         </div>
 
+
         {/* =================================================
-            FOOTER BUTTONS
+            FOOTER
         ================================================= */}
 
         <div className="footer-buttons">
@@ -2528,12 +2081,11 @@ function CourseMatrix({ onNext, onPrevious }) {
           <button
             type="button"
             className="previous-btn"
-            onClick={
-              handlePrevious
-            }
+            onClick={handlePrevious}
           >
             ← Previous
           </button>
+
 
           <button
             type="button"
@@ -2545,47 +2097,41 @@ function CourseMatrix({ onNext, onPrevious }) {
             ← Back
           </button>
 
+
           <button
             type="button"
             className="submit-btn"
-            onClick={
-              handleSubmit
-            }
+            onClick={handleSubmit}
           >
             <FaSave />
-            {" "}
             Save
           </button>
+
 
           <button
             type="button"
             className="clear-btn"
-            onClick={
-              handleClear
-            }
+            onClick={handleClear}
           >
             Clear
           </button>
 
+
           <button
             type="button"
             className="print-btn"
-            onClick={
-              handlePrint
-            }
+            onClick={handlePrint}
           >
             <FaPrint />
-            {" "}
             Print
           </button>
+
 
           <button
             type="button"
             className="next-page-btn"
             onClick={() =>
-              navigate(
-                "/articulation-matrix"
-              )
+              navigate("/articulation-matrix")
             }
           >
             Next →
@@ -2593,11 +2139,13 @@ function CourseMatrix({ onNext, onPrevious }) {
 
         </div>
 
-      </main>
+      </div>
 
-    </div>
+    </main>
 
-  );
+  </div>
+
+);
 
 }
 

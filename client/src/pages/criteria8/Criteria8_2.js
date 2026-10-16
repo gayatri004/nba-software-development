@@ -39,13 +39,11 @@ const Criteria8_2 = () => {
         }
     ];
 
-    // 1. Initial State: First check localStorage, then fallback to initialTableData
     const [tableData, setTableData] = useState(() => {
         const savedData = localStorage.getItem(STORAGE_KEY);
         if (savedData) {
             try {
                 const parsed = JSON.parse(savedData);
-                // Ensure fileObject is initialized to null after parsing from local storage
                 return parsed.map(row => ({ ...row, fileObject: null }));
             } catch (e) {
                 console.error("Error parsing localStorage data:", e);
@@ -56,14 +54,11 @@ const Criteria8_2 = () => {
 
     const [isSaved, setIsSaved] = useState(false);
 
-    // 2. Auto-save tableData to localStorage whenever tableData changes
     useEffect(() => {
-        // Strip non-serializable properties (like fileObject) before saving to localStorage
         const dataToSave = tableData.map(({ fileObject, ...rest }) => rest);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
     }, [tableData]);
 
-    // API Load Data
     const loadData = async () => {
         try {
             const res = await axios.get("http://localhost:5000/api/criteria/8/8.2/data");
@@ -98,7 +93,6 @@ const Criteria8_2 = () => {
         loadData();
     }, []);
 
-    // Add Row Logic
     const handleAddRow = () => {
         const nextSn = tableData.length + 1;
         const newRow = {
@@ -155,7 +149,6 @@ const Criteria8_2 = () => {
         }
     };
 
-    // Print Handling
     const readFileContentHTML = async (row) => {
         let fileBlob = row.fileObject;
         if (!fileBlob && row.fileName) {
@@ -248,7 +241,6 @@ const Criteria8_2 = () => {
         setTimeout(() => { printWindow.print(); }, 1200);
     };
 
-    // Save Draft Handling
     const handleSave = async () => {
         if (isSaved) { alert("Already Data is Saved!"); return; }
         try {
@@ -272,7 +264,6 @@ const Criteria8_2 = () => {
         } catch (err) { alert("Draft Save Failed."); }
     };
 
-    // Clear handler: Clears state AND removes key from localStorage
     const handleClear = () => {
         if (window.confirm("Are you sure you want to clear table inputs?")) {
             setTableData(initialTableData);
@@ -281,7 +272,6 @@ const Criteria8_2 = () => {
         }
     };
 
-    // Delete handler: Removes state and local storage state
     const handleDelete = () => {
         if (window.confirm("Delete data from Frontend view? (Backend data won't be deleted)")) {
             setTableData(initialTableData);
@@ -291,7 +281,7 @@ const Criteria8_2 = () => {
     };
 
     return (
-      <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f4f6f9', width: '100%', overflowX: 'hidden' }}>
+      <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8fafc', width: '100%', overflowX: 'hidden' }}>
         
         {/* Fixed Left Sidebar Container */}
         <div style={{ width: '250px', flexShrink: 0, position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 100 }}>
@@ -299,99 +289,139 @@ const Criteria8_2 = () => {
         </div>
 
         {/* Right Main Content Area */}
-        <div style={{ flex: 1, marginLeft: '250px', padding: '25px', width: 'calc(100% - 250px)', boxSizing: 'border-box' }}>
+        <div style={{ flex: 1, marginLeft: '250px', padding: '15px', width: 'calc(100% - 250px)', boxSizing: 'border-box' }}>
             
             {/* Header Box */}
-            <div style={{ backgroundColor: '#0b2545', color: '#ffffff', padding: '14px 20px', fontSize: '16px', fontWeight: 'bold', borderRadius: '4px', marginBottom: '20px' }}>
-                8.2 Academic Audit and Actions Taken thereof during the Period of Assessment (15)
+            <div style={{ backgroundColor: '#0a2540', color: '#ffffff', padding: '10px 14px', fontSize: '13px', fontWeight: 'bold', borderRadius: '6px 6px 0 0' }}>
+                8.2 Academic Audit and Actions Taken thereof during the Period of Assessment 
             </div>
 
-            <div style={{ background: '#ffffff', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 4px rgba(0,0,0,0.08)' }}>
+            <div style={{ background: '#ffffff', padding: '12px', borderRadius: '0 0 6px 6px', border: '1px solid #cbd5e0', borderTop: 'none', boxShadow: '0 1px 4px rgba(0,0,0,0.08)' }}>
 
-                {/* Table */}
-                <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: '#fff', fontSize: '13px' }}>
+                {/* Table - Compact Size */}
+                <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: '#fff', fontSize: '12px', border: '1px solid #cbd5e0' }}>
                     <thead>
-                        <tr style={{ backgroundColor: '#f0f4f9', borderBottom: '2px solid #cbd5e1' }}>
-                            <th rowSpan="2" style={{ width: '6%', padding: '12px 8px', border: '1px solid #d1d5db', textAlign: 'center', fontWeight: '700', color: '#0f2a4a' }}>Sr. No.</th>
-                            <th rowSpan="2" style={{ width: '32%', padding: '12px 10px', border: '1px solid #d1d5db', textAlign: 'left', fontWeight: '700', color: '#0f2a4a' }}>Point</th>
-                            <th rowSpan="2" style={{ width: '42%', padding: '12px 10px', border: '1px solid #d1d5db', textAlign: 'center', fontWeight: '700', color: '#0f2a4a' }}>Description / Details</th>
-                            <th colSpan="3" style={{ width: '20%', padding: '8px', border: '1px solid #d1d5db', textAlign: 'center', fontWeight: '700', color: '#0f2a4a' }}>Action</th>
-                        </tr>
-                        <tr style={{ backgroundColor: '#f0f4f9' }}>
-                            <th style={{ padding: '8px', border: '1px solid #d1d5db', textAlign: 'center', fontWeight: '600', fontSize: '12px', color: '#0f2a4a' }}>View</th>
-                            <th style={{ padding: '8px', border: '1px solid #d1d5db', textAlign: 'center', fontWeight: '600', fontSize: '12px', color: '#0f2a4a' }}>Upload</th>
-                            <th style={{ padding: '8px', border: '1px solid #d1d5db', textAlign: 'center', fontWeight: '600', fontSize: '12px', color: '#0f2a4a' }}>Download</th>
+                        <tr style={{ backgroundColor: '#f1f5f9', color: '#1e293b', borderBottom: '2px solid #cbd5e0' }}>
+                            <th style={{ width: '6%', padding: '6px 4px', fontWeight: 'bold', textAlign: 'center', color: '#0a2540' }}>Sr. No.</th>
+                            <th style={{ width: '30%', padding: '6px 8px', fontWeight: 'bold', textAlign: 'left', color: '#0a2540' }}>Point</th>
+                            <th style={{ width: '36%', padding: '6px 8px', fontWeight: 'bold', textAlign: 'center', color: '#0a2540' }}>Description / Details</th>
+                            <th style={{ width: '28%', padding: '6px 6px', fontWeight: 'bold', textAlign: 'center', color: '#0a2540' }}>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {tableData.map((row, index) => (
-                            <tr key={row.id} style={{ backgroundColor: index % 2 === 1 ? '#f8fafc' : '#ffffff' }}>
-                                <td style={{ border: '1px solid #e5e7eb', textAlign: 'center', padding: '12px 8px', fontWeight: 'bold', color: '#334155' }}>
+                        {tableData.map((row) => (
+                            <tr key={row.id} style={{ borderBottom: '1px solid #e2e8f0' }}>
+                                <td style={{ fontWeight: 'bold', textAlign: 'center', padding: '6px 4px', color: '#2d3748', verticalAlign: 'middle' }}>
                                     {row.s_n}
                                 </td>
                                 
-                                <td style={{ border: '1px solid #e5e7eb', padding: '10px 12px', color: '#1e293b' }}>
+                                <td style={{ padding: '6px 8px', color: '#2d3748', verticalAlign: 'middle' }}>
                                     {row.s_n <= 3 ? (
-                                        row.point
+                                        <span style={{ fontSize: '12px', fontWeight: '500' }}>{row.point}</span>
                                     ) : (
                                         <input 
                                             type="text" 
                                             value={row.point} 
                                             onChange={(e) => handleInputChange(row.id, 'point', e.target.value)}
                                             placeholder="Enter Point..."
-                                            style={{ width: '100%', padding: '6px 10px', border: '1px solid #cbd5e1', borderRadius: '4px', outline: 'none' }}
+                                            style={{ width: '100%', padding: '4px 6px', border: '1px solid #cbd5e0', borderRadius: '4px', fontSize: '12px', fontWeight: '500' }}
                                         />
                                     )}
                                 </td>
                                 
-                                <td style={{ border: '1px solid #e5e7eb', padding: '10px 12px' }}>
+                                <td style={{ padding: '6px 8px', verticalAlign: 'middle' }}>
                                     <textarea 
                                         rows="2"
                                         value={row.description || ''} 
                                         onChange={(e) => handleInputChange(row.id, 'description', e.target.value)} 
                                         placeholder="Enter details..."
-                                        style={{ width: '100%', padding: '6px 10px', border: '1px solid #cbd5e1', borderRadius: '4px', outline: 'none', resize: 'vertical', fontFamily: 'inherit' }}
+                                        style={{ width: '100%', height: '34px', padding: '4px 6px', border: '1px solid #cbd5e0', borderRadius: '4px', resize: 'vertical', fontSize: '12px', boxSizing: 'border-box', outline: 'none' }}
                                     />
-                                    {row.fileName && row.fileName !== 'No file chosen' && (
-                                        <div style={{ fontSize: '11px', color: '#16a34a', marginTop: '4px', fontWeight: '600' }}>
-                                            📄 {row.fileName}
-                                        </div>
-                                    )}
                                 </td>
                                 
-                                <td style={{ border: '1px solid #e5e7eb', textAlign: 'center', padding: '8px' }}>
-                                    <button 
-                                        type="button" 
-                                        onClick={() => handleViewFile(row)} 
-                                        style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '16px' }}
-                                        title="View File"
-                                    >
-                                        👁️
-                                    </button>
-                                </td>
+                                {/* Compact Action Column */}
+                                <td style={{ textAlign: 'center', verticalAlign: 'middle', padding: '6px 6px' }}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
+                                        
+                                        <input 
+                                            type="file" 
+                                            id={`file-input-${row.id}`}
+                                            style={{ display: 'none' }}
+                                            onChange={(e) => handleFileChange(row.id, e)}
+                                            accept=".pdf,.png,.jpg,.jpeg,.docx,.xlsx,.xls,.csv"
+                                        />
 
-                                <td style={{ border: '1px solid #e5e7eb', textAlign: 'center', padding: '8px' }}>
-                                    <label htmlFor={`file-input-${row.id}`} style={{ cursor: 'pointer', fontSize: '16px', display: 'inline-block' }}>
-                                        {row.fileName ? '✅' : '📤'}
-                                    </label>
-                                    <input 
-                                        id={`file-input-${row.id}`} 
-                                        type="file" 
-                                        accept=".pdf,.png,.jpg,.jpeg,.docx,.xlsx,.xls,.csv" 
-                                        style={{ display: 'none' }} 
-                                        onChange={(e) => handleFileChange(row.id, e)} 
-                                    />
-                                </td>
+                                        {/* Choose File Button */}
+                                        <button 
+                                            type="button"
+                                            onClick={() => document.getElementById(`file-input-${row.id}`).click()}
+                                            style={{ 
+                                                padding: '3px 10px', 
+                                                backgroundColor: '#f8fafc', 
+                                                border: '1px solid #cbd5e0', 
+                                                borderRadius: '3px', 
+                                                cursor: 'pointer', 
+                                                fontSize: '11px', 
+                                                fontWeight: '500', 
+                                                color: '#2d3748'
+                                            }}
+                                        >
+                                            Choose File
+                                        </button>
+                                        
+                                        {/* Selected File Name Displayed Directly Below */}
+                                        <div style={{ width: '100%', textAlign: 'center' }}>
+                                            {row.fileName && row.fileName !== 'No file chosen' ? (
+                                                <span 
+                                                    style={{ fontSize: '10.5px', color: '#2b6cb0', display: 'block', maxWidth: '160px', margin: '0 auto', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} 
+                                                    title={row.fileName}
+                                                >
+                                                    📄 {row.fileName}
+                                                </span>
+                                            ) : (
+                                                <span style={{ fontSize: '10px', color: '#a0aec0', fontStyle: 'italic', display: 'block' }}>
+                                                    No file chosen
+                                                </span>
+                                            )}
+                                        </div>
 
-                                <td style={{ border: '1px solid #e5e7eb', textAlign: 'center', padding: '8px' }}>
-                                    <button 
-                                        type="button" 
-                                        onClick={() => handleDownloadFile(row)} 
-                                        style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '16px' }}
-                                        title="Download File"
-                                    >
-                                        📥
-                                    </button>
+                                        {/* View and Download Buttons Side by Side */}
+                                        <div style={{ display: 'flex', gap: '4px', justifyContent: 'center', marginTop: '2px' }}>
+                                            <button 
+                                                type="button" 
+                                                onClick={() => handleViewFile(row)}
+                                                style={{ 
+                                                    padding: '2px 10px', 
+                                                    backgroundColor: '#3182ce', 
+                                                    color: '#fff', 
+                                                    border: 'none', 
+                                                    borderRadius: '3px', 
+                                                    cursor: 'pointer', 
+                                                    fontSize: '11px', 
+                                                    fontWeight: 'bold' 
+                                                }}
+                                            >
+                                                View
+                                            </button>
+                                            <button 
+                                                type="button" 
+                                                onClick={() => handleDownloadFile(row)}
+                                                style={{ 
+                                                    padding: '2px 10px', 
+                                                    backgroundColor: '#38a169', 
+                                                    color: '#fff', 
+                                                    border: 'none', 
+                                                    borderRadius: '3px', 
+                                                    cursor: 'pointer', 
+                                                    fontSize: '11px', 
+                                                    fontWeight: 'bold' 
+                                                }}
+                                            >
+                                                Download
+                                            </button>
+                                        </div>
+
+                                    </div>
                                 </td>
                             </tr>
                         ))}
@@ -399,27 +429,25 @@ const Criteria8_2 = () => {
                 </table>
 
                 {/* Add Row Button */}
-                <div style={{ marginTop: '15px' }}>
+                <div style={{ marginTop: '8px', marginBottom: '8px' }}>
                     <button 
                         type="button" 
                         onClick={handleAddRow}
-                        style={{ backgroundColor: '#4c4b63', color: '#ffffff', border: 'none', padding: '8px 16px', borderRadius: '4px', fontWeight: '600', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '5px' }}
+                        style={{ backgroundColor: '#4a5568', color: '#ffffff', border: 'none', padding: '4px 10px', borderRadius: '4px', fontWeight: 'bold', fontSize: '11.5px', cursor: 'pointer' }}
                     >
-                        <span>+</span> Add Row
+                        ➕ Add Row
                     </button>
                 </div>
 
-                {/* Bottom Action Buttons */}
-                <div style={{ display: 'flex', gap: '10px', marginTop: '25px', alignItems: 'center', justifyContent: 'flex-start', flexWrap: 'nowrap', width: '100%', overflowX: 'auto' }}>
-                    <button type="button" onClick={() => navigate('/criteria/8.1')} style={{ backgroundColor: '#E65100', color: '#fff', padding: '8px 16px', border: 'none', borderRadius: '4px', cursor: 'pointer', whiteSpace: 'nowrap', fontSize: '13px', fontWeight: '500' }}> Previous</button>
-                    <button type="button" onClick={() => navigate('/criteria/8.1')} style={{ backgroundColor: '#37474F', color: '#fff', padding: '8px 16px', border: 'none', borderRadius: '4px', cursor: 'pointer', whiteSpace: 'nowrap', fontSize: '13px', fontWeight: '500' }}> Back</button>
-                    
-                    <button type="button" onClick={handleSave} style={{ backgroundColor: '#2E7D32', color: '#fff', padding: '8px 16px', border: 'none', borderRadius: '4px', cursor: 'pointer', whiteSpace: 'nowrap', fontSize: '13px', fontWeight: '500' }}> Save </button>
-                    <button type="button" onClick={handleClear} style={{ backgroundColor: '#f59e0b', color: '#fff', padding: '8px 16px', border: 'none', borderRadius: '4px', cursor: 'pointer', whiteSpace: 'nowrap', fontSize: '13px', fontWeight: '500' }}> Clear</button>
-                    <button type="button" onClick={handleDelete} style={{ backgroundColor: '#ef4444', color: '#fff', padding: '8px 16px', border: 'none', borderRadius: '4px', cursor: 'pointer', whiteSpace: 'nowrap', fontSize: '13px', fontWeight: '500' }}> Delete</button>
-                    <button type="button" onClick={handlePrintUploadedFile} style={{ backgroundColor: '#8b5cf6', color: '#fff', padding: '8px 16px', border: 'none', borderRadius: '4px', cursor: 'pointer', whiteSpace: 'nowrap', fontSize: '13px', fontWeight: '500' }}> Print</button>
-                    
-                    <button type="button" onClick={() => navigate('/criteria/8.3')} style={{ backgroundColor: '#0f766e', color: '#fff', padding: '8px 18px', border: 'none', borderRadius: '4px', cursor: 'pointer', whiteSpace: 'nowrap', fontSize: '13px', fontWeight: '600', marginLeft: 'auto' }}>Next </button>
+                {/* Bottom Action Buttons Centered */}
+                <div style={{ display: 'flex', gap: '8px', marginTop: '15px', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', width: '100%' }}>
+                    <button type="button" onClick={() => navigate('/criteria/8.1')} style={{ backgroundColor: '#E65100', color: '#fff', padding: '5px 12px', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' }}>Previous</button>
+                    <button type="button" onClick={() => navigate('/criteria/8.1')} style={{ backgroundColor: '#37474F', color: '#fff', padding: '5px 12px', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' }}>Back</button>
+                    <button type="button" onClick={handleSave} style={{ backgroundColor: '#2E7D32', color: '#fff', padding: '5px 12px', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' }}>Save</button>
+                    <button type="button" onClick={handleClear} style={{ backgroundColor: '#dd6b20', color: '#fff', padding: '5px 12px', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' }}>Clear</button>
+                    <button type="button" onClick={handleDelete} style={{ backgroundColor: '#e53e3e', color: '#fff', padding: '5px 12px', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' }}>Delete</button>
+                    <button type="button" onClick={handlePrintUploadedFile} style={{ backgroundColor: '#805ad5', color: '#fff', padding: '5px 12px', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' }}>Print</button>
+                    <button type="button" onClick={() => navigate('/criteria/8.3')} style={{ backgroundColor: '#00695c', color: '#fff', padding: '5px 14px', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' }}>Next ➡️</button>
                 </div>
 
             </div>

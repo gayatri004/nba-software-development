@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./FacultyDevelopment.css";
+import NBASidebar from "../pages/NBASidebar";
 
 function FacultyDevelopment() {
   const navigate = useNavigate();
@@ -8,7 +9,8 @@ function FacultyDevelopment() {
   const sections = [
     {
       no: "6.1.1",
-      title: "Memberships in Professional Societies at National / International Levels",
+      title:
+        "Memberships in Professional Societies at National / International Levels",
       route: "/criteria6/membership",
     },
     {
@@ -22,82 +24,109 @@ function FacultyDevelopment() {
       route: "/criteria6/participation",
     },
     {
-  no: "6.1.3",
-  title: "Faculty Contribution in Development of SWAYAM MOOCs and other E-Content",
-  route: "/criteria6/swayam-development",
-},
-   {
-  no: "6.1.4",
-  title: "Faculty Certification of MOOCs through SWAYAM / NPTEL",
-  route: "/criteria6/moocs",
-},
+      no: "6.1.3",
+      title:
+        "Faculty Contribution in Development of SWAYAM MOOCs and other E-Content",
+      route: "/criteria6/swayam-development",
+    },
+    {
+      no: "6.1.4",
+      title: "Faculty Certification of MOOCs through SWAYAM / NPTEL",
+      route: "/criteria6/moocs",
+    },
   ];
 
   return (
-    <div className="faculty-development">
+    <div className="faculty-development-layout">
 
-      <div className="page-header">
-        <h2>Faculty Development</h2>
-        <p>Criterion 6.1 - Faculty Development Activities</p>
-      </div>
+      {/* SIDEBAR */}
+      <NBASidebar />
 
-      {sections.map((item, index) => (
-        <div className="fd-card" key={index}>
+      {/* MAIN CONTENT */}
+      <main className="faculty-development-content">
 
-          <div className="fd-left">
+        <div className="faculty-development">
 
-            <div className="fd-icon">
-              📘
-            </div>
+          {/* HEADER */}
+          <div className="page-header">
+            <h2>Faculty Development</h2>
 
-            <div>
-              <h3>
-                {item.no} {item.title}
-              </h3>
-
-              <p>
-                Maintain supporting documents and faculty records.
-              </p>
-            </div>
-
+            <p>
+              Criterion 6.1 - Faculty Development Activities
+            </p>
           </div>
 
-          <div className="fd-buttons">
-<button
-  className="fd-view-btn"
-  onClick={() => navigate(item.route + "/view")}
->
-  View
-</button>
+          {/* SECTIONS */}
+          {sections.map((item, index) => (
+            <div className="fd-card" key={index}>
 
-<button
-  className="fd-add-btn"
-  onClick={() => navigate(item.route + "/add")}
->
-  Add
-</button>
+              <div className="fd-left">
+
+                <div className="fd-icon">
+                  📘
+                </div>
+
+                <div className="fd-info">
+                  <h3>
+                    {item.no} {item.title}
+                  </h3>
+
+                  <p>
+                    Maintain supporting documents and faculty records.
+                  </p>
+                </div>
+
+              </div>
+
+              <div className="fd-buttons">
+
+                <button
+                  className="fd-view-btn"
+                  onClick={() =>
+                    navigate(item.route + "/view")
+                  }
+                >
+                  View
+                </button>
+
+                <button
+                  className="fd-add-btn"
+                  onClick={() =>
+                    navigate(item.route + "/add")
+                  }
+                >
+                  Add
+                </button>
+
+              </div>
+
+            </div>
+          ))}
+
+          {/* PREVIOUS / NEXT */}
+          <div className="module-navigation">
+
+            <button
+              className="module-prev"
+              onClick={() => navigate("/criteria5")}
+            >
+              ← Previous
+            </button>
+
+            <button
+              className="module-next"
+              onClick={() =>
+                navigate("/criteria6/faculty-activities")
+              }
+            >
+              Next →
+            </button>
 
           </div>
 
         </div>
-      ))}
-<div className="module-navigation">
 
-  <button
-    className="module-prev"
-    onClick={() => navigate("/criteria5")}
-  >
-    ← Previous
-  </button>
-
-  <button
-    className="module-next"
-    onClick={() => navigate("/criteria6/faculty-activities")}
-  >
-    Next →
-  </button>
-
-</div>
+      </main>
     </div>
   );
 }

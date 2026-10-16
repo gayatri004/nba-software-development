@@ -81,7 +81,8 @@
     font-size: 12px;
 }
 
-.data-table-71 th, .data-table-71 td {
+.data-table-71 th,
+.data-table-71 td {
     border: 1px solid #cbd5e1;
     padding: 8px 6px;
     vertical-align: middle;
@@ -102,7 +103,9 @@
 .th-util-71 { width: 15%; }
 .th-group-staff-71 { background-color: #fef3c7; }
 .th-staff-sub-71 { width: 10%; }
-.th-action-71 { width: 12%; }
+
+/* ACTION COLUMN - ONLY CHANGE */
+.th-action-71 { width: 20%; }
 
 /* इनपुट्स आणि टेक्स्टएरिया स्टाईल्स (Corners Rounded to 8px) */
 .table-input-71 {
@@ -129,7 +132,8 @@
     transition: all 0.2s ease-in-out;
 }
 
-.table-input-71:focus, .table-textarea-71:focus {
+.table-input-71:focus,
+.table-textarea-71:focus {
     border-color: #2563eb;
     outline: none;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
@@ -176,7 +180,8 @@
     text-overflow: ellipsis;
 }
 
-.btn-table-view-71, .btn-table-download-71 {
+.btn-table-view-71,
+.btn-table-download-71 {
     width: 100%;
     padding: 4px;
     font-size: 11px;
@@ -232,12 +237,12 @@
     transition: all 0.2s ease-in-out;
 }
 
-.btn-bk-71 { background-color: #475569; }     
-.btn-sv-71 { background-color: #22c55e; }     
-.btn-sub-71 { background-color: #2563eb; }   
-.btn-del-71 { background-color: #ef4444; }   
-.btn-prt-71 { background-color: #a855f7; }    
-.btn-nxt-71 { background-color: #008080; }    
+.btn-bk-71 { background-color: #475569; }
+.btn-sv-71 { background-color: #22c55e; }
+.btn-sub-71 { background-color: #2563eb; }
+.btn-del-71 { background-color: #ef4444; }
+.btn-prt-71 { background-color: #a855f7; }
+.btn-nxt-71 { background-color: #008080; }
 
 .btn-act-71:hover {
     opacity: 0.95;
@@ -264,24 +269,24 @@
     gap: 6px;
 }
 
-.square-green-71 { 
-    display: inline-block; 
-    width: 12px; 
-    height: 12px; 
-    background: #22c55e; 
-    border-radius: 2px; 
+.square-green-71 {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: #22c55e;
+    border-radius: 2px;
 }
 
-.square-red-71 { 
-    display: inline-block; 
-    width: 12px; 
-    height: 12px; 
-    background: #ef4444; 
-    border-radius: 2px; 
+.square-red-71 {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: #ef4444;
+    border-radius: 2px;
 }
 
-.c71-hidden-file { 
-    display: none; 
+.c71-hidden-file {
+    display: none;
 }
 
 /* =========================================================
@@ -301,9 +306,9 @@
     .bottom-actions-71 {
         justify-content: center;
     }
-    
+
     .btn-act-71 {
-        flex: 1 1 calc(50% - 12px); /* मोबाईलवर बटन्स व्यवस्थित बसण्यासाठी */
+        flex: 1 1 calc(50% - 12px);
         text-align: center;
     }
 }

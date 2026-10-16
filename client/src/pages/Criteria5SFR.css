@@ -1,922 +1,813 @@
 /* =========================================================
    CRITERIA 5.1 - STUDENT FACULTY RATIO
-   FINAL COMPACT CSS
+   ALL CSS IS SCOPED TO .criteria5
 ========================================================= */
 
-
-/* =========================================================
-   RESET
-========================================================= */
-
-.criteria5-layout,
-.criteria5-layout * {
-  box-sizing: border-box;
+.criteria5,
+.criteria5 * {
+    box-sizing: border-box;
 }
 
-
-/* =========================================================
-   PAGE
-========================================================= */
-
-.criteria5-layout {
-  width: 100%;
-  min-height: 100vh;
-  background: #eef3f8;
+.criteria5 {
+    width: 100%;
+    min-height: 100vh;
+    padding: 25px;
+    background: #f3f6fb;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #263238;
 }
-
-
-/* =========================================================
-   MAIN CONTENT
-========================================================= */
-
-.criteria5-layout .criteria5 {
-  width: calc(100% - 230px);
-  min-height: 100vh;
-
-  margin-left: 230px;
-  padding: 18px 20px 25px;
-
-  background: #eef3f8;
-
-  font-family: "Segoe UI", Arial, sans-serif;
-  color: #1f2937;
-
-  overflow-x: hidden;
-}
-
 
 /* =========================================================
    MAIN CARD
 ========================================================= */
 
 .criteria5 .main-card {
-  width: 100%;
-  max-width: 1500px;
-  margin: 0 auto;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px;
+    border: 1px solid #dbe5f1;
+    box-shadow: 0 8px 25px rgba(13, 71, 161, 0.08);
 }
 
-
 /* =========================================================
-   PAGE HEADER
+   PAGE HEADING
 ========================================================= */
 
 .criteria5 .page-heading {
-  width: 100%;
-
-  padding: 20px 22px;
-  margin-bottom: 14px;
-
-  background: linear-gradient(
-    135deg,
-    #1565c0,
-    #1976d2
-  );
-
-  color: #fff;
-
-  border-radius: 0 18px 18px 0;
-
-  box-shadow:
-    0 5px 15px rgba(0, 0, 0, 0.10);
+    margin-bottom: 25px;
 }
 
 .criteria5 .page-heading h1 {
-  margin: 0 0 4px;
-
-  font-size: 27px;
-  line-height: 1.2;
-
-  font-weight: 700;
+    margin: 0 0 5px;
+    color: #0d47a1;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
 }
 
 .criteria5 .page-heading h2 {
-  margin: 0;
-
-  font-size: 17px;
-  line-height: 1.3;
-
-  font-weight: 500;
+    margin: 0 0 8px;
+    color: #263238;
+    font-size: 21px;
+    font-weight: 600;
 }
 
+.criteria5 .page-heading p {
+    margin: 0;
+    color: #607080;
+    font-size: 14px;
+}
 
 /* =========================================================
    FILTER CARD
 ========================================================= */
 
 .criteria5 .filter-card {
-  width: 100%;
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
-  gap: 20px;
-
-  padding: 20px;
-
-  margin-bottom: 14px;
-
-  background: #ffffff;
-
-  border: 1px solid #d8e1eb;
-
-  border-radius: 0 0 16px 16px;
-
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 22px;
+    padding: 22px;
+    margin-bottom: 25px;
+    background: #f8fbff;
+    border: 1px solid #dce7f4;
+    border-radius: 14px;
 }
 
-
-/* =========================================================
-   FILTER ITEM
-========================================================= */
-
 .criteria5 .filter-item {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-
-  gap: 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .criteria5 .filter-item label {
-  color: #263b55;
-
-  font-size: 13px;
-  font-weight: 600;
+    color: #263238;
+    font-size: 14px;
+    font-weight: 700;
 }
 
-
-/* =========================================================
-   FILTER INPUT
-========================================================= */
-
 .criteria5 .input-box {
-  width: 100%;
-  height: 43px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 9px;
-
-  padding: 0 12px;
-
-  background: #fff;
-
-  border: 1px solid #cfd9e5;
-
-  border-radius: 8px;
+    width: 270px;
+    height: 48px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid #cbd8e8;
+    border-radius: 9px;
+    transition: 0.2s;
 }
 
 .criteria5 .input-box:focus-within {
-  border-color: #1976d2;
-
-  box-shadow:
-    0 0 0 2px rgba(25, 118, 210, 0.08);
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
 }
 
 .criteria5 .input-box svg {
-  flex-shrink: 0;
-  color: #1976d2;
+    flex-shrink: 0;
+    color: #1976d2;
+    font-size: 18px;
 }
 
 .criteria5 .input-box select {
-  width: 100%;
-  height: 100%;
-
-  border: none;
-  outline: none;
-
-  background: transparent;
-
-  color: #263238;
-
-  font-family: inherit;
-  font-size: 13px;
-
-  cursor: pointer;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #263238;
+    font-size: 14px;
+    cursor: pointer;
 }
-
 
 /* =========================================================
    SFR CARD
 ========================================================= */
 
 .criteria5 .sfr-card {
-  width: 100%;
-
-  margin-bottom: 14px;
-
-  background: #fff;
-
-  border: 1px solid #d7e0ea;
-
-  border-radius: 0 0 14px 14px;
-
-  overflow: hidden;
-
-  box-shadow:
-    0 4px 13px rgba(0, 0, 0, 0.06);
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #d7e2ef;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
 }
-
 
 /* =========================================================
    SFR HEADER
 ========================================================= */
 
 .criteria5 .sfr-header {
-  width: 100%;
-  height: 76px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 16px;
-
-  padding: 12px 20px;
-
-  background: linear-gradient(
-    90deg,
-    #1976d2,
-    #1976d2
-  );
-
-  color: #fff;
+    min-height: 76px;
+    padding: 12px 25px;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, #0d47a1, #1976d2);
+    color: #ffffff;
 }
 
 .criteria5 .sfr-header .circle {
-  width: 48px;
-  height: 48px;
-
-  min-width: 48px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  background: #fff;
-
-  color: #1565c0;
-
-  font-size: 14px;
-  font-weight: 700;
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    margin-right: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ff9800;
+    color: #ffffff;
+    font-size: 21px;
+    font-weight: 800;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
 }
 
 .criteria5 .sfr-header h3 {
-  margin: 0;
-
-  font-size: 21px;
-  font-weight: 700;
+    margin: 0;
+    color: #ffffff;
+    font-size: 23px;
+    font-weight: 700;
 }
-
 
 /* =========================================================
    SFR TABLE
 ========================================================= */
 
 .criteria5 .sfr-table {
-  width: 100%;
-
-  border-collapse: collapse;
-
-  table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
 }
 
-
-/* =========================================================
-   TABLE HEADER
-========================================================= */
+.criteria5 .sfr-table thead {
+    background: #eaf2ff;
+}
 
 .criteria5 .sfr-table th {
-  height: 65px;
-
-  padding: 8px 7px;
-
-  border: 1px solid #c9d8e8;
-
-  background: #e3f2fd;
-
-  color: #07549e;
-
-  font-size: 12.5px;
-  font-weight: 700;
-
-  line-height: 1.3;
-
-  text-align: center;
-  vertical-align: middle;
+    padding: 15px 10px;
+    border: 1px solid #d2dfef;
+    color: #0d47a1;
+    background: #eaf2ff;
+    font-size: 14px;
+    font-weight: 800;
+    text-align: center;
+    vertical-align: middle;
 }
-
-
-/* =========================================================
-   TABLE BODY
-========================================================= */
 
 .criteria5 .sfr-table td {
-  height: 78px;
-
-  padding: 8px 7px;
-
-  border: 1px solid #d9e2ec;
-
-  background: #fff;
-
-  color: #263238;
-
-  font-size: 13px;
-
-  text-align: center;
-  vertical-align: middle;
+    padding: 14px 10px;
+    border: 1px solid #e0e7ef;
+    color: #263238;
+    background: #ffffff;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
 }
 
-.criteria5 .sfr-table tbody tr:nth-child(even) td {
-  background: #fbfdff;
+.criteria5 .sfr-table tbody tr:hover td {
+    background: #f8fbff;
 }
-
-
-/* =========================================================
-   TABLE COLUMN WIDTH
-========================================================= */
-
-.criteria5 .sfr-table th:nth-child(1),
-.criteria5 .sfr-table td:nth-child(1) {
-  width: 10%;
-}
-
-.criteria5 .sfr-table th:nth-child(2),
-.criteria5 .sfr-table td:nth-child(2) {
-  width: 16%;
-}
-
-.criteria5 .sfr-table th:nth-child(3),
-.criteria5 .sfr-table td:nth-child(3) {
-  width: 13%;
-}
-
-.criteria5 .sfr-table th:nth-child(4),
-.criteria5 .sfr-table td:nth-child(4) {
-  width: 13%;
-}
-
-.criteria5 .sfr-table th:nth-child(5),
-.criteria5 .sfr-table td:nth-child(5) {
-  width: 10%;
-}
-
-.criteria5 .sfr-table th:nth-child(6),
-.criteria5 .sfr-table td:nth-child(6) {
-  width: 9%;
-}
-
-.criteria5 .sfr-table th:nth-child(7),
-.criteria5 .sfr-table td:nth-child(7) {
-  width: 29%;
-}
-
 
 /* =========================================================
    TABLE INPUTS
 ========================================================= */
 
 .criteria5 .sfr-table input {
-  width: 100%;
-  height: 38px;
-
-  padding: 5px 8px;
-
-  border: 1px solid #cbd6e2;
-
-  border-radius: 7px;
-
-  background: #fff;
-
-  color: #263238;
-
-  font-family: inherit;
-  font-size: 13px;
-
-  text-align: center;
-
-  outline: none;
+    width: 105px;
+    height: 40px;
+    padding: 5px 8px;
+    border: 1px solid #c7d5e5;
+    border-radius: 8px;
+    outline: none;
+    background: #ffffff;
+    color: #263238;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .criteria5 .sfr-table input:focus {
-  border-color: #1976d2;
-
-  box-shadow:
-    0 0 0 2px rgba(25, 118, 210, 0.10);
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
 }
 
-
 /* =========================================================
-   VIEW REPORT
+   VIEW BUTTON
 ========================================================= */
 
 .criteria5 .view-btn {
-  width: 100%;
-  min-height: 40px;
-
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 6px;
-
-  padding: 8px 10px;
-
-  border: none;
-  border-radius: 8px;
-
-  background: #1976d2;
-
-  color: #fff;
-
-  font-family: inherit;
-
-  font-size: 12px;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition: 0.2s;
+    min-width: 125px;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background: #7b1fa2;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s;
 }
 
 .criteria5 .view-btn:hover {
-  background: #125ea8;
+    background: #5e1680;
+    transform: translateY(-1px);
 }
 
-
 /* =========================================================
-   UPLOAD AREA
+   SUPPORTING DOCUMENT
 ========================================================= */
 
 .criteria5 .upload-area {
-  width: 100%;
-
-  min-height: 68px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 15px;
-
-  padding: 13px 20px;
-
-  background: #f9fbfd;
-
-  border-top: 1px solid #dfe7ef;
+    min-height: 82px;
+    padding: 18px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: #f8fbff;
+    border-top: 1px solid #dce6f2;
 }
 
+/* Upload button */
+
 .criteria5 .upload-btn {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 8px;
-
-  padding: 10px 17px;
-
-  border-radius: 8px;
-
-  background: #1976d2;
-
-  color: #fff;
-
-  font-size: 12.5px;
-  font-weight: 600;
-
-  cursor: pointer;
+    min-height: 44px;
+    padding: 11px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    border-radius: 8px;
+    background: #f57c00;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s;
+    box-shadow: 0 3px 8px rgba(245, 124, 0, 0.18);
 }
 
 .criteria5 .upload-btn:hover {
-  background: #125ea8;
+    background: #e66f00;
+    transform: translateY(-1px);
 }
 
-.criteria5 .uploaded-file-name {
-  margin: 0;
+/* Uploaded file name */
 
-  color: #475569;
+/* =====================================================
+   SUPPORTING DOCUMENT
+===================================================== */
 
-  font-size: 12.5px;
+/* =====================================================
+   SUPPORTING DOCUMENT
+   CRITERIA 5 ONLY
+===================================================== */
 
-  word-break: break-word;
+.criteria5 .upload-area{
+    width:100%;
+    min-height:120px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:28px;
+
+    padding:20px 30px;
+
+    background:#f8fbff;
+
+    border-top:1px solid #d9e5f5;
+    border-bottom:1px solid #d9e5f5;
+
+    position:relative;
 }
 
+
+/* DOCUMENT LABEL / TITLE */
+
+.criteria5 .upload-area::before{
+    content:"Supporting Document";
+
+    position:absolute;
+
+    top:10px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:#173f7a;
+
+    font-size:16px;
+    font-weight:700;
+}
+
+
+/* UPLOAD BUTTON */
+
+.criteria5 .upload-btn{
+
+    margin-top:18px;
+
+    width:490px;
+    height:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:12px;
+
+    background:#ff9200;
+
+    color:#ffffff;
+
+    border:none;
+    border-radius:8px;
+
+    font-size:14px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:0 3px 8px rgba(255,146,0,.25);
+
+    transition:all .25s ease;
+}
+
+
+.criteria5 .upload-btn:hover{
+
+    background:#f57c00;
+
+    transform:translateY(-1px);
+
+    box-shadow:0 5px 12px rgba(255,146,0,.30);
+}
+
+
+/* UPLOAD ICON */
+
+.criteria5 .upload-btn svg{
+
+    font-size:20px;
+
+    color:#7048b5;
+
+}
+
+
+/* HIDDEN FILE INPUT */
+
+.criteria5 .upload-btn input[type="file"]{
+    display:none;
+}
+
+
+/* FILE NAME */
+
+.criteria5 .uploaded-file-name{
+
+    margin-top:18px;
+
+    padding:9px 15px;
+
+    background:#eef8f0;
+
+    border:1px solid #b8dfc0;
+
+    border-radius:7px;
+
+    color:#23813a;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    max-width:350px;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+}
 
 /* =========================================================
    EVALUATION CARD
 ========================================================= */
 
 .criteria5 .evaluation-card {
-  width: 100%;
-
-  margin-top: 14px;
-
-  background: #fff;
-
-  border: 1px solid #d7e0ea;
-
-  border-radius: 12px;
-
-  overflow: hidden;
-
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    margin-top: 24px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #d8e2ee;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
-
-/* =========================================================
-   EVALUATION HEADER
-========================================================= */
+/* Header */
 
 .criteria5 .evaluation-header {
-  padding: 13px 18px;
-
-  background: #1976d2;
-
-  color: #fff;
+    padding: 16px 20px;
+    background: linear-gradient(90deg, #0d47a1, #1976d2);
+    color: #ffffff;
 }
 
 .criteria5 .evaluation-header h3 {
-  margin: 0;
-
-  font-size: 17px;
-  font-weight: 700;
+    margin: 0;
+    color: #ffffff !important;
+    font-size: 18px;
+    font-weight: 700;
 }
-
 
 /* =========================================================
    EVALUATION TABLE
 ========================================================= */
 
 .criteria5 .evaluation-table {
-  width: 100%;
-
-  border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
 }
 
 .criteria5 .evaluation-table th {
-  padding: 10px;
-
-  background: #e3f2fd;
-
-  color: #07549e;
-
-  border: 1px solid #d1deeb;
-
-  font-size: 12px;
-  font-weight: 700;
-
-  text-align: center;
+    padding: 14px;
+    border: 1px solid #d5e0ec;
+    background: #eaf2ff !important;
+    color: #0d47a1 !important;
+    font-size: 14px;
+    font-weight: 800;
+    text-align: center;
 }
 
 .criteria5 .evaluation-table td {
-  padding: 9px;
-
-  border: 1px solid #dfe6ee;
-
-  color: #334155;
-
-  font-size: 12.5px;
-
-  text-align: center;
+    padding: 13px;
+    border: 1px solid #dfe6ee;
+    background: #ffffff !important;
+    color: #263238 !important;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
 }
 
+.criteria5 .evaluation-table tbody tr:nth-child(even) td {
+    background: #f8fbff !important;
+}
+
+.criteria5 .evaluation-table tbody tr:hover td {
+    background: #edf5ff !important;
+}
 
 /* =========================================================
    SUMMARY CARD
 ========================================================= */
 
 .criteria5 .summary-card {
-  width: 100%;
-
-  margin-top: 14px;
-
-  padding: 17px;
-
-  background: #fff;
-
-  border: 1px solid #d7e0ea;
-
-  border-radius: 12px;
-
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    margin-top: 20px;
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid #d8e2ee;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 .criteria5 .summary-card h3 {
-  margin: 0 0 13px;
-
-  color: #1565c0;
-
-  font-size: 17px;
-  font-weight: 700;
+    margin: 0 0 18px;
+    color: #0d47a1 !important;
+    font-size: 18px;
+    font-weight: 800;
 }
 
-
-/* =========================================================
-   SUMMARY GRID
-========================================================= */
-
 .criteria5 .summary-grid {
-  width: 100%;
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
-  gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
 }
 
 .criteria5 .summary-grid > div {
-  min-width: 0;
-
-  padding: 12px;
-
-  background: #f8fbff;
-
-  border: 1px solid #dce6f0;
-
-  border-radius: 8px;
+    min-height: 95px;
+    padding: 16px;
+    background: #f8fbff;
+    border: 1px solid #dce7f4;
+    border-radius: 10px;
 }
 
 .criteria5 .summary-grid label {
-  display: block;
-
-  margin-bottom: 5px;
-
-  color: #64748b;
-
-  font-size: 10.5px;
-  font-weight: 600;
+    display: block;
+    margin-bottom: 9px;
+    color: #607080 !important;
+    font-size: 13px;
+    font-weight: 700;
 }
 
 .criteria5 .summary-grid p {
-  margin: 0;
-
-  color: #1565c0;
-
-  font-size: 16px;
-  font-weight: 700;
-
-  word-break: break-word;
+    margin: 0;
+    color: #0d47a1 !important;
+    font-size: 20px;
+    font-weight: 800;
 }
 
+/* Status */
+
 .criteria5 .summary-grid p.good {
-  color: #16803c;
+    color: #188038 !important;
 }
 
 .criteria5 .summary-grid p.poor {
-  color: #dc2626;
+    color: #d32f2f !important;
 }
 
-
 /* =========================================================
-   NOTE
+   NOTE BOX
 ========================================================= */
 
 .criteria5 .note-box {
-  width: 100%;
-
-  margin-top: 14px;
-
-  padding: 13px 17px;
-
-  background: #fff8e1;
-
-  border-left: 4px solid #ff9800;
-
-  border-radius: 7px;
-
-  color: #555;
-
-  line-height: 1.5;
+    margin-top: 22px;
+    padding: 17px 20px;
+    background: #fff8ed;
+    border: 1px solid #f3b562;
+    border-left: 5px solid #ff9800;
+    border-radius: 10px;
 }
 
 .criteria5 .note-title-row {
-  display: flex;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 9px;
+}
 
-  align-items: center;
-
-  gap: 7px;
-
-  margin-bottom: 4px;
+.criteria5 .note-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #1976d2;
+    color: #ffffff;
+    font-size: 11px;
 }
 
 .criteria5 .note-title {
-  color: #8d5b00;
-
-  font-size: 13px;
-  font-weight: 700;
+    color: #d32f2f !important;
+    font-size: 15px;
+    font-weight: 800;
 }
 
 .criteria5 .note-body {
-  font-size: 12px;
+    color: #424242 !important;
+    font-size: 14px;
+    line-height: 1.65;
 }
-
 
 /* =========================================================
    ACTION BUTTONS
 ========================================================= */
 
 .criteria5 .action-buttons {
-  width: 100%;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  flex-wrap: wrap;
-
-  gap: 8px;
-
-  margin-top: 18px;
-
-  padding-bottom: 10px;
+    width: 100%;
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-
-/* =========================================================
-   BUTTON
-========================================================= */
-
-.criteria5 .btn {
-  min-width: 92px;
-  height: 38px;
-
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 6px;
-
-  padding: 8px 14px;
-
-  border: none;
-  border-radius: 7px;
-
-  color: #fff;
-
-  font-family: inherit;
-
-  font-size: 12px;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition: 0.2s;
+.criteria5 .action-buttons .btn {
+    min-height: 42px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff !important;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s;
 }
 
-.criteria5 .btn:hover {
-  transform: translateY(-1px);
+/* Previous */
 
-  box-shadow:
-    0 3px 8px rgba(0, 0, 0, 0.14);
+.criteria5 .action-buttons .btn.prev {
+    background: #ff9800;
 }
 
-
-/* =========================================================
-   BUTTON COLORS
-========================================================= */
-
-.criteria5 .btn.prev {
-  background: #607d8b;
+.criteria5 .action-buttons .btn.prev:hover {
+    background: #ef8500;
 }
 
-.criteria5 .btn.back {
-  background: #64748b;
+/* Back */
+
+.criteria5 .action-buttons .btn.back {
+    background: #607d8b;
 }
 
-.criteria5 .btn.save {
-  background: #16a34a;
+.criteria5 .action-buttons .btn.back:hover {
+    background: #455a64;
 }
 
-.criteria5 .btn.update {
-  background: #2563eb;
+/* Save */
+
+.criteria5 .action-buttons .btn.save {
+    background: #2e7d32;
 }
 
-.criteria5 .btn.delete {
-  background: #dc2626;
+.criteria5 .action-buttons .btn.save:hover {
+    background: #1b5e20;
 }
 
-.criteria5 .btn.print {
-  background: #7b1fa2;
+/* Update */
+
+.criteria5 .action-buttons .btn.update {
+    background: #1976d2;
 }
 
-.criteria5 .btn.clear {
-  background: #fb8c00;
+.criteria5 .action-buttons .btn.update:hover {
+    background: #0d47a1;
 }
 
-.criteria5 .btn.next {
-  background: #0288d1;
+/* Delete */
+
+.criteria5 .action-buttons .btn.delete {
+    background: #d32f2f;
 }
 
-
-/* =========================================================
-   SIDEBAR
-========================================================= */
-
-.criteria5-layout .sidebar,
-.criteria5-layout .nba-sidebar {
-  position: fixed;
-
-  left: 0;
-  top: 0;
-
-  height: 100vh;
-
-  z-index: 1000;
+.criteria5 .action-buttons .btn.delete:hover {
+    background: #b71c1c;
 }
 
+/* Print */
+
+.criteria5 .action-buttons .btn.print {
+    background: #6a1b9a;
+}
+
+.criteria5 .action-buttons .btn.print:hover {
+    background: #4a148c;
+}
+
+/* Clear */
+
+.criteria5 .action-buttons .btn.clear {
+    background: #f57c00;
+}
+
+.criteria5 .action-buttons .btn.clear:hover {
+    background: #e66f00;
+}
+
+/* Next */
+
+.criteria5 .action-buttons .btn.next {
+    background: #00897b;
+}
+
+.criteria5 .action-buttons .btn.next:hover {
+    background: #00695c;
+}
 
 /* =========================================================
    RESPONSIVE
 ========================================================= */
 
-@media (max-width: 1200px) {
+@media (max-width: 1100px) {
 
-  .criteria5 .filter-card {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
+    .criteria5 .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-  .criteria5 .summary-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-}
-
-
-@media (max-width: 900px) {
-
-  .criteria5-layout .criteria5 {
-    width: 100%;
-
-    margin-left: 0;
-
-    padding: 15px;
-  }
-
-  .criteria5 .filter-card {
-    grid-template-columns: 1fr;
-  }
-
-  .criteria5 .sfr-card {
-    overflow-x: auto;
-  }
-
-  .criteria5 .sfr-table {
-    min-width: 950px;
-  }
+    .criteria5 .sfr-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 
 }
 
+@media (max-width: 768px) {
 
-@media (max-width: 600px) {
+    .criteria5 {
+        padding: 12px;
+    }
 
-  .criteria5-layout .criteria5 {
-    padding: 10px;
-  }
+    .criteria5 .main-card {
+        padding: 16px;
+        border-radius: 12px;
+    }
 
-  .criteria5 .page-heading h1 {
-    font-size: 22px;
-  }
+    .criteria5 .page-heading h1 {
+        font-size: 27px;
+    }
 
-  .criteria5 .page-heading h2 {
-    font-size: 14px;
-  }
+    .criteria5 .page-heading h2 {
+        font-size: 17px;
+    }
 
-  .criteria5 .summary-grid {
-    grid-template-columns: 1fr;
-  }
+    .criteria5 .filter-card {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px;
+    }
 
-  .criteria5 .upload-area {
-    flex-direction: column;
+    .criteria5 .input-box {
+        width: 100%;
+    }
 
-    align-items: flex-start;
-  }
+    .criteria5 .sfr-header {
+        padding: 18px;
+    }
 
-  .criteria5 .action-buttons {
-    flex-direction: column;
-  }
+    .criteria5 .sfr-header .circle {
+        width: 46px;
+        height: 46px;
+        margin-right: 12px;
+    }
 
-  .criteria5 .btn {
-    width: 100%;
-  }
+    .criteria5 .sfr-header h3 {
+        font-size: 19px;
+    }
+
+    .criteria5 .upload-area {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .criteria5 .upload-btn {
+        width: 100%;
+    }
+
+    .criteria5 .upload-area p {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+    }
+
+    .criteria5 .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .criteria5 .action-buttons {
+        flex-direction: column;
+    }
+
+    .criteria5 .action-buttons .btn {
+        width: 100%;
+    }
 
 }
-
 
 /* =========================================================
    PRINT
@@ -924,21 +815,42 @@
 
 @media print {
 
-  .criteria5-layout .sidebar,
-  .criteria5-layout .nba-sidebar {
-    display: none !important;
-  }
+    .criteria5 {
+        padding: 0;
+        background: #ffffff;
+    }
 
-  .criteria5-layout .criteria5 {
-    width: 100%;
-    margin-left: 0;
-    padding: 0;
+    .criteria5 .main-card {
+        max-width: none;
+        border: none;
+        box-shadow: none;
+    }
 
-    background: #fff;
-  }
+    .criteria5 .action-buttons,
+    .criteria5 .upload-area {
+        display: none !important;
+    }
 
-  .criteria5 .action-buttons {
-    display: none !important;
-  }
+}
+@media(max-width:768px){
+
+    .criteria5 .upload-content{
+        flex-direction:column;
+        align-items:stretch;
+        text-align:center;
+    }
+
+    .criteria5 .upload-icon-box{
+        margin:auto;
+    }
+
+    .criteria5 .selected-file{
+        max-width:100%;
+        justify-content:center;
+    }
+
+    .criteria5 .upload-btn{
+        width:100%;
+    }
 
 }

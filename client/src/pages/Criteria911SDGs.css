@@ -1,0 +1,1793 @@
+/* =========================================================
+   CRITERIA 9.11 - INITIATIVES AND IMPLEMENTATION OF SDGs
+   NBA EVALUATION PAGE
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  background: #eef3f8;
+  color: #17204b;
+}
+
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
+
+.criteria911-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 18px 22px 25px;
+  background: #eef3f8;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.criteria911-header {
+  width: 100%;
+  min-height: 105px;
+  padding: 14px 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(
+    110deg,
+    #24105f,
+    #35138b,
+    #24105f
+  );
+
+  border-radius: 10px;
+  color: #fff;
+
+  box-shadow: 0 4px 12px rgba(35, 20, 100, 0.18);
+}
+
+.criteria911-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.criteria911-number {
+  width: 76px;
+  height: 76px;
+  min-width: 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: linear-gradient(
+    145deg,
+    #4d16bc,
+    #2b087d
+  );
+
+  font-size: 27px;
+  font-weight: 800;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.08),
+    0 3px 8px rgba(0,0,0,.25);
+}
+
+.criteria911-header-icon {
+  display: none;
+}
+
+.criteria911-header h1 {
+  margin: 0 0 7px;
+
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 750;
+
+  color: #fff;
+}
+
+.criteria911-header p {
+  margin: 0;
+
+  max-width: 900px;
+
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 500;
+
+  color: #f5f2ff;
+}
+
+/* =========================================================
+   MAX MARKS
+   ========================================================= */
+
+.criteria911-maxmarks {
+  width: 185px;
+  min-width: 185px;
+  height: 80px;
+
+  margin-left: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff;
+  color: #29117d;
+
+  border-radius: 10px;
+
+  box-shadow: 0 3px 9px rgba(0,0,0,.16);
+}
+
+.criteria911-maxmarks span {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.criteria911-maxmarks strong {
+  margin-top: 3px;
+
+  font-size: 31px;
+  line-height: 1.1;
+}
+
+/* =========================================================
+   TOP EVALUATION / EXHIBITS
+   ========================================================= */
+
+.criteria911-top-grid {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+
+  margin-top: 14px;
+}
+
+.criteria911-evaluation-point,
+.criteria911-exhibits-top {
+  min-height: 112px;
+
+  padding: 15px 17px;
+
+  border: 1px solid #dfe5ef;
+  border-radius: 9px;
+
+  background: #fff;
+
+  box-shadow: 0 2px 7px rgba(0,0,0,.04);
+}
+
+.criteria911-evaluation-point {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.evaluation-point-icon {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: linear-gradient(
+    145deg,
+    #2e178b,
+    #281071
+  );
+
+  color: #fff;
+
+  font-size: 28px;
+}
+
+.criteria911-evaluation-point h3 {
+  margin-bottom: 7px;
+
+  font-size: 18px;
+  color: #263a98;
+}
+
+.criteria911-evaluation-point p {
+  font-size: 15px;
+  line-height: 1.45;
+  color: #17204b;
+}
+
+.criteria911-exhibits-top {
+  background: #f4fbf6;
+  border-color: #dcefe0;
+}
+
+.top-exhibits-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-bottom: 8px;
+
+  color: #197336;
+
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.top-exhibits-title svg {
+  font-size: 22px;
+}
+
+.criteria911-exhibits-top p {
+  padding-left: 2px;
+
+  font-size: 14px;
+  line-height: 1.55;
+
+  color: #16214b;
+}
+
+/* =========================================================
+   MAIN GRID
+   ========================================================= */
+
+.criteria911-main-grid {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(300px, .95fr);
+
+  gap: 14px;
+
+  margin-top: 14px;
+
+  align-items: start;
+}
+
+.criteria911-left,
+.criteria911-right {
+  min-width: 0;
+}
+
+/* =========================================================
+   COMMON CARD
+   ========================================================= */
+
+.criteria911-card {
+  width: 100%;
+
+  margin-bottom: 14px;
+
+  background: #fff;
+
+  border: 1px solid #dfe4ed;
+  border-radius: 9px;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,.045);
+
+  overflow: hidden;
+}
+
+.criteria911-card-title {
+  min-height: 50px;
+
+  padding: 11px 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #30129a;
+
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.criteria911-card-title svg {
+  font-size: 22px;
+}
+
+/* =========================================================
+   TABLE WRAPPER
+   ========================================================= */
+
+.criteria911-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* =========================================================
+   EVALUATION GUIDELINE TABLE
+   ========================================================= */
+
+.criteria911-guideline-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+
+  font-size: 14px;
+}
+
+.criteria911-guideline-table th {
+  padding: 10px 8px;
+
+  background: linear-gradient(
+    90deg,
+    #31109a,
+    #4815b2
+  );
+
+  color: #fff;
+
+  border: 1px solid #ddd;
+
+  text-align: center;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.criteria911-guideline-table th:nth-child(1) {
+  width: 22%;
+}
+
+.criteria911-guideline-table th:nth-child(2) {
+  width: 58%;
+}
+
+.criteria911-guideline-table th:nth-child(3) {
+  width: 20%;
+}
+
+.criteria911-guideline-table td {
+  padding: 13px 12px;
+
+  border: 1px solid #d9dfe9;
+
+  background: #fff;
+
+  color: #121b46;
+
+  vertical-align: middle;
+}
+
+/* =========================================================
+   CRITERIA TITLE
+   ========================================================= */
+
+.criteria-cell {
+  text-align: center;
+}
+
+.criteria-title-row {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 8px;
+
+  text-align: left;
+}
+
+.criteria-title-row strong {
+  min-width: 22px;
+
+  color: #17255f;
+
+  font-size: 16px;
+}
+
+.criteria-title-row span {
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   INDICATORS
+   ========================================================= */
+
+.criteria911-guideline-table ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.criteria911-guideline-table li {
+  margin-bottom: 7px;
+  padding-left: 2px;
+
+  color: #17204a;
+
+  line-height: 1.42;
+}
+
+.criteria911-guideline-table li:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   MARKS INPUT
+   ========================================================= */
+
+.marks-cell {
+  text-align: center;
+}
+
+.marks-input-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+}
+
+.marks-input-box input {
+  width: 68px;
+  height: 42px;
+
+  border: 1px solid #c8cfe0;
+  border-radius: 5px;
+
+  outline: none;
+
+  background: #fff;
+
+  color: #101858;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+.marks-input-box input:focus {
+  border-color: #4b20b8;
+
+  box-shadow:
+    0 0 0 2px rgba(75,32,184,.12);
+}
+
+.marks-input-box span {
+  color: #28325d;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Remove number arrows */
+
+.marks-input-box input::-webkit-outer-spin-button,
+.marks-input-box input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.marks-input-box input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+/* =========================================================
+   TOTAL ROW
+   ========================================================= */
+
+.criteria911-guideline-table .total-row td {
+  padding: 11px;
+
+  background: linear-gradient(
+    90deg,
+    #f0edff,
+    #f8f6ff
+  );
+
+  color: #35129e;
+
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.criteria911-guideline-table .total-row td:first-child {
+  text-align: right;
+}
+
+.criteria911-guideline-table .total-row td:last-child {
+  text-align: center;
+}
+
+.criteria911-guideline-table .total-row strong {
+  font-size: 17px;
+}
+
+/* =========================================================
+   SUPPORTING DOCUMENTS
+   ========================================================= */
+
+.documents-card {
+  margin-bottom: 0;
+}
+
+.criteria911-doc-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+
+  font-size: 13px;
+}
+
+.criteria911-doc-table th {
+  padding: 10px 7px;
+
+  background: linear-gradient(
+    90deg,
+    #30109b,
+    #4815b0
+  );
+
+  color: #fff;
+
+  border: 1px solid #ddd;
+
+  text-align: center;
+
+  font-size: 13px;
+}
+
+.criteria911-doc-table th:nth-child(1) {
+  width: 8%;
+}
+
+.criteria911-doc-table th:nth-child(2) {
+  width: 27%;
+}
+
+.criteria911-doc-table th:nth-child(3) {
+  width: 34%;
+}
+
+.criteria911-doc-table th:nth-child(4) {
+  width: 22%;
+}
+
+.criteria911-doc-table th:nth-child(5) {
+  width: 9%;
+}
+
+.criteria911-doc-table td {
+  padding: 9px 8px;
+
+  border: 1px solid #dce1ea;
+
+  background: #fff;
+
+  color: #15204b;
+
+  vertical-align: middle;
+}
+
+.criteria911-doc-table tbody tr:nth-child(even) td {
+  background: #fbfcff;
+}
+
+.serial-cell {
+  text-align: center;
+  font-weight: 600;
+}
+
+.document-type {
+  font-weight: 650;
+}
+
+.document-description {
+  text-align: center;
+  line-height: 1.35;
+}
+
+.upload-cell {
+  text-align: center;
+}
+
+.upload-cell input[type="file"] {
+  width: 100%;
+  max-width: 190px;
+
+  font-size: 12px;
+
+  color: #454d68;
+}
+
+.upload-cell input[type="file"]::file-selector-button {
+  padding: 5px 8px;
+
+  border: 1px solid #c7cede;
+  border-radius: 4px;
+
+  background: #fff;
+
+  color: #241273;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.upload-cell input[type="file"]::file-selector-button:hover {
+  background: #f0edff;
+}
+
+.view-cell {
+  text-align: center;
+}
+
+.document-view-btn {
+  width: 30px;
+  height: 30px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: #3212a0;
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  transition: .2s;
+}
+
+.document-view-btn:hover {
+  background: #eee9ff;
+  transform: scale(1.08);
+}
+
+/* =========================================================
+   RIGHT CARDS
+   ========================================================= */
+
+.criteria911-right .criteria911-card {
+  margin-bottom: 14px;
+}
+
+.right-card-title {
+  min-height: 48px;
+
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border-bottom: 1px solid rgba(0,0,0,.06);
+
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.right-card-title svg {
+  font-size: 21px;
+}
+
+/* =========================================================
+   INSTRUCTIONS
+   ========================================================= */
+
+.instructions-card {
+  background: #f5fbf6;
+  border-color: #dcefe1;
+}
+
+.green-title {
+  color: #177436;
+}
+
+.instructions-card ul {
+  padding: 12px 17px 15px 35px;
+}
+
+.instructions-card li {
+  margin-bottom: 9px;
+
+  color: #17214b;
+
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.instructions-card li:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   EXHIBITS
+   ========================================================= */
+
+.exhibits-card {
+  background: #f5f8ff;
+  border-color: #dce4f5;
+}
+
+.blue-title {
+  color: #12519f;
+}
+
+.exhibits-intro {
+  padding: 13px 15px 5px;
+
+  color: #16214b;
+
+  font-size: 14px;
+}
+
+.exhibits-card ul {
+  padding: 4px 17px 16px 34px;
+}
+
+.exhibits-card li {
+  margin-bottom: 8px;
+
+  color: #17214b;
+
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.exhibits-card li:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   EVALUATION CARD
+   ========================================================= */
+
+.evaluation-card {
+  background: #fff;
+  border-color: #e2dff0;
+}
+
+.purple-title {
+  color: #4017a2;
+}
+
+.marks-section {
+  padding: 15px 15px 10px;
+}
+
+.marks-section label,
+.remarks-section label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #17204b;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* IMPORTANT:
+   JS uses marks-input-wrapper
+*/
+
+.marks-input-wrapper {
+  width: 100%;
+  min-height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: linear-gradient(
+    90deg,
+    #f0eaff,
+    #f6f0ff
+  );
+
+  color: #37119e;
+}
+
+.marks-input-wrapper strong {
+  font-size: 21px;
+}
+
+.marks-input-wrapper span {
+  margin-left: 5px;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.marks-section small {
+  display: block;
+
+  margin-top: 7px;
+
+  text-align: center;
+
+  color: #69708b;
+
+  font-size: 12px;
+}
+
+.remarks-section {
+  padding: 7px 15px 16px;
+}
+
+.remarks-section label span {
+  color: #777;
+  font-weight: 400;
+}
+
+.remarks-section textarea {
+  width: 100%;
+  min-height: 95px;
+
+  padding: 10px 11px;
+
+  resize: vertical;
+
+  border: 1px solid #ccd2df;
+  border-radius: 6px;
+
+  outline: none;
+
+  background: #fff;
+
+  color: #18214a;
+
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.remarks-section textarea:focus {
+  border-color: #4820b4;
+
+  box-shadow:
+    0 0 0 2px rgba(72,32,180,.10);
+}
+
+.remarks-section textarea::placeholder {
+  color: #9ba1b2;
+}
+
+/* =========================================================
+   FINAL TOTAL
+   ========================================================= */
+
+.criteria911-final-total {
+  width: 100%;
+
+  min-height: 58px;
+
+  margin-top: 14px;
+  padding: 10px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 8px;
+
+  background: linear-gradient(
+    90deg,
+    #e8e2ff,
+    #f4f1ff
+  );
+
+  border: 1px solid #d6cdf8;
+
+  color: #35129e;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.criteria911-final-total strong {
+  font-size: 21px;
+}
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.criteria911-actions {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr
+    1fr
+    1.05fr
+    1fr
+    1fr
+    1fr;
+
+  gap: 12px;
+
+  margin-top: 15px;
+}
+
+.action-btn {
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  border-radius: 6px;
+  border: 1px solid transparent;
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    background .18s ease;
+}
+
+.action-btn:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 4px 9px rgba(0,0,0,.13);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+}
+
+.action-btn:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Previous */
+
+.previous-btn {
+  background: #fff;
+  color: #30139b;
+  border-color: #8f78db;
+}
+
+/* Back */
+
+.back-btn {
+  background: #fff;
+  color: #30139b;
+  border-color: #8f78db;
+}
+
+/* Save */
+
+.save-btn {
+  background: #16843a;
+  color: #fff;
+}
+
+.save-btn:hover {
+  background: #116e30;
+}
+
+/* Submit */
+
+.submit-btn {
+  background: #0e56c7;
+  color: #fff;
+}
+
+.submit-btn:hover {
+  background: #0b47a8;
+}
+
+/* Delete */
+
+.delete-btn {
+  background: #d92323;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background: #b71919;
+}
+
+/* Print */
+
+.print-btn {
+  background: #4315a7;
+  color: #fff;
+}
+
+.print-btn:hover {
+  background: #351087;
+}
+
+/* Next */
+
+.next-btn {
+  background: #fff;
+  color: #30139b;
+  border-color: #8f78db;
+}
+
+/* =========================================================
+   RESPONSIVE - 1200
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+  .criteria911-page {
+    padding: 15px;
+  }
+
+  .criteria911-main-grid {
+    grid-template-columns:
+      minmax(0, 1fr)
+      330px;
+  }
+
+  .criteria911-actions {
+    gap: 8px;
+  }
+
+  .criteria911-header h1 {
+    font-size: 22px;
+  }
+
+  .criteria911-header p {
+    font-size: 14px;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE - 950
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+  .criteria911-top-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria911-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria911-right {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+  }
+
+  .criteria911-right .criteria911-card {
+    margin-bottom: 0;
+  }
+
+  .evaluation-card {
+    grid-column: 1 / -1;
+  }
+
+  .criteria911-actions {
+    grid-template-columns:
+      repeat(4, 1fr);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE - 700
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .criteria911-page {
+    padding: 10px;
+  }
+
+  .criteria911-header {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 12px;
+
+    padding: 12px;
+  }
+
+  .criteria911-header-left {
+    align-items: flex-start;
+  }
+
+  .criteria911-number {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+
+    font-size: 22px;
+  }
+
+  .criteria911-header h1 {
+    font-size: 18px;
+  }
+
+  .criteria911-header p {
+    font-size: 12px;
+  }
+
+  .criteria911-maxmarks {
+    width: 100%;
+    height: 65px;
+
+    margin-left: 0;
+  }
+
+  .criteria911-maxmarks strong {
+    font-size: 26px;
+  }
+
+  .criteria911-evaluation-point,
+  .criteria911-exhibits-top {
+    padding: 12px;
+  }
+
+  .evaluation-point-icon {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+
+    font-size: 22px;
+  }
+
+  .criteria911-evaluation-point h3,
+  .top-exhibits-title {
+    font-size: 15px;
+  }
+
+  .criteria911-evaluation-point p,
+  .criteria911-exhibits-top p {
+    font-size: 13px;
+  }
+
+  .criteria911-right {
+    display: block;
+  }
+
+  .criteria911-right .criteria911-card {
+    margin-bottom: 14px;
+  }
+
+  .criteria911-guideline-table {
+    min-width: 650px;
+  }
+
+  .criteria911-doc-table {
+    min-width: 850px;
+  }
+
+  .criteria911-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .criteria911-actions {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+  }
+
+  .action-btn {
+    min-height: 44px;
+
+    font-size: 13px;
+  }
+
+  .criteria911-final-total {
+    font-size: 14px;
+  }
+
+  .criteria911-final-total strong {
+    font-size: 18px;
+  }
+}
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+  body {
+    background: #fff;
+  }
+
+  .criteria911-page {
+    padding: 0;
+    background: #fff;
+  }
+
+  .criteria911-actions {
+    display: none;
+  }
+
+  .criteria911-header {
+    box-shadow: none;
+
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .criteria911-card {
+    box-shadow: none;
+
+    break-inside: avoid;
+  }
+
+  .criteria911-top-grid,
+  .criteria911-main-grid {
+    break-inside: avoid;
+  }
+}
+/* =========================================================
+   CRITERIA 9.11
+   SAME COLOR COMBINATION AS CRITERIA 9.9
+   ONLY COLORS UPDATED
+   ========================================================= */
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.criteria911-page {
+  background: #f3f6fb;
+  color: #102a43;
+}
+
+body {
+  background: #f3f6fb;
+  color: #102a43;
+}
+
+/* =========================================================
+   HEADER - BLUE
+   ========================================================= */
+
+.criteria911-header {
+  background: linear-gradient(
+    135deg,
+    #1769c2,
+    #1264bd
+  );
+  color: #ffffff;
+  box-shadow: 0 5px 18px rgba(23, 105, 194, 0.18);
+}
+
+.criteria911-number {
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: none;
+}
+
+.criteria911-header h1 {
+  color: #ffffff;
+}
+
+.criteria911-header p {
+  color: #ffffff;
+}
+
+.criteria911-maxmarks {
+  background: #ffffff;
+  color: #1769c2;
+}
+
+/* =========================================================
+   TOP EVALUATION / EXHIBITS
+   ========================================================= */
+
+.criteria911-evaluation-point,
+.criteria911-exhibits-top {
+  background: #ffffff;
+  border-color: #d7dfeb;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.evaluation-point-icon {
+  background: linear-gradient(
+    145deg,
+    #1769c2,
+    #1257a5
+  );
+  color: #ffffff;
+}
+
+.criteria911-evaluation-point h3 {
+  color: #1769c2;
+}
+
+.criteria911-evaluation-point p {
+  color: #20364d;
+}
+
+/* =========================================================
+   EXHIBITS - GREEN
+   ========================================================= */
+
+.criteria911-exhibits-top {
+  background: #f1faf5;
+  border-color: #cfe5d5;
+}
+
+.top-exhibits-title {
+  color: #13733b;
+}
+
+.criteria911-exhibits-top p {
+  color: #20364d;
+}
+
+/* =========================================================
+   COMMON CARD
+   ========================================================= */
+
+.criteria911-card {
+  background: #ffffff;
+  border-color: #d7dfeb;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.criteria911-card-title {
+  background: #f7f9fc;
+  border-color: #d7dfeb;
+  color: #102a43;
+}
+
+.criteria911-card-title svg {
+  color: #1769c2;
+}
+
+/* =========================================================
+   GUIDELINE TABLE
+   ========================================================= */
+
+.criteria911-guideline-table th {
+  background: #1769c2;
+  color: #ffffff;
+  border-color: #1266b4;
+}
+
+.criteria911-guideline-table td {
+  background: #ffffff;
+  border-color: #d7dfeb;
+  color: #20364d;
+}
+
+.criteria911-guideline-table tbody tr:nth-child(even) td {
+  background: #f8fbff;
+}
+
+.criteria911-guideline-table tbody tr:hover td {
+  background: #f3f7fc;
+}
+
+.criteria-title-row {
+  color: #20364d;
+}
+
+.criteria-title-row strong {
+  color: #1769c2;
+}
+
+.criteria-title-row span {
+  color: #20364d;
+}
+
+.criteria911-guideline-table li {
+  color: #20364d;
+}
+
+/* =========================================================
+   MARKS INPUT
+   ========================================================= */
+
+.marks-input-box input {
+  border-color: #c9d3e2;
+  background: #ffffff;
+  color: #1769c2;
+}
+
+.marks-input-box input:focus {
+  border-color: #1769c2;
+  box-shadow: 0 0 0 3px rgba(23, 105, 194, 0.12);
+}
+
+.marks-input-box span {
+  color: #34495e;
+}
+
+/* =========================================================
+   TOTAL ROW
+   ========================================================= */
+
+.criteria911-guideline-table .total-row td {
+  background: #eaf2fc;
+  color: #064194;
+}
+
+.criteria911-guideline-table .total-row strong {
+  color: #1769c2;
+}
+
+/* =========================================================
+   SUPPORTING DOCUMENTS - PURPLE
+   ========================================================= */
+
+.criteria911-doc-table th {
+  background: #f0eef8;
+  color: #3e159b;
+  border-color: #d7dfeb;
+}
+
+.criteria911-doc-table td {
+  background: #ffffff;
+  border-color: #d7dfeb;
+  color: #303f57;
+}
+
+.criteria911-doc-table tbody tr:nth-child(even) td {
+  background: #f8fbff;
+}
+
+.criteria911-doc-table tbody tr:hover td {
+  background: #f3f7fc;
+}
+
+.serial-cell {
+  color: #1769c2;
+}
+
+.document-type {
+  color: #17324d;
+}
+
+.document-description {
+  color: #303f57;
+}
+
+/* =========================================================
+   FILE UPLOAD
+   ========================================================= */
+
+.upload-cell input[type="file"] {
+  color: #333333;
+}
+
+.upload-cell input[type="file"]::file-selector-button {
+  border: none;
+  background: #e7f2ff;
+  color: #1769c2;
+  border-radius: 4px;
+}
+
+.upload-cell input[type="file"]::file-selector-button:hover {
+  background: #d3e7ff;
+}
+
+/* =========================================================
+   VIEW FILE - PURPLE
+   ========================================================= */
+
+.document-view-btn {
+  background: #f0eef8;
+  color: #4b159d;
+}
+
+.document-view-btn:hover {
+  background: #4b159d;
+  color: #ffffff;
+}
+
+/* =========================================================
+   RIGHT SIDE CARDS
+   ========================================================= */
+
+/* GREEN - INSTRUCTIONS */
+
+.instructions-card {
+  background: #f1faf5;
+  border-color: #cfe5d5;
+}
+
+.green-title {
+  color: #13733b;
+}
+
+/* BLUE - EXHIBITS */
+
+.exhibits-card {
+  background: #f5f8ff;
+  border-color: #dce4f5;
+}
+
+.blue-title {
+  color: #1769c2;
+}
+
+/* PURPLE - EVALUATION */
+
+.evaluation-card {
+  background: #ffffff;
+  border-color: #e2dff0;
+}
+
+.purple-title {
+  color: #4b159d;
+}
+
+/* =========================================================
+   INSTRUCTIONS
+   ========================================================= */
+
+.instructions-card li {
+  color: #263746;
+}
+
+.instructions-card li::marker {
+  color: #168447;
+}
+
+/* =========================================================
+   EXHIBITS
+   ========================================================= */
+
+.exhibits-intro {
+  color: #20364d;
+}
+
+.exhibits-card li {
+  color: #263746;
+}
+
+.exhibits-card li::marker {
+  color: #4b159d;
+}
+
+/* =========================================================
+   EVALUATION
+   ========================================================= */
+
+.marks-section label,
+.remarks-section label {
+  color: #102a43;
+}
+
+.marks-input-wrapper {
+  background: linear-gradient(
+    90deg,
+    #f0eaff,
+    #f6f0ff
+  );
+  color: #4b159d;
+}
+
+.marks-input-wrapper strong {
+  color: #4b159d;
+}
+
+.marks-input-wrapper span {
+  color: #7b8794;
+}
+
+.marks-section small {
+  color: #7b8794;
+}
+
+.remarks-section label span {
+  color: #7b8794;
+}
+
+.remarks-section textarea {
+  border-color: #c9d3e2;
+  color: #24334e;
+  background: #ffffff;
+}
+
+.remarks-section textarea:focus {
+  border-color: #4b159d;
+  box-shadow: 0 0 0 3px rgba(75, 21, 157, 0.10);
+}
+
+.remarks-section textarea::placeholder {
+  color: #9ba1b2;
+}
+
+/* =========================================================
+   FINAL TOTAL - BLUE
+   ========================================================= */
+
+.criteria911-final-total {
+  border-color: #cbdff4;
+  background: linear-gradient(
+    90deg,
+    #eaf2fc,
+    #f7faff
+  );
+  color: #064194;
+}
+
+.criteria911-final-total strong {
+  color: #ffffff;
+}
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+/* PREVIOUS - WHITE / PURPLE */
+
+.previous-btn {
+  background: #ffffff;
+  color: #4a159e;
+  border-color: #d5d5df;
+}
+
+.previous-btn:hover {
+  background: #f5f1ff;
+}
+
+/* BACK - WHITE / PURPLE */
+
+.back-btn {
+  background: #ffffff;
+  color: #4a159e;
+  border-color: #d5d5df;
+}
+
+.back-btn:hover {
+  background: #f5f1ff;
+}
+
+/* SAVE - GREEN */
+
+.save-btn {
+  background: #12a957;
+  color: #ffffff;
+}
+
+.save-btn:hover {
+  background: #0f9149;
+}
+
+/* SUBMIT - BLUE */
+
+.submit-btn {
+  background: #1769c2;
+  color: #ffffff;
+}
+
+.submit-btn:hover {
+  background: #1257a5;
+}
+
+/* DELETE - RED */
+
+.delete-btn {
+  background: #ed1c24;
+  color: #ffffff;
+  border-color: #ed1c24;
+}
+
+.delete-btn:hover {
+  background: #c91d14;
+}
+
+/* PRINT - PURPLE */
+
+.print-btn {
+  background: #5721ad;
+  color: #ffffff;
+}
+
+.print-btn:hover {
+  background: #46198e;
+}
+
+/* NEXT - BLUE/PURPLE BORDER */
+
+.next-btn {
+  background: #ffffff;
+  color: #4a159e;
+  border-color: #d5d5df;
+}
+
+.next-btn:hover {
+  background: #f5f1ff;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+.criteria911-table-wrapper::-webkit-scrollbar-track {
+  background: #eef2f7;
+}
+
+.criteria911-table-wrapper::-webkit-scrollbar-thumb {
+  background: #aebbd0;
+}
+
+.criteria911-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #8797b0;
+}
+
+/* =========================================================
+   PRINT COLORS
+   ========================================================= */
+
+@media print {
+
+  body {
+    background: #ffffff;
+  }
+
+  .criteria911-page {
+    background: #ffffff;
+  }
+
+  .criteria911-header,
+  .criteria911-guideline-table th {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .criteria911-doc-table th {
+    background: #f0eef8 !important;
+    color: #3e159b !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .criteria911-final-total {
+    background: #eaf2fc !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

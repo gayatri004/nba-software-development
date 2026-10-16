@@ -13,15 +13,11 @@ const Criteria7_1 = () => {
     const subSection = "7.1";
     const API_BASE_URL = `http://localhost:5000/api/criteria/${criteriaNo}/${subSection}`;
 
-    // Header Dropdown States
     const [academicYear, setAcademicYear] = useState("2024-25");
     const [department, setDepartment] = useState("Computer Engineering");
     const [program, setProgram] = useState("B.E. Computer Engineering");
-
-    // Save Status tracking state
     const [isSaved, setIsSaved] = useState(false);
 
-    // Initial Table State
     const getInitialTableData = () => [
         { 
             id: 1, 
@@ -57,15 +53,12 @@ const Criteria7_1 = () => {
         }
     ];
 
-    // 💾 LOCAL STORAGE मधून डेटा लोड करणे (नेव्हिगेशन किंवा रिफ्रेश नंतर डेटा टिकवून ठेवण्यासाठी)
     const [tableData, setTableData] = useState(() => {
         const localSaved = localStorage.getItem("temp_criteria_7_1");
         return localSaved ? JSON.parse(localSaved) : getInitialTableData();
     });
 
-    // 🔄 डेटा टेबलमधील कोणत्याही बदलावर ऑटो-सेव्ह (Local Storage मध्ये)
     useEffect(() => {
-        // fileObject LocalStorage मध्ये सेव्ह होऊ शकत नाही, त्यामुळे ते वगळून फक्त fileName आणि मजकूर सेव्ह होतो
         const serializableData = tableData.map(item => ({
             ...item,
             fileObject: null 
@@ -73,7 +66,6 @@ const Criteria7_1 = () => {
         localStorage.setItem("temp_criteria_7_1", JSON.stringify(serializableData));
     }, [tableData]);
 
-    // 🔄 बॅकएंडकडून डेटा लोड करणे (जर LocalStorage रिकामं असेल तरच)
     useEffect(() => {
         const fetchSavedData = async () => {
             try {
@@ -103,7 +95,6 @@ const Criteria7_1 = () => {
         fetchSavedData();
     }, [academicYear, department, program]);
 
-    // Handle Point/Title Change
     const handlePointChange = (id, value) => {
         setIsSaved(false);
         setTableData(prev => prev.map(row => row.id === id ? { ...row, point: value } : row));
@@ -114,7 +105,6 @@ const Criteria7_1 = () => {
         setTableData(prev => prev.map(row => row.id === id ? { ...row, description: value } : row));
     };
 
-    // Add New Row Functionality
     const handleAddRow = () => {
         setIsSaved(false);
         setTableData(prev => {
@@ -166,7 +156,6 @@ const Criteria7_1 = () => {
         }
     };
 
-    // 🧹 स्पष्टपणे Clear/Delete केल्यावरच LocalStorage आणि State डेटा डिलीट होईल
     const resetTableForm = () => {
         localStorage.removeItem("temp_criteria_7_1");
         setTableData(getInitialTableData());
@@ -179,12 +168,10 @@ const Criteria7_1 = () => {
         }
     };
 
-    // Next Page Navigation
     const handleNext = () => {
         navigate('/criteria/7.2');
     };
 
-    // 💾 Save Draft Logic
     const saveToServer = async () => {
         try {
             for (const row of tableData) {
@@ -207,7 +194,7 @@ const Criteria7_1 = () => {
             }
 
             setIsSaved(true);
-            alert(" saved successfully! 💾");
+            alert("Saved successfully! 💾");
 
         } catch (err) {
             console.error(err);
@@ -215,7 +202,6 @@ const Criteria7_1 = () => {
         }
     };
 
-    // 🗑️ Delete Button Action
     const handleDelete = async () => {
         if (window.confirm("Are you sure you want to clear front-end data?")) {
             resetTableForm();
@@ -266,7 +252,6 @@ const Criteria7_1 = () => {
         return null;
     };
 
-    // 🖨️ Print Functionality
     const handlePrintUploadedFile = async () => {
         const uploadedRows = tableData.filter(row => row.fileObject || row.fileName);
 
@@ -388,7 +373,7 @@ const Criteria7_1 = () => {
                         <div>
                             <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: '#0a2540', margin: 0 }}>CRITERION 7</h1>
                             <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1a365d', marginTop: '5px' }}>
-                                FACILITIES AND TECHNICAL SUPPORT (100)
+                                FACILITIES AND TECHNICAL SUPPORT 
                             </h3>
                             <p style={{ fontSize: '13px', color: '#718096', marginTop: '4px' }}>
                                 Dashboard &gt; Criteria Management &gt; <strong>Criterion 7</strong>
@@ -458,97 +443,94 @@ const Criteria7_1 = () => {
 
                     {/* TABLE BANNER */}
                     <div style={{ backgroundColor: '#0a2540', color: '#fff', padding: '12px 20px', borderRadius: '6px 6px 0 0', fontWeight: 'bold', fontSize: '15px' }}>
-                        7.1 Adequate and Well-Equipped Laboratories and Technical Manpower (40)
+                        7.1 Adequate and Well-Equipped Laboratories and Technical Manpower 
                     </div>
 
                     {/* DATA TABLE */}
-                    <div className="table-responsive-container-71" style={{ backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '0 0 6px 6px' }}>
-                        <table className="data-table-71" style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <div style={{ backgroundColor: '#fff', border: '1px solid #e2e8f0', borderTop: 'none', borderRadius: '0 0 6px 6px', overflow: 'hidden' }}>
+                        <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
                             <thead>
-                                <tr style={{ backgroundColor: '#fffaf0', borderBottom: '1px solid #e2e8f0' }}>
-                                    <th rowSpan="2" style={{ width: '8%', textAlign: 'center', padding: '12px', borderRight: '1px solid #edf2f7' }}>Sr. No.</th>
-                                    <th rowSpan="2" style={{ width: '32%', padding: '12px', borderRight: '1px solid #edf2f7' }}>Point</th>
-                                    <th rowSpan="2" style={{ width: '35%', padding: '12px', borderRight: '1px solid #edf2f7' }}>Description</th>
-                                    <th colSpan="3" style={{ textAlign: 'center', padding: '8px', borderBottom: '1px solid #edf2f7' }}>Action</th>
-                                </tr>
-                                <tr style={{ backgroundColor: '#fffaf0' }}>
-                                    <th style={{ width: '8%', textAlign: 'center', padding: '8px', borderRight: '1px solid #edf2f7' }}>View</th>
-                                    <th style={{ width: '9%', textAlign: 'center', padding: '8px', borderRight: '1px solid #edf2f7' }}>Upload</th>
-                                    <th style={{ width: '8%', textAlign: 'center', padding: '8px' }}>Download</th>
+                                <tr style={{ backgroundColor: '#f4f8fb', borderBottom: '1px solid #e2e8f0' }}>
+                                    <th style={{ width: '5%', textAlign: 'center', padding: '10px 4px', borderRight: '1px solid #e2e8f0', color: '#3b597c', fontSize: '13px', fontWeight: 'bold' }}>Sr. No.</th>
+                                    <th style={{ width: '42%', textAlign: 'center', padding: '10px 8px', borderRight: '1px solid #e2e8f0', color: '#3b597c', fontSize: '13px', fontWeight: 'bold' }}>Point</th>
+                                    <th style={{ width: '38%', textAlign: 'center', padding: '10px 8px', borderRight: '1px solid #e2e8f0', color: '#3b597c', fontSize: '13px', fontWeight: 'bold' }}>Description</th>
+                                    <th style={{ width: '15%', textAlign: 'center', padding: '10px 4px', color: '#3b597c', fontSize: '13px', fontWeight: 'bold' }}>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {tableData.map((row) => (
                                     <tr key={row.id} style={{ borderBottom: '1px solid #edf2f7' }}>
-                                        <td style={{ fontWeight: 'bold', textAlign: 'center', padding: '12px' }}>{row.s_n}</td>
-                                        <td style={{ padding: '10px', fontSize: '14px', color: '#2d3748' }}>
+                                        <td style={{ fontWeight: 'bold', textAlign: 'center', padding: '8px 4px', color: '#2d3748', fontSize: '13px' }}>{row.s_n}</td>
+                                        
+                                        <td style={{ padding: '8px' }}>
                                             <textarea 
                                                 className="table-textarea-71" 
                                                 rows="2"
                                                 value={row.point} 
                                                 onChange={(e) => handlePointChange(row.id, e.target.value)} 
                                                 placeholder="Enter Point Title..."
-                                                style={{ width: '95%', padding: '8px', border: '1px solid #cbd5e0', borderRadius: '4px', resize: 'vertical', fontWeight: 'bold', color: '#0a2540' }}
+                                                style={{ width: '100%', padding: '6px 8px', border: '1px solid #cbd5e0', borderRadius: '4px', resize: 'vertical', fontWeight: '600', color: '#0a2540', fontSize: '12px', boxSizing: 'border-box' }}
                                             />
                                         </td>
-                                        <td style={{ padding: '10px' }}>
+
+                                        <td style={{ padding: '8px' }}>
                                             <textarea 
                                                 className="table-textarea-71" 
                                                 rows="2"
                                                 value={row.description} 
                                                 onChange={(e) => handleInputChange(row.id, e.target.value)} 
                                                 placeholder="Enter details..."
-                                                style={{ width: '95%', padding: '8px', border: '1px solid #cbd5e0', borderRadius: '4px', resize: 'vertical' }}
+                                                style={{ width: '100%', padding: '6px 8px', border: '1px solid #cbd5e0', borderRadius: '4px', resize: 'vertical', fontSize: '12px', boxSizing: 'border-box' }}
                                             />
                                         </td>
 
-                                        {/* Action: View */}
-                                        <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                                            <button 
-                                                type="button" 
-                                                title="View File"
-                                                onClick={() => handleViewFile(row)}
-                                                style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px' }}
-                                            >
-                                                👁️
-                                            </button>
-                                        </td>
+                                        {/* COMPACT ACTION COLUMN */}
+                                        <td style={{ textAlign: 'center', verticalAlign: 'middle', padding: '6px' }}>
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'center' }}>
+                                                
+                                                {/* Choose File Button */}
+                                                <input 
+                                                    type="file" 
+                                                    id={`file-input-71-${row.id}`}
+                                                    style={{ display: 'none' }}
+                                                    onChange={(e) => handleFileChange(row.id, e)}
+                                                    accept=".pdf,.png,.jpg,.jpeg,.doc,.docx,.xls,.xlsx"
+                                                />
+                                                <button 
+                                                    type="button" 
+                                                    onClick={() => document.getElementById(`file-input-71-${row.id}`).click()}
+                                                    style={{ backgroundColor: '#edf2f7', border: '1px solid #cbd5e0', padding: '3px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '11px', fontWeight: '600', color: '#2d3748', width: '100px' }}
+                                                >
+                                                    Choose File
+                                                </button>
 
-                                        {/* Action: Upload */}
-                                        <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                                            <input 
-                                                type="file" 
-                                                id={`file-input-71-${row.id}`}
-                                                style={{ display: 'none' }}
-                                                onChange={(e) => handleFileChange(row.id, e)}
-                                                accept=".pdf,.png,.jpg,.jpeg,.doc,.docx,.xls,.xlsx"
-                                            />
-                                            <button 
-                                                type="button" 
-                                                title={row.fileName ? `Uploaded: ${row.fileName}` : "Upload File"}
-                                                onClick={() => document.getElementById(`file-input-71-${row.id}`).click()}
-                                                style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px' }}
-                                            >
-                                                {row.fileName ? '✅' : '📤'}
-                                            </button>
-                                            
-                                            {row.fileName && (
-                                                <div style={{ fontSize: '11px', color: '#2f855a', fontWeight: 'bold', marginTop: '4px', maxWidth: '100px', wordBreak: 'break-all', margin: '0 auto' }}>
-                                                    {row.fileName}
+                                                {/* File Name Label */}
+                                                {row.fileName && (
+                                                    <span style={{ fontSize: '10px', color: '#4a5568', maxWidth: '110px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={row.fileName}>
+                                                        📄 {row.fileName}
+                                                    </span>
+                                                )}
+
+                                                {/* View & Download Buttons */}
+                                                <div style={{ display: 'flex', gap: '4px', justifyContent: 'center', marginTop: '2px' }}>
+                                                    <button 
+                                                        type="button" 
+                                                        onClick={() => handleViewFile(row)}
+                                                        style={{ backgroundColor: '#3182ce', color: '#fff', border: 'none', borderRadius: '3px', padding: '3px 7px', cursor: 'pointer', fontSize: '11px', fontWeight: '500' }}
+                                                    >
+                                                        View
+                                                    </button>
+
+                                                    <button 
+                                                        type="button" 
+                                                        onClick={() => handleDownloadFile(row)}
+                                                        style={{ backgroundColor: '#16a34a', color: '#fff', border: 'none', borderRadius: '3px', padding: '3px 7px', cursor: 'pointer', fontSize: '11px', fontWeight: '500' }}
+                                                    >
+                                                        Download
+                                                    </button>
                                                 </div>
-                                            )}
-                                        </td>
 
-                                        {/* Action: Download */}
-                                        <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                                            <button 
-                                                type="button" 
-                                                title="Download File"
-                                                onClick={() => handleDownloadFile(row)}
-                                                style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px' }}
-                                            >
-                                                📥
-                                            </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 ))}
@@ -556,25 +538,25 @@ const Criteria7_1 = () => {
                         </table>
                     </div>
 
-                    {/* ➕ ADD ROW BUTTON */}
+                    {/* ADD ROW BUTTON */}
                     <div style={{ marginTop: '15px' }}>
                         <button 
                             className="btn-act-71" 
                             type="button" 
                             onClick={handleAddRow}
-                            style={{ padding: '10px 20px', backgroundColor: '#5c67f2', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold', fontSize: '14px' }}
+                            style={{ padding: '8px 16px', backgroundColor: '#5c67f2', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold', fontSize: '13px' }}
                         >
                             ➕ Add Row
                         </button>
                     </div>
 
-                    {/* 🔘 ACTION BUTTONS ROW */}
-                    <div style={{ marginTop: '15px', display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap' }}>
+                    {/* ACTION BUTTONS ROW */}
+                    <div style={{ marginTop: '20px', display: 'flex', gap: '10px', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap' }}>
                         <button 
                             className="btn-act-71 btn-sv-71" 
                             type="button" 
                             onClick={saveToServer}
-                            style={{ padding: '10px 18px', backgroundColor: '#2E7D32', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}
+                            style={{ padding: '8px 18px', backgroundColor: '#2E7D32', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold', fontSize: '13px' }}
                         >
                             Save 
                         </button>
@@ -582,31 +564,31 @@ const Criteria7_1 = () => {
                             className="btn-act-71 btn-del-71" 
                             type="button" 
                             onClick={handleDelete}
-                            style={{ padding: '10px 18px', backgroundColor: '#e53e3e', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}
+                            style={{ padding: '8px 18px', backgroundColor: '#e53e3e', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold', fontSize: '13px' }}
                         >
-                             Delete
+                            Delete
                         </button>
                         <button 
                             className="btn-act-71 btn-prt-71" 
                             type="button" 
                             onClick={handlePrintUploadedFile}
-                            style={{ padding: '10px 18px', backgroundColor: '#805ad5', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}
+                            style={{ padding: '8px 18px', backgroundColor: '#805ad5', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold', fontSize: '13px' }}
                         >
-                             Print 
+                            Print 
                         </button>
                         <button 
                             className="btn-act-71 btn-clr-71" 
                             type="button" 
                             onClick={handleClear}
-                            style={{ padding: '10px 18px', backgroundColor: '#dd6b20', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}
+                            style={{ padding: '8px 18px', backgroundColor: '#dd6b20', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold', fontSize: '13px' }}
                         >
-                             Clear
+                            Clear
                         </button>
                         <button 
                             className="btn-act-71 btn-nxt-71" 
                             type="button" 
                             onClick={handleNext}
-                            style={{ padding: '10px 18px', backgroundColor: '#00695c', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}
+                            style={{ padding: '8px 18px', backgroundColor: '#00695c', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold', fontSize: '13px' }}
                         >
                             Next 
                         </button>

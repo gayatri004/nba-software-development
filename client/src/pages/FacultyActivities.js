@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./FacultyActivities.css";
+import NBASidebar from "../pages/NBASidebar";
 
 function FacultyActivities() {
 
@@ -8,99 +9,149 @@ function FacultyActivities() {
 
   const sections = [
     {
-  no: "6.1.5",
-  title: "FDP / STTP Organized by the Department",
-  route: "/criteria6/fdp"
-},
-   {
-  no: "6.1.6",
-  title: "Faculty Support in Student Innovative Projects",
-  route: "/criteria6/student-project",
-},
-   {
-  no: "6.1.7",
-  title: "Faculty Internship / Training / Collaboration with Industry",
-  route: "/criteria6/internship",
-}
+      no: "6.1.5",
+      title: "FDP / STTP Organized by the Department",
+      route: "/criteria6/fdp",
+    },
+    {
+      no: "6.1.6",
+      title: "Faculty Support in Student Innovative Projects",
+      route: "/criteria6/student-project",
+    },
+    {
+      no: "6.1.7",
+      title: "Faculty Internship / Training / Collaboration with Industry",
+      route: "/criteria6/internship",
+    },
   ];
 
   return (
+    <div className="faculty-activities-layout">
 
-    <div className="faculty-activity-container">
+      {/* =====================================================
+          SIDEBAR
+      ===================================================== */}
 
-      <div className="activity-title">
+      <NBASidebar />
 
-        <h2>Faculty Activities</h2>
+      {/* =====================================================
+          MAIN CONTENT
+      ===================================================== */}
 
-        <p>
-          Criterion 6.1 Faculty Activities
-        </p>
+      <main className="faculty-activities-content">
 
-      </div>
+        <div className="faculty-activity-container">
 
-      {sections.map((item,index)=>(
+          {/* =================================================
+              PAGE HEADER
+          ================================================= */}
 
-        <div
-          className="activity-card"
-          key={index}
-        >
+          <div className="activity-title">
 
-          <div>
-
-            <h3>
-
-              {item.no} {item.title}
-
-            </h3>
+            <h2>Faculty Activities</h2>
 
             <p>
-
-              Upload and manage faculty activity records.
-
+              Criterion 6.1 Faculty Activities
             </p>
 
           </div>
-<div className="activity-buttons">
 
-  <button
-    className="action-btn view-btn"
-    onClick={() => navigate(item.route + "/view")}
-  >
-    View
-  </button>
 
-  <button
-    className="action-btn add-btn"
-    onClick={() => navigate(item.route + "/add")}
-  >
-    Add
-  </button>
+          {/* =================================================
+              ACTIVITY CARDS
+          ================================================= */}
 
-</div>
+          {sections.map((item, index) => (
+
+            <div
+              className="activity-card"
+              key={index}
+            >
+
+              <div className="activity-left">
+
+                <div className="activity-icon">
+                  📘
+                </div>
+
+                <div>
+
+                  <h3>
+                    {item.no} {item.title}
+                  </h3>
+
+                  <p>
+                    Upload and manage faculty activity records.
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              {/* =================================================
+                  BUTTONS
+              ================================================= */}
+
+              <div className="activity-buttons">
+
+                <button
+                  className="action-btn view-btn"
+                  onClick={() =>
+                    navigate(item.route + "/view")
+                  }
+                >
+                  View
+                </button>
+
+                <button
+                  className="action-btn add-btn"
+                  onClick={() =>
+                    navigate(item.route + "/add")
+                  }
+                >
+                  Add
+                </button>
+
+              </div>
+
+            </div>
+
+          ))}
+
+
+          {/* =================================================
+              PREVIOUS / NEXT
+          ================================================= */}
+
+          <div className="module-navigation">
+
+            <button
+              className="module-prev"
+              onClick={() =>
+                navigate("/criteria6/faculty-development")
+              }
+            >
+              ← Previous
+            </button>
+
+            <button
+              className="module-next"
+              onClick={() =>
+                navigate("/criteria6/research")
+              }
+            >
+              Next →
+            </button>
+
+          </div>
+
         </div>
 
-      ))}
-<div className="module-navigation">
+      </main>
 
-  <button
-    className="module-prev"
-    onClick={() => navigate("/criteria6/faculty-development")}
-  >
-    ← Previous
-  </button>
-
-  <button
-    className="module-next"
-    onClick={() => navigate("/criteria6/research")}
-  >
-    Next →
-  </button>
-
-</div>
     </div>
-
   );
-
 }
 
 export default FacultyActivities;

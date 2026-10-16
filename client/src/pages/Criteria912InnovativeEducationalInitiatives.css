@@ -1,0 +1,1854 @@
+/* =========================================================
+   CRITERIA 9.12 - INNOVATIVE EDUCATIONAL INITIATIVES
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  background: #eef3f8;
+  color: #101b45;
+}
+
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
+
+.criteria912-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 18px 22px 28px;
+  background: #eef3f8;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.criteria912-header {
+  width: 100%;
+  min-height: 110px;
+
+  background: linear-gradient(
+    110deg,
+    #24105f 0%,
+    #35138b 48%,
+    #24105f 100%
+  );
+
+  border-radius: 10px;
+  padding: 14px 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: #fff;
+
+  box-shadow: 0 4px 12px rgba(35, 20, 100, 0.18);
+}
+
+.criteria912-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.criteria912-number {
+  width: 76px;
+  height: 76px;
+  min-width: 76px;
+
+  border-radius: 8px;
+
+  background: linear-gradient(
+    145deg,
+    #4d16bc,
+    #2b087d
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 27px;
+  font-weight: 800;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.08),
+    0 3px 8px rgba(0,0,0,.25);
+}
+
+.criteria912-header-icon {
+  display: none;
+}
+
+.criteria912-header h1 {
+  font-size: 26px;
+  line-height: 1.15;
+  font-weight: 750;
+  margin-bottom: 7px;
+  color: #fff;
+}
+
+.criteria912-header p {
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #f5f2ff;
+  max-width: 900px;
+}
+
+.criteria912-maxmarks {
+  width: 185px;
+  min-width: 185px;
+  height: 82px;
+
+  background: #fff;
+  color: #29117d;
+
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 20px;
+
+  box-shadow: 0 3px 9px rgba(0,0,0,.16);
+}
+
+.criteria912-maxmarks span {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.criteria912-maxmarks strong {
+  font-size: 31px;
+  line-height: 1.1;
+  margin-top: 3px;
+}
+
+/* =========================================================
+   TOP EVALUATION
+   ========================================================= */
+
+.criteria912-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.criteria912-evaluation-point,
+.criteria912-instructions-top {
+  min-height: 116px;
+
+  border: 1px solid #dfe5ef;
+  border-radius: 9px;
+
+  background: #fff;
+
+  padding: 16px 18px;
+
+  box-shadow: 0 2px 7px rgba(0,0,0,.04);
+}
+
+/* Evaluation */
+
+.criteria912-evaluation-point {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.evaluation-point-icon {
+  width: 62px;
+  height: 62px;
+  min-width: 62px;
+
+  border-radius: 9px;
+
+  background: linear-gradient(
+    145deg,
+    #2e178b,
+    #281071
+  );
+
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 29px;
+}
+
+.criteria912-evaluation-point h3 {
+  color: #263a98;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.criteria912-evaluation-point p {
+  font-size: 15px;
+  line-height: 1.45;
+  color: #111b43;
+}
+
+.criteria912-evaluation-point .top-marks {
+  margin-left: 8px;
+  font-weight: 700;
+  color: #35129e;
+}
+
+/* =========================================================
+   TOP INSTRUCTIONS
+   ========================================================= */
+
+.criteria912-instructions-top {
+  background: #f5fbf6;
+  border-color: #dcefe1;
+}
+
+.top-instructions-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #177436;
+
+  font-size: 17px;
+  font-weight: 750;
+
+  margin-bottom: 9px;
+}
+
+.top-instructions-title svg {
+  font-size: 21px;
+}
+
+.criteria912-instructions-top ul {
+  padding-left: 20px;
+}
+
+.criteria912-instructions-top li {
+  margin-bottom: 6px;
+
+  color: #17214b;
+
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.criteria912-instructions-top li:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   MAIN GRID
+   ========================================================= */
+
+.criteria912-main-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(300px, .95fr);
+
+  gap: 14px;
+
+  margin-top: 14px;
+
+  align-items: start;
+}
+
+.criteria912-left,
+.criteria912-right {
+  min-width: 0;
+}
+
+/* =========================================================
+   COMMON CARD
+   ========================================================= */
+
+.criteria912-card {
+  background: #fff;
+
+  border: 1px solid #dfe4ed;
+  border-radius: 9px;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,.045);
+
+  overflow: hidden;
+
+  margin-bottom: 14px;
+}
+
+.criteria912-card-title {
+  min-height: 50px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 11px 14px;
+
+  color: #30129a;
+
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.criteria912-card-title svg {
+  font-size: 22px;
+}
+
+/* =========================================================
+   TABLE WRAPPER
+   ========================================================= */
+
+.criteria912-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* =========================================================
+   GUIDELINE TABLE
+   ========================================================= */
+
+.criteria912-guideline-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 14px;
+}
+
+/* IMPORTANT:
+   JS has 4 columns:
+   Sr No | Criteria | Description | Marks
+*/
+
+.criteria912-guideline-table thead th {
+  background: linear-gradient(
+    90deg,
+    #31109a,
+    #4815b2
+  );
+
+  color: #fff;
+
+  padding: 11px 8px;
+
+  border: 1px solid #ddd;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  text-align: center;
+  vertical-align: middle;
+}
+
+.criteria912-guideline-table thead th:nth-child(1) {
+  width: 10%;
+}
+
+.criteria912-guideline-table thead th:nth-child(2) {
+  width: 25%;
+}
+
+.criteria912-guideline-table thead th:nth-child(3) {
+  width: 50%;
+}
+
+.criteria912-guideline-table thead th:nth-child(4) {
+  width: 15%;
+}
+
+.criteria912-guideline-table tbody td {
+  border: 1px solid #d9dfe9;
+
+  padding: 14px 12px;
+
+  vertical-align: middle;
+
+  color: #121b46;
+
+  background: #fff;
+}
+
+.criteria912-guideline-table tbody tr:hover td {
+  background: #fafbff;
+}
+
+/* =========================================================
+   SR NUMBER
+   ========================================================= */
+
+.criteria-sr {
+  text-align: center;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  color: #30129a !important;
+}
+
+/* =========================================================
+   CRITERIA NAME
+   ========================================================= */
+
+.criteria-name {
+  text-align: left;
+}
+
+.criteria-name strong {
+  display: block;
+
+  font-size: 16px;
+  line-height: 1.45;
+
+  color: #17255f;
+}
+
+/* =========================================================
+   INDICATORS
+   ========================================================= */
+
+.criteria912-guideline-table ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.criteria912-guideline-table li {
+  margin-bottom: 7px;
+  padding-left: 2px;
+
+  line-height: 1.42;
+
+  color: #17204a;
+}
+
+.criteria912-guideline-table li:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   MARKS CELL
+   ========================================================= */
+
+.marks-cell {
+  text-align: center;
+}
+
+.marks-input-box {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+}
+
+.marks-input-box input {
+  width: 70px;
+  height: 43px;
+
+  border: 1px solid #c8cfe0;
+  border-radius: 5px;
+
+  background: #fff;
+
+  color: #101858;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  text-align: center;
+
+  outline: none;
+}
+
+.marks-input-box input:focus {
+  border-color: #4b20b8;
+
+  box-shadow:
+    0 0 0 2px rgba(75,32,184,.12);
+}
+
+.marks-input-box span {
+  font-size: 15px;
+  font-weight: 600;
+  color: #28325d;
+}
+
+/* Remove number arrows */
+
+.marks-input-box input::-webkit-outer-spin-button,
+.marks-input-box input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.marks-input-box input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+/* =========================================================
+   TOTAL ROW
+   ========================================================= */
+
+.criteria912-guideline-table .total-row td {
+  background: linear-gradient(
+    90deg,
+    #f0edff,
+    #f8f6ff
+  );
+
+  color: #35129e;
+
+  font-size: 16px;
+  font-weight: 750;
+
+  padding: 12px;
+}
+
+.criteria912-guideline-table .total-row td:first-child {
+  text-align: right;
+}
+
+.criteria912-guideline-table .total-row td:last-child {
+  text-align: center;
+}
+
+.criteria912-guideline-table .total-row strong {
+  font-size: 17px;
+}
+
+/* =========================================================
+   SUPPORTING DOCUMENTS
+   ========================================================= */
+
+.documents-card {
+  margin-bottom: 0;
+}
+
+.criteria912-doc-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+
+  font-size: 13px;
+}
+
+.criteria912-doc-table thead th {
+  background: linear-gradient(
+    90deg,
+    #30109b,
+    #4815b0
+  );
+
+  color: #fff;
+
+  padding: 10px 7px;
+
+  border: 1px solid #ddd;
+
+  text-align: center;
+
+  font-size: 13px;
+}
+
+.criteria912-doc-table thead th:nth-child(1) {
+  width: 8%;
+}
+
+.criteria912-doc-table thead th:nth-child(2) {
+  width: 27%;
+}
+
+.criteria912-doc-table thead th:nth-child(3) {
+  width: 34%;
+}
+
+.criteria912-doc-table thead th:nth-child(4) {
+  width: 22%;
+}
+
+.criteria912-doc-table thead th:nth-child(5) {
+  width: 9%;
+}
+
+.criteria912-doc-table tbody td {
+  border: 1px solid #dce1ea;
+
+  padding: 9px 8px;
+
+  background: #fff;
+
+  color: #15204b;
+
+  vertical-align: middle;
+}
+
+.criteria912-doc-table tbody tr:nth-child(even) td {
+  background: #fbfcff;
+}
+
+/* =========================================================
+   DOCUMENT CELLS
+   ========================================================= */
+
+.serial-cell {
+  text-align: center;
+  font-weight: 600;
+}
+
+.document-type {
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.document-description {
+  text-align: center;
+  line-height: 1.35;
+}
+
+.upload-cell {
+  text-align: center;
+}
+
+.upload-cell input[type="file"] {
+  width: 100%;
+  max-width: 190px;
+
+  font-size: 12px;
+
+  color: #454d68;
+}
+
+.upload-cell input[type="file"]::file-selector-button {
+  border: 1px solid #c7cede;
+  border-radius: 4px;
+
+  background: #fff;
+
+  padding: 5px 8px;
+
+  color: #241273;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.upload-cell input[type="file"]::file-selector-button:hover {
+  background: #f0edff;
+}
+
+/* =========================================================
+   VIEW BUTTON
+   ========================================================= */
+
+.view-cell {
+  text-align: center;
+}
+
+.document-view-btn {
+  width: 32px;
+  height: 32px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: #3212a0;
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  transition: .2s;
+}
+
+.document-view-btn:hover {
+  background: #eee9ff;
+  transform: scale(1.08);
+}
+
+/* =========================================================
+   RIGHT SIDE
+   ========================================================= */
+
+.criteria912-right .criteria912-card {
+  margin-bottom: 14px;
+}
+
+.right-card-title {
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px 14px;
+
+  font-size: 17px;
+  font-weight: 750;
+
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+.right-card-title svg {
+  font-size: 21px;
+}
+
+/* =========================================================
+   EXHIBITS
+   ========================================================= */
+
+.exhibits-card {
+  background: #f5f8ff;
+  border-color: #dce4f5;
+}
+
+.blue-title {
+  color: #12519f;
+}
+
+.exhibits-intro {
+  padding: 13px 15px 5px;
+
+  font-size: 14px;
+
+  color: #16214b;
+}
+
+.exhibits-card ul {
+  padding: 4px 17px 16px 34px;
+}
+
+.exhibits-card li {
+  margin-bottom: 8px;
+
+  color: #17214b;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+}
+
+.exhibits-card li:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   EVALUATION CARD
+   ========================================================= */
+
+.evaluation-card {
+  background: #fff;
+  border-color: #e2dff0;
+}
+
+.purple-title {
+  color: #4017a2;
+}
+
+.marks-section {
+  padding: 15px 15px 10px;
+}
+
+.marks-section label,
+.remarks-section label {
+  display: block;
+
+  color: #17204b;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  margin-bottom: 8px;
+}
+
+.marks-display {
+  width: 100%;
+
+  min-height: 52px;
+
+  border-radius: 7px;
+
+  background: linear-gradient(
+    90deg,
+    #f0eaff,
+    #f6f0ff
+  );
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #37119e;
+}
+
+.marks-display strong {
+  font-size: 21px;
+}
+
+.marks-display span {
+  margin-left: 5px;
+
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.marks-section small {
+  display: block;
+
+  text-align: center;
+
+  margin-top: 7px;
+
+  color: #69708b;
+
+  font-size: 12px;
+}
+
+.remarks-section {
+  padding: 7px 15px 16px;
+}
+
+.remarks-section label span {
+  font-weight: 400;
+  color: #777;
+}
+
+.remarks-section textarea {
+  width: 100%;
+
+  resize: vertical;
+
+  min-height: 95px;
+
+  padding: 10px 11px;
+
+  border: 1px solid #ccd2df;
+
+  border-radius: 6px;
+
+  outline: none;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  color: #18214a;
+
+  background: #fff;
+}
+
+.remarks-section textarea:focus {
+  border-color: #4820b4;
+
+  box-shadow:
+    0 0 0 2px rgba(72,32,180,.10);
+}
+
+.remarks-section textarea::placeholder {
+  color: #9ba1b2;
+}
+
+/* =========================================================
+   FINAL TOTAL
+   ========================================================= */
+
+.criteria912-final-total {
+  width: 100%;
+
+  margin-top: 15px;
+
+  min-height: 62px;
+
+  background: linear-gradient(
+    90deg,
+    #eeeaff,
+    #f7f4ff
+  );
+
+  border: 1px solid #d8cef6;
+
+  border-radius: 8px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 20px;
+
+  color: #35129e;
+
+  font-size: 17px;
+
+  font-weight: 700;
+}
+
+.criteria912-final-total strong {
+  font-size: 22px;
+}
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.criteria912-actions {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr
+    1fr
+    1.05fr
+    1fr
+    1fr
+    1fr;
+
+  gap: 28px;
+
+  margin-top: 15px;
+}
+
+.action-btn {
+  min-height: 48px;
+
+  border-radius: 6px;
+
+  border: 1px solid transparent;
+
+  font-family: inherit;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  cursor: pointer;
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    background .18s ease;
+}
+
+.action-btn:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 4px 9px rgba(0,0,0,.13);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+}
+
+.action-btn:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Previous */
+
+.previous-btn {
+  background: #fff;
+  color: #30139b;
+  border-color: #8f78db;
+}
+
+/* Back */
+
+.back-btn {
+  background: #fff;
+  color: #30139b;
+  border-color: #8f78db;
+}
+
+/* Save */
+
+.save-btn {
+  background: #16843a;
+  color: #fff;
+}
+
+.save-btn:hover {
+  background: #116e30;
+}
+
+/* Submit */
+
+.submit-btn {
+  background: #0e56c7;
+  color: #fff;
+}
+
+.submit-btn:hover {
+  background: #0b47a8;
+}
+
+/* Delete */
+
+.delete-btn {
+  background: #d92323;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background: #b71919;
+}
+
+/* Print */
+
+.print-btn {
+  background: #4315a7;
+  color: #fff;
+}
+
+.print-btn:hover {
+  background: #351087;
+}
+
+/* Next */
+
+.next-btn {
+  background: #fff;
+  color: #30139b;
+  border-color: #8f78db;
+}
+
+/* =========================================================
+   LARGE TABLET
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+  .criteria912-page {
+    padding: 15px;
+  }
+
+  .criteria912-main-grid {
+    grid-template-columns: 1fr 340px;
+  }
+
+  .criteria912-actions {
+    gap: 12px;
+  }
+
+  .criteria912-header h1 {
+    font-size: 22px;
+  }
+
+  .criteria912-header p {
+    font-size: 14px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+  .criteria912-top-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria912-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria912-right {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+  }
+
+  .criteria912-right .criteria912-card {
+    margin-bottom: 0;
+  }
+
+  .evaluation-card {
+    grid-column: 1 / -1;
+  }
+
+  .criteria912-actions {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .criteria912-page {
+    padding: 10px;
+  }
+
+  .criteria912-header {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 12px;
+
+    padding: 12px;
+  }
+
+  .criteria912-header-left {
+    align-items: flex-start;
+  }
+
+  .criteria912-number {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+
+    font-size: 22px;
+  }
+
+  .criteria912-header h1 {
+    font-size: 18px;
+  }
+
+  .criteria912-header p {
+    font-size: 12px;
+  }
+
+  .criteria912-maxmarks {
+    width: 100%;
+    height: 65px;
+    margin-left: 0;
+  }
+
+  .criteria912-maxmarks strong {
+    font-size: 26px;
+  }
+
+  .criteria912-evaluation-point,
+  .criteria912-instructions-top {
+    padding: 12px;
+  }
+
+  .evaluation-point-icon {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+
+    font-size: 22px;
+  }
+
+  .criteria912-evaluation-point h3 {
+    font-size: 15px;
+  }
+
+  .criteria912-evaluation-point p {
+    font-size: 13px;
+  }
+
+  .top-instructions-title {
+    font-size: 15px;
+  }
+
+  .criteria912-instructions-top li {
+    font-size: 13px;
+  }
+
+  .criteria912-right {
+    display: block;
+  }
+
+  .criteria912-right .criteria912-card {
+    margin-bottom: 14px;
+  }
+
+  /* Horizontal scroll for tables */
+
+  .criteria912-guideline-table {
+    min-width: 780px;
+  }
+
+  .criteria912-doc-table {
+    min-width: 850px;
+  }
+
+  .criteria912-table-wrapper {
+    overflow-x: auto;
+  }
+
+  /* Final total */
+
+  .criteria912-final-total {
+    flex-direction: column;
+
+    gap: 7px;
+
+    text-align: center;
+
+    padding: 12px;
+  }
+
+  /* Buttons */
+
+  .criteria912-actions {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+  }
+
+  .action-btn {
+    min-height: 44px;
+
+    font-size: 13px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 450px) {
+
+  .criteria912-header-left {
+    gap: 10px;
+  }
+
+  .criteria912-number {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+
+    font-size: 19px;
+  }
+
+  .criteria912-header h1 {
+    font-size: 16px;
+  }
+
+  .criteria912-header p {
+    font-size: 11px;
+  }
+
+  .criteria912-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria912-final-total {
+    font-size: 15px;
+  }
+
+  .criteria912-final-total strong {
+    font-size: 20px;
+  }
+}
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+  body {
+    background: #fff;
+  }
+
+  .criteria912-page {
+    padding: 0;
+    background: #fff;
+  }
+
+  .criteria912-actions {
+    display: none;
+  }
+
+  .criteria912-header {
+    box-shadow: none;
+
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .criteria912-card {
+    box-shadow: none;
+
+    break-inside: avoid;
+  }
+
+  .criteria912-top-grid,
+  .criteria912-main-grid {
+    break-inside: avoid;
+  }
+
+  .criteria912-final-total {
+    break-inside: avoid;
+  }
+}
+/* =========================================================
+   CRITERIA 9.12
+   SAME COLOR COMBINATION AS CRITERIA 9.11
+   ONLY COLORS UPDATED
+   ========================================================= */
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.criteria912-page {
+  background: #f3f6fb;
+  color: #102a43;
+}
+
+body {
+  background: #f3f6fb;
+  color: #102a43;
+}
+
+/* =========================================================
+   HEADER - BLUE
+   ========================================================= */
+
+.criteria912-header {
+  background: linear-gradient(
+    135deg,
+    #1769c2,
+    #1264bd
+  );
+  color: #ffffff;
+  box-shadow: 0 5px 18px rgba(23, 105, 194, 0.18);
+}
+
+.criteria912-number {
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: none;
+}
+
+.criteria912-header h1 {
+  color: #ffffff;
+}
+
+.criteria912-header p {
+  color: #ffffff;
+}
+
+/* =========================================================
+   MAX MARKS
+   ========================================================= */
+
+.criteria912-maxmarks {
+  background: #ffffff;
+  color: #1769c2;
+}
+
+/* =========================================================
+   TOP EVALUATION
+   ========================================================= */
+
+.criteria912-evaluation-point,
+.criteria912-instructions-top {
+  background: #ffffff;
+  border-color: #d7dfeb;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.evaluation-point-icon {
+  background: linear-gradient(
+    145deg,
+    #1769c2,
+    #1257a5
+  );
+  color: #ffffff;
+}
+
+.criteria912-evaluation-point h3 {
+  color: #1769c2;
+}
+
+.criteria912-evaluation-point p {
+  color: #20364d;
+}
+
+/* =========================================================
+   TOP INSTRUCTIONS - GREEN
+   ========================================================= */
+
+.criteria912-instructions-top {
+  background: #f1faf5;
+  border-color: #cfe5d5;
+}
+
+.top-instructions-title {
+  color: #13733b;
+}
+
+.criteria912-instructions-top li {
+  color: #20364d;
+}
+
+.criteria912-instructions-top li::marker {
+  color: #168447;
+}
+
+/* =========================================================
+   COMMON CARD
+   ========================================================= */
+
+.criteria912-card {
+  background: #ffffff;
+  border-color: #d7dfeb;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.criteria912-card-title {
+  background: #f7f9fc;
+  border-color: #d7dfeb;
+  color: #102a43;
+}
+
+.criteria912-card-title svg {
+  color: #1769c2;
+}
+
+/* =========================================================
+   GUIDELINE TABLE
+   ========================================================= */
+
+.criteria912-guideline-table thead th {
+  background: #1769c2;
+  color: #ffffff;
+  border-color: #1266b4;
+}
+
+.criteria912-guideline-table tbody td {
+  background: #ffffff;
+  border-color: #d7dfeb;
+  color: #20364d;
+}
+
+.criteria912-guideline-table tbody tr:nth-child(even) td {
+  background: #f8fbff;
+}
+
+.criteria912-guideline-table tbody tr:hover td {
+  background: #f3f7fc;
+}
+
+/* =========================================================
+   SR NUMBER
+   ========================================================= */
+
+.criteria-sr {
+  color: #1769c2 !important;
+}
+
+/* =========================================================
+   CRITERIA NAME
+   ========================================================= */
+
+.criteria-name strong {
+  color: #20364d;
+}
+
+/* =========================================================
+   INDICATORS
+   ========================================================= */
+
+.criteria912-guideline-table li {
+  color: #20364d;
+}
+
+/* =========================================================
+   MARKS INPUT
+   ========================================================= */
+
+.marks-input-box input {
+  border-color: #c9d3e2;
+  background: #ffffff;
+  color: #1769c2;
+}
+
+.marks-input-box input:focus {
+  border-color: #1769c2;
+  box-shadow: 0 0 0 3px rgba(23, 105, 194, 0.12);
+}
+
+.marks-input-box span {
+  color: #34495e;
+}
+
+/* =========================================================
+   TOTAL ROW
+   ========================================================= */
+
+.criteria912-guideline-table .total-row td {
+  background: #eaf2fc;
+  color: #064194;
+}
+
+.criteria912-guideline-table .total-row strong {
+  color: #1769c2;
+}
+
+/* =========================================================
+   SUPPORTING DOCUMENTS - PURPLE
+   ========================================================= */
+
+.criteria912-doc-table thead th {
+  background: #f0eef8;
+  color: #3e159b;
+  border-color: #d7dfeb;
+}
+
+.criteria912-doc-table tbody td {
+  background: #ffffff;
+  border-color: #d7dfeb;
+  color: #303f57;
+}
+
+.criteria912-doc-table tbody tr:nth-child(even) td {
+  background: #f8fbff;
+}
+
+.criteria912-doc-table tbody tr:hover td {
+  background: #f3f7fc;
+}
+
+/* =========================================================
+   DOCUMENT CELLS
+   ========================================================= */
+
+.serial-cell {
+  color: #1769c2;
+}
+
+.document-type {
+  color: #17324d;
+}
+
+.document-description {
+  color: #303f57;
+}
+
+/* =========================================================
+   FILE UPLOAD
+   ========================================================= */
+
+.upload-cell input[type="file"] {
+  color: #333333;
+}
+
+.upload-cell input[type="file"]::file-selector-button {
+  border: none;
+  background: #e7f2ff;
+  color: #1769c2;
+  border-radius: 4px;
+}
+
+.upload-cell input[type="file"]::file-selector-button:hover {
+  background: #d3e7ff;
+}
+
+/* =========================================================
+   VIEW FILE - PURPLE
+   ========================================================= */
+
+.document-view-btn {
+  background: #f0eef8;
+  color: #4b159d;
+}
+
+.document-view-btn:hover {
+  background: #4b159d;
+  color: #ffffff;
+}
+
+/* =========================================================
+   RIGHT SIDE CARDS
+   ========================================================= */
+
+.criteria912-right .criteria912-card {
+  border-color: #d7dfeb;
+}
+
+/* =========================================================
+   EXHIBITS - BLUE
+   ========================================================= */
+
+.exhibits-card {
+  background: #f5f8ff;
+  border-color: #dce4f5;
+}
+
+.blue-title {
+  color: #1769c2;
+}
+
+.exhibits-intro {
+  color: #20364d;
+}
+
+.exhibits-card li {
+  color: #263746;
+}
+
+.exhibits-card li::marker {
+  color: #4b159d;
+}
+
+/* =========================================================
+   EVALUATION CARD - PURPLE
+   ========================================================= */
+
+.evaluation-card {
+  background: #ffffff;
+  border-color: #e2dff0;
+}
+
+.purple-title {
+  color: #4b159d;
+}
+
+/* =========================================================
+   EVALUATION MARKS
+   ========================================================= */
+
+.marks-section label,
+.remarks-section label {
+  color: #102a43;
+}
+
+.marks-display {
+  background: linear-gradient(
+    90deg,
+    #f0eaff,
+    #f6f0ff
+  );
+  color: #4b159d;
+}
+
+.marks-display strong {
+  color: #4b159d;
+}
+
+.marks-display span {
+  color: #7b8794;
+}
+
+.marks-section small {
+  color: #7b8794;
+}
+
+/* =========================================================
+   REMARKS
+   ========================================================= */
+
+.remarks-section label span {
+  color: #7b8794;
+}
+
+.remarks-section textarea {
+  border-color: #c9d3e2;
+  color: #24334e;
+  background: #ffffff;
+}
+
+.remarks-section textarea:focus {
+  border-color: #4b159d;
+  box-shadow: 0 0 0 3px rgba(75, 21, 157, 0.10);
+}
+
+.remarks-section textarea::placeholder {
+  color: #9ba1b2;
+}
+
+/* =========================================================
+   FINAL TOTAL - BLUE
+   ========================================================= */
+
+.criteria912-final-total {
+  border-color: #cbdff4;
+  background: linear-gradient(
+    90deg,
+    #eaf2fc,
+    #f7faff
+  );
+  color: #064194;
+}
+
+.criteria912-final-total strong {
+  color: #1769c2;
+}
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+/* PREVIOUS */
+
+.previous-btn {
+  background: #ffffff;
+  color: #4a159e;
+  border-color: #d5d5df;
+}
+
+.previous-btn:hover {
+  background: #f5f1ff;
+}
+
+/* BACK */
+
+.back-btn {
+  background: #ffffff;
+  color: #4a159e;
+  border-color: #d5d5df;
+}
+
+.back-btn:hover {
+  background: #f5f1ff;
+}
+
+/* SAVE */
+
+.save-btn {
+  background: #12a957;
+  color: #ffffff;
+}
+
+.save-btn:hover {
+  background: #0f9149;
+}
+
+/* SUBMIT */
+
+.submit-btn {
+  background: #1769c2;
+  color: #ffffff;
+}
+
+.submit-btn:hover {
+  background: #1257a5;
+}
+
+/* DELETE */
+
+.delete-btn {
+  background: #ed1c24;
+  color: #ffffff;
+  border-color: #ed1c24;
+}
+
+.delete-btn:hover {
+  background: #c91d14;
+}
+
+/* PRINT */
+
+.print-btn {
+  background: #5721ad;
+  color: #ffffff;
+}
+
+.print-btn:hover {
+  background: #46198e;
+}
+
+/* NEXT */
+
+.next-btn {
+  background: #ffffff;
+  color: #4a159e;
+  border-color: #d5d5df;
+}
+
+.next-btn:hover {
+  background: #f5f1ff;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+.criteria912-table-wrapper::-webkit-scrollbar-track {
+  background: #eef2f7;
+}
+
+.criteria912-table-wrapper::-webkit-scrollbar-thumb {
+  background: #aebbd0;
+}
+
+.criteria912-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #8797b0;
+}
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+  body {
+    background: #ffffff;
+  }
+
+  .criteria912-page {
+    background: #ffffff;
+  }
+
+  .criteria912-header,
+  .criteria912-guideline-table thead th {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .criteria912-doc-table thead th {
+    background: #f0eef8 !important;
+    color: #3e159b !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .criteria912-final-total {
+    background: #eaf2fc !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

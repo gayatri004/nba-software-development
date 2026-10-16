@@ -1,726 +1,735 @@
-/* MAIN PAGE */
+/* =========================================================
+   ARTICULATION MATRIX - GLOBAL
+========================================================= */
 
-.matrix-page{
-  width:100%;
-  min-height:100vh;
-  padding:20px;
-  background:#f4f6fb;
+* {
+  box-sizing: border-box;
 }
 
-.matrix-card{
-  width:100%;
-  background:#fff;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 4px 15px rgba(0,0,0,0.08);
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* HEADER */
-
-.matrix-header{
-  background:linear-gradient(
-    90deg,
-    #304ffe,
-    #9c4dff
-  );
-  color:white;
-  padding:20px 25px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-size:24px;
-  font-weight:600;
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f4f6fb;
+  color: #1f2937;
 }
 
-/* DEPARTMENT */
 
-.dept-section{
-  padding:25px;
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.articulation-layout {
+  width: 100%;
+  min-height: 100vh;
+  background: #f4f6fb;
 }
 
-.dept-section{
-    display:flex;
-    align-items:center;
-    gap:20px;
-    padding:25px;
+
+/* =========================================================
+   MAIN CONTENT
+
+   Sidebar is fixed on left.
+   Content starts after sidebar.
+========================================================= */
+
+.articulation-main {
+  width: calc(100% - 250px);
+  min-height: 100vh;
+  margin-left: 250px;
 }
 
-.dept-section label{
-    min-width:120px;
-    font-size:22px;
-    font-weight:600;
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.matrix-page {
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 20px;
+
+  background: #f4f6fb;
 }
 
-.dept-section select{
-    width:550px;
-    height:55px;
-    border-radius:10px;
-    font-size:18px;
-    padding:0 15px;
-}
-.dept-section select{
-  width:440px;
-  height:55px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  padding:0 15px;
-  font-size:18px;
-}
 
-/* TABLE */
+/* =========================================================
+   CARD
+========================================================= */
 
-.table-wrapper{
-  width:100%;
-  overflow-x:auto;
+.matrix-card {
+  width: 100%;
+
+  background: #ffffff;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-table{
-  width:100%;
-  border-collapse:collapse;
-}
 
-th{
-  background:#f7f8fc;
-  border:1px solid #e5e7eb;
-  padding:16px;
-  font-size:18px;
-}
+/* =========================================================
+   HEADER
+========================================================= */
 
-td{
-  border:1px solid #e5e7eb;
-  padding:16px;
-  font-size:18px;
-  text-align:center;
-}
+.matrix-header {
+  width: 100%;
 
-/* ACTION BUTTONS */
-.action-cell{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-}
+  background:
+    linear-gradient(
+      90deg,
+      #304ffe,
+      #9c4dff
+    );
 
-.edit-btn,
-.delete-btn{
-  background:none;
-  border:none;
-  cursor:pointer;
-  font-size:18px;
-  padding:0;
-}
+  color: #ffffff;
 
-.edit-btn{
-  color:#7c4dff;
-}
+  padding: 20px 25px;
 
-.delete-btn{
-  color:#ff4d4f;
-}
-/* FOOTER BUTTONS */
-
-.matrix-buttons{
-  display:flex;
-  flex-direction:row !important;
-  justify-content:center;
-  align-items:center;
-  gap:20px;
-  padding:35px;
-}
-
-.save-btn,
-.update-btn,
-.delete-main-btn{
-  width:180px;
-  height:55px;
-  border:none;
-  border-radius:10px;
-  color:white;
-  font-size:18px;
-  font-weight:600;
-  cursor:pointer;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-}
-
-.save-btn{
-  background:#22c55e;
-}
-
-.update-btn{
-  background:#2563eb;
-}
-
-.delete-main-btn{
-  background:#ef4444;
-}
-
-/* HOVER */
-
-
-.edit-btn:hover,
-.delete-btn:hover{
-  opacity:.9;
-}
-.next-page-btn{
-  width:180px;
-  height:55px;
-  border:none;
-  border-radius:10px;
-  background:#7c3aed;
-  color:white;
-  font-size:18px;
-  font-weight:600;
-  cursor:pointer;
-}
-.action-cell{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-}
-
-.edit-btn,
-.delete-btn{
-    width:40px;
-    height:40px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.edit-btn{
-    background:#f3e8ff;
-    color:#7c3aed;
-}
-
-.delete-btn{
-    background:#fee2e2;
-    color:#ef4444;
-}
-.course-name{
-    min-width:260px;
-    width:260px;
-    text-align:left;
-    padding:12px;
-    white-space:normal;
-    word-break:break-word;
-    line-height:28px;
-    font-size:16px;
-    font-weight:500;
-}
-.all-course-table td:first-child,
-.all-course-table th:first-child{
-
-    min-width:110px;
-
-    font-weight:600;
-
-}
-.all-course-table input{
-
-    width:55px;
-    height:38px;
-
-    text-align:center;
-
-    border:1px solid #d6d6d6;
-
-    border-radius:8px;
-
-    font-size:16px;
-
-}
-.action-cell{
-
-    min-width:120px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:12px;
-
-}
-.edit-btn{
-
-    width:40px;
-
-    height:40px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#ede3ff;
-
-    color:#7c3aed;
-
-    cursor:pointer;
-
-}
-.delete-btn{
-
-    width:40px;
-
-    height:40px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#ffe4e4;
-
-    color:#ef4444;
-
-    cursor:pointer;
-
-}
-.all-course-table{
-
-    width:max-content;
-
-    min-width:100%;
-
-    border-collapse:collapse;
-
-}
-.table-wrapper{
-
-    width:100%;
-
-    overflow-x:auto;
-
-}
-.all-course-table td{
-
-    padding:14px;
-
-    vertical-align:middle;
-
-}
-.previous-page-btn{
-    width:180px;
-    height:55px;
-    border:none;
-    border-radius:10px;
-    background:#d67a09;
-    color:white;
-    font-size:18px;
-    font-weight:600;
-    cursor:pointer;
-}
-.print-btn{
-    width:220px;
-    height:48px;
-    background:#2563eb;
-    color:#fff;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-}
-
-.print-btn:disabled{
-    opacity:.6;
-    cursor:not-allowed;
-}
-/* ================= MATRIX FOOTER BUTTONS ================= */
-
-.matrix-buttons {
   display: flex;
-  justify-content: center;
+
   align-items: center;
-  gap: 18px;
-  padding: 25px 20px;
-  flex-wrap: nowrap;
+
+  gap: 12px;
+
+  font-size: 24px;
+
+  font-weight: 600;
+}
+
+.matrix-header svg {
+  font-size: 25px;
+}
+
+.matrix-header h2 {
+  margin: 0;
+
+  font-size: 24px;
+
+  font-weight: 600;
 }
 
 
-/* COMMON BUTTON SIZE */
+/* =========================================================
+   DEPARTMENT
+========================================================= */
 
-.matrix-buttons button {
-  width: 140px;
-  height: 35px;
+.dept-section {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 25px;
+}
+
+.dept-section label {
+  min-width: 120px;
+
+  font-size: 20px;
+
+  font-weight: 600;
+
+  color: #374151;
+}
+
+.dept-section select {
+  width: 440px;
+
+  height: 55px;
+
+  border: 1px solid #d9dee8;
+
+  border-radius: 10px;
+
+  padding: 0 15px;
+
+  font-size: 17px;
+
+  background: #ffffff;
+
+  color: #333;
+
+  outline: none;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.dept-section select:focus {
+  border-color: #304ffe;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(48, 79, 254, 0.1);
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+
+  overflow-y: visible;
+
+  padding: 0 20px 10px 20px;
+
+  scrollbar-width: thin;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.all-course-table {
+  width: max-content;
+
+  min-width: 100%;
+
+  border-collapse: collapse;
+
+  background: #ffffff;
+
+  table-layout: auto;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.all-course-table th {
+  background: #f7f8fc;
+
+  border: 1px solid #e5e7eb;
+
+  padding: 14px 12px;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  color: #374151;
+
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLE DATA
+========================================================= */
+
+.all-course-table td {
+  border: 1px solid #e5e7eb;
+
+  padding: 12px;
+
+  font-size: 15px;
+
+  text-align: center;
+
+  vertical-align: middle;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   HOVER ROW
+========================================================= */
+
+.all-course-table tbody tr:hover td {
+  background: #fafbff;
+}
+
+
+/* =========================================================
+   COURSE CODE
+========================================================= */
+
+.all-course-table td:first-child,
+.all-course-table th:first-child {
+  min-width: 120px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.course-code {
+  font-weight: 600;
+
+  color: #374151;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   COURSE NAME
+========================================================= */
+
+.course-name {
+  min-width: 260px;
+
+  width: 260px;
+
+  max-width: 320px;
+
+  text-align: left !important;
+
+  padding: 12px !important;
+
+  white-space: normal;
+
+  word-break: break-word;
+
+  line-height: 24px;
+
+  font-size: 15px !important;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.all-course-table input {
+  width: 55px;
+
+  height: 38px;
+
+  text-align: center;
+
+  border: 1px solid #d6d6d6;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  transition: 0.2s ease;
+}
+
+.all-course-table input:focus {
+  border-color: #6366f1;
+
+  box-shadow:
+    0 0 0 2px
+    rgba(99, 102, 241, 0.12);
+}
+
+
+/* =========================================================
+   REMOVE NUMBER ARROWS
+========================================================= */
+
+.all-course-table input::-webkit-outer-spin-button,
+.all-course-table input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+
+  margin: 0;
+}
+
+.all-course-table input[type="number"] {
+  appearance: textfield;
+}
+
+
+/* =========================================================
+   ACTION CELL
+========================================================= */
+
+.action-cell {
+  min-width: 120px;
+
+  display: flex !important;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px !important;
+}
+
+
+/* =========================================================
+   EDIT BUTTON
+========================================================= */
+
+.edit-btn {
+  width: 40px;
+
+  height: 40px;
 
   border: none;
-  border-radius: 12px;
 
-  color: #fff;
-  font-size: 18px;
-  font-weight: 600;
+  border-radius: 10px;
+
+  background: #ede3ff;
+
+  color: #7c3aed;
 
   cursor: pointer;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
-  gap: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.edit-btn:hover {
+  background: #dcc8ff;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DELETE BUTTON
+========================================================= */
+
+.delete-btn {
+  width: 40px;
+
+  height: 40px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #ffe4e4;
+
+  color: #ef4444;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: #ffcaca;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   EMPTY / LOADING
+========================================================= */
+
+.empty-cell,
+.loading-cell {
+  height: 100px;
+
+  text-align: center !important;
+
+  color: #6b7280;
+
+  font-size: 16px !important;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   FOOTER BUTTONS
+========================================================= */
+
+.matrix-buttons {
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 25px 20px;
+
+  flex-wrap: nowrap;
+}
+
+
+/* =========================================================
+   COMMON BUTTON
+========================================================= */
+
+.matrix-buttons button {
+  height: 34px;
+
+  width: 90px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  color: #ffffff;
+
+  font-family: "Segoe UI", sans-serif;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  cursor: pointer;
+
+  padding: 0;
 
   box-sizing: border-box;
+
+  transition: all 0.2s ease;
 }
 
 
-/* PREVIOUS */
+/* =========================================================
+   PREVIOUS
+========================================================= */
 
 .matrix-buttons .previous-page-btn {
-  background: #d67a09;
+  background: #ff7209;
 }
 
 
-/* SAVE */
+/* =========================================================
+   BACK
+========================================================= */
+
+.matrix-buttons .back-btn {
+  background: #61748b;
+}
+
+
+/* =========================================================
+   SAVE
+========================================================= */
 
 .matrix-buttons .save-btn {
-  background: #198b43;
+  background: #218c4b;
 }
 
 
-/* NEXT */
+/* =========================================================
+   CLEAR
+========================================================= */
+
+.matrix-buttons .clear-btn {
+  background: #f5a208;
+}
+
+
+/* =========================================================
+   NEXT
+========================================================= */
 
 .matrix-buttons .next-page-btn {
-  background: #2865e8;
+  background: #078b83;
 }
 
 
-/* GENERATE REPORT / PRINT */
+/* =========================================================
+   PRINT / REPORT
+========================================================= */
 
 .matrix-buttons .print-btn {
-  background: #f23d43;
-  width: 275px;
+  width: 220px;
+
+  height: 50px;
+
+  background: #7059ad;
+
+  border-radius: 8px;
+
+  font-size: 16px;
+
+  padding: 0 18px;
 }
 
 
-/* HOVER */
+/* =========================================================
+   BUTTON HOVER
+========================================================= */
 
-.matrix-buttons button:hover {
-  opacity: 0.9;
+.matrix-buttons .previous-page-btn:hover {
+  background: #e86605;
+}
+
+.matrix-buttons .back-btn:hover {
+  background: #52657a;
+}
+
+.matrix-buttons .save-btn:hover {
+  background: #19783f;
+}
+
+.matrix-buttons .clear-btn:hover {
+  background: #df9105;
+}
+
+.matrix-buttons .next-page-btn:hover {
+  background: #06766f;
+}
+
+.matrix-buttons .print-btn:hover {
+  background: #5f489b;
 }
 
 
-/* DISABLED */
+/* =========================================================
+   BUTTON ACTIVE
+========================================================= */
+
+.matrix-buttons button:active {
+  transform: scale(0.97);
+}
+
+
+/* =========================================================
+   DISABLED
+========================================================= */
 
 .matrix-buttons button:disabled {
   opacity: 0.6;
+
   cursor: not-allowed;
 }
-/* =========================================
-   MATRIX FOOTER BUTTONS - FINAL DESIGN
-========================================= */
 
-.matrix-buttons {
-    display: flex;
-    justify-content: center !important;
-    align-items: center;
-    gap: 8px;
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .articulation-main {
+    width: calc(100% - 230px);
+
+    margin-left: 230px;
+  }
+
+  .matrix-page {
+    padding: 15px;
+  }
+
+  .dept-section select {
+    width: 350px;
+  }
+
+  .matrix-buttons {
+    justify-content: flex-start;
+
+    overflow-x: auto;
+
+    padding-bottom: 15px;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .articulation-main {
     width: 100%;
-    padding: 25px 20px;
-    flex-wrap: nowrap;
-}
 
+    margin-left: 0;
 
-/* COMMON BUTTON */
+    padding-top: 60px;
+  }
 
-.matrix-buttons button {
-    width: 90px !important;
-    height: 34px !important;
+  .matrix-page {
+    padding: 10px;
+  }
 
-    border: none;
-    border-radius: 6px !important;
+  .matrix-header {
+    padding: 16px;
 
-    color: #ffffff;
-    font-family: "Segoe UI", sans-serif;
-    font-size: 13px !important;
-    font-weight: 600;
+    font-size: 18px;
+  }
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .matrix-header h2 {
+    font-size: 18px;
+  }
 
-    cursor: pointer;
-    padding: 0 !important;
+  .dept-section {
+    flex-direction: column;
 
-    box-sizing: border-box;
+    align-items: flex-start;
 
-    transition: all 0.2s ease;
-}
+    padding: 18px;
+  }
 
+  .dept-section label {
+    min-width: auto;
 
-/* =========================================
-   PREVIOUS - ORANGE
-========================================= */
+    font-size: 17px;
+  }
 
-.matrix-buttons .previous-page-btn {
-    background: #ff7209 !important;
-}
-
-
-/* =========================================
-   BACK - SLATE BLUE
-========================================= */
-
-.matrix-buttons .back-btn {
-    background: #61748b !important;
-}
-
-
-/* =========================================
-   SAVE - GREEN
-========================================= */
-
-.matrix-buttons .save-btn {
-    background: #218c4b !important;
-}
-
-
-/* =========================================
-   DELETE - RED
-========================================= */
-
-.matrix-buttons .delete-main-btn,
-.matrix-buttons .delete-btn {
-    background: #ef4444 !important;
-}
-
-
-/* =========================================
-   CLEAR - ORANGE
-========================================= */
-
-.matrix-buttons .clear-btn {
-    background: #f5a208 !important;
-}
-
-
-/* =========================================
-   PRINT - PURPLE
-========================================= */
-
-.matrix-buttons .print-btn {
-    width: 90px !important;
-    background: #7059ad !important;
-}
-
-
-/* =========================================
-   NEXT - TEAL
-========================================= */
-
-.matrix-buttons .next-page-btn {
-    background: #078b83 !important;
-}
-
-
-/* =========================================
-   HOVER
-========================================= */
-
-.matrix-buttons .previous-page-btn:hover {
-    background: #e86605 !important;
-}
-
-.matrix-buttons .back-btn:hover {
-    background: #52657a !important;
-}
-
-.matrix-buttons .save-btn:hover {
-    background: #19783f !important;
-}
-
-.matrix-buttons .delete-main-btn:hover,
-.matrix-buttons .delete-btn:hover {
-    background: #dc2626 !important;
-}
-
-.matrix-buttons .clear-btn:hover {
-    background: #df9105 !important;
-}
-
-.matrix-buttons .print-btn:hover {
-    background: #5f489b !important;
-}
-
-.matrix-buttons .next-page-btn:hover {
-    background: #06766f !important;
-}
-
-
-/* CLICK */
-
-.matrix-buttons button:active {
-    transform: scale(0.97);
-}
-
-
-/* DISABLED */
-
-.matrix-buttons button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-/* =========================================
-   MATRIX FOOTER BUTTONS - FINAL DESIGN
-========================================= */
-
-.matrix-buttons {
-    display: flex;
-    justify-content: center !important;
-    align-items: center;
-    gap: 8px;
+  .dept-section select {
     width: 100%;
-    padding: 25px 20px;
-    flex-wrap: nowrap;
-}
 
+    height: 48px;
+  }
 
-/* COMMON BUTTON */
+  .table-wrapper {
+    padding: 0 10px 10px 10px;
+  }
 
-.matrix-buttons button {
-    width: 90px !important;
-    height: 34px !important;
+  .matrix-buttons {
+    justify-content: flex-start;
 
-    border: none;
-    border-radius: 6px !important;
+    overflow-x: auto;
 
-    color: #ffffff;
-    font-family: "Segoe UI", sans-serif;
-    font-size: 13px !important;
-    font-weight: 600;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-    padding: 0 !important;
-
-    box-sizing: border-box;
-
-    transition: all 0.2s ease;
-}
-
-
-/* =========================================
-   PREVIOUS - ORANGE
-========================================= */
-
-.matrix-buttons .previous-page-btn {
-    background: #ff7209 !important;
-}
-
-
-/* =========================================
-   BACK - SLATE BLUE
-========================================= */
-
-.matrix-buttons .back-btn {
-    background: #61748b !important;
-}
-
-
-/* =========================================
-   SAVE - GREEN
-========================================= */
-
-.matrix-buttons .save-btn {
-    background: #218c4b !important;
-}
-
-
-/* =========================================
-   DELETE - RED
-========================================= */
-
-.matrix-buttons .delete-main-btn,
-.matrix-buttons .delete-btn {
-    background: #ef4444 !important;
-}
-
-
-/* =========================================
-   CLEAR - ORANGE
-========================================= */
-
-.matrix-buttons .clear-btn {
-    background: #f5a208 !important;
-}
-
-
-/* =========================================
-   PRINT - PURPLE
-========================================= */
-
-.matrix-buttons .print-btn {
-    width: 90px !important;
-    background: #7059ad !important;
-}
-
-
-/* =========================================
-   NEXT - TEAL
-========================================= */
-
-.matrix-buttons .next-page-btn {
-    background: #078b83 !important;
-}
-
-
-/* =========================================
-   HOVER
-========================================= */
-
-.matrix-buttons .previous-page-btn:hover {
-    background: #e86605 !important;
-}
-
-.matrix-buttons .back-btn:hover {
-    background: #52657a !important;
-}
-
-.matrix-buttons .save-btn:hover {
-    background: #19783f !important;
-}
-
-.matrix-buttons .delete-main-btn:hover,
-.matrix-buttons .delete-btn:hover {
-    background: #dc2626 !important;
-}
-
-.matrix-buttons .clear-btn:hover {
-    background: #df9105 !important;
-}
-
-.matrix-buttons .print-btn:hover {
-    background: #5f489b !important;
-}
-
-.matrix-buttons .next-page-btn:hover {
-    background: #06766f !important;
-}
-
-
-/* CLICK */
-
-.matrix-buttons button:active {
-    transform: scale(0.97);
-}
-
-
-/* DISABLED */
-
-.matrix-buttons button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+    padding: 20px 10px;
+  }
 }

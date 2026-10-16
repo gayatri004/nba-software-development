@@ -1,28 +1,339 @@
 /* =========================================================
-   COURSE MATRIX - MAIN LAYOUT
+   COURSE MATRIX - GLOBAL RESET
 ========================================================= */
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f5f6fa;
+  color: #26364d;
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
 
 .course-matrix-layout {
   display: flex;
   width: 100%;
   min-height: 100vh;
-  background: #f5f7fb;
+  background: #f5f6fa;
+  position: relative;
 }
 
-.course-matrix-content {
-  flex: 1;
-  min-width: 0;
-  margin-left: 250px;
-  padding: 25px 30px 40px;
+
+/* =========================================================
+   NBA SIDEBAR
+   SAME STYLE AS POPSO SIDEBAR
+========================================================= */
+
+.course-matrix-layout .nba-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 260px;
+  height: 100vh;
+
+  background: #0d172b;
+
+  z-index: 1000;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  border-right: 1px solid #243452;
 }
+
+
+/* =========================================================
+   SIDEBAR SCROLLBAR
+========================================================= */
+
+.course-matrix-layout .nba-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.course-matrix-layout .nba-sidebar::-webkit-scrollbar-track {
+  background: #0d172b;
+}
+
+.course-matrix-layout .nba-sidebar::-webkit-scrollbar-thumb {
+  background: #2d6cdf;
+  border-radius: 10px;
+}
+
+
+/* Firefox */
+
+.course-matrix-layout .nba-sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: #2d6cdf #0d172b;
+}
+
+
+/* =========================================================
+   SIDEBAR COMMON
+========================================================= */
+
+.course-matrix-layout .nba-sidebar a {
+  text-decoration: none;
+}
+
+.course-matrix-layout .nba-sidebar button {
+  font-family: inherit;
+}
+
+
+/* =========================================================
+   SIDEBAR LOGO / BRAND
+========================================================= */
+
+.course-matrix-layout .nba-sidebar .logo-section,
+.course-matrix-layout .nba-sidebar .sidebar-logo,
+.course-matrix-layout .nba-sidebar .brand-section {
+  width: 100%;
+
+  padding: 30px 20px 25px;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   NBA LOGO
+========================================================= */
+
+.course-matrix-layout .nba-sidebar .logo,
+.course-matrix-layout .nba-sidebar .nba-logo {
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #2868e8;
+
+  color: #ffffff;
+
+  border-radius: 18px;
+
+  font-size: 25px;
+  font-weight: 800;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   NBA CMS TITLE
+========================================================= */
+
+.course-matrix-layout .nba-sidebar .logo-section h2,
+.course-matrix-layout .nba-sidebar .sidebar-logo h2,
+.course-matrix-layout .nba-sidebar .brand-section h2 {
+  color: #ffffff;
+
+  font-size: 24px;
+
+  font-weight: 700;
+
+  margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   ACCREDITATION TEXT
+========================================================= */
+
+.course-matrix-layout .nba-sidebar .logo-section p,
+.course-matrix-layout .nba-sidebar .sidebar-logo p,
+.course-matrix-layout .nba-sidebar .brand-section p {
+  color: #d7deea;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   SIDEBAR DIVIDER
+========================================================= */
+
+.course-matrix-layout .nba-sidebar hr,
+.course-matrix-layout .nba-sidebar .sidebar-divider {
+  border: 0;
+
+  height: 1px;
+
+  background: #2a354b;
+
+  margin: 0 20px 22px;
+}
+
+
+/* =========================================================
+   SIDEBAR MENU
+========================================================= */
+
+.course-matrix-layout .nba-sidebar .sidebar-menu,
+.course-matrix-layout .nba-sidebar nav {
+  width: 100%;
+
+  padding: 0 15px 25px;
+}
+
+
+/* =========================================================
+   SIDEBAR MENU ITEM
+========================================================= */
+
+.course-matrix-layout .nba-sidebar .sidebar-menu a,
+.course-matrix-layout .nba-sidebar nav a,
+.course-matrix-layout .nba-sidebar .menu-item {
+  width: 100%;
+
+  min-height: 48px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 10px 15px;
+
+  margin-bottom: 5px;
+
+  color: #f1f5fb;
+
+  background: transparent;
+
+  border-radius: 7px;
+
+  font-size: 15px;
+
+  font-weight: 500;
+
+  transition: all 0.2s ease;
+}
+
+
+/* =========================================================
+   SIDEBAR ICON
+========================================================= */
+
+.course-matrix-layout .nba-sidebar .sidebar-menu svg,
+.course-matrix-layout .nba-sidebar nav svg,
+.course-matrix-layout .nba-sidebar .menu-item svg {
+  width: 20px;
+
+  min-width: 20px;
+
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   SIDEBAR HOVER
+========================================================= */
+
+.course-matrix-layout .nba-sidebar .sidebar-menu a:hover,
+.course-matrix-layout .nba-sidebar nav a:hover,
+.course-matrix-layout .nba-sidebar .menu-item:hover {
+  background: #17243d;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   SIDEBAR ACTIVE
+========================================================= */
+
+.course-matrix-layout .nba-sidebar .sidebar-menu a.active,
+.course-matrix-layout .nba-sidebar nav a.active,
+.course-matrix-layout .nba-sidebar .menu-item.active {
+  background: #2468e8;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 5px 15px rgba(36, 104, 232, 0.25);
+}
+
+
+/* =========================================================
+   CRITERIA TITLE
+========================================================= */
+
+.course-matrix-layout .nba-sidebar .criteria-title,
+.course-matrix-layout .nba-sidebar .section-title {
+  padding: 16px 20px 10px;
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.6px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   SIDEBAR CONTENT
+========================================================= */
+
+.course-matrix-layout .nba-sidebar .sidebar-content {
+  width: 100%;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   EXACTLY AFTER 260px SIDEBAR
+========================================================= */
+
+.course-matrix-content {
+  width: calc(100% - 260px);
+
+  min-width: 0;
+
+  margin-left: 260px;
+
+  padding: 30px;
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   COURSE MATRIX PAGE
+========================================================= */
 
 .course-matrix-page {
   width: 100%;
+
   max-width: 1500px;
+
   margin: 0 auto;
 }
 
@@ -32,22 +343,33 @@
 ========================================================= */
 
 .page-title {
+  width: 100%;
+
   background: linear-gradient(
     135deg,
-    #0b4ea2,
-    #1769c2
+    #214b91,
+    #2d5fba
   );
-  padding: 20px 25px;
+
+  padding: 25px 30px;
+
   border-radius: 12px;
-  margin-bottom: 22px;
-  box-shadow: 0 4px 14px rgba(11, 78, 162, 0.18);
+
+  margin-bottom: 25px;
+
+  box-shadow:
+    0 5px 18px rgba(11, 78, 162, 0.15);
 }
 
 .page-title h1 {
   margin: 0;
+
   color: #ffffff;
-  font-size: 25px;
+
+  font-size: 28px;
+
   font-weight: 700;
+
   letter-spacing: 0.2px;
 }
 
@@ -57,46 +379,85 @@
 ========================================================= */
 
 .filter-card {
+  width: 100%;
+
   display: grid;
-  grid-template-columns: repeat(2, minmax(250px, 1fr));
+
+  grid-template-columns:
+    repeat(2, minmax(250px, 1fr));
+
   gap: 20px;
+
   background: #ffffff;
+
   padding: 22px;
+
   border-radius: 12px;
+
   margin-bottom: 25px;
+
   border: 1px solid #e3e8f0;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.05);
 }
+
+
+/* =========================================================
+   FILTER BOX
+========================================================= */
 
 .filter-box {
   display: flex;
+
   flex-direction: column;
-  gap: 7px;
+
+  gap: 8px;
+
+  min-width: 0;
 }
 
 .filter-box label {
   color: #26364d;
+
   font-size: 14px;
+
   font-weight: 600;
 }
 
 .filter-box select {
   width: 100%;
-  min-height: 43px;
-  padding: 9px 12px;
+
+  min-height: 45px;
+
+  padding: 9px 13px;
+
   border: 1px solid #cfd7e3;
-  border-radius: 7px;
+
+  border-radius: 8px;
+
   background: #ffffff;
+
   color: #26364d;
+
   font-size: 14px;
+
   outline: none;
+
   cursor: pointer;
+
   transition: 0.2s ease;
+}
+
+.filter-box select:hover {
+  border-color: #9fb4cf;
 }
 
 .filter-box select:focus {
   border-color: #1769c2;
-  box-shadow: 0 0 0 3px rgba(23, 105, 194, 0.10);
+
+  box-shadow:
+    0 0 0 3px rgba(23, 105, 194, 0.10);
 }
 
 
@@ -106,36 +467,96 @@
 
 .section-card {
   width: 100%;
+
   background: #ffffff;
+
   border: 1px solid #e0e6ef;
+
   border-radius: 12px;
+
   margin-bottom: 25px;
+
   overflow: hidden;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
 .section-header {
+  width: 100%;
+
   background: linear-gradient(
     135deg,
     #0b4ea2,
     #1769c2
   );
+
   color: #ffffff;
-  font-size: 17px;
+
+  font-size: 18px;
+
   font-weight: 700;
-  padding: 15px 20px;
+
+  padding: 16px 22px;
 }
 
+
+/* =========================================================
+   SECTION CONTENT
+========================================================= */
+
 .section-content {
+  width: 100%;
+
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 250px;
-  gap: 25px;
-  padding: 22px;
+
+  grid-template-columns:
+    minmax(0, 1fr) 270px;
+
+  gap: 28px;
+
+  padding: 25px;
+
   align-items: start;
 }
 
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
 .left-content {
+  width: 100%;
+
   min-width: 0;
+
+  overflow-x: auto;
+
+  overflow-y: visible;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #b9c7d8 transparent;
+}
+
+.left-content::-webkit-scrollbar {
+  height: 6px;
+}
+
+.left-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.left-content::-webkit-scrollbar-thumb {
+  background: #b9c7d8;
+
+  border-radius: 10px;
 }
 
 
@@ -144,28 +565,47 @@
 ========================================================= */
 
 .top-row {
+  width: 100%;
+
   display: grid;
-  grid-template-columns: 150px minmax(220px, 1fr);
+
+  grid-template-columns:
+    150px minmax(220px, 1fr);
+
   gap: 15px;
+
   align-items: end;
+
   margin-bottom: 15px;
 }
 
 .top-row > select {
   width: 100%;
+
   min-height: 43px;
+
   padding: 9px 12px;
+
   border: 1px solid #cfd7e3;
+
   border-radius: 7px;
+
   background: #ffffff;
+
   color: #26364d;
+
   font-size: 14px;
+
   outline: none;
+
+  cursor: pointer;
 }
 
 .top-row > select:focus {
   border-color: #1769c2;
-  box-shadow: 0 0 0 3px rgba(23, 105, 194, 0.10);
+
+  box-shadow:
+    0 0 0 3px rgba(23, 105, 194, 0.10);
 }
 
 .top-row .filter-box {
@@ -179,17 +619,29 @@
 
 .co-textarea {
   width: 100%;
+
   min-height: 105px;
+
   resize: vertical;
+
   padding: 12px 14px;
+
   border: 1px solid #cfd7e3;
+
   border-radius: 8px;
+
   font-family: inherit;
+
   font-size: 14px;
+
   color: #26364d;
+
   background: #ffffff;
+
   outline: none;
+
   margin-bottom: 13px;
+
   line-height: 1.5;
 }
 
@@ -199,7 +651,9 @@
 
 .co-textarea:focus {
   border-color: #1769c2;
-  box-shadow: 0 0 0 3px rgba(23, 105, 194, 0.10);
+
+  box-shadow:
+    0 0 0 3px rgba(23, 105, 194, 0.10);
 }
 
 
@@ -208,61 +662,91 @@
 ========================================================= */
 
 .add-btn {
+  width: 100%;
+
   display: inline-flex;
+
   align-items: center;
+
   justify-content: center;
+
   gap: 8px;
+
   min-height: 42px;
+
   padding: 9px 18px;
+
   border: none;
+
   border-radius: 7px;
-  background: #1769c2;
+
+  background: #16a34a;
+
   color: #ffffff;
+
   font-size: 14px;
+
   font-weight: 600;
+
   cursor: pointer;
+
   transition: all 0.2s ease;
+
   margin-bottom: 18px;
 }
 
 .add-btn:hover {
-  background: #0b4ea2;
-  transform: translateY(-1px);
-}
+  background: #15803d;
 
-.add-btn:active {
-  transform: translateY(0);
+  transform: translateY(-1px);
 }
 
 
 /* =========================================================
-   TABLE
+   GENERAL TABLE
 ========================================================= */
 
 .left-content table {
   width: 100%;
+
   border-collapse: collapse;
+
   table-layout: fixed;
+
   background: #ffffff;
 }
 
 .left-content table th {
   background: #edf4fc;
+
   color: #17365d;
+
   font-size: 13px;
+
   font-weight: 700;
+
   padding: 12px 10px;
+
   border: 1px solid #d7e0eb;
+
   text-align: center;
+
+  vertical-align: middle;
 }
 
 .left-content table td {
   padding: 11px 10px;
+
   border: 1px solid #d7e0eb;
+
   color: #354052;
+
   font-size: 13px;
+
   text-align: center;
+
   vertical-align: middle;
+
   word-break: break-word;
 }
 
@@ -291,6 +775,7 @@
 .section-card:first-of-type
 .left-content table td:nth-child(2) {
   width: 52%;
+
   text-align: left;
 }
 
@@ -315,6 +800,7 @@
 
 .co-description {
   text-align: left !important;
+
   line-height: 1.5;
 }
 
@@ -325,22 +811,34 @@
 
 .action-buttons {
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   gap: 7px;
 }
 
 .edit-btn,
 .delete-btn {
   width: 34px;
+
   height: 34px;
+
   border: none;
+
   border-radius: 6px;
+
   display: inline-flex;
+
   align-items: center;
+
   justify-content: center;
+
   cursor: pointer;
+
   color: #ffffff;
+
   transition: 0.2s ease;
 }
 
@@ -350,6 +848,7 @@
 
 .edit-btn:hover {
   background: #d98e00;
+
   transform: translateY(-1px);
 }
 
@@ -359,6 +858,7 @@
 
 .delete-btn:hover {
   background: #bb2635;
+
   transform: translateY(-1px);
 }
 
@@ -369,15 +869,25 @@
 
 .file-upload-row {
   width: 100%;
+
   min-height: 150px;
+
   border: 1px dashed #b8c7da;
+
   border-radius: 10px;
+
   background: #f8fbff;
+
   padding: 18px;
+
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
+
   gap: 12px;
 }
 
@@ -388,27 +898,40 @@
 
 .choose-file-btn {
   display: inline-flex;
+
   align-items: center;
+
   justify-content: center;
+
   min-width: 130px;
+
   min-height: 40px;
+
   padding: 8px 16px;
+
   border-radius: 7px;
+
   background: #1769c2;
+
   color: #ffffff;
+
   font-size: 13px;
+
   font-weight: 600;
+
   cursor: pointer;
+
   transition: 0.2s ease;
 }
 
 .choose-file-btn:hover {
   background: #0b4ea2;
+
   transform: translateY(-1px);
 }
 
 .custom-file-input {
-  display: none;
+  display: none !important;
 }
 
 
@@ -418,16 +941,27 @@
 
 .pdf-name {
   width: 100%;
+
   max-width: 220px;
+
   padding: 8px 10px;
+
   border-radius: 6px;
+
   background: #ffffff;
+
   border: 1px solid #d9e1eb;
+
   color: #34445a;
+
   font-size: 12px;
+
   text-align: center;
+
   overflow: hidden;
+
   text-overflow: ellipsis;
+
   white-space: nowrap;
 }
 
@@ -438,8 +972,11 @@
 
 .document-actions {
   display: flex;
+
   justify-content: center;
+
   align-items: center;
+
   gap: 8px;
 }
 
@@ -447,14 +984,23 @@
 .download-btn,
 .download-btn-upload {
   width: 35px;
+
   height: 35px;
+
   border: none;
+
   border-radius: 6px;
+
   display: inline-flex;
+
   align-items: center;
+
   justify-content: center;
+
   cursor: pointer;
+
   color: #ffffff;
+
   transition: 0.2s ease;
 }
 
@@ -464,6 +1010,8 @@
 
 .view-btn:hover {
   background: #0b4ea2;
+
+  transform: translateY(-1px);
 }
 
 .download-btn,
@@ -474,6 +1022,41 @@
 .download-btn:hover,
 .download-btn-upload:hover {
   background: #146c43;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MATRIX SECTION
+========================================================= */
+
+.section-card:last-of-type
+.section-content {
+  display: block;
+}
+
+.section-card:last-of-type
+.left-content {
+  width: 100%;
+
+  min-width: 0;
+}
+
+.section-card:last-of-type
+.top-row {
+  display: block;
+
+  width: 100%;
+
+  margin-bottom: 18px;
+}
+
+.section-card:last-of-type
+.top-row > select {
+  width: 100%;
+
+  min-height: 43px;
 }
 
 
@@ -481,50 +1064,56 @@
    MATRIX TABLE
 ========================================================= */
 
-.section-card:last-of-type .left-content {
+.section-card:last-of-type
+.left-content table {
   width: 100%;
-}
 
-.section-card:last-of-type .top-row {
-  display: block;
-  margin-bottom: 18px;
-}
-
-.section-card:last-of-type .top-row > select {
-  width: 100%;
-  min-height: 43px;
-}
-
-.section-card:last-of-type .left-content table {
-  width: 100%;
   table-layout: fixed;
 }
 
-.section-card:last-of-type .left-content table th,
-.section-card:last-of-type .left-content table td {
+.section-card:last-of-type
+.left-content table th,
+.section-card:last-of-type
+.left-content table td {
   text-align: center;
+
+  vertical-align: middle;
 }
 
-.section-card:last-of-type .left-content table th:nth-child(1),
-.section-card:last-of-type .left-content table td:nth-child(1) {
+.section-card:last-of-type
+.left-content table th:nth-child(1),
+.section-card:last-of-type
+.left-content table td:nth-child(1) {
   width: 12%;
 }
 
-.section-card:last-of-type .left-content table th:nth-child(2),
-.section-card:last-of-type .left-content table td:nth-child(2),
-.section-card:last-of-type .left-content table th:nth-child(3),
-.section-card:last-of-type .left-content table td:nth-child(3),
-.section-card:last-of-type .left-content table th:nth-child(4),
-.section-card:last-of-type .left-content table td:nth-child(4),
-.section-card:last-of-type .left-content table th:nth-child(5),
-.section-card:last-of-type .left-content table td:nth-child(5),
-.section-card:last-of-type .left-content table th:nth-child(6),
-.section-card:last-of-type .left-content table td:nth-child(6) {
+.section-card:last-of-type
+.left-content table th:nth-child(2),
+.section-card:last-of-type
+.left-content table td:nth-child(2),
+.section-card:last-of-type
+.left-content table th:nth-child(3),
+.section-card:last-of-type
+.left-content table td:nth-child(3),
+.section-card:last-of-type
+.left-content table th:nth-child(4),
+.section-card:last-of-type
+.left-content table td:nth-child(4),
+.section-card:last-of-type
+.left-content table th:nth-child(5),
+.section-card:last-of-type
+.left-content table td:nth-child(5),
+.section-card:last-of-type
+.left-content table th:nth-child(6),
+.section-card:last-of-type
+.left-content table td:nth-child(6) {
   width: 12%;
 }
 
-.section-card:last-of-type .left-content table th:nth-child(7),
-.section-card:last-of-type .left-content table td:nth-child(7) {
+.section-card:last-of-type
+.left-content table th:nth-child(7),
+.section-card:last-of-type
+.left-content table td:nth-child(7) {
   width: 16%;
 }
 
@@ -533,28 +1122,44 @@
    MATRIX INPUT
 ========================================================= */
 
-.left-content table td input[type="number"] {
+.left-content table td
+input[type="number"] {
   width: 75px;
+
   height: 36px;
+
   padding: 6px 8px;
+
   border: 1px solid #cbd5e1;
+
   border-radius: 6px;
+
   text-align: center;
+
   font-size: 13px;
+
   outline: none;
+
   background: #ffffff;
 }
 
-.left-content table td input[type="number"]:focus {
+.left-content table td
+input[type="number"]:focus {
   border-color: #1769c2;
-  box-shadow: 0 0 0 3px rgba(23, 105, 194, 0.10);
+
+  box-shadow:
+    0 0 0 3px rgba(23, 105, 194, 0.10);
 }
 
 
-/* Remove number arrows */
+/* =========================================================
+   NUMBER INPUT ARROWS
+========================================================= */
 
-.left-content table td input[type="number"]::-webkit-inner-spin-button,
-.left-content table td input[type="number"]::-webkit-outer-spin-button {
+.left-content table td
+input[type="number"]::-webkit-inner-spin-button,
+.left-content table td
+input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
 }
 
@@ -565,20 +1170,31 @@
 
 .matrix-save-btn {
   min-width: 75px;
+
   min-height: 35px;
+
   padding: 7px 12px;
+
   border: none;
+
   border-radius: 6px;
+
   background: #1769c2;
+
   color: #ffffff;
+
   font-size: 12px;
+
   font-weight: 600;
+
   cursor: pointer;
+
   transition: 0.2s ease;
 }
 
 .matrix-save-btn:hover {
   background: #0b4ea2;
+
   transform: translateY(-1px);
 }
 
@@ -589,32 +1205,51 @@
 
 .footer-buttons {
   width: 100%;
+
   display: flex;
+
   align-items: center;
+
   justify-content: flex-end;
+
   flex-wrap: wrap;
+
   gap: 10px;
+
   margin-top: 25px;
+
   padding: 18px 0 5px;
 }
 
 .footer-buttons button {
   min-height: 40px;
+
   padding: 9px 17px;
+
   border: none;
+
   border-radius: 7px;
+
   font-size: 13px;
+
   font-weight: 600;
+
   cursor: pointer;
+
   display: inline-flex;
+
   align-items: center;
+
   justify-content: center;
+
   gap: 7px;
+
   transition: 0.2s ease;
 }
 
 .previous-btn {
   background: #6c757d;
+
   color: #ffffff;
 }
 
@@ -624,6 +1259,7 @@
 
 .back-btn {
   background: #495057;
+
   color: #ffffff;
 }
 
@@ -633,6 +1269,7 @@
 
 .submit-btn {
   background: #198754;
+
   color: #ffffff;
 }
 
@@ -642,6 +1279,7 @@
 
 .clear-btn {
   background: #dc3545;
+
   color: #ffffff;
 }
 
@@ -651,6 +1289,7 @@
 
 .print-btn {
   background: #1769c2;
+
   color: #ffffff;
 }
 
@@ -660,6 +1299,7 @@
 
 .next-page-btn {
   background: #0b4ea2;
+
   color: #ffffff;
 }
 
@@ -673,49 +1313,73 @@
 
 
 /* =========================================================
-   WORD / EXCEL PREVIEW
+   WORD PREVIEW
 ========================================================= */
 
 .word-parsed-content {
+  width: 100%;
+
   padding: 20px;
+
   background: #ffffff;
+
   line-height: 1.6;
+
   color: #222222;
 }
 
+
+/* =========================================================
+   EXCEL PREVIEW
+========================================================= */
+
 .excel-parsed-content {
   width: 100%;
+
   overflow-x: auto;
+
   background: #ffffff;
+
   padding: 10px;
 }
 
 .excel-parsed-content table {
   width: 100%;
+
   border-collapse: collapse;
 }
 
 .excel-parsed-content th,
 .excel-parsed-content td {
   border: 1px solid #cccccc;
+
   padding: 8px;
 }
 
 
 /* =========================================================
-   RESPONSIVE - TABLET
+   TABLET
 ========================================================= */
 
 @media (max-width: 1100px) {
 
+  .course-matrix-layout .nba-sidebar {
+    width: 250px;
+  }
+
   .course-matrix-content {
-    margin-left: 220px;
-    padding: 20px;
+    width: calc(100% - 250px);
+
+    margin-left: 250px;
+
+    padding: 25px;
   }
 
   .section-content {
-    grid-template-columns: minmax(0, 1fr) 210px;
-    gap: 18px;
+    grid-template-columns:
+      minmax(0, 1fr) 220px;
+
+    gap: 20px;
   }
 
   .filter-card {
@@ -723,47 +1387,93 @@
   }
 
   .top-row {
-    grid-template-columns: 130px minmax(180px, 1fr);
+    grid-template-columns:
+      130px minmax(180px, 1fr);
   }
 
-  .left-content table td input[type="number"] {
+  .left-content table td
+  input[type="number"] {
     width: 60px;
   }
-
 }
 
 
 /* =========================================================
-   RESPONSIVE - MOBILE
+   SMALL TABLET
 ========================================================= */
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
+
+  .course-matrix-layout .nba-sidebar {
+    width: 240px;
+  }
 
   .course-matrix-content {
-    margin-left: 0;
-    padding: 15px;
-  }
+    width: calc(100% - 240px);
 
-  .page-title {
-    padding: 17px;
-  }
+    margin-left: 240px;
 
-  .page-title h1 {
-    font-size: 20px;
-  }
-
-  .filter-card {
-    grid-template-columns: 1fr;
-    padding: 17px;
+    padding: 20px;
   }
 
   .section-content {
     grid-template-columns: 1fr;
-    padding: 17px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .course-matrix-layout .nba-sidebar {
+    position: fixed;
+
+    left: -300px;
+
+    width: 280px;
+
+    transition: left 0.3s ease;
+  }
+
+  .course-matrix-content {
+    width: 100%;
+
+    margin-left: 0;
+
+    padding: 15px;
+  }
+
+  .course-matrix-page {
+    width: 100%;
+  }
+
+  .page-title {
+    padding: 20px;
+  }
+
+  .page-title h1 {
+    font-size: 22px;
+  }
+
+  .filter-card {
+    grid-template-columns: 1fr;
+
+    padding: 18px;
+  }
+
+  .section-content {
+    grid-template-columns: 1fr;
+
+    padding: 18px;
   }
 
   .top-row {
     grid-template-columns: 1fr;
+
+    gap: 12px;
   }
 
   .file-upload-row {
@@ -772,17 +1482,26 @@
 
   .left-content {
     width: 100%;
+
+    max-width: 100%;
+
     overflow-x: auto;
+
+    overflow-y: hidden;
   }
 
   .left-content table {
     min-width: 650px;
   }
 
+  .section-card:last-of-type
+  .left-content table {
+    min-width: 850px;
+  }
+
   .footer-buttons {
     justify-content: center;
   }
-
 }
 
 
@@ -793,15 +1512,28 @@
 @media (max-width: 500px) {
 
   .course-matrix-content {
+    width: 100%;
+
+    margin-left: 0;
+
     padding: 10px;
   }
 
+  .page-title {
+    margin-bottom: 15px;
+
+    padding: 15px;
+
+    border-radius: 10px;
+  }
+
   .page-title h1 {
-    font-size: 17px;
+    font-size: 18px;
   }
 
   .section-header {
     font-size: 15px;
+
     padding: 13px 15px;
   }
 
@@ -811,7 +1543,9 @@
 
   .footer-buttons {
     display: grid;
+
     grid-template-columns: 1fr 1fr;
+
     width: 100%;
   }
 
@@ -823,4 +1557,40 @@
     width: 100%;
   }
 
+  .filter-card {
+    padding: 14px;
+
+    gap: 14px;
+  }
+
+  .left-content table th,
+  .left-content table td {
+    font-size: 12px;
+
+    padding: 9px 7px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .course-matrix-content {
+    padding: 8px;
+  }
+
+  .page-title h1 {
+    font-size: 16px;
+  }
+
+  .section-content {
+    padding: 10px;
+  }
+
+  .footer-buttons {
+    grid-template-columns: 1fr;
+  }
 }

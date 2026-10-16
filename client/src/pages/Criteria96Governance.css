@@ -1,0 +1,1449 @@
+/* =========================================================
+   CRITERIA 9.6 - GOVERNANCE AND ADMINISTRATION
+   SAME COLOR COMBINATION AS CRITERIA 9.5
+========================================================= */
+
+.governance96-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 10px 15px 20px;
+  background: #f3f6fb;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #102a43;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.governance96-header {
+  width: 100%;
+  min-height: 84px;
+
+  padding: 12px 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(
+    135deg,
+    #1769c2,
+    #1264bd
+  );
+
+  color: #ffffff;
+
+  border-radius: 9px;
+
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.18);
+}
+
+.governance96-header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.governance96-number {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.13);
+
+  color: #ffffff;
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.governance96-header-text {
+  min-width: 0;
+}
+
+.governance96-header h1 {
+  margin: 0 0 4px;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #ffffff;
+}
+
+.governance96-header p {
+  margin: 0;
+
+  font-size: 13px;
+
+  color: #ffffff;
+}
+
+/* =========================================================
+   SUB HEADER - 9.6.1
+========================================================= */
+
+.governance96-subheader {
+  width: 100%;
+  min-height: 72px;
+
+  margin-top: 10px;
+
+  padding: 10px 18px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  background: #ffffff;
+
+  border: 1px solid #d8e0eb;
+  border-radius: 7px;
+
+  color: #222222;
+}
+
+.subheader-icon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: #1769c2;
+  color: #ffffff;
+
+  font-size: 19px;
+}
+
+.subheader-title {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  font-size: 14px;
+  color: #222222;
+}
+
+.subheader-title strong {
+  color: #1769c2;
+  white-space: nowrap;
+}
+
+.subheader-title span {
+  color: #222222;
+  font-weight: 600;
+}
+
+.subheader-marks {
+  color: #1769c2;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.subheader-file {
+  color: #1769c2;
+
+  font-size: 16px;
+}
+
+/* =========================================================
+   TOP GRID
+========================================================= */
+
+.governance96-top-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 62% 38%;
+
+  gap: 10px;
+
+  margin-top: 10px;
+}
+
+/* =========================================================
+   COMMON CARD
+========================================================= */
+
+.governance96-card {
+  background: #ffffff;
+
+  border: 1px solid #d7dfeb;
+
+  border-radius: 7px;
+
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06);
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   CARD TITLE
+========================================================= */
+
+.governance96-card-title {
+  min-height: 44px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 8px 14px;
+
+  color: #073f91;
+
+  background: #f7f9fc;
+
+  border-bottom: 1px solid #d7dfeb;
+}
+
+.governance96-card-title svg {
+  font-size: 19px;
+
+  color: #1769c2;
+}
+
+.governance96-card-title h2 {
+  margin: 0;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: #102a43;
+}
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.table-wrapper96 {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* =========================================================
+   EVALUATION TABLE
+========================================================= */
+
+.evaluation96-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+
+  font-size: 12.5px;
+}
+
+.evaluation96-table thead th {
+  padding: 8px 6px;
+
+  background: #1769c2;
+
+  color: #ffffff;
+
+  border: 1px solid #1266b4;
+
+  text-align: center;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+.evaluation96-table thead th:nth-child(1) {
+  width: 8%;
+}
+
+.evaluation96-table thead th:nth-child(2) {
+  width: 74%;
+}
+
+.evaluation96-table thead th:nth-child(3) {
+  width: 18%;
+}
+
+.evaluation96-table tbody td {
+  padding: 8px 9px;
+
+  border: 1px solid #d6dce5;
+
+  background: #ffffff;
+
+  vertical-align: middle;
+
+  color: #172b50;
+
+  font-size: 12.5px;
+}
+
+.evaluation96-table tbody tr:nth-child(even) td {
+  background: #f8fbff;
+}
+
+/* =========================================================
+   CRITERIA CODE
+========================================================= */
+
+.criteria-code96 {
+  text-align: center;
+
+  vertical-align: middle !important;
+
+  color: #1769c2 !important;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.description96 {
+  color: #172b50;
+}
+
+.evaluation96-table td strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #172b50;
+
+  font-size: 12.5px;
+
+  line-height: 1.3;
+}
+
+.evaluation96-table ul {
+  margin: 4px 0 0;
+
+  padding-left: 20px;
+}
+
+.evaluation96-table li {
+  margin-bottom: 3px;
+
+  line-height: 1.35;
+
+  color: #17345d;
+}
+
+/* =========================================================
+   MARKS
+========================================================= */
+
+.marks96 {
+  text-align: center;
+
+  vertical-align: middle !important;
+
+  white-space: nowrap;
+
+  color: #172b50;
+
+  font-weight: 700;
+}
+
+.marks-input-box96 {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+}
+
+.marks96 input {
+  width: 58px;
+  height: 34px;
+
+  border: 1px solid #b9cbe1;
+
+  border-radius: 6px;
+
+  background: #ffffff;
+
+  color: #075db7;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  outline: none;
+}
+
+.marks96 input:focus {
+  border-color: #1769c2;
+
+  box-shadow:
+    0 0 0 2px rgba(23, 105, 194, 0.12);
+}
+
+.marks96 span {
+  color: #172b50;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   TOTAL ROW
+========================================================= */
+
+.total-row96 td {
+  padding: 8px 9px !important;
+
+  background: #eaf2fc !important;
+
+  color: #064194 !important;
+
+  border-top: 1px solid #cbdff4;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.total-row96 td:first-child {
+  text-align: right;
+}
+
+.total-row96 td:last-child {
+  text-align: center;
+}
+
+/* =========================================================
+   RIGHT SIDE
+========================================================= */
+
+.governance96-side {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+/* =========================================================
+   INSTRUCTIONS
+========================================================= */
+
+.instructions96 {
+  background: #ffffff;
+
+  border: 1px solid #d7dfeb;
+
+  border-radius: 7px;
+
+  min-height: 185px;
+
+  padding: 0;
+
+  overflow: hidden;
+}
+
+.instructions96 .side-title96 {
+  color: #073f91;
+
+  background: #f7f9fc;
+
+  margin: 0;
+
+  padding: 11px 14px;
+
+  border-bottom: 1px solid #d7dfeb;
+}
+
+.instructions96 .side-title96 svg {
+  color: #1769c2;
+}
+
+.instructions96 ul {
+  margin: 0;
+
+  padding: 10px 25px 14px 38px;
+}
+
+.instructions96 li {
+  margin: 7px 0;
+
+  color: #263746;
+
+  font-size: 13px;
+
+  line-height: 1.4;
+}
+
+.instructions96 li::marker {
+  color: #1769c2;
+}
+
+/* =========================================================
+   EXHIBITS
+   PURPLE LIKE CRITERIA 9.5
+========================================================= */
+
+.exhibits96 {
+  flex: 1;
+
+  background: #ffffff;
+
+  border: 1px solid #d7dfeb;
+
+  border-radius: 7px;
+
+  padding: 0;
+
+  overflow: hidden;
+}
+
+.exhibits96 .side-title96 {
+  color: #4b159d;
+
+  background: #ffffff;
+
+  margin: 0;
+
+  padding: 11px 14px;
+
+  border-bottom: 1px solid #d7dfeb;
+}
+
+.exhibits96 .side-title96 svg {
+  color: #4b159d;
+}
+
+.side-title96 {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+}
+
+.side-title96 svg {
+  font-size: 18px;
+
+  color: #1769c2;
+}
+
+.side-title96 h2 {
+  margin: 0;
+
+  font-size: 15px;
+
+  line-height: 1.25;
+
+  font-weight: 700;
+
+  color: #102a43;
+}
+
+.exhibits96 p {
+  margin: 0;
+
+  padding: 12px 20px 8px;
+
+  color: #20364d;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+.exhibits96 p strong {
+  color: #4b159d;
+}
+
+.exhibits96 ul {
+  margin: 5px 0 0;
+
+  padding: 0 20px 15px 40px;
+}
+
+.exhibits96 li {
+  margin-bottom: 6px;
+
+  color: #20364d;
+
+  font-size: 13px;
+
+  line-height: 1.4;
+}
+
+.exhibits96 li::marker {
+  color: #4b159d;
+}
+
+/* =========================================================
+   TRANSPARENCY HEADER
+========================================================= */
+
+.governance96-transparency {
+  width: 100%;
+
+  margin-top: 10px;
+}
+
+.transparency96-header {
+  width: 100%;
+
+  min-height: 44px;
+
+  padding: 7px 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  background: #ffffff;
+
+  border: 1px solid #d8e0eb;
+
+  border-radius: 7px 7px 0 0;
+
+  color: #075db7;
+}
+
+.transparency96-icon {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #1769c2;
+
+  color: #ffffff;
+
+  font-size: 14px;
+}
+
+.transparency96-header strong {
+  font-size: 13px;
+
+  color: #1769c2;
+}
+
+.transparency96-header > span {
+  font-size: 13px;
+
+  font-weight: 700;
+
+  color: #102a43;
+}
+
+.transparency96-marks {
+  margin-left: auto;
+
+  color: #1769c2;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   TRANSPARENCY CONTENT
+========================================================= */
+
+.transparency96-content {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 62% 38%;
+
+  gap: 10px;
+}
+
+.transparency96-content .governance96-card {
+  border-radius: 0 0 7px 7px;
+}
+
+.transparency96-content .governance96-card-title {
+  display: none;
+}
+
+/* =========================================================
+   TRANSPARENCY EXHIBITS
+   PURPLE LIKE CRITERIA 9.5
+========================================================= */
+
+.transparency-exhibits96 {
+  min-height: 100%;
+
+  padding: 0;
+
+  background: #ffffff;
+
+  border: 1px solid #d7dfeb;
+
+  border-radius: 7px;
+
+  overflow: hidden;
+}
+
+.transparency-exhibits96 .side-title96 {
+  color: #4b159d;
+
+  background: #ffffff;
+
+  padding: 11px 14px;
+
+  border-bottom: 1px solid #d7dfeb;
+}
+
+.transparency-exhibits96 .side-title96 svg {
+  color: #4b159d;
+}
+
+.transparency-exhibits96 ul {
+  margin: 0;
+
+  padding: 11px 20px 15px 40px;
+}
+
+.transparency-exhibits96 li {
+  margin-bottom: 6px;
+
+  color: #20364d;
+
+  font-size: 13px;
+
+  line-height: 1.4;
+}
+
+.transparency-exhibits96 li::marker {
+  color: #4b159d;
+}
+
+/* =========================================================
+   SUPPORTING DOCUMENTS
+========================================================= */
+
+.documents96 {
+  width: 100%;
+
+  margin-top: 10px;
+}
+
+.documents96 .governance96-card-title {
+  min-height: 44px;
+}
+
+.document-table96 {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.document-header96,
+.document-row96 {
+  display: grid;
+
+  grid-template-columns:
+    58px
+    1.15fr
+    1.65fr
+    155px
+    55px;
+
+  align-items: center;
+
+  min-width: 845px;
+}
+
+.document-header96 {
+  min-height: 36px;
+
+  background: #f0eef8;
+
+  color: #3e159b;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+.document-header96 > div {
+  padding: 8px 6px;
+
+  text-align: center;
+
+  border-right: 1px solid #d7dfeb;
+  border-bottom: 1px solid #d7dfeb;
+}
+
+.document-row96 {
+  min-height: 42px;
+
+  background: #ffffff;
+
+  border-top: 1px solid #d4dce8;
+
+  font-size: 12px;
+}
+
+.document-row96:nth-child(even) {
+  background: #f8fbff;
+}
+
+.document-row96 > div {
+  min-height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 6px 8px;
+
+  border-right: 1px solid #d4dce8;
+}
+
+.serial96 {
+  justify-content: center;
+
+  color: #1c3558;
+
+  font-weight: 600;
+}
+
+.document-name96 {
+  color: #17345d;
+
+  font-weight: 500;
+}
+
+.document-description96 {
+  color: #303f57;
+}
+
+.upload96 {
+  justify-content: center;
+}
+
+.upload96 input[type="file"] {
+  width: 145px;
+
+  color: #273d5b;
+
+  font-size: 10px;
+}
+
+.upload96 input[type="file"]::file-selector-button {
+  padding: 4px 7px;
+
+  border: none;
+
+  border-radius: 4px;
+
+  background: #e7f2ff;
+
+  color: #1769c2;
+
+  cursor: pointer;
+
+  font-size: 10px;
+}
+
+.upload96 input[type="file"]::file-selector-button:hover {
+  background: #d3e7ff;
+}
+
+.view96 {
+  justify-content: center;
+}
+
+.view96 button {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background: #e8f1ff;
+
+  color: #1769c2;
+
+  cursor: pointer;
+
+  font-size: 15px;
+
+  transition: 0.2s;
+}
+
+.view96 button:hover {
+  background: #1769c2;
+
+  color: #ffffff;
+
+  transform: scale(1.08);
+}
+
+/* =========================================================
+   EVALUATION & MARKS
+========================================================= */
+
+.evaluation-summary96 {
+  width: 100%;
+
+  margin-top: 10px;
+
+  padding: 0;
+
+  background: #ffffff;
+
+  border: 1px solid #d7dfeb;
+
+  border-radius: 7px;
+
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06);
+
+  overflow: hidden;
+}
+
+.evaluation-summary-title96 {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 10px 14px;
+
+  margin: 0;
+
+  color: #073f91;
+
+  background: #f7f9fc;
+
+  border-bottom: 1px solid #d7dfeb;
+}
+
+.evaluation-summary-title96 svg {
+  font-size: 19px;
+
+  color: #1769c2;
+}
+
+.evaluation-summary-title96 h2 {
+  margin: 0;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  color: #102a43;
+}
+
+.marks-summary96 {
+  padding: 10px 16px 0;
+}
+
+.marks-summary96 label,
+.remarks-summary96 label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #102a43;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+.marks-awarded96 {
+  width: 100%;
+
+  height: 47px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #eaf2ff;
+
+  border: 1px solid #c4daf8;
+
+  border-radius: 6px;
+
+  color: #1555a0;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+.remarks-summary96 {
+  padding: 12px 16px 14px;
+}
+
+.remarks-summary96 textarea {
+  width: 100%;
+
+  min-height: 78px;
+
+  padding: 9px;
+
+  resize: vertical;
+
+  background: #ffffff;
+
+  border: 1px solid #cfd5df;
+
+  border-radius: 6px;
+
+  color: #24334e;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  outline: none;
+}
+
+.remarks-summary96 textarea::placeholder {
+  color: #7b8794;
+}
+
+.remarks-summary96 textarea:focus {
+  border-color: #1769c2;
+
+  box-shadow:
+    0 0 0 2px rgba(23, 105, 194, 0.10);
+}
+
+/* =========================================================
+   FINAL TOTAL
+========================================================= */
+
+.final-total96 {
+  width: 100%;
+
+  min-height: 47px;
+
+  margin-top: 10px;
+
+  padding: 8px 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  background: #eaf2fc;
+
+  border: 1px solid #cbdff4;
+
+  border-radius: 6px;
+
+  color: #064194;
+}
+
+.final-total96 span {
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+.final-total96 strong {
+  font-size: 17px;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.governance96-buttons {
+  width: 100%;
+
+  margin-top: 12px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr
+    1fr
+    1fr
+    1fr
+    1fr
+    1fr;
+
+  gap: 16px;
+}
+
+.btn96 {
+  height: 45px;
+
+  border-radius: 6px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 12px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.btn96:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
+
+.previous96 {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+.previous96:hover {
+  background: #f2f7ff;
+}
+
+/* =========================================================
+   BACK
+========================================================= */
+
+.back96 {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+.back96:hover {
+  background: #f2f7ff;
+}
+
+/* =========================================================
+   SAVE
+========================================================= */
+
+.save96 {
+  background: #12a957;
+
+  color: #ffffff;
+
+  border: 1px solid #12a957;
+}
+
+.save96:hover {
+  background: #0f9149;
+}
+
+/* =========================================================
+   SUBMIT
+========================================================= */
+
+.submit96 {
+  background: #1769c2;
+
+  color: #ffffff;
+
+  border: 1px solid #1769c2;
+}
+
+.submit96:hover {
+  background: #1257a5;
+}
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+.delete96 {
+  background: #ed1c24;
+
+  color: #ffffff;
+
+  border: 1px solid #ed1c24;
+}
+
+.delete96:hover {
+  background: #c91d14;
+}
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+.print96 {
+  background: #5721ad;
+
+  color: #ffffff;
+
+  border: 1px solid #5721ad;
+}
+
+.print96:hover {
+  background: #46198e;
+}
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+.next96 {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+.next96:hover {
+  background: #f2f7ff;
+}
+
+/* =========================================================
+   CLEAR
+========================================================= */
+
+.clear96 {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+.clear96:hover {
+  background: #f2f7ff;
+}
+
+/* =========================================================
+   RESPONSIVE 1100px
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .governance96-top-grid,
+  .transparency96-content {
+    grid-template-columns: 1fr;
+  }
+
+  .governance96-side {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .instructions96,
+  .exhibits96 {
+    min-height: 180px;
+  }
+
+  .governance96-buttons {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE 800px
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .governance96-page {
+    padding: 7px;
+  }
+
+  .governance96-header {
+    min-height: 80px;
+  }
+
+  .governance96-header h1 {
+    font-size: 21px;
+  }
+
+  .governance96-header p {
+    font-size: 12px;
+  }
+
+  .governance96-subheader {
+    flex-wrap: wrap;
+  }
+
+  .subheader-marks {
+    margin-left: auto;
+  }
+
+  .governance96-side {
+    grid-template-columns: 1fr;
+  }
+
+  .document-table96 {
+    overflow-x: auto;
+  }
+
+  .document-header96,
+  .document-row96 {
+    min-width: 845px;
+  }
+
+  .evaluation96-table {
+    min-width: 700px;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE 600px
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .governance96-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 10px;
+  }
+
+  .governance96-header-left {
+    width: 100%;
+  }
+
+  .governance96-number {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+
+    font-size: 21px;
+  }
+
+  .governance96-header h1 {
+    font-size: 19px;
+  }
+
+  .governance96-header p {
+    font-size: 11px;
+  }
+
+  .subheader-title {
+    font-size: 12px;
+  }
+
+  .subheader-marks {
+    width: 100%;
+
+    margin-left: 0;
+  }
+
+  .governance96-buttons {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 8px;
+  }
+
+  .btn96 {
+    font-size: 13px;
+
+    height: 43px;
+  }
+}
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+  .governance96-page {
+    padding: 0;
+
+    background: #ffffff;
+  }
+
+  .governance96-buttons {
+    display: none !important;
+  }
+
+  .governance96-header,
+  .governance96-card,
+  .governance96-subheader,
+  .instructions96,
+  .exhibits96,
+  .transparency-exhibits96,
+  .evaluation-summary96,
+  .final-total96 {
+    box-shadow: none !important;
+  }
+
+  .evaluation96-table,
+  .document-row96 {
+    page-break-inside: avoid;
+  }
+
+  .governance96-header,
+  .evaluation96-table thead th,
+  .document-header96,
+  .total-row96 td,
+  .marks-awarded96 {
+    print-color-adjust: exact;
+
+    -webkit-print-color-adjust: exact;
+  }
+}

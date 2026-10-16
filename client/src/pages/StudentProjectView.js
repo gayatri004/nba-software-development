@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./StudentProjectView.css";
+import "./StudentProjectView.css";  
 import { useNavigate } from "react-router-dom";
 function StudentProjectView() {
 

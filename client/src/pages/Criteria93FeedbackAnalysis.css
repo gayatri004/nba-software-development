@@ -1,0 +1,1083 @@
+/* =========================================================
+   CRITERIA 9.3 - FEEDBACK ANALYSIS
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #eef3f8;
+  color: #172033;
+}
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.feedback93-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 22px;
+  background: #eef3f8;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.feedback93-header {
+  width: 100%;
+  min-height: 105px;
+  background: linear-gradient(135deg, #0b3d91, #1565c0);
+  border-radius: 14px;
+  padding: 22px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+  margin-bottom: 22px;
+}
+
+.feedback93-header-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.feedback93-number {
+  width: 65px;
+  height: 65px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 27px;
+  font-weight: 800;
+}
+
+.feedback93-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.feedback93-header p {
+  font-size: 14px;
+  opacity: 0.92;
+}
+
+.feedback93-max-marks {
+  min-width: 130px;
+  background: white;
+  color: #0b3d91;
+  border-radius: 12px;
+  padding: 12px 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15);
+}
+
+.feedback93-max-marks span {
+  display: block;
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 3px;
+}
+
+.feedback93-max-marks strong {
+  display: block;
+  font-size: 27px;
+}
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.feedback93-section {
+  background: #fff;
+  border-radius: 14px;
+  margin-bottom: 25px;
+  overflow: hidden;
+  border: 1px solid #dce4ef;
+  box-shadow: 0 4px 14px rgba(0,0,0,.07);
+}
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.feedback93-section-header {
+  min-height: 80px;
+  padding: 16px 22px;
+  background: linear-gradient(90deg, #f3f8ff, #ffffff);
+  border-bottom: 1px solid #dbe5f0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-icon {
+  width: 48px;
+  height: 48px;
+  background: #1565c0;
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 21px;
+}
+
+.section-title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-title strong {
+  font-size: 20px;
+  color: #0b3d91;
+  white-space: nowrap;
+}
+
+.section-title span {
+  font-size: 15px;
+  line-height: 1.45;
+  color: #293548;
+  font-weight: 600;
+}
+
+.section-marks {
+  background: #e8f1ff;
+  color: #0b3d91;
+  border: 1px solid #c9dcfa;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.section-document-icon {
+  color: #1565c0;
+  font-size: 22px;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.feedback93-grid {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1.65fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.feedback93-card {
+  background: #fff;
+  border: 1px solid #dce4ef;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+.feedback93-card-title {
+  min-height: 58px;
+  padding: 13px 17px;
+  background: #f5f8fc;
+  border-bottom: 1px solid #dce4ef;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feedback93-card-title svg {
+  color: #1565c0;
+  font-size: 19px;
+}
+
+.feedback93-card-title h2 {
+  font-size: 16px;
+  color: #18253a;
+  font-weight: 700;
+}
+
+/* =========================================================
+   EVALUATION TABLE
+========================================================= */
+
+.evaluation93-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.evaluation93-table th {
+  background: #eaf2fc;
+  color: #163e70;
+  font-weight: 700;
+  padding: 12px 9px;
+  border: 1px solid #ccd9e8;
+  text-align: center;
+}
+
+.evaluation93-table td {
+  padding: 12px 9px;
+  border: 1px solid #d5deea;
+  vertical-align: middle;
+  line-height: 1.45;
+}
+
+.evaluation93-table td:first-child {
+  width: 55px;
+  text-align: center;
+  font-weight: 800;
+  color: #0b3d91;
+}
+
+.evaluation93-table td:last-child {
+  width: 105px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.evaluation93-table input {
+  width: 52px;
+  height: 34px;
+  border: 1px solid #b9c8da;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+}
+
+.evaluation93-table input:focus {
+  border-color: #1565c0;
+  box-shadow: 0 0 0 2px rgba(21,101,192,.12);
+}
+
+.evaluation93-table td span {
+  margin-left: 4px;
+  font-weight: 600;
+  color: #555;
+}
+
+.total-row td {
+  background: #edf5ff;
+  color: #0b3d91;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+/* =========================================================
+   DOCUMENTS
+========================================================= */
+
+.documents93 {
+  min-height: 100%;
+}
+
+.document-table93 {
+  width: 100%;
+}
+
+.document-header93,
+.document-row93 {
+  display: grid;
+  grid-template-columns: 55px 1fr 145px 55px;
+  align-items: center;
+}
+
+.document-header93 {
+  min-height: 48px;
+  background: #eaf2fc;
+  color: #163e70;
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+}
+
+.document-row93 {
+  min-height: 64px;
+  border-top: 1px solid #dce4ef;
+  font-size: 12px;
+}
+
+.document-row93 > div {
+  padding: 8px;
+  text-align: center;
+  border-right: 1px solid #e4e9f0;
+}
+
+.document-row93 > div:last-child {
+  border-right: none;
+}
+
+.document-row93 > div:nth-child(2) {
+  text-align: left;
+  color: #26364c;
+  font-weight: 600;
+}
+
+.document-row93 input[type="file"] {
+  width: 130px;
+  font-size: 10px;
+}
+
+.document-row93 button {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 7px;
+  background: #e8f1ff;
+  color: #1565c0;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.document-row93 button:hover {
+  background: #1565c0;
+  color: white;
+}
+
+/* =========================================================
+   EVALUATION CARD
+========================================================= */
+
+.evaluation93 {
+  grid-column: 1 / -1;
+}
+
+.evaluation93 .feedback93-card-title svg {
+  color: #f5a623;
+}
+
+.awarded93 {
+  padding: 18px 20px 8px;
+}
+
+.awarded93 label,
+.remarks93 label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.awarded-value93 {
+  width: 180px;
+  min-height: 48px;
+  background: #eef6ff;
+  border: 1px solid #c9dcfa;
+  color: #0b3d91;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.remarks93 {
+  padding: 10px 20px 20px;
+}
+
+.remarks93 textarea {
+  width: 100%;
+  min-height: 85px;
+  resize: vertical;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 11px;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+}
+
+.remarks93 textarea:focus {
+  border-color: #1565c0;
+  box-shadow: 0 0 0 2px rgba(21,101,192,.1);
+}
+
+/* =========================================================
+   EXHIBITS
+========================================================= */
+
+.exhibits93 {
+  margin: 0 20px 20px;
+  padding: 15px 18px;
+  background: #f7faff;
+  border: 1px solid #d6e4f5;
+  border-left: 4px solid #1565c0;
+  border-radius: 8px;
+}
+
+.exhibits-title93 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #0b3d91;
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+.exhibits-title93 svg {
+  font-size: 16px;
+}
+
+.exhibits93 p {
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.55;
+  margin-left: 24px;
+}
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+.feedback93-total {
+  width: 100%;
+  min-height: 75px;
+  background: linear-gradient(90deg, #0b3d91, #1565c0);
+  border-radius: 12px;
+  color: white;
+  padding: 16px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.12);
+}
+
+.feedback93-total span {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.feedback93-total strong {
+  background: white;
+  color: #0b3d91;
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 20px;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.feedback93-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 5px 0 25px;
+}
+
+.btn93 {
+  min-width: 105px;
+  height: 43px;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  padding: 0 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.btn93:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 9px rgba(0,0,0,.15);
+}
+
+.previous93 {
+  background: #546e7a;
+}
+
+.back93 {
+  background: #607d8b;
+}
+
+.save93 {
+  background: #1565c0;
+}
+
+.submit93 {
+  background: #2e7d32;
+}
+
+.delete93 {
+  background: #c62828;
+}
+
+.print93 {
+  background: #6a1b9a;
+}
+
+.next93 {
+  background: #0d47a1;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .feedback93-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .evaluation93 {
+    grid-column: auto;
+  }
+
+}
+
+@media (max-width: 800px) {
+
+  .feedback93-page {
+    padding: 12px;
+  }
+
+  .feedback93-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .feedback93-max-marks {
+    align-self: flex-end;
+  }
+
+  .feedback93-header h1 {
+    font-size: 21px;
+  }
+
+  .feedback93-section-header {
+    flex-wrap: wrap;
+  }
+
+  .section-title {
+    flex-wrap: wrap;
+  }
+
+  .document-header93,
+  .document-row93 {
+    grid-template-columns: 40px 1fr 110px 45px;
+  }
+
+  .document-row93 input[type="file"] {
+    width: 100px;
+  }
+
+  .evaluation93-table {
+    font-size: 11px;
+  }
+
+  .evaluation93-table th,
+  .evaluation93-table td {
+    padding: 8px 5px;
+  }
+
+}
+
+@media (max-width: 550px) {
+
+  .feedback93-header-left {
+    align-items: flex-start;
+  }
+
+  .feedback93-number {
+    width: 52px;
+    height: 52px;
+    font-size: 21px;
+  }
+
+  .feedback93-header h1 {
+    font-size: 18px;
+  }
+
+  .feedback93-header p {
+    font-size: 12px;
+  }
+
+  .feedback93-section-header {
+    padding: 12px;
+  }
+
+  .feedback93-grid {
+    padding: 12px;
+  }
+
+  .exhibits93 {
+    margin: 0 12px 12px;
+  }
+
+  .feedback93-total {
+    padding: 13px;
+  }
+
+  .feedback93-total span {
+    font-size: 14px;
+  }
+
+  .feedback93-total strong {
+    font-size: 16px;
+  }
+
+  .btn93 {
+    min-width: 90px;
+    height: 40px;
+    font-size: 12px;
+  }
+
+}
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+  body {
+    background: white;
+  }
+
+  .feedback93-page {
+    padding: 0;
+    background: white;
+  }
+
+  .feedback93-buttons {
+    display: none;
+  }
+
+  .feedback93-section {
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  .feedback93-header {
+    box-shadow: none;
+  }
+
+}
+/* =========================================================
+   CRITERIA 9.3 - SAME COLOR THEME AS CRITERIA 9.4
+   STRUCTURE / SIZE / LAYOUT UNCHANGED
+========================================================= */
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.feedback93-page {
+  background: #f3f6fb;
+  color: #102a43;
+}
+
+
+/* =========================================================
+   HEADER - SAME AS 9.4
+========================================================= */
+
+.feedback93-header {
+  background: linear-gradient(
+    135deg,
+    #1769c2,
+    #1264bd
+  );
+
+  color: #ffffff;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.feedback93-number {
+  background: rgba(255, 255, 255, 0.13);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  color: #ffffff;
+}
+
+.feedback93-header h1 {
+  color: #ffffff;
+}
+
+.feedback93-header p {
+  color: #ffffff;
+}
+
+.feedback93-max-marks {
+  background: rgba(255, 255, 255, 0.14);
+
+  color: #ffffff;
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+
+  box-shadow: none;
+}
+
+.feedback93-max-marks span {
+  color: #ffffff;
+}
+
+.feedback93-max-marks strong {
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.feedback93-section {
+  background: #ffffff;
+
+  border-color: #d7dfeb;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.feedback93-section-header {
+  background: linear-gradient(
+    90deg,
+    #f7f9fc,
+    #ffffff
+  );
+
+  border-bottom-color: #d7dfeb;
+}
+
+.section-icon {
+  background: #1769c2;
+  color: #ffffff;
+}
+
+.section-title strong {
+  color: #073f91;
+}
+
+.section-title span {
+  color: #20364d;
+}
+
+.section-marks {
+  background: #eaf2ff;
+
+  color: #1555a0;
+
+  border-color: #c4daf8;
+}
+
+.section-document-icon {
+  color: #1769c2;
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.feedback93-card {
+  background: #ffffff;
+
+  border-color: #d7dfeb;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.feedback93-card-title {
+  background: #f7f9fc;
+
+  border-bottom-color: #d7dfeb;
+}
+
+.feedback93-card-title svg {
+  color: #1769c2;
+}
+
+.feedback93-card-title h2 {
+  color: #102a43;
+}
+
+
+/* =========================================================
+   EVALUATION TABLE
+========================================================= */
+
+.evaluation93-table th {
+  background: #1769c2;
+
+  color: #ffffff;
+
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.evaluation93-table td {
+  border-color: #d7dfeb;
+
+  color: #20364d;
+}
+
+.evaluation93-table td:first-child {
+  color: #1769c2;
+}
+
+.evaluation93-table input {
+  border-color: #c9d3e2;
+
+  background: #ffffff;
+
+  color: #111111;
+}
+
+.evaluation93-table input:focus {
+  border-color: #1769c2;
+
+  box-shadow:
+    0 0 0 2px rgba(23, 105, 194, 0.12);
+}
+
+.evaluation93-table td span {
+  color: #34495e;
+}
+
+.total-row td {
+  background: #eaf2fc;
+
+  color: #064194;
+}
+
+
+/* =========================================================
+   DOCUMENTS
+========================================================= */
+
+.document-header93 {
+  background: #f0eef8;
+
+  color: #3e159b;
+}
+
+.document-row93 {
+  border-top-color: #d7dfeb;
+
+  background: #ffffff;
+}
+
+.document-row93 > div {
+  border-right-color: #d7dfeb;
+}
+
+.document-row93 > div:nth-child(2) {
+  color: #17324d;
+}
+
+.document-row93 button {
+  background: #e8f1ff;
+
+  color: #1769c2;
+}
+
+.document-row93 button:hover {
+  background: #1769c2;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   EVALUATION CARD
+========================================================= */
+
+.evaluation93 .feedback93-card-title svg {
+  color: #1769c2;
+}
+
+.awarded93 label,
+.remarks93 label {
+  color: #102a43;
+}
+
+.awarded-value93 {
+  background: #eaf2ff;
+
+  border-color: #c4daf8;
+
+  color: #1555a0;
+}
+
+.remarks93 textarea {
+  border-color: #c9d3e2;
+
+  color: #111111;
+}
+
+.remarks93 textarea:focus {
+  border-color: #1769c2;
+
+  box-shadow:
+    0 0 0 2px rgba(23, 105, 194, 0.1);
+}
+
+
+/* =========================================================
+   EXHIBITS
+========================================================= */
+
+.exhibits93 {
+  background: #ffffff;
+
+  border-color: #d7dfeb;
+
+  border-left-color: #1769c2;
+}
+
+.exhibits-title93 {
+  color: #4b159d;
+}
+
+.exhibits-title93 svg {
+  color: #4b159d;
+}
+
+.exhibits93 p {
+  color: #20364d;
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+.feedback93-total {
+  background: linear-gradient(
+    135deg,
+    #1769c2,
+    #1264bd
+  );
+
+  color: #ffffff;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.feedback93-total strong {
+  background: #ffffff;
+
+  color: #1555a0;
+}
+
+
+/* =========================================================
+   BUTTONS - SAME AS 9.4
+========================================================= */
+
+.previous93 {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+.back93 {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+.save93 {
+  background: #12a957;
+
+  color: #ffffff;
+}
+
+.submit93 {
+  background: #12a957;
+
+  color: #ffffff;
+}
+
+.delete93 {
+  background: #ed1c24;
+
+  color: #ffffff;
+}
+
+.print93 {
+  background: #5721ad;
+
+  color: #ffffff;
+}
+
+.next93 {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+
+/* =========================================================
+   BUTTON HOVER
+========================================================= */
+
+.previous93:hover,
+.back93:hover,
+.next93:hover {
+  background: #f7f3ff;
+
+  color: #4a159e;
+}
+
+.save93:hover {
+  background: #0f944c;
+}
+
+.submit93:hover {
+  background: #0f944c;
+}
+
+.delete93:hover {
+  background: #d71920;
+}
+
+.print93:hover {
+  background: #4b1c96;
+}

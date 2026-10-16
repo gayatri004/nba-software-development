@@ -1,0 +1,1179 @@
+/* =========================================================
+   CRITERIA 9.5 - INDUSTRY INTERACTION
+   SAME COLOR COMBINATION AS CRITERIA 9.4
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f3f6fb;
+  color: #102a43;
+}
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.criteria95-page {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+
+  margin: 0 auto;
+  padding: 10px 14px 30px;
+
+  background: #f3f6fb;
+  color: #102a43;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.criteria95-header {
+  width: 100%;
+  min-height: 86px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 20px;
+
+  background: linear-gradient(
+    135deg,
+    #1769c2,
+    #1264bd
+  );
+
+  border-radius: 0 0 12px 12px;
+
+  color: #ffffff;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+
+  margin-bottom: 12px;
+}
+
+.criteria95-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.criteria95-number {
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: rgba(255, 255, 255, 0.13);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  color: #ffffff;
+
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.criteria95-header h1 {
+  margin: 0 0 4px;
+
+  font-size: 25px;
+  font-weight: 700;
+
+  color: #ffffff;
+}
+
+.criteria95-header p {
+  margin: 0;
+
+  font-size: 13px;
+
+  color: #ffffff;
+}
+
+/* =========================================================
+   SUB CRITERIA
+   ========================================================= */
+
+.criteria95-subcriteria {
+  width: 100%;
+
+  min-height: 72px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 10px 18px;
+
+  gap: 15px;
+
+  background: #ffffff;
+
+  border: 1px solid #d8e0eb;
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  margin-bottom: 12px;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.subcriteria-icon {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: #4b18ad;
+
+  color: #ffffff;
+
+  font-size: 19px;
+}
+
+.subcriteria-item {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  font-size: 14px;
+
+  color: #222222;
+}
+
+.subcriteria-item + .subcriteria-item {
+  border-left: 1px solid #e0e4ec;
+
+  padding-left: 25px;
+}
+
+.subcriteria-item b {
+  color: #1769c2;
+}
+
+/* =========================================================
+   TOP GRID
+   ========================================================= */
+
+.criteria95-top-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(300px, 1fr);
+
+  gap: 10px;
+
+  margin-bottom: 12px;
+}
+
+/* =========================================================
+   RIGHT SIDE
+   ========================================================= */
+
+.criteria95-right {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+/* =========================================================
+   COMMON CARD
+   ========================================================= */
+
+.criteria95-card {
+  background: #ffffff;
+
+  border: 1px solid #d7dfeb;
+
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* =========================================================
+   CARD TITLE
+   ========================================================= */
+
+.criteria95-card-title {
+  min-height: 42px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px 16px;
+
+  background: #f7f9fc;
+
+  border-bottom: 1px solid #d7dfeb;
+
+  color: #073f91;
+}
+
+.criteria95-card-title svg,
+.file-icon95 {
+  font-size: 16px;
+
+  color: #1769c2;
+}
+
+.criteria95-card-title h2 {
+  margin: 0;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  color: #102a43;
+}
+
+/* =========================================================
+   GUIDELINES
+   ========================================================= */
+
+.guidelines95 {
+  background: #ffffff;
+}
+
+.guidelines95 .criteria95-card-title {
+  background: #eefaf2;
+
+  color: #13733b;
+}
+
+.guidelines95 .criteria95-card-title svg {
+  color: #168447;
+}
+
+.guidelines95 ul {
+  margin: 0;
+
+  padding: 12px 18px 14px 34px;
+}
+
+.guidelines95 li {
+  margin-bottom: 8px;
+
+  font-size: 13px;
+
+  line-height: 1.45;
+
+  color: #263746;
+}
+
+.guidelines95 li::marker {
+  color: #168447;
+}
+
+/* =========================================================
+   EVALUATION TABLE
+   ========================================================= */
+
+.criteria95-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+
+  font-size: 13px;
+}
+
+.criteria95-table th {
+  background: #1769c2;
+
+  color: #ffffff;
+
+  font-weight: 700;
+
+  padding: 10px 8px;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+
+  text-align: center;
+}
+
+.criteria95-table th:nth-child(1) {
+  width: 8%;
+}
+
+.criteria95-table th:nth-child(2) {
+  width: 23%;
+}
+
+.criteria95-table th:nth-child(3) {
+  width: 51%;
+}
+
+.criteria95-table th:nth-child(4) {
+  width: 18%;
+}
+
+.criteria95-table td {
+  padding: 10px;
+
+  border-right: 1px solid #d7dfeb;
+
+  border-bottom: 1px solid #d7dfeb;
+
+  vertical-align: top;
+
+  font-size: 13px;
+
+  color: #20364d;
+}
+
+.criteria95-table tbody tr:nth-child(even) {
+  background: #f8fbff;
+}
+
+.criteria95-table ul {
+  margin: 5px 0 0;
+
+  padding-left: 20px;
+}
+
+.criteria95-table li {
+  margin-bottom: 5px;
+
+  line-height: 1.35;
+
+  color: #20364d;
+}
+
+.criteria-letter {
+  text-align: center;
+
+  color: #1769c2 !important;
+
+  font-size: 15px !important;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   MARK INPUT
+   ========================================================= */
+
+.marks-cell {
+  text-align: center;
+
+  vertical-align: middle !important;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.marks-cell input {
+  width: 58px;
+  height: 34px;
+
+  text-align: center;
+
+  border: 1px solid #c9d3e2;
+
+  border-radius: 6px;
+
+  background: #ffffff;
+
+  color: #111111;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  outline: none;
+}
+
+.marks-cell input:focus {
+  border-color: #1769c2;
+
+  box-shadow:
+    0 0 0 2px rgba(23, 105, 194, 0.12);
+}
+
+.marks-cell span {
+  margin-left: 5px;
+
+  color: #34495e;
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   TOTAL ROW
+   ========================================================= */
+
+.total-row95 td {
+  background: #eaf2fc;
+
+  color: #064194;
+
+  font-weight: 700;
+
+  padding: 9px;
+
+  text-align: right;
+
+  border-top: 1px solid #cbdff4;
+}
+
+.total-row95 td:last-child {
+  text-align: center;
+}
+
+/* =========================================================
+   INSTRUCTIONS
+   ========================================================= */
+
+.instructions95 {
+  background: #ffffff;
+}
+
+.instructions95 .criteria95-card-title {
+  background: #eefaf2;
+
+  color: #13733b;
+
+  border-bottom-color: #d7dfeb;
+}
+
+.instructions95 .criteria95-card-title svg {
+  color: #168447;
+}
+
+.instructions95 ul {
+  margin: 0;
+
+  padding: 12px 18px 14px 34px;
+}
+
+.instructions95 li {
+  margin-bottom: 8px;
+
+  font-size: 13px;
+
+  line-height: 1.45;
+
+  color: #263746;
+}
+
+.instructions95 li::marker {
+  color: #168447;
+}
+
+/* =========================================================
+   EXHIBITS
+   ========================================================= */
+
+.exhibits95 {
+  background: #ffffff;
+
+  flex: 1;
+}
+
+.exhibits95 .criteria95-card-title {
+  color: #4b159d;
+
+  background: #ffffff;
+}
+
+.exhibits95 .criteria95-card-title svg {
+  color: #4b159d;
+}
+
+.exhibit-content {
+  padding: 13px 18px 17px;
+
+  font-size: 13px;
+
+  line-height: 1.55;
+
+  color: #20364d;
+}
+
+.exhibit-content strong {
+  color: #4b159d;
+
+  margin-right: 6px;
+}
+
+.exhibit-content ul {
+  margin: 7px 0 0 23px;
+}
+
+.exhibit-content li {
+  margin-bottom: 5px;
+}
+
+.exhibit-content li::marker {
+  color: #4b159d;
+}
+
+/* =========================================================
+   BOTTOM GRID
+   ========================================================= */
+
+.criteria95-bottom-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(300px, 1fr);
+
+  gap: 10px;
+
+  margin-bottom: 12px;
+}
+
+/* =========================================================
+   SUPPORTING DOCUMENTS
+   ========================================================= */
+
+.documents95 {
+  margin-bottom: 0;
+}
+
+.documents95 .criteria95-card-title {
+  color: #4b159d;
+
+  background: #ffffff;
+
+  border-bottom-color: #d7dfeb;
+}
+
+.documents95 .criteria95-card-title svg {
+  color: #4b159d;
+}
+
+.documents-wrapper95 {
+  width: 100%;
+
+  padding: 0 8px 8px;
+
+  overflow-x: auto;
+}
+
+.documents-wrapper95 table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+}
+
+/* =========================================================
+   DOCUMENT HEADER
+   ========================================================= */
+
+.documents-wrapper95 th {
+  background: #f0eef8;
+
+  color: #3e159b;
+
+  border: 1px solid #d7dfeb;
+
+  padding: 9px 7px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-align: center;
+}
+
+.documents-wrapper95 th:nth-child(1) {
+  width: 7%;
+}
+
+.documents-wrapper95 th:nth-child(2) {
+  width: 29%;
+}
+
+.documents-wrapper95 th:nth-child(3) {
+  width: 35%;
+}
+
+.documents-wrapper95 th:nth-child(4) {
+  width: 21%;
+}
+
+.documents-wrapper95 th:nth-child(5) {
+  width: 8%;
+}
+
+/* =========================================================
+   DOCUMENT ROW
+   ========================================================= */
+
+.documents-wrapper95 td {
+  border: 1px solid #d7dfeb;
+
+  padding: 7px 8px;
+
+  font-size: 12px;
+
+  vertical-align: middle;
+
+  color: #17324d;
+
+  background: #ffffff;
+}
+
+.documents-wrapper95 tbody tr:nth-child(even) td {
+  background: #f8fbff;
+}
+
+.documents-wrapper95 tbody tr:hover td {
+  background: #f0f7ff;
+}
+
+/* =========================================================
+   SERIAL NUMBER
+   ========================================================= */
+
+.documents-wrapper95 td:first-child,
+.documents-wrapper95 td.serial95 {
+  text-align: center !important;
+
+  color: #17324d !important;
+
+  font-weight: 600 !important;
+}
+
+.documents-wrapper95 th:first-child {
+  color: #3e159b !important;
+
+  background: #f0eef8 !important;
+
+  text-align: center !important;
+
+  font-weight: 700 !important;
+}
+
+/* =========================================================
+   FILE INPUT
+   ========================================================= */
+
+.upload95 input {
+  width: 100%;
+
+  font-size: 11px;
+
+  color: #333333;
+}
+
+.upload95 input::file-selector-button {
+  padding: 4px 8px;
+
+  margin-right: 5px;
+
+  border: none;
+
+  border-radius: 4px;
+
+  background: #e7f2ff;
+
+  color: #1769c2;
+
+  cursor: pointer;
+
+  font-size: 11px;
+}
+
+.upload95 input::file-selector-button:hover {
+  background: #d3e7ff;
+}
+
+/* =========================================================
+   VIEW BUTTON
+   ========================================================= */
+
+.view95 {
+  text-align: center;
+}
+
+.view95 button {
+  width: 32px;
+  height: 30px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: #e8f1ff;
+
+  color: #1769c2;
+
+  cursor: pointer;
+
+  font-size: 15px;
+
+  transition: 0.2s;
+}
+
+.view95 button:hover {
+  background: #1769c2;
+
+  color: #ffffff;
+
+  transform: scale(1.05);
+}
+
+/* =========================================================
+   EVALUATION
+   ========================================================= */
+
+.evaluation95 {
+  background: #ffffff;
+
+  border-color: #d7dfeb;
+}
+
+.evaluation95 .criteria95-card-title {
+  color: #073f91;
+
+  background: #f7f9fc;
+
+  border-bottom-color: #d7dfeb;
+}
+
+.evaluation95 .criteria95-card-title svg {
+  color: #1769c2;
+}
+
+/* =========================================================
+   AWARDED MARKS
+   ========================================================= */
+
+.awarded95 {
+  padding: 12px 16px 12px;
+}
+
+.awarded95 label,
+.remarks95 label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  color: #102a43;
+}
+
+.awarded-value95 {
+  min-height: 47px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  background: #eaf2ff;
+
+  border: 1px solid #c4daf8;
+
+  color: #1555a0;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   REMARKS
+   ========================================================= */
+
+.remarks95 {
+  padding: 0 16px 14px;
+}
+
+.remarks95 textarea {
+  width: 100%;
+
+  min-height: 70px;
+
+  resize: vertical;
+
+  padding: 10px 12px;
+
+  border: 1px solid #c9d3e2;
+
+  border-radius: 6px;
+
+  background: #ffffff;
+
+  color: #24334e;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  outline: none;
+}
+
+.remarks95 textarea:focus {
+  border-color: #1769c2;
+
+  box-shadow:
+    0 0 0 2px rgba(23, 105, 194, 0.10);
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.criteria95-buttons {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 0 0 15px;
+
+  margin-top: 0;
+}
+
+.btn95 {
+  min-width: 120px;
+
+  height: 44px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  padding: 0 18px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.btn95:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 4px 9px rgba(0, 0, 0, 0.12);
+}
+
+.btn95:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   PREVIOUS
+   ========================================================= */
+
+.previous95 {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+/* =========================================================
+   BACK
+   ========================================================= */
+
+.back95 {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+/* =========================================================
+   SAVE
+   ========================================================= */
+
+.save95 {
+  background: #12a957;
+
+  color: #ffffff;
+
+  border: 1px solid #12a957;
+}
+
+.save95:hover {
+  background: #0f9149;
+}
+
+/* =========================================================
+   DELETE
+   ========================================================= */
+
+.delete95 {
+  background: #ed1c24;
+
+  color: #ffffff;
+
+  border: 1px solid #ed1c24;
+}
+
+.delete95:hover {
+  background: #c91d14;
+}
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+.print95 {
+  background: #5721ad;
+
+  color: #ffffff;
+
+  border: 1px solid #5721ad;
+}
+
+.print95:hover {
+  background: #46198e;
+}
+
+/* =========================================================
+   NEXT
+   ========================================================= */
+
+.next95 {
+  background: #ffffff;
+
+  color: #4a159e;
+
+  border: 1px solid #d5d5df;
+}
+
+/* =========================================================
+   RESPONSIVE - 1100px
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .criteria95-top-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria95-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .criteria95-buttons {
+    flex-wrap: wrap;
+
+    justify-content: center;
+  }
+
+  .criteria95-subcriteria {
+    flex-wrap: wrap;
+  }
+
+  .subcriteria-item {
+    flex: none;
+
+    width: 48%;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE - 800px
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+  .criteria95-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .criteria95-subcriteria {
+    display: grid;
+
+    grid-template-columns: 1fr;
+  }
+
+  .subcriteria-item {
+    width: 100%;
+  }
+
+  .subcriteria-item + .subcriteria-item {
+    border-left: none;
+
+    border-top: 1px solid #e0e4ec;
+
+    padding-left: 0;
+
+    padding-top: 10px;
+  }
+
+  .criteria95-buttons {
+    justify-content: center;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE - 600px
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .criteria95-page {
+    padding: 6px;
+  }
+
+  .criteria95-header {
+    padding: 12px;
+
+    border-radius: 8px;
+  }
+
+  .criteria95-header-left {
+    gap: 10px;
+  }
+
+  .criteria95-number {
+    width: 54px;
+    height: 54px;
+
+    font-size: 21px;
+  }
+
+  .criteria95-header h1 {
+    font-size: 19px;
+  }
+
+  .criteria95-header p {
+    font-size: 11px;
+  }
+
+  .criteria95-buttons {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+  }
+
+  .btn95 {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+  .criteria95-table {
+    min-width: 750px;
+  }
+
+  .documents-wrapper95 table {
+    min-width: 750px;
+  }
+}
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+  body {
+    background: #ffffff;
+  }
+
+  .criteria95-page {
+    padding: 0;
+
+    background: #ffffff;
+  }
+
+  .criteria95-buttons {
+    display: none !important;
+  }
+
+  .criteria95-header {
+    box-shadow: none;
+
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .criteria95-card {
+    box-shadow: none;
+  }
+
+  .criteria95-table th,
+  .documents-wrapper95 th,
+  .total-row95 td,
+  .awarded-value95 {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .upload95 input {
+    display: none;
+  }
+
+  .view95 button {
+    display: none;
+  }
+}
