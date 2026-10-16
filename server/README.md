@@ -1,57 +1,86 @@
 # NBA Software Development – Backend
 
 ## Project Overview
-The backend of NBA Software Development handles API requests, authentication, data processing, database connectivity, and report generation for the NBA management system.
+
+The backend of NBA Software Development manages API requests, authentication, database connectivity, data processing, file uploads, and document generation for the NBA accreditation management system.
 
 ## Technologies Used
+
 - Node.js
 - Express.js
 - PostgreSQL
-- pg
+- pg (node-postgres)
+- bcrypt
 - dotenv
 - CORS
-- bcrypt
-- PDFKit
 - Multer
+- PDFKit
+- PDF Merger
+- Image to PDF
+- LibreOffice Convert
+- fs-extra
 
 ## Features
+
 - REST API Development
-- User Authentication
+- User Authentication and Password Hashing
 - PostgreSQL Database Connectivity
-- Employee and Institutional Data Management
 - NBA Criteria Data Handling
+- Institutional Data Management
 - File Upload Management
-- PDF and Report Generation
+- PDF and Document Processing
+- Report Generation Support
 
 ## Installation and Setup
 
 ### 1. Open the Server Folder
+
 ```bash
 cd server
 ```
 
 ### 2. Install Dependencies
+
 ```bash
 npm install
 ```
 
 ### 3. Configure Environment Variables
-Create or update the `.env` file with the database and other configuration values required by the application.
 
-**Important:** Do not upload `.env` files or database passwords to GitHub.
+Create a `.env` file in the server folder and configure the database connection and other environment variables required by `server.js`.
+
+**Important:** Do not upload `.env` files, database passwords, or other secret credentials to GitHub.
 
 ### 4. Start the Backend
+
+For normal execution:
+
 ```bash
-node server.js
+npm start
 ```
 
-Use the port configured in the backend. In the current project, the server is intended to run on port `5000`.
+For development with automatic server restarts:
+
+```bash
+npm run dev
+```
+
+The development command uses Nodemon.
+
+The backend is intended to run on port `5000`, according to the project configuration. Confirm the actual port in `server.js`.
 
 ## Database
-The backend uses PostgreSQL to store and retrieve application data. Ensure PostgreSQL is running and the database configuration is correct before starting the server.
 
-## API
-The backend exposes API endpoints that the React frontend uses to communicate with the database and process application data.
+The backend uses PostgreSQL to store and retrieve application data. Ensure that PostgreSQL is running and that the database connection settings are correctly configured.
+
+## API Communication
+
+The backend exposes API endpoints that the React frontend uses to exchange data and perform application operations.
+
+## Project Purpose
+
+To provide backend services for centralized NBA accreditation, criteria data, institutional information, and document management.
 
 ## Project
+
 NBA Software Development
